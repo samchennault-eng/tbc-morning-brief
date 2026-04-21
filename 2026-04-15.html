@@ -1,0 +1,2881 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TBC Morning Briefing — Wednesday, April 15, 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1a1a;
+    --ink-mid: #444;
+    --ink-light: #888;
+    --ink-faint: #bbb;
+    --rule: #e0ddd8;
+    --bg: #faf9f7;
+    --bg-warm: #f3f1ec;
+    --paper: #fff;
+    --accent: #1a3a5c;
+    --accent-light: #e8eef5;
+    --gold: #b8860b;
+    --gold-light: #fdf8ee;
+    --saved-bg: #f0f7f0;
+    --saved-border: #2d7a4f;
+    --tag-music: #1a3a5c;
+    --tag-industry: #5c1a3a;
+    --tag-media: #1a5c3a;
+    --tag-culture: #5c3a1a;
+    --sidebar-w: 220px;
+    --industry-sidebar-w: 220px;
+    --industry-accent: #854f0b;
+    --industry-bg: #faeeda;
+    --industry-border: #854f0b;
+    --top-story-accent: #993c1d;
+    --top-story-bg: #faeee7;
+    --nav-h: 44px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    min-height: 100vh;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  /* MASTHEAD */
+  .masthead {
+    background: var(--accent);
+    color: white;
+    padding: 0 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 12px rgba(26,58,92,0.18);
+  }
+  .masthead-left {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+  }
+  .masthead-wordmark {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    color: white;
+  }
+  .masthead-sub {
+    font-size: 12px;
+    font-weight: 400;
+    color: rgba(255,255,255,0.55);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .masthead-date {
+    font-size: 12px;
+    color: rgba(255,255,255,0.6);
+    font-weight: 300;
+    letter-spacing: 0.04em;
+  }
+  .masthead-actions {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+  .btn-weekly {
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.25);
+    color: white;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 6px 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    letter-spacing: 0.04em;
+    transition: background 0.2s;
+  }
+  .btn-weekly:hover { background: rgba(255,255,255,0.22); }
+  .saved-count {
+    background: var(--gold);
+    color: white;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 20px;
+    letter-spacing: 0.04em;
+  }
+
+  /* LAYOUT */
+  .layout {
+    display: flex;
+    max-width: 1280px;
+    margin: 0 auto;
+    min-height: calc(100vh - 64px - var(--nav-h));
+  }
+
+  /* HORIZONTAL NAV */
+  .horizontal-nav {
+    position: sticky;
+    top: 64px;
+    z-index: 99;
+    background: var(--bg);
+    border-bottom: 1px solid var(--rule);
+    display: flex;
+    justify-content: center;
+    gap: 0;
+    max-width: 1280px;
+    margin: 0 auto;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  }
+  .nav-item {
+    padding: 12px 20px;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: var(--ink-mid);
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+    transition: all 0.15s;
+    white-space: nowrap;
+  }
+  .nav-item:hover {
+    color: var(--accent);
+    background: var(--accent-light);
+  }
+  .nav-item.active {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+    font-weight: 600;
+  }
+
+  /* INDUSTRY NEWS LEFT SIDEBAR */
+  .industry-sidebar {
+    width: var(--industry-sidebar-w);
+    flex-shrink: 0;
+    position: sticky;
+    top: calc(64px + var(--nav-h));
+    height: calc(100vh - 64px - var(--nav-h));
+    overflow-y: auto;
+    border-right: 1px solid var(--rule);
+    background: var(--bg);
+    padding: 0;
+  }
+  .industry-header, .tips-header {
+    min-height: 72px;
+    box-sizing: border-box;
+  }
+  .industry-header {
+    padding: 20px 20px 14px;
+    border-bottom: 2px solid var(--industry-accent);
+    margin-bottom: 0;
+    background: var(--industry-bg);
+  }
+  .industry-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+  .industry-sub {
+    font-size: 10px;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--industry-accent);
+    font-weight: 500;
+  }
+  .industry-item {
+    padding: 12px 20px;
+    border-bottom: 1px solid var(--rule);
+    transition: background 0.15s;
+  }
+  .industry-item:hover { background: var(--accent-light); }
+  .industry-headline {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--ink);
+    text-decoration: none;
+    line-height: 1.4;
+    margin-bottom: 4px;
+  }
+  .industry-headline:hover { color: var(--accent); }
+  .industry-source {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 2px;
+  }
+  .industry-tag {
+    display: inline-block;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 2px 7px;
+    border-radius: 3px;
+    margin-top: 4px;
+    color: white;
+    background: var(--industry-accent);
+  }
+  .industry-tag.industry-streaming { background: #1a5c8a; }
+  .industry-tag.industry-deal { background: #b8860b; }
+  .industry-tag.industry-rights { background: #993c1d; }
+  .industry-tag.industry-labor { background: #6b3fa0; }
+  .industry-tag.industry-platform { background: #2d6b8a; }
+  .industry-tag.industry-charts { background: #0e7c6b; }
+  /* FROM THE ARCHIVES */
+  .archives-divider {
+    display: none;
+  }
+  .archives-section {
+    padding: 0;
+  }
+  .archives-header {
+    padding: 20px 20px 14px;
+    border-bottom: 2px solid #534ab7;
+    margin-bottom: 0;
+    background: #eeedfe;
+    min-height: 72px;
+    box-sizing: border-box;
+  }
+  .archives-header-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+  .archives-header-sub {
+    font-size: 10px;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: #534ab7;
+    font-weight: 500;
+  }
+  .archives-card {
+    padding: 14px 20px 20px;
+  }
+  .archives-title {
+    display: block;
+    font-family: 'Playfair Display', serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--ink);
+    text-decoration: none;
+    line-height: 1.35;
+    margin-bottom: 6px;
+  }
+  .archives-title:hover { color: #534ab7; }
+  .archives-meta {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    margin-bottom: 10px;
+  }
+  .archives-connection {
+    font-size: 12px;
+    color: var(--ink-mid);
+    line-height: 1.65;
+    margin-bottom: 10px;
+  }
+  .archives-type {
+    display: inline-block;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 2px 7px;
+    border-radius: 3px;
+    color: white;
+    background: #534ab7;
+  }
+
+  /* INDUSTRY NEWS TOGGLE */
+  .industry-toggle {
+    padding: 8px 20px;
+    cursor: pointer;
+    color: var(--industry-accent);
+    font-size: 11px;
+    font-weight: 500;
+    text-align: center;
+    transition: background 0.15s;
+  }
+  .industry-toggle:hover { background: var(--accent-light); }
+  .industry-collapsed { display: none; }
+
+  .industry-empty {
+    padding: 16px 20px;
+    font-size: 12px;
+    color: var(--ink-faint);
+    font-style: italic;
+    line-height: 1.6;
+  }
+
+  /* MAIN */
+  .main {
+    flex: 1;
+    padding: 0 48px 80px 48px;
+    min-width: 0;
+  }
+
+  /* DAILY HEADER */
+  .daily-header {
+    padding: 32px 0 24px;
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 40px;
+  }
+  .daily-header-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 8px;
+  }
+  .daily-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+  .daily-meta {
+    font-size: 12px;
+    color: var(--ink-light);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .daily-summary {
+    font-size: 14px;
+    color: var(--ink-mid);
+    font-style: italic;
+    max-width: 640px;
+    line-height: 1.7;
+  }
+
+  /* TOP STORIES */
+  .top-stories {
+    padding: 0 0 32px;
+    margin-bottom: 40px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .top-stories-header {
+    padding: 16px 20px 12px;
+    border-bottom: 2px solid var(--top-story-accent);
+    margin-bottom: 20px;
+    background: var(--top-story-bg);
+    border-radius: 4px 4px 0 0;
+  }
+  .top-stories-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 3px;
+  }
+  .top-stories-sub {
+    font-size: 10px;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--top-story-accent);
+    font-weight: 500;
+  }
+  .top-stories-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .top-story-card {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-top: 3px solid var(--top-story-accent);
+    border-radius: 6px;
+    padding: 18px 18px 14px;
+    transition: box-shadow 0.2s;
+  }
+  .top-story-card:hover { box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+  .top-story-meta {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 8px;
+  }
+  .top-story-meta .source-name {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+  }
+  .top-story-meta .source-sep { color: var(--ink-faint); font-size: 11px; }
+  .top-story-meta .source-type {
+    font-size: 11px;
+    color: var(--ink-faint);
+    font-style: italic;
+  }
+  .top-story-headline {
+    font-family: 'Playfair Display', serif;
+    font-size: 19px;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.35;
+    margin-bottom: 12px;
+  }
+  .top-story-headline a {
+    color: inherit;
+    text-decoration: none;
+  }
+  .top-story-headline a:hover { color: var(--accent); }
+  .top-story-summary {
+    font-size: 14px;
+    color: var(--ink-mid);
+    line-height: 1.75;
+    margin-bottom: 12px;
+  }
+  .top-story-type {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--top-story-accent);
+    background: var(--top-story-bg);
+    padding: 3px 9px;
+    border-radius: 3px;
+  }
+
+  /* SECTION */
+  .section {
+    margin-bottom: 56px;
+    scroll-margin-top: 132px;
+  }
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .section-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--ink-faint);
+    font-weight: 500;
+    margin-top: 2px;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--ink);
+    flex: 1;
+  }
+  .section-tag {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 3px 9px;
+    border-radius: 3px;
+    color: white;
+  }
+  .tag-c1 { background: var(--tag-music); }
+  .tag-c2 { background: var(--tag-industry); }
+  .tag-c3 { background: var(--tag-media); }
+  .tag-c4 { background: var(--tag-culture); }
+
+  .expand-toggle {
+    padding: 10px 16px;
+    margin: 8px 0;
+    cursor: pointer;
+    color: var(--accent);
+    font-size: 13px;
+    font-weight: 500;
+    text-align: center;
+    border: 1px dashed var(--rule);
+    border-radius: 6px;
+    transition: background 0.15s;
+  }
+  .expand-toggle:hover {
+    background: var(--bg-alt);
+  }
+
+  /* CARD */
+  .card {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    padding: 20px 22px;
+    margin-bottom: 14px;
+    transition: box-shadow 0.2s, border-color 0.2s;
+    position: relative;
+  }
+  .card:hover {
+    box-shadow: 0 2px 16px rgba(26,58,92,0.07);
+    border-color: #ccc;
+  }
+  .card.saved {
+    border-color: var(--saved-border);
+    background: var(--saved-bg);
+  }
+  .card-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 8px;
+  }
+  .card-source {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .source-name {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+  }
+  .source-sep { color: var(--ink-faint); font-size: 11px; }
+  .source-type {
+    font-size: 11px;
+    color: var(--ink-faint);
+    font-style: italic;
+  }
+  .card-actions {
+    display: flex;
+    gap: 6px;
+    flex-shrink: 0;
+  }
+  .action-btn {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 11px;
+    font-weight: 500;
+    padding: 4px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    border: 1px solid var(--rule);
+    background: transparent;
+    color: var(--ink-mid);
+    font-family: 'DM Sans', sans-serif;
+    transition: all 0.15s;
+    white-space: nowrap;
+  }
+  .action-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-light); }
+  .action-btn.save-btn.active { border-color: var(--saved-border); color: var(--saved-border); background: var(--saved-bg); }
+  .card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.35;
+    margin-bottom: 8px;
+  }
+  .card-title a {
+    color: inherit;
+    text-decoration: none;
+  }
+  .card-title a:hover { color: var(--accent); }
+  .card-body {
+    font-size: 14px;
+    color: var(--ink-mid);
+    line-height: 1.75;
+    margin-bottom: 10px;
+  }
+  .card-genre {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    color: var(--gold);
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    background: var(--gold-light);
+    padding: 2px 8px;
+    border-radius: 3px;
+    margin-bottom: 8px;
+  }
+  .card-youtube {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: #cc0000;
+    font-weight: 500;
+    text-decoration: none;
+    padding: 4px 0;
+  }
+  .card-youtube:hover { text-decoration: underline; }
+  .card-youtube svg { flex-shrink: 0; }
+
+  /* MUSIC RECS GRID */
+  .recs-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+  .rec-card {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    padding: 16px 18px;
+    transition: box-shadow 0.2s;
+  }
+  .rec-card:hover { box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+  .rec-card.saved { border-color: var(--saved-border); background: var(--saved-bg); }
+  .rec-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--ink-faint);
+    margin-bottom: 6px;
+  }
+  .rec-artist {
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 1px;
+  }
+  .rec-track {
+    font-size: 13px;
+    color: var(--ink-mid);
+    font-style: italic;
+    margin-bottom: 8px;
+  }
+  .rec-context {
+    font-size: 13px;
+    color: var(--ink-mid);
+    line-height: 1.65;
+    margin-bottom: 10px;
+  }
+  .rec-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+  }
+  .rec-actions {
+    display: flex;
+    gap: 6px;
+  }
+
+  /* ANNOTATIONS */
+  .annotation-area {
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px dashed var(--rule);
+    display: none;
+  }
+  .annotation-area.open { display: block; }
+  .annotation-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 6px;
+  }
+  .annotation-input {
+    width: 100%;
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 8px 12px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    color: var(--ink);
+    background: var(--bg);
+    resize: vertical;
+    min-height: 64px;
+    transition: border-color 0.2s;
+    outline: none;
+  }
+  .annotation-input:focus { border-color: var(--accent); }
+  .annotation-save {
+    margin-top: 6px;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 5px 14px;
+    border-radius: 4px;
+    border: 1px solid var(--accent);
+    background: var(--accent);
+    color: white;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    transition: opacity 0.15s;
+  }
+  .annotation-save:hover { opacity: 0.85; }
+  .annotation-display {
+    font-size: 13px;
+    color: var(--ink-mid);
+    font-style: italic;
+    background: var(--bg-warm);
+    padding: 8px 12px;
+    border-radius: 4px;
+    border-left: 3px solid var(--gold);
+    line-height: 1.6;
+  }
+
+  /* FOLLOW-UP / CONVERSATION */
+  .followup-area {
+    margin-top: 10px;
+    display: none;
+  }
+  .followup-area.open { display: block; }
+
+  /* Thread of past messages */
+  .convo-thread {
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .convo-bubble {
+    border-radius: 6px;
+    padding: 10px 13px;
+    font-size: 13px;
+    line-height: 1.7;
+    max-width: 92%;
+  }
+  .convo-bubble.user {
+    background: var(--bg-warm);
+    border: 1px solid var(--rule);
+    align-self: flex-end;
+    color: var(--ink);
+    font-style: italic;
+  }
+  .convo-bubble.assistant {
+    background: var(--accent-light);
+    border: 1px solid #c5d5e8;
+    align-self: flex-start;
+    color: var(--ink-mid);
+  }
+  .convo-bubble.thinking {
+    background: var(--accent-light);
+    border: 1px solid #c5d5e8;
+    align-self: flex-start;
+  }
+  .convo-label {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+    opacity: 0.5;
+  }
+
+  .followup-row {
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+  }
+  .followup-input {
+    flex: 1;
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 8px 12px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    color: var(--ink);
+    background: var(--bg);
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .followup-input:focus { border-color: var(--accent); }
+  .followup-submit {
+    font-size: 12px;
+    font-weight: 600;
+    padding: 8px 16px;
+    border-radius: 4px;
+    border: none;
+    background: var(--accent);
+    color: white;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    white-space: nowrap;
+    transition: opacity 0.15s;
+    flex-shrink: 0;
+  }
+  .followup-submit:hover { opacity: 0.85; }
+  .followup-submit:disabled { opacity: 0.5; cursor: not-allowed; }
+
+  .convo-clear {
+    font-size: 11px;
+    color: var(--ink-faint);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px 0;
+    font-family: 'DM Sans', sans-serif;
+    text-decoration: underline;
+    display: none;
+  }
+  .convo-clear.visible { display: inline; }
+
+  .followup-thinking {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: var(--ink-light);
+    font-style: italic;
+    padding: 4px 0;
+  }
+  .thinking-dot {
+    width: 5px; height: 5px;
+    background: var(--accent);
+    border-radius: 50%;
+    animation: blink 1.2s infinite;
+  }
+  .thinking-dot:nth-child(2) { animation-delay: 0.2s; }
+  .thinking-dot:nth-child(3) { animation-delay: 0.4s; }
+  @keyframes blink {
+    0%, 80%, 100% { opacity: 0.2; }
+    40% { opacity: 1; }
+  }
+
+  /* MUSIC NEWS SIDEBAR */
+  .tips-sidebar {
+    width: 260px;
+    flex-shrink: 0;
+    padding: 0;
+    position: sticky;
+    top: calc(64px + var(--nav-h));
+    height: calc(100vh - 64px - var(--nav-h));
+    overflow-y: auto;
+    border-left: 1px solid var(--rule);
+    background: var(--bg);
+  }
+  .tips-header {
+    padding: 20px 20px 14px;
+    border-bottom: 2px solid #0e7c6b;
+    margin-bottom: 0;
+    background: #e1f5ee;
+  }
+  .tips-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+  .tips-sub {
+    font-size: 10px;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: #0e7c6b;
+    font-weight: 500;
+  }
+  .tip-item {
+    padding: 12px 20px;
+    border-bottom: 1px solid var(--rule);
+    transition: background 0.15s;
+  }
+  .tip-item:hover { background: var(--accent-light); }
+  .tip-type {
+    display: inline-block;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 2px 7px;
+    border-radius: 3px;
+    margin-top: 4px;
+    color: white;
+  }
+  .tip-type.artist-news { background: #1a3a6b; }
+  .tip-type.tour { background: #1a6b5c; }
+  .tip-type.festival { background: #7b4a0a; }
+  .tip-source {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 4px;
+  }
+  .tip-desc {
+    font-size: 12px;
+    color: var(--ink-mid);
+    line-height: 1.6;
+    margin-bottom: 6px;
+  }
+  .tip-link {
+    display: block;
+    font-size: 12px;
+    color: var(--ink);
+    text-decoration: none;
+    margin-bottom: 4px;
+    line-height: 1.4;
+  }
+  .tip-link:hover { color: var(--accent); }
+  .tips-empty {
+    padding: 16px 20px;
+    font-size: 12px;
+    color: var(--ink-faint);
+    font-style: italic;
+    line-height: 1.6;
+  }
+
+  /* SAVED PANEL */
+  .saved-panel {
+    position: fixed;
+    top: 64px;
+    right: -380px;
+    width: 360px;
+    height: calc(100vh - 64px);
+    background: var(--paper);
+    border-left: 1px solid var(--rule);
+    overflow-y: auto;
+    z-index: 90;
+    transition: right 0.3s cubic-bezier(0.4,0,0.2,1);
+    box-shadow: -4px 0 24px rgba(0,0,0,0.08);
+    padding: 24px;
+  }
+  .saved-panel.open { right: 0; }
+  .saved-panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .saved-panel-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 600;
+  }
+  .close-btn {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: var(--ink-light);
+    padding: 4px;
+    line-height: 1;
+  }
+  .saved-item {
+    padding: 12px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .saved-item-source {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    margin-bottom: 3px;
+  }
+  .saved-item-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.4;
+    margin-bottom: 4px;
+  }
+  .saved-item-note {
+    font-size: 12px;
+    color: var(--ink-light);
+    font-style: italic;
+    line-height: 1.5;
+  }
+  .empty-saved {
+    text-align: center;
+    color: var(--ink-faint);
+    font-size: 13px;
+    padding: 40px 0;
+    font-style: italic;
+  }
+
+  /* NAV ARROWS */
+  .nav-arrows {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .nav-arrow {
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.22);
+    color: white;
+    font-size: 14px;
+    width: 30px;
+    height: 30px;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: background 0.15s;
+    line-height: 1;
+  }
+  .nav-arrow:hover { background: rgba(255,255,255,0.22); }
+  .nav-arrow.disabled { opacity: 0.25; pointer-events: none; }
+  .nav-arrow-date {
+    font-size: 11px;
+    color: rgba(255,255,255,0.55);
+    letter-spacing: 0.04em;
+    min-width: 80px;
+    text-align: center;
+  }
+
+  /* SERVER BANNER */
+  .server-banner {
+    background: #fff8e1;
+    border-bottom: 1px solid #ffe082;
+    padding: 10px 32px;
+    font-size: 12px;
+    color: #7a5c00;
+    display: none;
+    align-items: center;
+    gap: 12px;
+  }
+  .server-banner.visible { display: flex; }
+  .server-banner code {
+    font-family: 'DM Mono', monospace;
+    background: rgba(0,0,0,0.06);
+    padding: 2px 6px;
+    border-radius: 3px;
+  }
+
+  /* OVERLAY */
+  .overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.2);
+    z-index: 85;
+    display: none;
+    top: 64px;
+  }
+  .overlay.visible { display: block; }
+
+  /* SCROLL ANIMATION */
+  .section { opacity: 0; transform: translateY(16px); transition: opacity 0.4s, transform 0.4s; }
+  .section.visible { opacity: 1; transform: none; }
+
+  /* SCROLLBAR */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--rule); border-radius: 3px; }
+
+  @media (max-width: 1200px) {
+    .tips-sidebar { display: none; }
+  }
+  @media (max-width: 1000px) {
+    .industry-sidebar { display: none; }
+  }
+  @media (max-width: 900px) {
+    .main { padding: 0 20px 60px; }
+    .recs-grid { grid-template-columns: 1fr; }
+    .horizontal-nav { overflow-x: auto; -webkit-overflow-scrolling: touch; justify-content: flex-start; }
+  }
+</style>
+<style>
+  /* Public-deploy band-aids: hide server banner + Ask Claude UI */
+  .server-banner, .server-banner.visible { display: none !important; }
+  .followup-area, .followup-row, .convo-clear,
+  button[onclick*="toggleFollowup"], button.followup-submit { display: none !important; }
+</style>
+</head>
+<body>
+
+<!-- MASTHEAD -->
+<header class="masthead">
+  <div class="masthead-left">
+    <div class="masthead-wordmark">Third Bridge Creative</div>
+    <div class="masthead-sub">Morning Briefing</div>
+  </div>
+  <div class="nav-arrows">
+    <a class="nav-arrow disabled" id="navPrev" title="Previous briefing">&#8592;</a>
+    <span class="nav-arrow-date" id="navDate">Apr 15, 2026</span>
+    <a class="nav-arrow disabled" id="navNext" title="Next briefing">&#8594;</a>
+  </div>
+  <div class="masthead-actions">
+    <a class="btn-weekly" href="index.html">Archive</a>
+    <button class="btn-weekly" onclick="alert('Weekly synthesis brief — available Friday 9am')">Weekly Brief →</button>
+    <div class="saved-count" id="savedCount" onclick="toggleSavedPanel()" style="cursor:pointer;">0 saved</div>
+  </div>
+</header>
+
+<!-- SERVER BANNER -->
+<div class="server-banner" id="serverBanner">
+  <span>⚠ Saves won't persist — server not running.</span>
+  <span>In your briefings folder, run: <code>python server.py</code> then open <code>http://localhost:8000</code></span>
+</div>
+
+<!-- HORIZONTAL NAV -->
+<nav class="horizontal-nav">
+  <a class="nav-item active" onclick="scrollTo('s1')" href="#s1">Recs</a>
+  <a class="nav-item" onclick="scrollTo('s2')" href="#s2">Scene</a>
+  <a class="nav-item" onclick="scrollTo('s3')" href="#s3">Industry</a>
+  <a class="nav-item" onclick="scrollTo('s4')" href="#s4">AI + Editorial</a>
+  <a class="nav-item" onclick="scrollTo('s5')" href="#s5">Podcast</a>
+  <a class="nav-item" onclick="scrollTo('s9')" href="#s9">Voice</a>
+  <a class="nav-item" onclick="scrollTo('s11')" href="#s11">Film</a>
+</nav>
+
+<!-- SAVED PANEL -->
+<div class="overlay" id="overlay" onclick="toggleSavedPanel()"></div>
+<div class="saved-panel" id="savedPanel">
+  <div class="saved-panel-header">
+    <div class="saved-panel-title">Saved Items</div>
+    <button class="close-btn" onclick="toggleSavedPanel()">✕</button>
+  </div>
+  <div id="savedList"><div class="empty-saved">Nothing saved yet.<br>Use the bookmark button on any item.</div></div>
+</div>
+
+<div class="layout">
+
+  <!-- INDUSTRY NEWS LEFT SIDEBAR -->
+  <aside class="industry-sidebar">
+    <div class="industry-header">
+      <div class="industry-title">Industry News</div>
+      <div class="industry-sub">Business · Deals · Rights · Charts</div>
+    </div>
+    
+    <div class="industry-item">
+      <a class="industry-headline" href="https://www.billboard.com/pro/spotify-boosts-independent-venues-visibility-platform/" target="_blank">Spotify Partners With NIVA for Indie Venues</a>
+      <div class="industry-source">Billboard Pro</div>
+      <span class="industry-tag industry-streaming">Streaming</span>
+    </div>
+    <div class="industry-item">
+      <a class="industry-headline" href="https://www.digitalmusicnews.com/2026/04/14/ninja-tune-case-study-tipalti/" target="_blank">Ninja Tune Cuts Payout Processing Time 50%</a>
+      <div class="industry-source">Digital Music News</div>
+      <span class="industry-tag industry-streaming">Streaming</span>
+    </div>
+    <div class="industry-item">
+      <a class="industry-headline" href="https://www.musicbusinessworldwide.com/india-added-nearly-4m-paid-music-streaming-subscriptions-in-2025-taking-its-total-to-14-4m-according-to-new-report/" target="_blank">India Adds 4M Paid Music Subscriptions</a>
+      <div class="industry-source">Music Business Worldwide</div>
+      <span class="industry-tag industry-streaming">Streaming</span>
+    </div>
+    <div class="industry-toggle" onclick="toggleIndustryExpand(this)">
+      See 12 more ▾
+    </div>
+    <div class="industry-collapsed">
+    <div class="industry-item">
+      <a class="industry-headline" href="https://www.digitalmusicnews.com/2026/04/14/music-streaming-royalties-paradox-study/" target="_blank">Study Explores Streaming Paradox for Artists</a>
+      <div class="industry-source">Digital Music News</div>
+      <span class="industry-tag industry-streaming">Streaming</span>
+    </div>
+    <div class="industry-item">
+      <a class="industry-headline" href="https://www.musicbusinessworldwide.com/uk-collection-org-ppls-revenue-grew-4-75-yoy-to-415m-in-2025-paid-out-102m-to-performers-rightsholders-in-q1-2026/" target="_blank">PPL Revenue Grows to $415M in 2025</a>
+      <div class="industry-source">Music Business Worldwide</div>
+      <span class="industry-tag industry-streaming">Streaming</span>
+    </div>
+    <div class="industry-item">
+      <a class="industry-headline" href="https://www.digitalmusicnews.com/2026/04/13/ppl-growth-2025/" target="_blank">PPL Revenue Grows 4.75% to £315.3M</a>
+      <div class="industry-source">Digital Music News</div>
+      <span class="industry-tag industry-streaming">Streaming</span>
+    </div>
+    <div class="industry-item">
+      <a class="industry-headline" href="https://www.billboard.com/pro/concord-partners-with-victor-victor-worldwide/" target="_blank">Concord Partners With Victor Victor Worldwide</a>
+      <div class="industry-source">Billboard Pro</div>
+      <span class="industry-tag industry-deal">Deal</span>
+    </div>
+    <div class="industry-item">
+      <a class="industry-headline" href="https://www.digitalmusicnews.com/2026/04/13/universal-music-share-buyback-program-update/" target="_blank">Universal Music Buys Back 630K+ Shares</a>
+      <div class="industry-source">Digital Music News</div>
+      <span class="industry-tag industry-deal">Deal</span>
+    </div>
+    <div class="industry-item">
+      <a class="industry-headline" href="https://www.musicbusinessworldwide.com/concord-forms-strategic-venture-with-steven-victors-victor-victor-worldwide-expands-hip-hop-footprint/" target="_blank">Concord Expands Hip-Hop With Victor Victor</a>
+      <div class="industry-source">Music Business Worldwide</div>
+      <span class="industry-tag industry-deal">Deal</span>
+    </div>
+    <div class="industry-item">
+      <a class="industry-headline" href="https://www.digitalmusicnews.com/2026/04/13/dougie-thomson-catalog-sale/" target="_blank">Catalog Dealmaking Holds Steady With Niche Deals</a>
+      <div class="industry-source">Digital Music News</div>
+      <span class="industry-tag industry-deal">Deal</span>
+    </div>
+    <div class="industry-item">
+      <a class="industry-headline" href="https://www.musicbusinessworldwide.com/former-umg-nashville-chief-cindy-mabe-launches-joan-of-arc-music-strikes-distribution-deal-with-warner-records-nashville/" target="_blank">Cindy Mabe Launches Joan of Arc Music</a>
+      <div class="industry-source">Music Business Worldwide</div>
+      <span class="industry-tag industry-deal">Deal</span>
+    </div>
+    <div class="industry-item">
+      <a class="industry-headline" href="https://www.digitalmusicnews.com/2026/04/13/wmg-tustreams-partnership-strategic-investment/" target="_blank">Warner Music Invests in TuStreams Partnership</a>
+      <div class="industry-source">Digital Music News</div>
+      <span class="industry-tag industry-deal">Deal</span>
+    </div>
+    <div class="industry-item">
+      <a class="industry-headline" href="https://www.billboard.com/pro/uk-unions-respond-prs-license-fees-venues/" target="_blank">Musicians Oppose PRS License Fee Cuts</a>
+      <div class="industry-source">Billboard Pro</div>
+      <span class="industry-tag industry-rights">Rights</span>
+    </div>
+    <div class="industry-item">
+      <a class="industry-headline" href="https://www.digitalmusicnews.com/2026/04/14/spotify-ai-hijacking-artist-profiles-continues/" target="_blank">Spotify AI Hijacking Crisis Hits Jazz Musicians</a>
+      <div class="industry-source">Digital Music News</div>
+      <span class="industry-tag industry-rights">Rights</span>
+    </div>
+    <div class="industry-item">
+      <a class="industry-headline" href="https://www.billboard.com/pro/spotify-major-labels-win-music-piracy-lawsuit/" target="_blank">Labels Win $322M Piracy Judgment</a>
+      <div class="industry-source">Billboard Pro</div>
+      <span class="industry-tag industry-rights">Rights</span>
+    </div>
+    </div>
+    
+    <div class="archives-section">
+      <div class="archives-header">
+        <div class="archives-header-title">From the Archives</div>
+        <div class="archives-header-sub">Foundational · Canon · Connections</div>
+      </div>
+      <div class="archives-card">
+        <a class="archives-title" href="https://www.theatlantic.com/past/docs/issues/2000/09/mann.htm" target="_blank">The Celestial Jukebox</a>
+        <div class="archives-meta">Charles C. Mann · The Atlantic · 2000</div>
+        <div class="archives-connection">Mann predicted streaming's legal architecture six years before Spotify existed—mapping how digital distribution would reshape copyright ownership and access. Today's AI actors exploit that same infrastructure to hollow out the protections it was meant to provide.</div>
+        <span class="archives-type">From the archive</span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="main">
+
+    <!-- TOP STORIES -->
+    <div class="top-stories">
+      <div class="top-stories-header">
+        <div class="top-stories-title">Today's Top Reads</div>
+        <div class="top-stories-sub">Essays · Analysis · Features</div>
+      </div>
+      <div class="top-stories-grid">
+      <div class="top-story-card">
+        <div class="top-story-meta">
+          <span class="source-name">Vinyl Culture</span>
+          <span class="source-sep">·</span>
+          <span class="source-type">Music Industry Analysis</span>
+        </div>
+        <div class="top-story-headline"><a href="https://vinylculture.substack.com/p/they-cloned-her-voice-then-claimed" target="_blank">They Cloned Her Voice, Then Claimed Her Songs | AI Music Scams Are Using Copyright Law as a Weapon Against Real Artists</a></div>
+        <div class="top-story-summary">Vinyl Culture digs into something uglier than the usual AI-music-is-coming-for-your-job discourse: scammers are now cloning indie artists' voices, uploading AI-generated tracks to streaming platforms, and then weaponizing copyright takedown systems against the original creators. The inversion is almost elegant in its cruelty — the same DMCA infrastructure built to protect artists becomes the tool used to silence them while the clones rack up streams. If you've been wondering what happens when generative audio meets platform-scale content moderation with no human oversight, this is the answer, and it's already happening to artists with no resources to fight back.</div>
+        <div class="top-story-type">AI ethics and training data/IP</div>
+      </div>
+      <div class="top-story-card">
+        <div class="top-story-meta">
+          <span class="source-name">No Tags</span>
+          <span class="source-sep">·</span>
+          <span class="source-type">Music &amp; Scene</span>
+        </div>
+        <div class="top-story-headline"><a href="https://notagspodcast.substack.com/p/san-franciscos-techno-boom-is-a-warning" target="_blank">San Francisco's techno boom is a warning to the world</a></div>
+        <div class="top-story-summary">No Tags delivers a sharp-edged dispatch from San Francisco's suddenly booming techno scene, and the subtext is a warning dressed as a profile. The same forces that made the city a punchline — tech money, displacement, a hollowed-out creative class — are now funding a nightlife revival that looks suspiciously like content for LinkedIn posts about &quot;community.&quot; The piece asks what happens when a scene's growth is underwritten by the industry that killed the last one, and whether the people showing up actually want the culture or just the aesthetic of having been there.</div>
+        <div class="top-story-type">Scene reports (local/regional music coverage)</div>
+      </div>
+      <div class="top-story-card">
+        <div class="top-story-meta">
+          <span class="source-name">Herb Sundays by Sam Valenti IV</span>
+          <span class="source-sep">·</span>
+          <span class="source-type">Music &amp; Scene</span>
+        </div>
+        <div class="top-story-headline"><a href="https://herbsundays.substack.com/p/herb-sundays-183-classical-c-1200" target="_blank">Us v. Them: The Brooklyn Independent Music Scene of the 00s/10s</a></div>
+        <div class="top-story-summary">Sam Valenti IV's Herb Sundays revisits the Brooklyn indie scene of the 00s and 10s with the kind of granular scene memory that only someone who was there can deliver. This isn't nostalgia — it's an autopsy of how a specific time and place produced a coherent aesthetic identity, and what conditions made that possible before streaming flattened geography and algorithms replaced word-of-mouth. For anyone building or sustaining music communities now, the implicit question is whether those conditions can be reconstructed or whether they were a one-time accident of pre-platform economics.</div>
+        <div class="top-story-type">Genre emergence and evolution</div>
+      </div>
+      </div>
+    </div>
+
+    
+    <section class="section" id="s1">
+      <div class="section-header">
+        <span class="section-num">01</span>
+        <span class="section-title">Music Recommendations</span>
+        <span class="section-tag tag-c1">Music</span>
+      </div>
+      <div class="recs-grid">
+      
+        <div class="rec-card" id="rec-1">
+          <div class="rec-num">REC 01</div>
+          <div class="rec-artist">Balmorhea</div>
+          <div class="rec-track">The Trap</div>
+          <div class="card-genre">♪ ambient / modern classical</div>
+          <div class="rec-context">An original score for Lena Headey's film, stripped to essentials: just Rob Lowe and Michael A. Muller on keys and guitar together. Twenty years into Balmorhea's run, the duo distills their sound to its most intimate configuration.</div>
+          <div class="card-source" style="margin-top:8px;"><span class="source-name">Flow State</span> · <a href="https://www.flowstate.fm/p/across-the-horizon-ep-62-balmorhea" target="_blank" style="color:var(--accent);font-size:11px;text-decoration:none;">View source →</a></div>
+          <div class="rec-meta">
+            <a class="card-youtube" href="https://www.youtube.com/results?search_query=Balmorhea+The+Trap" target="_blank">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="#cc0000"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0C.488 3.45.029 5.804 0 12c.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0C23.512 20.55 23.971 18.196 24 12c-.029-6.185-.484-8.549-4.385-8.816zM9 16V8l8 3.993L9 16z"/></svg>
+              Watch on YouTube
+            </a>
+            <div class="rec-actions">
+              <button class="action-btn save-btn" onclick="toggleSave('rec-1', 'Balmorhea — The Trap', 'Flow State')">⊕ Save</button>
+              <button class="action-btn" onclick="toggleFollowup('rec-1-fu')">Ask →</button>
+            </div>
+          </div>
+          <div class="followup-area" id="rec-1-fu">
+            <div class="convo-thread"></div>
+            <div class="followup-row">
+              <input class="followup-input" placeholder="Ask about this track or artist..." onkeydown="if(event.key==='Enter'){submitFollowup(this.nextElementSibling,'rec-1-fu')}" />
+              <button class="followup-submit" onclick="submitFollowup(this, 'rec-1-fu')">Ask Claude</button>
+            </div>
+            <button class="convo-clear" onclick="clearConversation('rec-1-fu')">clear conversation</button>
+          </div>
+        </div>
+        <div class="rec-card" id="rec-2">
+          <div class="rec-num">REC 02</div>
+          <div class="rec-artist">Clariloops (Ruby Ester Mae)</div>
+          <div class="rec-track">The Quiet Below</div>
+          <div class="card-genre">♪ ambient / clarinet loops</div>
+          <div class="rec-context">Written during second-trimester creative surge, the album channels flowing water—how it moves over disruptions, shifts to find its way through. Each melody recorded as it came, no re-takes, every phrase accepted like a day of parenting. The softness of early motherhood audible in every unforced line.</div>
+          <div class="card-source" style="margin-top:8px;"><span class="source-name">cloud collecting</span> · <a href="https://cloudcollecting.substack.com/p/cloud-collecting-49-clariloops-ruby" target="_blank" style="color:var(--accent);font-size:11px;text-decoration:none;">View source →</a></div>
+          <div class="rec-meta">
+            <a class="card-youtube" href="https://www.youtube.com/results?search_query=Clariloops+The+Quiet+Below" target="_blank">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="#cc0000"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0C.488 3.45.029 5.804 0 12c.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0C23.512 20.55 23.971 18.196 24 12c-.029-6.185-.484-8.549-4.385-8.816zM9 16V8l8 3.993L9 16z"/></svg>
+              Watch on YouTube
+            </a>
+            <div class="rec-actions">
+              <button class="action-btn save-btn" onclick="toggleSave('rec-2', 'Clariloops (Ruby Ester Mae) — The Quiet Below', 'cloud collecting')">⊕ Save</button>
+              <button class="action-btn" onclick="toggleFollowup('rec-2-fu')">Ask →</button>
+            </div>
+          </div>
+          <div class="followup-area" id="rec-2-fu">
+            <div class="convo-thread"></div>
+            <div class="followup-row">
+              <input class="followup-input" placeholder="Ask about this track or artist..." onkeydown="if(event.key==='Enter'){submitFollowup(this.nextElementSibling,'rec-2-fu')}" />
+              <button class="followup-submit" onclick="submitFollowup(this, 'rec-2-fu')">Ask Claude</button>
+            </div>
+            <button class="convo-clear" onclick="clearConversation('rec-2-fu')">clear conversation</button>
+          </div>
+        </div>
+        <div class="rec-card" id="rec-3">
+          <div class="rec-num">REC 03</div>
+          <div class="rec-artist">Appleblim</div>
+          <div class="rec-track">Liminal Tides</div>
+          <div class="card-genre">♪ ambient dub-techno</div>
+          <div class="rec-context">Former Skull Disco half delivers what Futurism Restated calls perhaps the dreamiest ambient-techno album of the year — pure weightless drifting in the vein of Vainqueur and Dettinger. The Chain Reaction lineage runs deep but reference points stretch to Urban Tribe's lurching pulse and John Beltran's flickering chords. Beats leave only ghost traces in tidal swirls.</div>
+          <div class="card-source" style="margin-top:8px;"><span class="source-name">Futurism Restated</span> · <a href="https://futurismrestated.substack.com/p/fr-163-artificial-landscapes" target="_blank" style="color:var(--accent);font-size:11px;text-decoration:none;">View source →</a></div>
+          <div class="rec-meta">
+            <a class="card-youtube" href="https://www.youtube.com/results?search_query=Appleblim+Liminal+Tides" target="_blank">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="#cc0000"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0C.488 3.45.029 5.804 0 12c.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0C23.512 20.55 23.971 18.196 24 12c-.029-6.185-.484-8.549-4.385-8.816zM9 16V8l8 3.993L9 16z"/></svg>
+              Watch on YouTube
+            </a>
+            <div class="rec-actions">
+              <button class="action-btn save-btn" onclick="toggleSave('rec-3', 'Appleblim — Liminal Tides', 'Futurism Restated')">⊕ Save</button>
+              <button class="action-btn" onclick="toggleFollowup('rec-3-fu')">Ask →</button>
+            </div>
+          </div>
+          <div class="followup-area" id="rec-3-fu">
+            <div class="convo-thread"></div>
+            <div class="followup-row">
+              <input class="followup-input" placeholder="Ask about this track or artist..." onkeydown="if(event.key==='Enter'){submitFollowup(this.nextElementSibling,'rec-3-fu')}" />
+              <button class="followup-submit" onclick="submitFollowup(this, 'rec-3-fu')">Ask Claude</button>
+            </div>
+            <button class="convo-clear" onclick="clearConversation('rec-3-fu')">clear conversation</button>
+          </div>
+        </div>
+        <div class="rec-card" id="rec-4">
+          <div class="rec-num">REC 04</div>
+          <div class="rec-artist">Gillian Welch &amp; David Rawlings</div>
+          <div class="rec-track">Dead Reckoning Tour</div>
+          <div class="card-genre">♪ acoustic folk/Americana</div>
+          <div class="rec-context">The duo's Grateful Dead tribute tour — inspired by the 1981 Reckoning acoustic setlist and announced after Bob Weir's death — has ballooned from 11 dates to 30+. At the hallowed Capitol Theater, Rawlings shaped solos inspired by but not Xeroxing Garcia's style, while Welch's phrasings landed in registers sometimes lower than Jerry's originals.</div>
+          <div class="card-source" style="margin-top:8px;"><span class="source-name">Will Hermes: New Music + Old Music</span> · <a href="https://newmusicoldmusic.substack.com/p/note-to-dead-fans" target="_blank" style="color:var(--accent);font-size:11px;text-decoration:none;">View source →</a></div>
+          <div class="rec-meta">
+            <a class="card-youtube" href="https://www.youtube.com/results?search_query=Gillian+Welch+David+Rawlings+Dead+Reckoning" target="_blank">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="#cc0000"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0C.488 3.45.029 5.804 0 12c.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0C23.512 20.55 23.971 18.196 24 12c-.029-6.185-.484-8.549-4.385-8.816zM9 16V8l8 3.993L9 16z"/></svg>
+              Watch on YouTube
+            </a>
+            <div class="rec-actions">
+              <button class="action-btn save-btn" onclick="toggleSave('rec-4', 'Gillian Welch & David Rawlings — Dead Reckoning Tour', 'Will Hermes: New Music + Old Music')">⊕ Save</button>
+              <button class="action-btn" onclick="toggleFollowup('rec-4-fu')">Ask →</button>
+            </div>
+          </div>
+          <div class="followup-area" id="rec-4-fu">
+            <div class="convo-thread"></div>
+            <div class="followup-row">
+              <input class="followup-input" placeholder="Ask about this track or artist..." onkeydown="if(event.key==='Enter'){submitFollowup(this.nextElementSibling,'rec-4-fu')}" />
+              <button class="followup-submit" onclick="submitFollowup(this, 'rec-4-fu')">Ask Claude</button>
+            </div>
+            <button class="convo-clear" onclick="clearConversation('rec-4-fu')">clear conversation</button>
+          </div>
+        </div>
+      </div>
+      <div class="expand-toggle" onclick="toggleExpand(this)">
+        Show 16 more recommendations ▾
+      </div>
+      <div class="collapsed-items" style="display:none;">
+      <div class="recs-grid">
+        <div class="rec-card" id="rec-5">
+          <div class="rec-num">REC 05</div>
+          <div class="rec-artist">Balmorhea</div>
+          <div class="rec-track">The Wind</div>
+          <div class="card-genre">♪ ambient / modern classical</div>
+          <div class="rec-context">Features a range of accompanists including cellist Clarice Jensen, expanding the duo's palette beyond their stripped-down recent work. Released on Deutsche Grammophon in 2021.</div>
+          <div class="card-source" style="margin-top:8px;"><span class="source-name">Flow State</span> · <a href="https://www.flowstate.fm/p/across-the-horizon-ep-62-balmorhea" target="_blank" style="color:var(--accent);font-size:11px;text-decoration:none;">View source →</a></div>
+          <div class="rec-meta">
+            <a class="card-youtube" href="https://www.youtube.com/results?search_query=Balmorhea+The+Wind" target="_blank">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="#cc0000"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0C.488 3.45.029 5.804 0 12c.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0C23.512 20.55 23.971 18.196 24 12c-.029-6.185-.484-8.549-4.385-8.816zM9 16V8l8 3.993L9 16z"/></svg>
+              Watch on YouTube
+            </a>
+            <div class="rec-actions">
+              <button class="action-btn save-btn" onclick="toggleSave('rec-5', 'Balmorhea — The Wind', 'Flow State')">⊕ Save</button>
+              <button class="action-btn" onclick="toggleFollowup('rec-5-fu')">Ask →</button>
+            </div>
+          </div>
+          <div class="followup-area" id="rec-5-fu">
+            <div class="convo-thread"></div>
+            <div class="followup-row">
+              <input class="followup-input" placeholder="Ask about this track or artist..." onkeydown="if(event.key==='Enter'){submitFollowup(this.nextElementSibling,'rec-5-fu')}" />
+              <button class="followup-submit" onclick="submitFollowup(this, 'rec-5-fu')">Ask Claude</button>
+            </div>
+            <button class="convo-clear" onclick="clearConversation('rec-5-fu')">clear conversation</button>
+          </div>
+        </div>
+        <div class="rec-card" id="rec-6">
+          <div class="rec-num">REC 06</div>
+          <div class="rec-artist">Cass McCombs</div>
+          <div class="rec-track">Interior Live Oak</div>
+          <div class="card-genre">♪ indie folk/rock</div>
+          <div class="rec-context">New album from the veteran songwriter, currently on tour supporting the release.</div>
+          <div class="card-source" style="margin-top:8px;"><span class="source-name">Tone Glow</span> · <a href="https://toneglow.substack.com/p/tone-glow-221-cass-mccombs" target="_blank" style="color:var(--accent);font-size:11px;text-decoration:none;">View source →</a></div>
+          <div class="rec-meta">
+            <a class="card-youtube" href="https://www.youtube.com/results?search_query=Cass+McCombs+Interior+Live+Oak" target="_blank">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="#cc0000"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0C.488 3.45.029 5.804 0 12c.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0C23.512 20.55 23.971 18.196 24 12c-.029-6.185-.484-8.549-4.385-8.816zM9 16V8l8 3.993L9 16z"/></svg>
+              Watch on YouTube
+            </a>
+            <div class="rec-actions">
+              <button class="action-btn save-btn" onclick="toggleSave('rec-6', 'Cass McCombs — Interior Live Oak', 'Tone Glow')">⊕ Save</button>
+              <button class="action-btn" onclick="toggleFollowup('rec-6-fu')">Ask →</button>
+            </div>
+          </div>
+          <div class="followup-area" id="rec-6-fu">
+            <div class="convo-thread"></div>
+            <div class="followup-row">
+              <input class="followup-input" placeholder="Ask about this track or artist..." onkeydown="if(event.key==='Enter'){submitFollowup(this.nextElementSibling,'rec-6-fu')}" />
+              <button class="followup-submit" onclick="submitFollowup(this, 'rec-6-fu')">Ask Claude</button>
+            </div>
+            <button class="convo-clear" onclick="clearConversation('rec-6-fu')">clear conversation</button>
+          </div>
+        </div>
+        <div class="rec-card" id="rec-7">
+          <div class="rec-num">REC 07</div>
+          <div class="rec-artist">Ave Grave x Unlearn</div>
+          <div class="rec-track">Ave Grave &amp; Unlearn</div>
+          <div class="card-genre">♪ ambient / tape loops</div>
+          <div class="rec-context">Berlin-based Ave Grave collaborates with San Francisco's Unlearn for nostalgic ambient achieved through Basinskian destructive tape loops.</div>
+          <div class="card-source" style="margin-top:8px;"><span class="source-name">Shatter the Standards</span></div>
+          <div class="rec-meta">
+            <a class="card-youtube" href="https://www.youtube.com/results?search_query=Ave+Grave+Unlearn" target="_blank">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="#cc0000"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0C.488 3.45.029 5.804 0 12c.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0C23.512 20.55 23.971 18.196 24 12c-.029-6.185-.484-8.549-4.385-8.816zM9 16V8l8 3.993L9 16z"/></svg>
+              Watch on YouTube
+            </a>
+            <div class="rec-actions">
+              <button class="action-btn save-btn" onclick="toggleSave('rec-7', 'Ave Grave x Unlearn — Ave Grave & Unlearn', 'Shatter the Standards')">⊕ Save</button>
+              <button class="action-btn" onclick="toggleFollowup('rec-7-fu')">Ask →</button>
+            </div>
+          </div>
+          <div class="followup-area" id="rec-7-fu">
+            <div class="convo-thread"></div>
+            <div class="followup-row">
+              <input class="followup-input" placeholder="Ask about this track or artist..." onkeydown="if(event.key==='Enter'){submitFollowup(this.nextElementSibling,'rec-7-fu')}" />
+              <button class="followup-submit" onclick="submitFollowup(this, 'rec-7-fu')">Ask Claude</button>
+            </div>
+            <button class="convo-clear" onclick="clearConversation('rec-7-fu')">clear conversation</button>
+          </div>
+        </div>
+        <div class="rec-card" id="rec-8">
+          <div class="rec-num">REC 08</div>
+          <div class="rec-artist">Mamas Gun</div>
+          <div class="rec-track">DIG!</div>
+          <div class="card-genre">♪ Analogue Soul/Jazz-Funk</div>
+          <div class="rec-context">Tracked straight to 16-track analogue tape at All Things Analogue Studios in Leeds, all five musicians in one room with no overdubs as default. The title track features Brian Jackson—Gil Scott-Heron's longtime keyboard partner—sharing lead vocal, his flute staggering through verses while his keys trade phrases where the vocals stack.</div>
+          <div class="card-source" style="margin-top:8px;"><span class="source-name">Shatter the Standards</span> · <a href="https://www.shatterthestandards.com/p/album-review-dig-by-mamas-gun" target="_blank" style="color:var(--accent);font-size:11px;text-decoration:none;">View source →</a></div>
+          <div class="rec-meta">
+            <a class="card-youtube" href="https://www.youtube.com/results?search_query=Mamas+Gun+DIG+album" target="_blank">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="#cc0000"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0C.488 3.45.029 5.804 0 12c.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0C23.512 20.55 23.971 18.196 24 12c-.029-6.185-.484-8.549-4.385-8.816zM9 16V8l8 3.993L9 16z"/></svg>
+              Watch on YouTube
+            </a>
+            <div class="rec-actions">
+              <button class="action-btn save-btn" onclick="toggleSave('rec-8', 'Mamas Gun — DIG!', 'Shatter the Standards')">⊕ Save</button>
+              <button class="action-btn" onclick="toggleFollowup('rec-8-fu')">Ask →</button>
+            </div>
+          </div>
+          <div class="followup-area" id="rec-8-fu">
+            <div class="convo-thread"></div>
+            <div class="followup-row">
+              <input class="followup-input" placeholder="Ask about this track or artist..." onkeydown="if(event.key==='Enter'){submitFollowup(this.nextElementSibling,'rec-8-fu')}" />
+              <button class="followup-submit" onclick="submitFollowup(this, 'rec-8-fu')">Ask Claude</button>
+            </div>
+            <button class="convo-clear" onclick="clearConversation('rec-8-fu')">clear conversation</button>
+          </div>
+        </div>
+        <div class="rec-card" id="rec-9">
+          <div class="rec-num">REC 09</div>
+          <div class="rec-artist">Buddy</div>
+          <div class="rec-track">Simmie Sims III</div>
+          <div class="card-genre">♪ West Coast hip-hop</div>
+          <div class="rec-context">A decade of bouncy, melodic Friday-night rap gives way to something heavier. The album opens with news of his uncle's death, his father's grief on the phone—Buddy can't stop writing around it. Kent Jamz returns for 'Bittersweet,' a duet about mutual failure, while Indigo Boys drift through the album's saddest love song.</div>
+          <div class="card-source" style="margin-top:8px;"><span class="source-name">Shatter the Standards</span> · <a href="https://www.shatterthestandards.com/p/album-review-simmie-sims-iii-by-buddy" target="_blank" style="color:var(--accent);font-size:11px;text-decoration:none;">View source →</a></div>
+          <div class="rec-meta">
+            <a class="card-youtube" href="https://www.youtube.com/results?search_query=Buddy+Simmie+Sims+III" target="_blank">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="#cc0000"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0C.488 3.45.029 5.804 0 12c.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0C23.512 20.55 23.971 18.196 24 12c-.029-6.185-.484-8.549-4.385-8.816zM9 16V8l8 3.993L9 16z"/></svg>
+              Watch on YouTube
+            </a>
+            <div class="rec-actions">
+              <button class="action-btn save-btn" onclick="toggleSave('rec-9', 'Buddy — Simmie Sims III', 'Shatter the Standards')">⊕ Save</button>
+              <button class="action-btn" onclick="toggleFollowup('rec-9-fu')">Ask →</button>
+            </div>
+          </div>
+          <div class="followup-area" id="rec-9-fu">
+            <div class="convo-thread"></div>
+            <div class="followup-row">
+              <input class="followup-input" placeholder="Ask about this track or artist..." onkeydown="if(event.key==='Enter'){submitFollowup(this.nextElementSibling,'rec-9-fu')}" />
+              <button class="followup-submit" onclick="submitFollowup(this, 'rec-9-fu')">Ask Claude</button>
+            </div>
+            <button class="convo-clear" onclick="clearConversation('rec-9-fu')">clear conversation</button>
+          </div>
+        </div>
+        <div class="rec-card" id="rec-10">
+          <div class="rec-num">REC 10</div>
+          <div class="rec-artist">Finale</div>
+          <div class="rec-track">The Good</div>
+          <div class="card-genre">♪ underground hip-hop</div>
+          <div class="rec-context">Detroit underground veteran whose new album traces a twenty-year circuit of beat-trading between DJ Manipulator, Apollo Brown, Nottz, and Kev Brown. On &quot;Thanks 2 Hip Hop,&quot; Finale reflects on golden era reverence while making an album that embodies it — boom-bap with deep local roots and no pretense about chasing streams.</div>
+          <div class="card-source" style="margin-top:8px;"><span class="source-name">Shatter the Standards</span> · <a href="https://www.shatterthestandards.com/p/album-review-the-good-by-finale" target="_blank" style="color:var(--accent);font-size:11px;text-decoration:none;">View source →</a></div>
+          <div class="rec-meta">
+            <a class="card-youtube" href="https://www.youtube.com/results?search_query=Finale+The+Good" target="_blank">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="#cc0000"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0C.488 3.45.029 5.804 0 12c.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0C23.512 20.55 23.971 18.196 24 12c-.029-6.185-.484-8.549-4.385-8.816zM9 16V8l8 3.993L9 16z"/></svg>
+              Watch on YouTube
+            </a>
+            <div class="rec-actions">
+              <button class="action-btn save-btn" onclick="toggleSave('rec-10', 'Finale — The Good', 'Shatter the Standards')">⊕ Save</button>
+              <button class="action-btn" onclick="toggleFollowup('rec-10-fu')">Ask →</button>
+            </div>
+          </div>
+          <div class="followup-area" id="rec-10-fu">
+            <div class="convo-thread"></div>
+            <div class="followup-row">
+              <input class="followup-input" placeholder="Ask about this track or artist..." onkeydown="if(event.key==='Enter'){submitFollowup(this.nextElementSibling,'rec-10-fu')}" />
+              <button class="followup-submit" onclick="submitFollowup(this, 'rec-10-fu')">Ask Claude</button>
+            </div>
+            <button class="convo-clear" onclick="clearConversation('rec-10-fu')">clear conversation</button>
+          </div>
+        </div>
+        <div class="rec-card" id="rec-11">
+          <div class="rec-num">REC 11</div>
+          <div class="rec-artist">Tink</div>
+          <div class="rec-track">Fuck, Marry, Kill</div>
+          <div class="card-genre">♪ Chicago R&amp;B / rap</div>
+          <div class="rec-context">The fifth album in Tink's independent run since escaping her buried Timbaland deal, made with longtime collaborator Hitmaka.</div>
+          <div class="card-source" style="margin-top:8px;"><span class="source-name">Shatter the Standards</span> · <a href="https://www.shatterthestandards.com/p/album-review-fuck-marry-kill-by-tink" target="_blank" style="color:var(--accent);font-size:11px;text-decoration:none;">View source →</a></div>
+          <div class="rec-meta">
+            <a class="card-youtube" href="https://www.youtube.com/results?search_query=Tink+Fuck+Marry+Kill" target="_blank">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="#cc0000"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0C.488 3.45.029 5.804 0 12c.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0C23.512 20.55 23.971 18.196 24 12c-.029-6.185-.484-8.549-4.385-8.816zM9 16V8l8 3.993L9 16z"/></svg>
+              Watch on YouTube
+            </a>
+            <div class="rec-actions">
+              <button class="action-btn save-btn" onclick="toggleSave('rec-11', 'Tink — Fuck, Marry, Kill', 'Shatter the Standards')">⊕ Save</button>
+              <button class="action-btn" onclick="toggleFollowup('rec-11-fu')">Ask →</button>
+            </div>
+          </div>
+          <div class="followup-area" id="rec-11-fu">
+            <div class="convo-thread"></div>
+            <div class="followup-row">
+              <input class="followup-input" placeholder="Ask about this track or artist..." onkeydown="if(event.key==='Enter'){submitFollowup(this.nextElementSibling,'rec-11-fu')}" />
+              <button class="followup-submit" onclick="submitFollowup(this, 'rec-11-fu')">Ask Claude</button>
+            </div>
+            <button class="convo-clear" onclick="clearConversation('rec-11-fu')">clear conversation</button>
+          </div>
+        </div>
+        <div class="rec-card" id="rec-12">
+          <div class="rec-num">REC 12</div>
+          <div class="rec-artist">Les Imprimés</div>
+          <div class="rec-track">Fading Forward</div>
+          <div class="card-genre">♪ neo-soul</div>
+          <div class="rec-context">Norwegian producer-turned-vocalist Martens delivers a soul album filtered through his Golden Age sampling education — following drum breaks on Wu-Tang back to their gospel origins. Tracks like &quot;Beware&quot; layer doo-wop call-and-response over drums programmed an eighth-note too stiff for 1972 and too loose for the grid, with Marvin-ish guitar-and-organ grooves threading through.</div>
+          <div class="card-source" style="margin-top:8px;"><span class="source-name">Shatter the Standards</span> · <a href="https://www.shatterthestandards.com/p/album-review-fading-forward-by-les" target="_blank" style="color:var(--accent);font-size:11px;text-decoration:none;">View source →</a></div>
+          <div class="rec-meta">
+            <a class="card-youtube" href="https://www.youtube.com/results?search_query=Les+Imprimés+Fading+Forward" target="_blank">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="#cc0000"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0C.488 3.45.029 5.804 0 12c.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0C23.512 20.55 23.971 18.196 24 12c-.029-6.185-.484-8.549-4.385-8.816zM9 16V8l8 3.993L9 16z"/></svg>
+              Watch on YouTube
+            </a>
+            <div class="rec-actions">
+              <button class="action-btn save-btn" onclick="toggleSave('rec-12', 'Les Imprimés — Fading Forward', 'Shatter the Standards')">⊕ Save</button>
+              <button class="action-btn" onclick="toggleFollowup('rec-12-fu')">Ask →</button>
+            </div>
+          </div>
+          <div class="followup-area" id="rec-12-fu">
+            <div class="convo-thread"></div>
+            <div class="followup-row">
+              <input class="followup-input" placeholder="Ask about this track or artist..." onkeydown="if(event.key==='Enter'){submitFollowup(this.nextElementSibling,'rec-12-fu')}" />
+              <button class="followup-submit" onclick="submitFollowup(this, 'rec-12-fu')">Ask Claude</button>
+            </div>
+            <button class="convo-clear" onclick="clearConversation('rec-12-fu')">clear conversation</button>
+          </div>
+        </div>
+        <div class="rec-card" id="rec-13">
+          <div class="rec-num">REC 13</div>
+          <div class="rec-artist">Momo Boyd</div>
+          <div class="rec-track">Miss Michigan</div>
+          <div class="card-genre">♪ R&amp;B/soft-rock</div>
+          <div class="rec-context">The youngest touring sibling of Infinity Song steps out solo after writing their viral &quot;Hater's Anthem&quot; and landing a hook between Baby Keem and Kendrick on &quot;Good Flirts.&quot; Half joke, half diagnosis — the EP inhabits the pageant archetype, the smiling Midwestern girl with the right answers, writing from inside the compliments she's heard her whole life.</div>
+          <div class="card-source" style="margin-top:8px;"><span class="source-name">Shatter the Standards</span> · <a href="https://www.shatterthestandards.com/p/ep-review-miss-michigan-by-momo-boyd" target="_blank" style="color:var(--accent);font-size:11px;text-decoration:none;">View source →</a></div>
+          <div class="rec-meta">
+            <a class="card-youtube" href="https://www.youtube.com/results?search_query=Momo+Boyd+Miss+Michigan" target="_blank">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="#cc0000"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0C.488 3.45.029 5.804 0 12c.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0C23.512 20.55 23.971 18.196 24 12c-.029-6.185-.484-8.549-4.385-8.816zM9 16V8l8 3.993L9 16z"/></svg>
+              Watch on YouTube
+            </a>
+            <div class="rec-actions">
+              <button class="action-btn save-btn" onclick="toggleSave('rec-13', 'Momo Boyd — Miss Michigan', 'Shatter the Standards')">⊕ Save</button>
+              <button class="action-btn" onclick="toggleFollowup('rec-13-fu')">Ask →</button>
+            </div>
+          </div>
+          <div class="followup-area" id="rec-13-fu">
+            <div class="convo-thread"></div>
+            <div class="followup-row">
+              <input class="followup-input" placeholder="Ask about this track or artist..." onkeydown="if(event.key==='Enter'){submitFollowup(this.nextElementSibling,'rec-13-fu')}" />
+              <button class="followup-submit" onclick="submitFollowup(this, 'rec-13-fu')">Ask Claude</button>
+            </div>
+            <button class="convo-clear" onclick="clearConversation('rec-13-fu')">clear conversation</button>
+          </div>
+        </div>
+        <div class="rec-card" id="rec-14">
+          <div class="rec-num">REC 14</div>
+          <div class="rec-artist">Jacob Banks</div>
+          <div class="rec-track">Limerence</div>
+          <div class="card-genre">♪ neo-soul / gospel-inflected R&amp;B</div>
+          <div class="rec-context">Three years of gospel study show up in Banks' baritone, running the Sam Cooke/Al Green trick of devotional vocabulary pointed at romantic subjects.</div>
+          <div class="card-source" style="margin-top:8px;"><span class="source-name">Shatter the Standards</span> · <a href="https://www.shatterthestandards.com/p/album-review-limerence-by-jacob-banks" target="_blank" style="color:var(--accent);font-size:11px;text-decoration:none;">View source →</a></div>
+          <div class="rec-meta">
+            <a class="card-youtube" href="https://www.youtube.com/results?search_query=Jacob+Banks+Limerence" target="_blank">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="#cc0000"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0C.488 3.45.029 5.804 0 12c.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0C23.512 20.55 23.971 18.196 24 12c-.029-6.185-.484-8.549-4.385-8.816zM9 16V8l8 3.993L9 16z"/></svg>
+              Watch on YouTube
+            </a>
+            <div class="rec-actions">
+              <button class="action-btn save-btn" onclick="toggleSave('rec-14', 'Jacob Banks — Limerence', 'Shatter the Standards')">⊕ Save</button>
+              <button class="action-btn" onclick="toggleFollowup('rec-14-fu')">Ask →</button>
+            </div>
+          </div>
+          <div class="followup-area" id="rec-14-fu">
+            <div class="convo-thread"></div>
+            <div class="followup-row">
+              <input class="followup-input" placeholder="Ask about this track or artist..." onkeydown="if(event.key==='Enter'){submitFollowup(this.nextElementSibling,'rec-14-fu')}" />
+              <button class="followup-submit" onclick="submitFollowup(this, 'rec-14-fu')">Ask Claude</button>
+            </div>
+            <button class="convo-clear" onclick="clearConversation('rec-14-fu')">clear conversation</button>
+          </div>
+        </div>
+        <div class="rec-card" id="rec-15">
+          <div class="rec-num">REC 15</div>
+          <div class="rec-artist">Kelela</div>
+          <div class="rec-track">New Single (2026)</div>
+          <div class="card-genre">♪ Alternative R&amp;B</div>
+          <div class="rec-context">Kelela's first proper release since 2023's Raven arrives stripped of drums entirely, a deliberate structural choice that foregrounds her voice and production textures. The track marks a decisive return after a three-year gap.</div>
+          <div class="card-source" style="margin-top:8px;"><span class="source-name">Shatter the Standards</span> · <a href="https://www.shatterthestandards.com/p/the-r-and-b-of-april-2026-already" target="_blank" style="color:var(--accent);font-size:11px;text-decoration:none;">View source →</a></div>
+          <div class="rec-meta">
+            <a class="card-youtube" href="https://www.youtube.com/results?search_query=Kelela+2026" target="_blank">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="#cc0000"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0C.488 3.45.029 5.804 0 12c.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0C23.512 20.55 23.971 18.196 24 12c-.029-6.185-.484-8.549-4.385-8.816zM9 16V8l8 3.993L9 16z"/></svg>
+              Watch on YouTube
+            </a>
+            <div class="rec-actions">
+              <button class="action-btn save-btn" onclick="toggleSave('rec-15', 'Kelela — New Single (2026)', 'Shatter the Standards')">⊕ Save</button>
+              <button class="action-btn" onclick="toggleFollowup('rec-15-fu')">Ask →</button>
+            </div>
+          </div>
+          <div class="followup-area" id="rec-15-fu">
+            <div class="convo-thread"></div>
+            <div class="followup-row">
+              <input class="followup-input" placeholder="Ask about this track or artist..." onkeydown="if(event.key==='Enter'){submitFollowup(this.nextElementSibling,'rec-15-fu')}" />
+              <button class="followup-submit" onclick="submitFollowup(this, 'rec-15-fu')">Ask Claude</button>
+            </div>
+            <button class="convo-clear" onclick="clearConversation('rec-15-fu')">clear conversation</button>
+          </div>
+        </div>
+        <div class="rec-card" id="rec-16">
+          <div class="rec-num">REC 16</div>
+          <div class="rec-artist">Kehlani</div>
+          <div class="rec-track">New Single (Self-Titled Album)</div>
+          <div class="card-genre">♪ R&amp;B</div>
+          <div class="rec-context">Ahead of her self-titled album dropping on her birthday, Kehlani's latest single finds her shutting down partner interrogations with characteristic directness—the sound of someone who's decided they're done waiting on someone else to figure it out.</div>
+          <div class="card-source" style="margin-top:8px;"><span class="source-name">Shatter the Standards</span> · <a href="https://www.shatterthestandards.com/p/the-r-and-b-of-april-2026-already" target="_blank" style="color:var(--accent);font-size:11px;text-decoration:none;">View source →</a></div>
+          <div class="rec-meta">
+            <a class="card-youtube" href="https://www.youtube.com/results?search_query=Kehlani+2026+single" target="_blank">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="#cc0000"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0C.488 3.45.029 5.804 0 12c.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0C23.512 20.55 23.971 18.196 24 12c-.029-6.185-.484-8.549-4.385-8.816zM9 16V8l8 3.993L9 16z"/></svg>
+              Watch on YouTube
+            </a>
+            <div class="rec-actions">
+              <button class="action-btn save-btn" onclick="toggleSave('rec-16', 'Kehlani — New Single (Self-Titled Album)', 'Shatter the Standards')">⊕ Save</button>
+              <button class="action-btn" onclick="toggleFollowup('rec-16-fu')">Ask →</button>
+            </div>
+          </div>
+          <div class="followup-area" id="rec-16-fu">
+            <div class="convo-thread"></div>
+            <div class="followup-row">
+              <input class="followup-input" placeholder="Ask about this track or artist..." onkeydown="if(event.key==='Enter'){submitFollowup(this.nextElementSibling,'rec-16-fu')}" />
+              <button class="followup-submit" onclick="submitFollowup(this, 'rec-16-fu')">Ask Claude</button>
+            </div>
+            <button class="convo-clear" onclick="clearConversation('rec-16-fu')">clear conversation</button>
+          </div>
+        </div>
+        <div class="rec-card" id="rec-17">
+          <div class="rec-num">REC 17</div>
+          <div class="rec-artist">Momo Boyd</div>
+          <div class="rec-track">Debut Solo EP</div>
+          <div class="card-genre">♪ R&amp;B/Soul</div>
+          <div class="rec-context">Stepping off the Infinity Song tour bus onto her own marquee, Boyd's debut solo EP closes with a serial-heartbreaker anthem delivered entirely in the cadence of yikes—self-aware and cutting.</div>
+          <div class="card-source" style="margin-top:8px;"><span class="source-name">Shatter the Standards</span> · <a href="https://www.shatterthestandards.com/p/the-r-and-b-of-april-2026-already" target="_blank" style="color:var(--accent);font-size:11px;text-decoration:none;">View source →</a></div>
+          <div class="rec-meta">
+            <a class="card-youtube" href="https://www.youtube.com/results?search_query=Momo+Boyd+solo+EP" target="_blank">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="#cc0000"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0C.488 3.45.029 5.804 0 12c.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0C23.512 20.55 23.971 18.196 24 12c-.029-6.185-.484-8.549-4.385-8.816zM9 16V8l8 3.993L9 16z"/></svg>
+              Watch on YouTube
+            </a>
+            <div class="rec-actions">
+              <button class="action-btn save-btn" onclick="toggleSave('rec-17', 'Momo Boyd — Debut Solo EP', 'Shatter the Standards')">⊕ Save</button>
+              <button class="action-btn" onclick="toggleFollowup('rec-17-fu')">Ask →</button>
+            </div>
+          </div>
+          <div class="followup-area" id="rec-17-fu">
+            <div class="convo-thread"></div>
+            <div class="followup-row">
+              <input class="followup-input" placeholder="Ask about this track or artist..." onkeydown="if(event.key==='Enter'){submitFollowup(this.nextElementSibling,'rec-17-fu')}" />
+              <button class="followup-submit" onclick="submitFollowup(this, 'rec-17-fu')">Ask Claude</button>
+            </div>
+            <button class="convo-clear" onclick="clearConversation('rec-17-fu')">clear conversation</button>
+          </div>
+        </div>
+        <div class="rec-card" id="rec-18">
+          <div class="rec-num">REC 18</div>
+          <div class="rec-artist">Kenyon Dixon</div>
+          <div class="rec-track">New Single</div>
+          <div class="card-genre">♪ R&amp;B/Soul</div>
+          <div class="rec-context">Two Grammy nominations deep and cosigned by Anita Baker, Dixon delivers a masterclass on how to make a sex-coach song without tipping into parody—threading the needle between instruction and seduction.</div>
+          <div class="card-source" style="margin-top:8px;"><span class="source-name">Shatter the Standards</span> · <a href="https://www.shatterthestandards.com/p/the-r-and-b-of-april-2026-already" target="_blank" style="color:var(--accent);font-size:11px;text-decoration:none;">View source →</a></div>
+          <div class="rec-meta">
+            <a class="card-youtube" href="https://www.youtube.com/results?search_query=Kenyon+Dixon+2026" target="_blank">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="#cc0000"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0C.488 3.45.029 5.804 0 12c.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0C23.512 20.55 23.971 18.196 24 12c-.029-6.185-.484-8.549-4.385-8.816zM9 16V8l8 3.993L9 16z"/></svg>
+              Watch on YouTube
+            </a>
+            <div class="rec-actions">
+              <button class="action-btn save-btn" onclick="toggleSave('rec-18', 'Kenyon Dixon — New Single', 'Shatter the Standards')">⊕ Save</button>
+              <button class="action-btn" onclick="toggleFollowup('rec-18-fu')">Ask →</button>
+            </div>
+          </div>
+          <div class="followup-area" id="rec-18-fu">
+            <div class="convo-thread"></div>
+            <div class="followup-row">
+              <input class="followup-input" placeholder="Ask about this track or artist..." onkeydown="if(event.key==='Enter'){submitFollowup(this.nextElementSibling,'rec-18-fu')}" />
+              <button class="followup-submit" onclick="submitFollowup(this, 'rec-18-fu')">Ask Claude</button>
+            </div>
+            <button class="convo-clear" onclick="clearConversation('rec-18-fu')">clear conversation</button>
+          </div>
+        </div>
+        <div class="rec-card" id="rec-19">
+          <div class="rec-num">REC 19</div>
+          <div class="rec-artist">Saint Harison</div>
+          <div class="rec-track">New Single</div>
+          <div class="card-genre">♪ R&amp;B/Soul</div>
+          <div class="rec-context">The Southampton singer-songwriter built his career on honest heartbreak, but this track's honest part turns out to be the exhaustion—vulnerability reframed as fatigue.</div>
+          <div class="card-source" style="margin-top:8px;"><span class="source-name">Shatter the Standards</span> · <a href="https://www.shatterthestandards.com/p/the-r-and-b-of-april-2026-already" target="_blank" style="color:var(--accent);font-size:11px;text-decoration:none;">View source →</a></div>
+          <div class="rec-meta">
+            <a class="card-youtube" href="https://www.youtube.com/results?search_query=Saint+Harison+2026" target="_blank">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="#cc0000"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0C.488 3.45.029 5.804 0 12c.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0C23.512 20.55 23.971 18.196 24 12c-.029-6.185-.484-8.549-4.385-8.816zM9 16V8l8 3.993L9 16z"/></svg>
+              Watch on YouTube
+            </a>
+            <div class="rec-actions">
+              <button class="action-btn save-btn" onclick="toggleSave('rec-19', 'Saint Harison — New Single', 'Shatter the Standards')">⊕ Save</button>
+              <button class="action-btn" onclick="toggleFollowup('rec-19-fu')">Ask →</button>
+            </div>
+          </div>
+          <div class="followup-area" id="rec-19-fu">
+            <div class="convo-thread"></div>
+            <div class="followup-row">
+              <input class="followup-input" placeholder="Ask about this track or artist..." onkeydown="if(event.key==='Enter'){submitFollowup(this.nextElementSibling,'rec-19-fu')}" />
+              <button class="followup-submit" onclick="submitFollowup(this, 'rec-19-fu')">Ask Claude</button>
+            </div>
+            <button class="convo-clear" onclick="clearConversation('rec-19-fu')">clear conversation</button>
+          </div>
+        </div>
+        <div class="rec-card" id="rec-20">
+          <div class="rec-num">REC 20</div>
+          <div class="rec-artist">Stevie Wonder</div>
+          <div class="rec-track">Where I'm Coming From</div>
+          <div class="card-genre">♪ Soul/Funk</div>
+          <div class="rec-context">The rare Motown album produced without company interference—Wonder turned twenty-one and used his expiring contract as leverage. He ran sessions himself, played synth bass (a first), stacked clavinet and harpsichord alongside the Funk Brothers, and hired four string arrangers. The result: a waltz on harpsichord, a psychedelic funk blowout with a counting sequence, and a seven-minute closer about praying children and street crime.</div>
+          <div class="card-source" style="margin-top:8px;"><span class="source-name">Shatter the Standards</span> · <a href="https://www.shatterthestandards.com/p/milestones-where-im-coming-from-by" target="_blank" style="color:var(--accent);font-size:11px;text-decoration:none;">View source →</a></div>
+          <div class="rec-meta">
+            <a class="card-youtube" href="https://www.youtube.com/results?search_query=Stevie+Wonder+Where+Im+Coming+From" target="_blank">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="#cc0000"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0C.488 3.45.029 5.804 0 12c.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0C23.512 20.55 23.971 18.196 24 12c-.029-6.185-.484-8.549-4.385-8.816zM9 16V8l8 3.993L9 16z"/></svg>
+              Watch on YouTube
+            </a>
+            <div class="rec-actions">
+              <button class="action-btn save-btn" onclick="toggleSave('rec-20', 'Stevie Wonder — Where I\'m Coming From', 'Shatter the Standards')">⊕ Save</button>
+              <button class="action-btn" onclick="toggleFollowup('rec-20-fu')">Ask →</button>
+            </div>
+          </div>
+          <div class="followup-area" id="rec-20-fu">
+            <div class="convo-thread"></div>
+            <div class="followup-row">
+              <input class="followup-input" placeholder="Ask about this track or artist..." onkeydown="if(event.key==='Enter'){submitFollowup(this.nextElementSibling,'rec-20-fu')}" />
+              <button class="followup-submit" onclick="submitFollowup(this, 'rec-20-fu')">Ask Claude</button>
+            </div>
+            <button class="convo-clear" onclick="clearConversation('rec-20-fu')">clear conversation</button>
+          </div>
+        </div>
+      </div>
+      </div>
+      
+    </section>
+    <section class="section" id="s2">
+      <div class="section-header">
+        <span class="section-num">02</span>
+        <span class="section-title">Music & Scene</span>
+        <span class="section-tag tag-c1">Music</span>
+      </div>
+      
+      
+      <div class="card" id="c2-1">
+        <div class="card-top">
+          <div class="card-source">
+            <span class="source-name">No Tags</span>
+          </div>
+          <div class="card-actions">
+            <button class="action-btn save-btn" onclick="toggleSave('c2-1', 'San Francisco\'s techno boom is a warning to the world', 'No Tags')">⊕ Save</button>
+            <button class="action-btn" onclick="toggleAnnotation('c2-1-ann')">✎ Note</button>
+            <button class="action-btn" onclick="toggleFollowup('c2-1-fu')">Ask →</button>
+          </div>
+        </div>
+        <div class="card-title"><a href="https://notagspodcast.substack.com/p/san-franciscos-techno-boom-is-a-warning" target="_blank">San Francisco's techno boom is a warning to the world</a></div>
+        <div class="card-body">No Tags republishes a 2024 essay by Chris Zaldua — DJ, promoter, and label boss behind Left Hand Path and Surface Tension — with a fresh foreword that updates the argument: SF's dance underground isn't just contending with gentrification, it's watching corporate money rewrite the city's self-image in real time. Zaldua ties the Portola Festival's Goldenvoice-backed rise to a broader pattern of tech-funded capture, and his insider position gives the piece more structural weight than most doom-loop takes.</div>
+        <div class="annotation-area" id="c2-1-ann">
+          <div class="annotation-label">Your note</div>
+          <textarea class="annotation-input" placeholder="Add a note..."></textarea>
+          <button class="annotation-save" onclick="saveAnnotation(this, 'c2-1-ann')">Save note</button>
+        </div>
+        <div class="followup-area" id="c2-1-fu">
+          <div class="convo-thread"></div>
+          <div class="followup-row">
+            <input class="followup-input" placeholder="Ask a follow-up question..." onkeydown="if(event.key==='Enter'){submitFollowup(this.nextElementSibling,'c2-1-fu')}" />
+            <button class="followup-submit" onclick="submitFollowup(this, 'c2-1-fu')">Ask Claude</button>
+          </div>
+          <button class="convo-clear" onclick="clearConversation('c2-1-fu')">clear conversation</button>
+        </div>
+      </div>
+      <div class="card" id="c2-2">
+        <div class="card-top">
+          <div class="card-source">
+            <span class="source-name">Cuba on Record</span>
+          </div>
+          <div class="card-actions">
+            <button class="action-btn save-btn" onclick="toggleSave('c2-2', 'America Loved Lucy and Desi. Cuba Loved Olga y Tony: \"We were very successful. Very, very successful.\"', 'Cuba on Record')">⊕ Save</button>
+            <button class="action-btn" onclick="toggleAnnotation('c2-2-ann')">✎ Note</button>
+            <button class="action-btn" onclick="toggleFollowup('c2-2-fu')">Ask →</button>
+          </div>
+        </div>
+        <div class="card-title"><a href="https://cubaonrecord.substack.com/p/america-loved-lucy-and-desi-cuba" target="_blank">America Loved Lucy and Desi. Cuba Loved Olga y Tony: &quot;We were very successful. Very, very successful.&quot;</a></div>
+        <div class="card-body">Cuba on Record uses the hook of the 2022 Lucy and Desi documentary to recover a parallel story most English-language readers won't know: Olga Chorens and Tony Álvarez, the Cuban couple who pioneered the same comedic variety format — daily radio, early television, warm banter — for 1950s Cuban audiences. The piece is anchored by an interview with Chorens at 95, still hosting her own Sunday radio show. A quiet argument about whose media history gets told, compressed into a vivid personal portrait.</div>
+        <div class="annotation-area" id="c2-2-ann">
+          <div class="annotation-label">Your note</div>
+          <textarea class="annotation-input" placeholder="Add a note..."></textarea>
+          <button class="annotation-save" onclick="saveAnnotation(this, 'c2-2-ann')">Save note</button>
+        </div>
+        <div class="followup-area" id="c2-2-fu">
+          <div class="convo-thread"></div>
+          <div class="followup-row">
+            <input class="followup-input" placeholder="Ask a follow-up question..." onkeydown="if(event.key==='Enter'){submitFollowup(this.nextElementSibling,'c2-2-fu')}" />
+            <button class="followup-submit" onclick="submitFollowup(this, 'c2-2-fu')">Ask Claude</button>
+          </div>
+          <button class="convo-clear" onclick="clearConversation('c2-2-fu')">clear conversation</button>
+        </div>
+      </div>
+      <div class="card" id="c2-3">
+        <div class="card-top">
+          <div class="card-source">
+            <span class="source-name">Cuba on Record</span>
+          </div>
+          <div class="card-actions">
+            <button class="action-btn save-btn" onclick="toggleSave('c2-3', '\"I was with Tito Puente, and I was here, there and everywhere.\" - Joe Conzo on Tito Puente and Jazz in Harlem', 'Cuba on Record')">⊕ Save</button>
+            <button class="action-btn" onclick="toggleAnnotation('c2-3-ann')">✎ Note</button>
+            <button class="action-btn" onclick="toggleFollowup('c2-3-fu')">Ask →</button>
+          </div>
+        </div>
+        <div class="card-title"><a href="https://cubaonrecord.substack.com/p/i-was-with-tito-puente-and-i-was" target="_blank">&quot;I was with Tito Puente, and I was here, there and everywhere.&quot; - Joe Conzo on Tito Puente and Jazz in Harlem</a></div>
+        <div class="card-body">Cuba on Record surfaces an audio conversation with Joe Conzo — the photographer and insider who documented New York Latin music from the ground up — talking about Tito Puente and the Harlem jazz world he inhabited. The piece is essentially a listening post rather than written analysis, so how much you get out of it depends on how much you put in. For anyone working in Latin music history or scene documentation, Conzo's firsthand proximity to Puente makes this primary-source territory worth the time.</div>
+        <div class="annotation-area" id="c2-3-ann">
+          <div class="annotation-label">Your note</div>
+          <textarea class="annotation-input" placeholder="Add a note..."></textarea>
+          <button class="annotation-save" onclick="saveAnnotation(this, 'c2-3-ann')">Save note</button>
+        </div>
+        <div class="followup-area" id="c2-3-fu">
+          <div class="convo-thread"></div>
+          <div class="followup-row">
+            <input class="followup-input" placeholder="Ask a follow-up question..." onkeydown="if(event.key==='Enter'){submitFollowup(this.nextElementSibling,'c2-3-fu')}" />
+            <button class="followup-submit" onclick="submitFollowup(this, 'c2-3-fu')">Ask Claude</button>
+          </div>
+          <button class="convo-clear" onclick="clearConversation('c2-3-fu')">clear conversation</button>
+        </div>
+      </div>
+      <div class="card" id="c2-4">
+        <div class="card-top">
+          <div class="card-source">
+            <span class="source-name">First Floor</span>
+          </div>
+          <div class="card-actions">
+            <button class="action-btn save-btn" onclick="toggleSave('c2-4', 'Visible Cloaks Are Blurring the Lines and Playing with Reality', 'First Floor')">⊕ Save</button>
+            <button class="action-btn" onclick="toggleAnnotation('c2-4-ann')">✎ Note</button>
+            <button class="action-btn" onclick="toggleFollowup('c2-4-fu')">Ask →</button>
+          </div>
+        </div>
+        <div class="card-title"><a href="https://firstfloor.substack.com/p/visible-cloaks-are-blurring-the-lines" target="_blank">Visible Cloaks Are Blurring the Lines and Playing with Reality</a></div>
+        <div class="card-body">First Floor's interview with Visible Cloaks' Spencer Doran uses the duo's return — a new album, Paradessence, out next month on RVNG Intl. — as a way into something more interesting: what it means to work at the conceptual edge of ambient music without becoming a nostalgia act. Doran pushes back on the 1980s-Japan-revivalist label that's followed them since the Kankyō Ongaku compilation, and the conversation is at its best when it traces the gap between a project's intellectual scaffolding and how it actually lands with listeners.</div>
+        <div class="annotation-area" id="c2-4-ann">
+          <div class="annotation-label">Your note</div>
+          <textarea class="annotation-input" placeholder="Add a note..."></textarea>
+          <button class="annotation-save" onclick="saveAnnotation(this, 'c2-4-ann')">Save note</button>
+        </div>
+        <div class="followup-area" id="c2-4-fu">
+          <div class="convo-thread"></div>
+          <div class="followup-row">
+            <input class="followup-input" placeholder="Ask a follow-up question..." onkeydown="if(event.key==='Enter'){submitFollowup(this.nextElementSibling,'c2-4-fu')}" />
+            <button class="followup-submit" onclick="submitFollowup(this, 'c2-4-fu')">Ask Claude</button>
+          </div>
+          <button class="convo-clear" onclick="clearConversation('c2-4-fu')">clear conversation</button>
+        </div>
+      </div>
+      
+    </section>
+    <section class="section" id="s3">
+      <div class="section-header">
+        <span class="section-num">03</span>
+        <span class="section-title">Music Industry Analysis</span>
+        <span class="section-tag tag-c1">Music</span>
+      </div>
+      
+      
+      <div class="card" id="c3-1">
+        <div class="card-top">
+          <div class="card-source">
+            <span class="source-name">Vinyl Culture</span>
+          </div>
+          <div class="card-actions">
+            <button class="action-btn save-btn" onclick="toggleSave('c3-1', 'They Cloned Her Voice, Then Claimed Her Songs | AI Music Scams Are Using Copyright Law as a Weapon Against Real Artists', 'Vinyl Culture')">⊕ Save</button>
+            <button class="action-btn" onclick="toggleAnnotation('c3-1-ann')">✎ Note</button>
+            <button class="action-btn" onclick="toggleFollowup('c3-1-fu')">Ask →</button>
+          </div>
+        </div>
+        <div class="card-title"><a href="https://vinylculture.substack.com/p/they-cloned-her-voice-then-claimed" target="_blank">They Cloned Her Voice, Then Claimed Her Songs | AI Music Scams Are Using Copyright Law as a Weapon Against Real Artists</a></div>
+        <div class="card-body">Vinyl Culture documents a structural exploit, not just a scam: AI actors are using copyright infrastructure as a weapon against the artists it was built to protect. The case of folk musician Murphy Campbell — whose voice was cloned, her songs faked on Spotify, then her original YouTube videos demonetized via Content ID by the same distributor that uploaded the fakes — is the clearest illustration yet of how automation bias creates an inverse property right. The piece also names the conflict nobody's saying out loud: the platform running the automated takedown system is the same company pouring $185 billion into the underlying AI.</div>
+        <div class="annotation-area" id="c3-1-ann">
+          <div class="annotation-label">Your note</div>
+          <textarea class="annotation-input" placeholder="Add a note..."></textarea>
+          <button class="annotation-save" onclick="saveAnnotation(this, 'c3-1-ann')">Save note</button>
+        </div>
+        <div class="followup-area" id="c3-1-fu">
+          <div class="convo-thread"></div>
+          <div class="followup-row">
+            <input class="followup-input" placeholder="Ask a follow-up question..." onkeydown="if(event.key==='Enter'){submitFollowup(this.nextElementSibling,'c3-1-fu')}" />
+            <button class="followup-submit" onclick="submitFollowup(this, 'c3-1-fu')">Ask Claude</button>
+          </div>
+          <button class="convo-clear" onclick="clearConversation('c3-1-fu')">clear conversation</button>
+        </div>
+      </div>
+      <div class="card" id="c3-2">
+        <div class="card-top">
+          <div class="card-source">
+            <span class="source-name">Platform &amp; Stream</span>
+          </div>
+          <div class="card-actions">
+            <button class="action-btn save-btn" onclick="toggleSave('c3-2', 'Why Are Artists Seemingly More Afraid of Publishing Deals Now Than Ever?: Op-Ed from Killphonic\'s Caleb Shreve', 'Platform & Stream')">⊕ Save</button>
+            <button class="action-btn" onclick="toggleAnnotation('c3-2-ann')">✎ Note</button>
+            <button class="action-btn" onclick="toggleFollowup('c3-2-fu')">Ask →</button>
+          </div>
+        </div>
+        <div class="card-title">Why Are Artists Seemingly More Afraid of Publishing Deals Now Than Ever?: Op-Ed from Killphonic's Caleb Shreve</div>
+        <div class="card-body">Killphonic's Caleb Shreve works through a tension that's genuinely unresolved in the industry right now: the whiplash between rights-retention culture and the catalog sales gold rush. The piece asks what an artist's rights are actually worth and how that valuation gets made — a more useful framing than the usual retain-vs-sell binary. Shreve's operator perspective (Killphonic is an independent music company) gives the argument some grounding in real deal dynamics rather than abstract principle.</div>
+        <div class="annotation-area" id="c3-2-ann">
+          <div class="annotation-label">Your note</div>
+          <textarea class="annotation-input" placeholder="Add a note..."></textarea>
+          <button class="annotation-save" onclick="saveAnnotation(this, 'c3-2-ann')">Save note</button>
+        </div>
+        <div class="followup-area" id="c3-2-fu">
+          <div class="convo-thread"></div>
+          <div class="followup-row">
+            <input class="followup-input" placeholder="Ask a follow-up question..." onkeydown="if(event.key==='Enter'){submitFollowup(this.nextElementSibling,'c3-2-fu')}" />
+            <button class="followup-submit" onclick="submitFollowup(this, 'c3-2-fu')">Ask Claude</button>
+          </div>
+          <button class="convo-clear" onclick="clearConversation('c3-2-fu')">clear conversation</button>
+        </div>
+      </div>
+      <div class="card" id="c3-3">
+        <div class="card-top">
+          <div class="card-source">
+            <span class="source-name">Platform &amp; Stream</span>
+          </div>
+          <div class="card-actions">
+            <button class="action-btn save-btn" onclick="toggleSave('c3-3', 'Rethinking music fund operations with agentic AI', 'Platform & Stream')">⊕ Save</button>
+            <button class="action-btn" onclick="toggleAnnotation('c3-3-ann')">✎ Note</button>
+            <button class="action-btn" onclick="toggleFollowup('c3-3-fu')">Ask →</button>
+          </div>
+        </div>
+        <div class="card-title">Rethinking music fund operations with agentic AI</div>
+        <div class="card-body">Platform &amp; Stream makes a structural argument worth tracking: as the music rights market matures and institutional capital deepens its foothold, operational efficiency is no longer a back-office concern — it's becoming a core driver of asset value. The piece frames agentic AI as the infrastructure layer that separates competitive funds from laggards. Less a how-to than a reframing of where the real leverage sits in rights management.</div>
+        <div class="annotation-area" id="c3-3-ann">
+          <div class="annotation-label">Your note</div>
+          <textarea class="annotation-input" placeholder="Add a note..."></textarea>
+          <button class="annotation-save" onclick="saveAnnotation(this, 'c3-3-ann')">Save note</button>
+        </div>
+        <div class="followup-area" id="c3-3-fu">
+          <div class="convo-thread"></div>
+          <div class="followup-row">
+            <input class="followup-input" placeholder="Ask a follow-up question..." onkeydown="if(event.key==='Enter'){submitFollowup(this.nextElementSibling,'c3-3-fu')}" />
+            <button class="followup-submit" onclick="submitFollowup(this, 'c3-3-fu')">Ask Claude</button>
+          </div>
+          <button class="convo-clear" onclick="clearConversation('c3-3-fu')">clear conversation</button>
+        </div>
+      </div>
+      <div class="card" id="c3-4">
+        <div class="card-top">
+          <div class="card-source">
+            <span class="source-name">Platform &amp; Stream</span>
+          </div>
+          <div class="card-actions">
+            <button class="action-btn save-btn" onclick="toggleSave('c3-4', 'Meet the Swiss distro company banking on agentic AI to power the \'next generation\' of indie labels', 'Platform & Stream')">⊕ Save</button>
+            <button class="action-btn" onclick="toggleAnnotation('c3-4-ann')">✎ Note</button>
+            <button class="action-btn" onclick="toggleFollowup('c3-4-fu')">Ask →</button>
+          </div>
+        </div>
+        <div class="card-title">Meet the Swiss distro company banking on agentic AI to power the 'next generation' of indie labels</div>
+        <div class="card-body">Platform &amp; Stream profiles Dennis Hausammann, a former rapper turned founder building agentic AI tools aimed at indie label operators. The pitch is familiar — AI as force multiplier for under-resourced teams — but the angle here is distribution infrastructure as the delivery layer, not a standalone app. Worth a look if you're tracking how the 'AI label stack' conversation is moving from concept to product, and who's positioning early in the indie segment.</div>
+        <div class="annotation-area" id="c3-4-ann">
+          <div class="annotation-label">Your note</div>
+          <textarea class="annotation-input" placeholder="Add a note..."></textarea>
+          <button class="annotation-save" onclick="saveAnnotation(this, 'c3-4-ann')">Save note</button>
+        </div>
+        <div class="followup-area" id="c3-4-fu">
+          <div class="convo-thread"></div>
+          <div class="followup-row">
+            <input class="followup-input" placeholder="Ask a follow-up question..." onkeydown="if(event.key==='Enter'){submitFollowup(this.nextElementSibling,'c3-4-fu')}" />
+            <button class="followup-submit" onclick="submitFollowup(this, 'c3-4-fu')">Ask Claude</button>
+          </div>
+          <button class="convo-clear" onclick="clearConversation('c3-4-fu')">clear conversation</button>
+        </div>
+      </div>
+      
+    </section>
+    <section class="section" id="s4">
+      <div class="section-header">
+        <span class="section-num">04</span>
+        <span class="section-title">AI + Content & Editorial Technology</span>
+        <span class="section-tag tag-c2">AI</span>
+      </div>
+      
+      
+      <div class="card" id="c4-1">
+        <div class="card-top">
+          <div class="card-source">
+            <span class="source-name">The Media Copilot (Substack)</span>
+          </div>
+          <div class="card-actions">
+            <button class="action-btn save-btn" onclick="toggleSave('c4-1', 'When agents come to the newsroom', 'The Media Copilot (Substack)')">⊕ Save</button>
+            <button class="action-btn" onclick="toggleAnnotation('c4-1-ann')">✎ Note</button>
+            <button class="action-btn" onclick="toggleFollowup('c4-1-fu')">Ask →</button>
+          </div>
+        </div>
+        <div class="card-title"><a href="https://mediacopilot.substack.com/p/agentic-newsroom-ai-agents-media" target="_blank">When agents come to the newsroom</a></div>
+        <div class="card-body">The Media Copilot's latest column tracks the shift from AI as a personal productivity layer to AI agents operating inside editorial workflows — a distinction that matters more than most coverage acknowledges. The piece folds in HubSpot's answer engine optimization tool and the AP's pivot toward AI revenue, sketching a broader picture of institutional adaptation. The newsletter skews toward practitioners, so the framing is applied rather than analytical, but the newsroom-agent framing is the right one to be watching.</div>
+        <div class="annotation-area" id="c4-1-ann">
+          <div class="annotation-label">Your note</div>
+          <textarea class="annotation-input" placeholder="Add a note..."></textarea>
+          <button class="annotation-save" onclick="saveAnnotation(this, 'c4-1-ann')">Save note</button>
+        </div>
+        <div class="followup-area" id="c4-1-fu">
+          <div class="convo-thread"></div>
+          <div class="followup-row">
+            <input class="followup-input" placeholder="Ask a follow-up question..." onkeydown="if(event.key==='Enter'){submitFollowup(this.nextElementSibling,'c4-1-fu')}" />
+            <button class="followup-submit" onclick="submitFollowup(this, 'c4-1-fu')">Ask Claude</button>
+          </div>
+          <button class="convo-clear" onclick="clearConversation('c4-1-fu')">clear conversation</button>
+        </div>
+      </div>
+      <div class="card" id="c4-2">
+        <div class="card-top">
+          <div class="card-source">
+            <span class="source-name">(Re)Structured News | Tow-Knight Center at CUNY (Substack)</span>
+          </div>
+          <div class="card-actions">
+            <button class="action-btn save-btn" onclick="toggleSave('c4-2', 'Stray Thoughts: Polarization, Journalism, and AI', '(Re)Structured News | Tow-Knight Center at CUNY (Substack)')">⊕ Save</button>
+            <button class="action-btn" onclick="toggleAnnotation('c4-2-ann')">✎ Note</button>
+            <button class="action-btn" onclick="toggleFollowup('c4-2-fu')">Ask →</button>
+          </div>
+        </div>
+        <div class="card-title"><a href="https://restructurednews.substack.com/p/stray-thoughts" target="_blank">Stray Thoughts: Polarization, Journalism, and AI</a></div>
+        <div class="card-body">The Tow-Knight Center's (Re)Structured News looks at whether journalism is structurally incentivized to produce polarization — and whether algorithmic design might actually reverse that. The piece leans heavily on Jonathan Stray, a senior scientist at UC Berkeley's Center for Human-Compatible AI, whose recent experiment found that certain feed algorithms could reduce polarization while simultaneously increasing time on site. That second part is the real finding: a business case for depolarization is a different argument than a moral one.</div>
+        <div class="annotation-area" id="c4-2-ann">
+          <div class="annotation-label">Your note</div>
+          <textarea class="annotation-input" placeholder="Add a note..."></textarea>
+          <button class="annotation-save" onclick="saveAnnotation(this, 'c4-2-ann')">Save note</button>
+        </div>
+        <div class="followup-area" id="c4-2-fu">
+          <div class="convo-thread"></div>
+          <div class="followup-row">
+            <input class="followup-input" placeholder="Ask a follow-up question..." onkeydown="if(event.key==='Enter'){submitFollowup(this.nextElementSibling,'c4-2-fu')}" />
+            <button class="followup-submit" onclick="submitFollowup(this, 'c4-2-fu')">Ask Claude</button>
+          </div>
+          <button class="convo-clear" onclick="clearConversation('c4-2-fu')">clear conversation</button>
+        </div>
+      </div>
+      <div class="card" id="c4-3">
+        <div class="card-top">
+          <div class="card-source">
+            <span class="source-name">Media &amp; the Machine</span>
+          </div>
+          <div class="card-actions">
+            <button class="action-btn save-btn" onclick="toggleSave('c4-3', 'AI Stole 7M Books…Why This Publishing Insider Is Still Bullish', 'Media & the Machine')">⊕ Save</button>
+            <button class="action-btn" onclick="toggleAnnotation('c4-3-ann')">✎ Note</button>
+            <button class="action-btn" onclick="toggleFollowup('c4-3-fu')">Ask →</button>
+          </div>
+        </div>
+        <div class="card-title"><a href="https://mediaandthemachine.substack.com/p/ai-stole-7m-bookswhy-this-publishing" target="_blank">AI Stole 7M Books…Why This Publishing Insider Is Still Bullish</a></div>
+        <div class="card-body">Publishing veteran Thad McIlroy frames the LLM training data problem as an 'original sin' — not necessarily illegal, but a foundational act of extraction that now compounds: the same tools that ingested authors' work can replicate and undersell it. The interview, hosted by Rob Kelly on the Media &amp; the Machine podcast, is worth a skim for McIlroy's explanation of why books specifically were so valuable for training — their logical, sequential argumentation is exactly what LLMs are built to mimic.</div>
+        <div class="annotation-area" id="c4-3-ann">
+          <div class="annotation-label">Your note</div>
+          <textarea class="annotation-input" placeholder="Add a note..."></textarea>
+          <button class="annotation-save" onclick="saveAnnotation(this, 'c4-3-ann')">Save note</button>
+        </div>
+        <div class="followup-area" id="c4-3-fu">
+          <div class="convo-thread"></div>
+          <div class="followup-row">
+            <input class="followup-input" placeholder="Ask a follow-up question..." onkeydown="if(event.key==='Enter'){submitFollowup(this.nextElementSibling,'c4-3-fu')}" />
+            <button class="followup-submit" onclick="submitFollowup(this, 'c4-3-fu')">Ask Claude</button>
+          </div>
+          <button class="convo-clear" onclick="clearConversation('c4-3-fu')">clear conversation</button>
+        </div>
+      </div>
+      <div class="card" id="c4-4">
+        <div class="card-top">
+          <div class="card-source">
+            <span class="source-name">404 Media</span>
+          </div>
+          <div class="card-actions">
+            <button class="action-btn save-btn" onclick="toggleSave('c4-4', 'AI ban at Wikipedia', '404 Media')">⊕ Save</button>
+            <button class="action-btn" onclick="toggleAnnotation('c4-4-ann')">✎ Note</button>
+            <button class="action-btn" onclick="toggleFollowup('c4-4-fu')">Ask →</button>
+          </div>
+        </div>
+        <div class="card-title">AI ban at Wikipedia</div>
+        <div class="card-body">404 Media reports on Wikipedia moving to restrict AI-generated content — a notable institutional line in the sand from one of the web's largest collaborative knowledge projects. The specifics come from Emanuel's reporting after the break, so the full argument isn't available here, but the story matters for anyone thinking about where editorial trust lives when AI writing becomes indistinguishable from human contribution. Worth clicking through for the policy details.</div>
+        <div class="annotation-area" id="c4-4-ann">
+          <div class="annotation-label">Your note</div>
+          <textarea class="annotation-input" placeholder="Add a note..."></textarea>
+          <button class="annotation-save" onclick="saveAnnotation(this, 'c4-4-ann')">Save note</button>
+        </div>
+        <div class="followup-area" id="c4-4-fu">
+          <div class="convo-thread"></div>
+          <div class="followup-row">
+            <input class="followup-input" placeholder="Ask a follow-up question..." onkeydown="if(event.key==='Enter'){submitFollowup(this.nextElementSibling,'c4-4-fu')}" />
+            <button class="followup-submit" onclick="submitFollowup(this, 'c4-4-fu')">Ask Claude</button>
+          </div>
+          <button class="convo-clear" onclick="clearConversation('c4-4-fu')">clear conversation</button>
+        </div>
+      </div>
+      
+    </section>
+    <section class="section" id="s5">
+      <div class="section-header">
+        <span class="section-num">05</span>
+        <span class="section-title">Podcast & Video Platform News</span>
+        <span class="section-tag tag-c3">Film + Podcast</span>
+      </div>
+      
+      
+      <div class="card" id="c5-1">
+        <div class="card-top">
+          <div class="card-source">
+            <span class="source-name">Evan Shapiro: Media War &amp; Peace</span>
+          </div>
+          <div class="card-actions">
+            <button class="action-btn save-btn" onclick="toggleSave('c5-1', 'THE MAP FORKS', 'Evan Shapiro: Media War & Peace')">⊕ Save</button>
+            <button class="action-btn" onclick="toggleAnnotation('c5-1-ann')">✎ Note</button>
+            <button class="action-btn" onclick="toggleFollowup('c5-1-fu')">Ask →</button>
+          </div>
+        </div>
+        <div class="card-title"><a href="https://eshap.substack.com/p/the-map-forks" target="_blank">THE MAP FORKS</a></div>
+        <div class="card-body">Evan Shapiro — whose annual Media Universe maps have tracked industry gravity shifts since 2020 — has redrawn the whole thing for 2024, and the argument is structural: audiences have collapsed the distinction between mainstream and creator media into a single self-curated experience, forcing entirely new business models on everyone. He frames this as the 'Affinity Economy,' and the map charts fast-changing fortunes for Netflix, Spotify, OpenAI, and others. Worth a look for the visual argument alone.</div>
+        <div class="annotation-area" id="c5-1-ann">
+          <div class="annotation-label">Your note</div>
+          <textarea class="annotation-input" placeholder="Add a note..."></textarea>
+          <button class="annotation-save" onclick="saveAnnotation(this, 'c5-1-ann')">Save note</button>
+        </div>
+        <div class="followup-area" id="c5-1-fu">
+          <div class="convo-thread"></div>
+          <div class="followup-row">
+            <input class="followup-input" placeholder="Ask a follow-up question..." onkeydown="if(event.key==='Enter'){submitFollowup(this.nextElementSibling,'c5-1-fu')}" />
+            <button class="followup-submit" onclick="submitFollowup(this, 'c5-1-fu')">Ask Claude</button>
+          </div>
+          <button class="convo-clear" onclick="clearConversation('c5-1-fu')">clear conversation</button>
+        </div>
+      </div>
+      
+    </section>
+    <section class="section" id="s7">
+      <div class="section-header">
+        <span class="section-num">07</span>
+        <span class="section-title">AI Product News</span>
+        <span class="section-tag tag-c2">AI</span>
+      </div>
+      
+      
+      <div class="card" id="c7-1">
+        <div class="card-top">
+          <div class="card-source">
+            <span class="source-name">404 Media</span>
+          </div>
+          <div class="card-actions">
+            <button class="action-btn save-btn" onclick="toggleSave('c7-1', 'WebinarTV Secretly Scraped Zoom Meetings of Anonymous Recovery Programs', '404 Media')">⊕ Save</button>
+            <button class="action-btn" onclick="toggleAnnotation('c7-1-ann')">✎ Note</button>
+            <button class="action-btn" onclick="toggleFollowup('c7-1-fu')">Ask →</button>
+          </div>
+        </div>
+        <div class="card-title">WebinarTV Secretly Scraped Zoom Meetings of Anonymous Recovery Programs</div>
+        <div class="card-body">404 Media's ongoing investigation into WebinarTV lands in genuinely disturbing territory: anonymous recovery program meetings — the kind where privacy isn't a preference but a precondition — were apparently scraped and reshared without consent. The piece is a follow-up to earlier March reporting, so there's investigative continuity here. For anyone thinking about AI data pipelines and consent architecture, this is the case study that makes the stakes concrete.</div>
+        <div class="annotation-area" id="c7-1-ann">
+          <div class="annotation-label">Your note</div>
+          <textarea class="annotation-input" placeholder="Add a note..."></textarea>
+          <button class="annotation-save" onclick="saveAnnotation(this, 'c7-1-ann')">Save note</button>
+        </div>
+        <div class="followup-area" id="c7-1-fu">
+          <div class="convo-thread"></div>
+          <div class="followup-row">
+            <input class="followup-input" placeholder="Ask a follow-up question..." onkeydown="if(event.key==='Enter'){submitFollowup(this.nextElementSibling,'c7-1-fu')}" />
+            <button class="followup-submit" onclick="submitFollowup(this, 'c7-1-fu')">Ask Claude</button>
+          </div>
+          <button class="convo-clear" onclick="clearConversation('c7-1-fu')">clear conversation</button>
+        </div>
+      </div>
+      <div class="card" id="c7-2">
+        <div class="card-top">
+          <div class="card-source">
+            <span class="source-name">404 Media</span>
+          </div>
+          <div class="card-actions">
+            <button class="action-btn save-btn" onclick="toggleSave('c7-2', 'Fish Cops Using Flock', '404 Media')">⊕ Save</button>
+            <button class="action-btn" onclick="toggleAnnotation('c7-2-ann')">✎ Note</button>
+            <button class="action-btn" onclick="toggleFollowup('c7-2-fu')">Ask →</button>
+          </div>
+        </div>
+        <div class="card-title">Fish Cops Using Flock</div>
+        <div class="card-body">404 Media reports that Florida's Fish and Wildlife Conservation Commission is running license plate lookups for ICE through Flock's AI camera network — despite ICE having no direct contract with Flock. The story is really about how surveillance infrastructure gets laundered through unexpected intermediaries: when a fish-and-wildlife agency becomes a de facto immigration enforcement tool, it signals how difficult it is to map — let alone audit — who actually has access to AI-powered data systems.</div>
+        <div class="annotation-area" id="c7-2-ann">
+          <div class="annotation-label">Your note</div>
+          <textarea class="annotation-input" placeholder="Add a note..."></textarea>
+          <button class="annotation-save" onclick="saveAnnotation(this, 'c7-2-ann')">Save note</button>
+        </div>
+        <div class="followup-area" id="c7-2-fu">
+          <div class="convo-thread"></div>
+          <div class="followup-row">
+            <input class="followup-input" placeholder="Ask a follow-up question..." onkeydown="if(event.key==='Enter'){submitFollowup(this.nextElementSibling,'c7-2-fu')}" />
+            <button class="followup-submit" onclick="submitFollowup(this, 'c7-2-fu')">Ask Claude</button>
+          </div>
+          <button class="convo-clear" onclick="clearConversation('c7-2-fu')">clear conversation</button>
+        </div>
+      </div>
+      <div class="card" id="c7-3">
+        <div class="card-top">
+          <div class="card-source">
+            <span class="source-name">Reuters</span>
+          </div>
+          <div class="card-actions">
+            <button class="action-btn save-btn" onclick="toggleSave('c7-3', 'Nvidia Slurm Control Raises Industry Concerns', 'Reuters')">⊕ Save</button>
+            <button class="action-btn" onclick="toggleAnnotation('c7-3-ann')">✎ Note</button>
+            <button class="action-btn" onclick="toggleFollowup('c7-3-fu')">Ask →</button>
+          </div>
+        </div>
+        <div class="card-title">Nvidia Slurm Control Raises Industry Concerns</div>
+        <div class="card-body">Reuters flags a structural concern worth watching: Nvidia's acquisition of SchedMD hands it control over Slurm, the job scheduling software that runs much of the world's supercomputing infrastructure. The worry isn't the deal itself but what comes after — experts note that software decisions could quietly tilt the ecosystem toward Nvidia hardware, locking out competing chip providers before anyone notices the preference has been baked in. Classic infrastructure-layer capture.</div>
+        <div class="annotation-area" id="c7-3-ann">
+          <div class="annotation-label">Your note</div>
+          <textarea class="annotation-input" placeholder="Add a note..."></textarea>
+          <button class="annotation-save" onclick="saveAnnotation(this, 'c7-3-ann')">Save note</button>
+        </div>
+        <div class="followup-area" id="c7-3-fu">
+          <div class="convo-thread"></div>
+          <div class="followup-row">
+            <input class="followup-input" placeholder="Ask a follow-up question..." onkeydown="if(event.key==='Enter'){submitFollowup(this.nextElementSibling,'c7-3-fu')}" />
+            <button class="followup-submit" onclick="submitFollowup(this, 'c7-3-fu')">Ask Claude</button>
+          </div>
+          <button class="convo-clear" onclick="clearConversation('c7-3-fu')">clear conversation</button>
+        </div>
+      </div>
+      <div class="card" id="c7-4">
+        <div class="card-top">
+          <div class="card-source">
+            <span class="source-name">Lenny's Newsletter</span>
+          </div>
+          <div class="card-actions">
+            <button class="action-btn save-btn" onclick="toggleSave('c7-4', 'Not all AI agents are created equal', 'Lenny\'s Newsletter')">⊕ Save</button>
+            <button class="action-btn" onclick="toggleAnnotation('c7-4-ann')">✎ Note</button>
+            <button class="action-btn" onclick="toggleFollowup('c7-4-fu')">Ask →</button>
+          </div>
+        </div>
+        <div class="card-title"><a href="https://www.lennysnewsletter.com/p/not-all-ai-agents-are-created-equal" target="_blank">Not all AI agents are created equal</a></div>
+        <div class="card-body">Lenny's Newsletter surfaces a planning failure that's showing up across product orgs right now: teams treating fundamentally different AI agent projects as if they're the same kind of initiative. The piece draws on 30-plus roadmap conversations to make a straightforward but underappreciated point — a RAG copilot a PM can spin up in six weeks and a voice-enabled commerce agent requiring a dedicated ML team aren't really comparable line items. Worth reading if you're helping a platform client think through which AI editorial or recommendation tools to actually build.</div>
+        <div class="annotation-area" id="c7-4-ann">
+          <div class="annotation-label">Your note</div>
+          <textarea class="annotation-input" placeholder="Add a note..."></textarea>
+          <button class="annotation-save" onclick="saveAnnotation(this, 'c7-4-ann')">Save note</button>
+        </div>
+        <div class="followup-area" id="c7-4-fu">
+          <div class="convo-thread"></div>
+          <div class="followup-row">
+            <input class="followup-input" placeholder="Ask a follow-up question..." onkeydown="if(event.key==='Enter'){submitFollowup(this.nextElementSibling,'c7-4-fu')}" />
+            <button class="followup-submit" onclick="submitFollowup(this, 'c7-4-fu')">Ask Claude</button>
+          </div>
+          <button class="convo-clear" onclick="clearConversation('c7-4-fu')">clear conversation</button>
+        </div>
+      </div>
+      
+    </section>
+    <section class="section" id="s8">
+      <div class="section-header">
+        <span class="section-num">08</span>
+        <span class="section-title">Voice & Culture</span>
+        <span class="section-tag tag-c4">Culture + News</span>
+      </div>
+      
+      
+      <div class="card" id="c8-1">
+        <div class="card-top">
+          <div class="card-source">
+            <span class="source-name">Ted Gioia Substack</span>
+          </div>
+          <div class="card-actions">
+            <button class="action-btn save-btn" onclick="toggleSave('c8-1', 'How to Be a Serious Reader', 'Ted Gioia Substack')">⊕ Save</button>
+            <button class="action-btn" onclick="toggleAnnotation('c8-1-ann')">✎ Note</button>
+            <button class="action-btn" onclick="toggleFollowup('c8-1-fu')">Ask →</button>
+          </div>
+        </div>
+        <div class="card-title"><a href="https://tedgioia.substack.com/p/how-to-be-a-serious-reader" target="_blank">How to Be a Serious Reader</a></div>
+        <div class="card-body">Ted Gioia — prolific music and culture critic whose Substack has become one of the more widely-read independent voices on the arts — makes a case here that the common reader isn't dying, they're multiplying. In conversation with Jared, he traces the concept from Samuel Johnson through Virginia Woolf and lands on a quiet prediction: we're entering a small revival of the humanities, driven not by universities but by autodidacts who want to engage with literature and art on their own terms. The argument will feel familiar to anyone watching independent music culture outpace institutional criticism.</div>
+        <div class="annotation-area" id="c8-1-ann">
+          <div class="annotation-label">Your note</div>
+          <textarea class="annotation-input" placeholder="Add a note..."></textarea>
+          <button class="annotation-save" onclick="saveAnnotation(this, 'c8-1-ann')">Save note</button>
+        </div>
+        <div class="followup-area" id="c8-1-fu">
+          <div class="convo-thread"></div>
+          <div class="followup-row">
+            <input class="followup-input" placeholder="Ask a follow-up question..." onkeydown="if(event.key==='Enter'){submitFollowup(this.nextElementSibling,'c8-1-fu')}" />
+            <button class="followup-submit" onclick="submitFollowup(this, 'c8-1-fu')">Ask Claude</button>
+          </div>
+          <button class="convo-clear" onclick="clearConversation('c8-1-fu')">clear conversation</button>
+        </div>
+      </div>
+      <div class="card" id="c8-2">
+        <div class="card-top">
+          <div class="card-source">
+            <span class="source-name">i-D</span>
+          </div>
+          <div class="card-actions">
+            <button class="action-btn save-btn" onclick="toggleSave('c8-2', 'Euphoria is our last good TV show', 'i-D')">⊕ Save</button>
+            <button class="action-btn" onclick="toggleAnnotation('c8-2-ann')">✎ Note</button>
+            <button class="action-btn" onclick="toggleFollowup('c8-2-fu')">Ask →</button>
+          </div>
+        </div>
+        <div class="card-title"><a href="https://substack.i-d.co/p/euphoria-is-our-last-good-tv-show" target="_blank">Euphoria is our last good TV show</a></div>
+        <div class="card-body">i-D argues that Euphoria season three isn't just good television — it's a eulogy for the prestige TV era that streaming built and is now quietly dismantling. The piece frames Levinson's maximalism not as indulgence but as a deliberate doorslam: the show's decision to shoot on 35mm and 65mm film reads as a conscious monument to a moment everyone already senses is over. If you've been watching the slow deflation of the peak-TV promise, this is a useful cultural timestamp.</div>
+        <div class="annotation-area" id="c8-2-ann">
+          <div class="annotation-label">Your note</div>
+          <textarea class="annotation-input" placeholder="Add a note..."></textarea>
+          <button class="annotation-save" onclick="saveAnnotation(this, 'c8-2-ann')">Save note</button>
+        </div>
+        <div class="followup-area" id="c8-2-fu">
+          <div class="convo-thread"></div>
+          <div class="followup-row">
+            <input class="followup-input" placeholder="Ask a follow-up question..." onkeydown="if(event.key==='Enter'){submitFollowup(this.nextElementSibling,'c8-2-fu')}" />
+            <button class="followup-submit" onclick="submitFollowup(this, 'c8-2-fu')">Ask Claude</button>
+          </div>
+          <button class="convo-clear" onclick="clearConversation('c8-2-fu')">clear conversation</button>
+        </div>
+      </div>
+      <div class="card" id="c8-3">
+        <div class="card-top">
+          <div class="card-source">
+            <span class="source-name">The Bagatelles</span>
+          </div>
+          <div class="card-actions">
+            <button class="action-btn save-btn" onclick="toggleSave('c8-3', 'The Art of the Diarist', 'The Bagatelles')">⊕ Save</button>
+            <button class="action-btn" onclick="toggleAnnotation('c8-3-ann')">✎ Note</button>
+            <button class="action-btn" onclick="toggleFollowup('c8-3-fu')">Ask →</button>
+          </div>
+        </div>
+        <div class="card-title"><a href="https://thebagatelles.substack.com/p/the-art-of-the-diarist" target="_blank">The Art of the Diarist</a></div>
+        <div class="card-body">The Bagatelles, a personal Substack with a literary sensibility, makes a quiet case for the diary as a form that works precisely because it resists documentation. The writer distinguishes between the impulse to record everything and the discipline of trawling memory for a single forgotten detail — a wobbly cyclist, a cat alarmed by princess cake. It's a short piece, but the observation that the best diary entry captures what you'd already lost holds up.</div>
+        <div class="annotation-area" id="c8-3-ann">
+          <div class="annotation-label">Your note</div>
+          <textarea class="annotation-input" placeholder="Add a note..."></textarea>
+          <button class="annotation-save" onclick="saveAnnotation(this, 'c8-3-ann')">Save note</button>
+        </div>
+        <div class="followup-area" id="c8-3-fu">
+          <div class="convo-thread"></div>
+          <div class="followup-row">
+            <input class="followup-input" placeholder="Ask a follow-up question..." onkeydown="if(event.key==='Enter'){submitFollowup(this.nextElementSibling,'c8-3-fu')}" />
+            <button class="followup-submit" onclick="submitFollowup(this, 'c8-3-fu')">Ask Claude</button>
+          </div>
+          <button class="convo-clear" onclick="clearConversation('c8-3-fu')">clear conversation</button>
+        </div>
+      </div>
+      
+    </section>
+    <section class="section" id="s9">
+      <div class="section-header">
+        <span class="section-num">09</span>
+        <span class="section-title">Film + Podcast Industry</span>
+        <span class="section-tag tag-c3">Film + Podcast</span>
+      </div>
+      <div class="card">
+        <div class="card-body" style="color:var(--ink-faint);font-style:italic;">
+          No items found for this category today.
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- MUSIC NEWS SIDEBAR -->
+  <aside class="tips-sidebar">
+    <div class="tips-header">
+      <div class="tips-title">Music News</div>
+      <div class="tips-sub">Artist · Tour · Festival</div>
+    </div>
+
+    
+    <div class="tip-item">
+      <a class="tip-link" href="https://pitchfork.com/news/madonna-readies-confessions-on-a-dance-floor-sequel/" target="_blank"><strong>Madonna announces Confessions sequel album</strong></a>
+      <div class="tip-source">Pitchfork</div>
+      <span class="tip-type artist-news">Artist news/profiles</span>
+    </div>
+    <div class="tip-item">
+      <a class="tip-link" href="https://www.rollingstone.com/music/music-news/bob-dylan-tour-brittney-spencer-1235547172/" target="_blank"><strong>Brittney Spencer opens Bob Dylan tour</strong></a>
+      <div class="tip-source">Rolling Stone</div>
+      <span class="tip-type tour">Tour announcements</span>
+    </div>
+    <div class="tip-item">
+      <a class="tip-link" href="https://pitchfork.com/news/joy-division-oasis-and-wu-tang-clan-inducted-into-rock-halls-class-of-2026/" target="_blank"><strong>Rock Hall 2026 class announced</strong></a>
+      <div class="tip-source">Pitchfork</div>
+      <span class="tip-type artist-news">Artist news/profiles</span>
+    </div>
+    <div class="tip-item">
+      <a class="tip-link" href="https://www.npr.org/2026/04/15/g-s1-117406/rock-roll-hall-of-fame-africa-fela-kuti" target="_blank"><strong>Fela Kuti enters Rock &amp; Roll Hall</strong></a>
+      <div class="tip-source">NPR</div>
+      <span class="tip-type artist-news">Artist news/profiles</span>
+    </div>
+    <div class="tip-item">
+      <a class="tip-link" href="https://pitchfork.com/news/primal-scream-to-play-xtrmntr-in-full-on-uk-tour/" target="_blank"><strong>Primal Scream plays Xtrmntr full UK tour</strong></a>
+      <div class="tip-source">Pitchfork</div>
+      <span class="tip-type tour">Tour announcements</span>
+    </div>
+    <div class="tip-item">
+      <a class="tip-link" href="https://www.npr.org/2026/04/13/nx-s1-5783924/2026-rock-roll-hall-of-fame-inductees" target="_blank"><strong>Rock Hall 2026: Phil Collins, Oasis, Sade</strong></a>
+      <div class="tip-source">NPR</div>
+      <span class="tip-type artist-news">Artist news/profiles</span>
+    </div>
+    <div class="tip-item">
+      <a class="tip-link" href="https://pitchfork.com/news/truck-violence-sign-to-the-flenser-for-new-album/" target="_blank"><strong>Truck Violence signs to The Flenser</strong></a>
+      <div class="tip-source">Pitchfork</div>
+      <span class="tip-type artist-news">Artist news/profiles</span>
+    </div>
+    <div class="tip-item">
+      <a class="tip-link" href="https://www.rollingstone.com/music/music-pictures/natalia-lafourcade-kicks-off-spellbinding-la-cancionera-tour-at-bam-1235546577/" target="_blank"><strong>Natalia Lafourcade launches La Cancionera tour</strong></a>
+      <div class="tip-source">Rolling Stone</div>
+      <span class="tip-type tour">Tour announcements</span>
+    </div>
+    <div class="tip-item">
+      <a class="tip-link" href="https://pitchfork.com/news/asha-bhosle-beloved-indian-singer-dies-at-92/" target="_blank"><strong>Asha Bhosle, beloved singer, dies</strong></a>
+      <div class="tip-source">Pitchfork</div>
+      <span class="tip-type artist-news">Artist news/profiles</span>
+    </div>
+    <div class="tip-item">
+      <a class="tip-link" href="https://www.billboard.com/music/awards/huntrx-singers-women-in-music-2026-women-of-the-year-1236222445/" target="_blank"><strong>HUNTR/X members named Billboard Women</strong></a>
+      <div class="tip-source">Billboard</div>
+      <span class="tip-type artist-news">Artist news/profiles</span>
+    </div>
+    <div class="tip-item">
+      <a class="tip-link" href="https://stereogum.com/2495711/terra-twin-announce-new-ep-scumbag-hear-parking-lot/music/" target="_blank"><strong>Terra Twin announces European tour</strong></a>
+      <div class="tip-source">Stereogum</div>
+      <span class="tip-type tour">Tour announcements</span>
+    </div>
+    <div class="tip-item">
+      <a class="tip-link" href="https://www.billboard.com/music/rock/green-day-idiot-nation-channel-siriusxm-details-1236223313/" target="_blank"><strong>Green Day launches SiriusXM channel</strong></a>
+      <div class="tip-source">Billboard</div>
+      <span class="tip-type artist-news">Artist news/profiles</span>
+    </div>
+    <div class="tip-item">
+      <a class="tip-link" href="https://www.rollingstone.com/music/music-news/nine-inch-nails-nine-inch-noize-album-1235547485/" target="_blank"><strong>Nine Inch Nails, Boys Noize album drops</strong></a>
+      <div class="tip-source">Rolling Stone</div>
+      <span class="tip-type artist-news">Artist news/profiles</span>
+    </div>
+    <div class="tip-item">
+      <a class="tip-link" href="https://www.brooklynvegan.com/tour-news-patty-griffin-rough-trade-50-the-barbican-the-silos-more/" target="_blank"><strong>Tour news: Primal Scream, Patty Griffin</strong></a>
+      <div class="tip-source">Brooklyn Vegan</div>
+      <span class="tip-type tour">Tour announcements</span>
+    </div>
+    <div class="tip-item">
+      <a class="tip-link" href="https://www.rollingstone.com/music/music-features/jin-interview-bts-solo-work-1235544795/" target="_blank"><strong>Jin discusses BTS tour dreams</strong></a>
+      <div class="tip-source">Rolling Stone</div>
+      <span class="tip-type artist-news">Artist news/profiles</span>
+    </div>
+  </aside>
+
+</div>
+
+<script>
+  // ---- CONFIG — engine will populate these per file ----
+  const BRIEFING_DATE = '2026-04-15';  // YYYY-MM-DD
+  const PREV_DATE = '2026-04-13';               // e.g. '2026-03-04' or null
+  const NEXT_DATE = '2026-04-16';               // e.g. '2026-03-06' or null
+
+  // ---- STATE ----
+  const savedItems = {};
+  const conversations = {};
+  const cardContextCache = {};
+  let serverAvailable = false;
+
+  // ---- PERSISTENCE ----
+  async function checkServer() {
+    try {
+      const r = await fetch('/api/ping', { method: 'GET' });
+      serverAvailable = r.ok;
+    } catch { serverAvailable = false; }
+    if (!serverAvailable) {
+      document.getElementById('serverBanner').classList.add('visible');
+    }
+  }
+
+  async function loadSavedState() {
+    try {
+      const r = await fetch('/data/saved.json');
+      if (!r.ok) return;
+      const all = await r.json();
+      const day = all[BRIEFING_DATE];
+      if (!day) return;
+      for (const [cardId, data] of Object.entries(day)) {
+        if (data.saved) {
+          savedItems[cardId] = { title: data.title, source: data.source, note: data.note || '' };
+          const card = document.getElementById(cardId);
+          if (card) {
+            card.classList.add('saved');
+            const btn = card.querySelector('.save-btn');
+            if (btn) { btn.classList.add('active'); btn.textContent = '✓ Saved'; }
+          }
+        }
+        if (data.note) {
+          const annArea = document.getElementById(cardId + '-ann');
+          if (annArea) {
+            const input = annArea.querySelector('.annotation-input');
+            const saveBtn = annArea.querySelector('.annotation-save');
+            if (input) input.style.display = 'none';
+            if (saveBtn) saveBtn.style.display = 'none';
+            const display = document.createElement('div');
+            display.className = 'annotation-display';
+            display.textContent = data.note;
+            annArea.appendChild(display);
+            annArea.classList.add('open');
+          }
+        }
+        if (data.conversations) {
+          for (const [fuId, history] of Object.entries(data.conversations)) {
+            conversations[fuId] = history;
+            if (history.length) {
+              const fuArea = document.getElementById(fuId);
+              if (fuArea) { fuArea.classList.add('open'); renderThread(fuId); }
+            }
+          }
+        }
+      }
+      updateSavedCount();
+    } catch(e) { /* no saved state yet */ }
+  }
+
+  async function persistState() {
+    if (!serverAvailable) return;
+    // Build this day's state
+    const dayState = {};
+    // Saved items
+    for (const [cardId, data] of Object.entries(savedItems)) {
+      dayState[cardId] = dayState[cardId] || {};
+      Object.assign(dayState[cardId], { saved: true, title: data.title, source: data.source, note: data.note || '' });
+    }
+    // Conversations
+    for (const [fuId, history] of Object.entries(conversations)) {
+      if (!history.length) continue;
+      const cardId = fuId.replace(/-fu(-\d+)?$/, '').replace(/-\d+-fu$/, '');
+      // find card id by walking up DOM
+      const area = document.getElementById(fuId);
+      const card = area?.closest('.card, .rec-card');
+      const cid = card?.id || fuId;
+      dayState[cid] = dayState[cid] || {};
+      dayState[cid].conversations = dayState[cid].conversations || {};
+      dayState[cid].conversations[fuId] = history;
+    }
+    // Merge with existing full file
+    let all = {};
+    try {
+      const r = await fetch('/data/saved.json');
+      if (r.ok) all = await r.json();
+    } catch {}
+    all[BRIEFING_DATE] = dayState;
+    try {
+      await fetch('/api/save', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(all)
+      });
+    } catch {}
+  }
+
+  // ---- NAV ARROWS ----
+  function initNav() {
+    const prev = document.getElementById('navPrev');
+    const next = document.getElementById('navNext');
+    const dateLabel = document.getElementById('navDate');
+
+    const fmt = d => {
+      if (!d) return '';
+      const [y,m,day] = d.split('-');
+      const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+      return `${months[+m-1]} ${+day}`;
+    };
+    if (dateLabel) dateLabel.textContent = fmt(BRIEFING_DATE);
+
+    if (PREV_DATE && prev) {
+      prev.classList.remove('disabled');
+      prev.href = `${PREV_DATE}.html`;
+      prev.title = fmt(PREV_DATE);
+    }
+    if (NEXT_DATE && next) {
+      next.classList.remove('disabled');
+      next.href = `${NEXT_DATE}.html`;
+      next.title = fmt(NEXT_DATE);
+    }
+  }
+
+  // ---- SAVED STATE ----
+  function updateSavedCount() {
+    const count = Object.keys(savedItems).length;
+    document.getElementById('savedCount').textContent = count + ' saved';
+    renderSavedPanel();
+  }
+
+  function toggleExpand(btn) {
+    const items = btn.nextElementSibling;
+    if (items.style.display === 'none') {
+      items.style.display = '';
+      btn.textContent = btn.textContent.replace('Show', 'Hide').replace('▾', '▴');
+    } else {
+      items.style.display = 'none';
+      btn.textContent = btn.textContent.replace('Hide', 'Show').replace('▴', '▾');
+    }
+  }
+
+  function toggleIndustryExpand(btn) {
+    const items = btn.nextElementSibling;
+    if (items.style.display === 'none' || !items.style.display) {
+      items.style.display = 'block';
+      btn.textContent = btn.textContent.replace('See', 'Hide').replace('more ▾', '▴');
+    } else {
+      items.style.display = 'none';
+      btn.textContent = btn.textContent.replace('Hide', 'See').replace('▴', 'more ▾');
+    }
+  }
+
+  function toggleSave(id, title, source) {
+    const card = document.getElementById(id);
+    const btn = card.querySelector('.save-btn');
+    if (savedItems[id]) {
+      delete savedItems[id];
+      card.classList.remove('saved');
+      btn.classList.remove('active');
+      btn.textContent = '⊕ Save';
+    } else {
+      savedItems[id] = { title, source, note: '' };
+      card.classList.add('saved');
+      btn.classList.add('active');
+      btn.textContent = '✓ Saved';
+    }
+    updateSavedCount();
+    persistState();
+  }
+
+  function renderSavedPanel() {
+    const list = document.getElementById('savedList');
+    const keys = Object.keys(savedItems);
+    if (!keys.length) {
+      list.innerHTML = '<div class="empty-saved">Nothing saved yet.<br>Use the bookmark button on any item.</div>';
+      return;
+    }
+    list.innerHTML = keys.map(k => {
+      const item = savedItems[k];
+      return `<div class="saved-item">
+        <div class="saved-item-source">${item.source}</div>
+        <div class="saved-item-title">${item.title}</div>
+        ${item.note ? `<div class="saved-item-note">${item.note}</div>` : ''}
+      </div>`;
+    }).join('');
+  }
+
+  function toggleSavedPanel() {
+    const panel = document.getElementById('savedPanel');
+    const overlay = document.getElementById('overlay');
+    panel.classList.toggle('open');
+    overlay.classList.toggle('visible');
+  }
+
+  // ---- ANNOTATIONS ----
+  function toggleAnnotation(id) {
+    const area = document.getElementById(id);
+    area.classList.toggle('open');
+  }
+
+  function saveAnnotation(btn, areaId) {
+    const area = document.getElementById(areaId);
+    const input = area.querySelector('.annotation-input');
+    const text = input.value.trim();
+    if (!text) return;
+    input.style.display = 'none';
+    btn.style.display = 'none';
+    const display = document.createElement('div');
+    display.className = 'annotation-display';
+    display.textContent = text;
+    area.appendChild(display);
+    const card = area.closest('.card, .rec-card');
+    if (card) {
+      if (savedItems[card.id]) {
+        savedItems[card.id].note = text;
+        renderSavedPanel();
+      } else {
+        // Auto-save the card if annotated
+        const titleEl = card.querySelector('.card-title, .rec-artist');
+        const sourceEl = card.querySelector('.source-name');
+        if (titleEl && sourceEl) {
+          savedItems[card.id] = { title: titleEl.textContent.trim(), source: sourceEl.textContent.trim(), note: text };
+          card.classList.add('saved');
+          const saveBtn = card.querySelector('.save-btn');
+          if (saveBtn) { saveBtn.classList.add('active'); saveBtn.textContent = '✓ Saved'; }
+          updateSavedCount();
+        }
+      }
+    }
+    persistState();
+  }
+
+  // ---- FOLLOW-UP (multi-turn) ----
+  function getCardContext(area) {
+    const card = area.closest('.card, .rec-card');
+    if (!card) return { title: '', body: '', source: '' };
+    if (cardContextCache[card.id]) return cardContextCache[card.id];
+    const ctx = {
+      title: (card.querySelector('.card-title')?.textContent || card.querySelector('.rec-artist')?.textContent || '').trim(),
+      body: (card.querySelector('.card-body, .rec-context')?.textContent || '').slice(0, 500),
+      source: (card.querySelector('.source-name')?.textContent || '').trim()
+    };
+    cardContextCache[card.id] = ctx;
+    return ctx;
+  }
+
+  function toggleFollowup(id) {
+    const area = document.getElementById(id);
+    area.classList.toggle('open');
+    if (area.classList.contains('open')) area.querySelector('.followup-input').focus();
+  }
+
+  function renderThread(areaId) {
+    const area = document.getElementById(areaId);
+    const thread = area.querySelector('.convo-thread');
+    const history = conversations[areaId] || [];
+    const clearBtn = area.querySelector('.convo-clear');
+    thread.innerHTML = history.map(msg => {
+      const isUser = msg.role === 'user';
+      return `<div class="convo-bubble ${isUser ? 'user' : 'assistant'}">
+        <div class="convo-label">${isUser ? 'You' : 'Claude'}</div>
+        ${msg.content}
+      </div>`;
+    }).join('');
+    if (clearBtn) clearBtn.classList.toggle('visible', history.length > 0);
+    thread.scrollTop = thread.scrollHeight;
+  }
+
+  function clearConversation(areaId) {
+    conversations[areaId] = [];
+    renderThread(areaId);
+    persistState();
+  }
+
+  async function submitFollowup(btn, areaId) {
+    const area = document.getElementById(areaId);
+    const input = area.querySelector('.followup-input');
+    const question = input.value.trim();
+    if (!question) return;
+    if (!conversations[areaId]) conversations[areaId] = [];
+    const history = conversations[areaId];
+    history.push({ role: 'user', content: question });
+    input.value = '';
+    btn.disabled = true;
+    renderThread(areaId);
+    const thread = area.querySelector('.convo-thread');
+    const thinking = document.createElement('div');
+    thinking.className = 'convo-bubble thinking';
+    thinking.innerHTML = '<div class="followup-thinking"><div class="thinking-dot"></div><div class="thinking-dot"></div><div class="thinking-dot"></div><span>Claude is thinking...</span></div>';
+    thread.appendChild(thinking);
+    const ctx = getCardContext(area);
+    const systemPrompt = `You are a research assistant for Third Bridge Creative (TBC), a content strategy agency helping music streaming platforms and labels with editorial systems, taxonomies, and AI-assisted workflows. TBC's tagline is "Credibility, at Scale." You are helping Sam, the founder, think through industry content in his morning briefing.\n\nCard context:\nSource: ${ctx.source}\nTitle: ${ctx.title}\nSummary: ${ctx.body}\n\nBe concise and specific. Connect insights to TBC's positioning where genuinely relevant. Match depth to what's asked.`;
+    const messages = history.map(msg => ({ role: msg.role, content: msg.content }));
+    try {
+      const response = await fetch('https://api.anthropic.com/v1/messages', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ model: 'claude-sonnet-4-20250514', max_tokens: 1000, system: systemPrompt, messages })
+      });
+      const data = await response.json();
+      const reply = data.content?.map(b => b.text || '').join('') || 'No response.';
+      history.push({ role: 'assistant', content: reply });
+    } catch(e) {
+      history.push({ role: 'assistant', content: 'Could not reach Claude API. Please check your connection.' });
+    }
+    thinking.remove();
+    btn.disabled = false;
+    renderThread(areaId);
+    input.focus();
+    persistState();
+  }
+
+  // ---- NAV ACTIVE STATE ----
+  const sections = document.querySelectorAll('.section');
+  const navLinks = document.querySelectorAll('.nav-item');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(l => l.classList.remove('active'));
+        const active = document.querySelector(`.nav-item[href="#${entry.target.id}"]`);
+        if (active) active.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-25% 0px -65% 0px' });
+  sections.forEach(s => observer.observe(s));
+
+  // ---- SCROLL ANIMATIONS ----
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+  }, { threshold: 0.05 });
+  document.querySelectorAll('.section').forEach(s => revealObserver.observe(s));
+
+  // ---- SMOOTH SCROLL ----
+  function scrollTo(id) {
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  // ---- INIT ----
+  initNav();
+  checkServer().then(() => loadSavedState());
+</script>
+</body>
+</html>

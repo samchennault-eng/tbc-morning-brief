@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TBC Briefing Archive</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1a1a;
+    --ink-mid: #444;
+    --ink-light: #888;
+    --ink-faint: #bbb;
+    --rule: #e0ddd8;
+    --bg: #faf9f7;
+    --paper: #fff;
+    --accent: #1a3a5c;
+    --accent-light: #e8eef5;
+    --gold: #b8860b;
+    --gold-light: #fdf8ee;
+    --tag-music: #1a3a5c;
+    --tag-industry: #5c1a3a;
+    --tag-media: #1a5c3a;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    min-height: 100vh;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  /* MASTHEAD */
+  .masthead {
+    background: var(--accent);
+    color: white;
+    padding: 0 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+    box-shadow: 0 2px 12px rgba(26,58,92,0.18);
+  }
+  .masthead-left { display: flex; align-items: baseline; gap: 16px; }
+  .masthead-wordmark {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: white;
+  }
+  .masthead-sub {
+    font-size: 12px;
+    font-weight: 400;
+    color: rgba(255,255,255,0.55);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  /* LAYOUT */
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 48px 32px 80px;
+  }
+
+  /* PAGE HEADER */
+  .page-header {
+    margin-bottom: 48px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .page-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 8px;
+  }
+  .page-sub {
+    font-size: 14px;
+    color: var(--ink-light);
+  }
+
+  /* WEEK GROUP */
+  .week-group { margin-bottom: 48px; }
+  .week-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  /* BRIEFING CARD */
+  .briefing-row {
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    margin-bottom: 10px;
+    overflow: hidden;
+    transition: box-shadow 0.2s, border-color 0.2s;
+    text-decoration: none;
+    color: inherit;
+  }
+  .briefing-row:hover {
+    box-shadow: 0 2px 16px rgba(26,58,92,0.08);
+    border-color: #ccc;
+  }
+  .briefing-row.today {
+    border-color: var(--accent);
+    border-left-width: 3px;
+  }
+  .briefing-row.missing {
+    opacity: 0.4;
+    pointer-events: none;
+    background: var(--bg);
+  }
+
+  .date-block {
+    min-width: 88px;
+    padding: 16px 18px;
+    border-right: 1px solid var(--rule);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    background: var(--bg);
+  }
+  .briefing-row.today .date-block { background: var(--accent-light); }
+  .date-day {
+    font-family: 'DM Mono', monospace;
+    font-size: 28px;
+    font-weight: 500;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 2px;
+  }
+  .date-month {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+  }
+  .date-weekday {
+    font-size: 10px;
+    color: var(--ink-faint);
+    margin-top: 3px;
+  }
+
+  .briefing-content {
+    flex: 1;
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+  .briefing-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+  .briefing-meta {
+    font-size: 12px;
+    color: var(--ink-light);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .meta-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 11px;
+    font-weight: 500;
+  }
+  .meta-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+  }
+
+  .briefing-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 6px;
+    flex-shrink: 0;
+  }
+  .saved-badge {
+    background: var(--gold-light);
+    color: var(--gold);
+    border: 1px solid #e8cc7a;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 9px;
+    border-radius: 20px;
+    letter-spacing: 0.04em;
+  }
+  .today-badge {
+    background: var(--accent);
+    color: white;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 3px 9px;
+    border-radius: 20px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .missing-label {
+    font-size: 11px;
+    color: var(--ink-faint);
+    font-style: italic;
+  }
+
+  /* SAVED ITEMS SECTION */
+  .saved-section { margin-top: 56px; }
+  .saved-section-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .saved-section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 600;
+  }
+  .saved-section-count {
+    font-size: 12px;
+    color: var(--ink-light);
+    letter-spacing: 0.04em;
+  }
+
+  .saved-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .saved-card {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    padding: 14px 16px;
+  }
+  .saved-card-date {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--ink-faint);
+    margin-bottom: 3px;
+    letter-spacing: 0.06em;
+  }
+  .saved-card-source {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    margin-bottom: 4px;
+  }
+  .saved-card-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.4;
+    margin-bottom: 6px;
+  }
+  .saved-card-note {
+    font-size: 12px;
+    color: var(--ink-mid);
+    font-style: italic;
+    border-left: 2px solid var(--gold);
+    padding-left: 8px;
+    line-height: 1.5;
+  }
+  .empty-state {
+    text-align: center;
+    color: var(--ink-faint);
+    font-size: 14px;
+    padding: 32px;
+    font-style: italic;
+  }
+
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--rule); border-radius: 3px; }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-left">
+    <div class="masthead-wordmark">Third Bridge Creative</div>
+    <div class="masthead-sub">Briefing Archive</div>
+  </div>
+</header>
+
+<div class="container">
+
+  <div class="page-header">
+    <div class="page-title">Briefing Archive</div>
+    <div class="page-sub">All editions — saves and notes preserved across sessions</div>
+  </div>
+
+  <div id="archiveList">
+    <div class="empty-state">Loading archive...</div>
+  </div>
+
+  <div class="saved-section">
+    <div class="saved-section-header">
+      <div class="saved-section-title">All Saved Items</div>
+      <div class="saved-section-count" id="savedSectionCount"></div>
+    </div>
+    <div id="savedGrid" class="saved-grid">
+      <div class="empty-state" style="grid-column:1/-1">Nothing saved yet — use the ⊕ Save button on any briefing item.</div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  const WEEKDAYS = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+  const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+  function parseDate(iso) {
+    const [y, m, d] = iso.split('-').map(Number);
+    return new Date(y, m - 1, d);
+  }
+
+  function fmt(iso) {
+    const d = parseDate(iso);
+    return { day: d.getDate(), month: MONTHS[d.getMonth()], weekday: WEEKDAYS[d.getDay()], year: d.getFullYear() };
+  }
+
+  function getWeekKey(iso) {
+    const d = parseDate(iso);
+    const monday = new Date(d);
+    monday.setDate(d.getDate() - ((d.getDay() + 6) % 7));
+    return monday.toISOString().slice(0, 10);
+  }
+
+  function formatWeekLabel(mondayIso) {
+    const mon = parseDate(mondayIso);
+    const fri = new Date(mon); fri.setDate(mon.getDate() + 4);
+    return `Week of ${MONTHS[mon.getMonth()]} ${mon.getDate()} – ${MONTHS[fri.getMonth()]} ${fri.getDate()}, ${fri.getFullYear()}`;
+  }
+
+  async function discoverBriefings() {
+    // Try to read a manifest; fall back to scanning saved.json dates
+    const known = new Set();
+    const today = new Date().toISOString().slice(0, 10);
+
+    // Check saved.json for dates we know about
+    let savedData = {};
+    try {
+      const r = await fetch('/data/saved.json');
+      if (r.ok) savedData = await r.json();
+    } catch {}
+
+    for (const d of Object.keys(savedData)) known.add(d);
+
+    // Try to probe the last 30 calendar days for actual HTML files
+    const probe = [];
+    for (let i = 0; i < 30; i++) {
+      const d = new Date(); d.setDate(d.getDate() - i);
+      const iso = d.toISOString().slice(0, 10);
+      probe.push(iso);
+    }
+    const checks = await Promise.allSettled(
+      probe.map(iso => fetch(`/${iso}.html`, { method: 'HEAD' }).then(r => r.ok ? iso : null))
+    );
+    for (const c of checks) {
+      if (c.status === 'fulfilled' && c.value) known.add(c.value);
+    }
+
+    return { dates: [...known].sort().reverse(), savedData, today };
+  }
+
+  function renderArchive({ dates, savedData, today }) {
+    const list = document.getElementById('archiveList');
+    if (!dates.length) {
+      list.innerHTML = '<div class="empty-state">No briefings found yet. The archive builds as you run the daily digest.</div>';
+      return;
+    }
+
+    // Group by week
+    const weeks = {};
+    for (const d of dates) {
+      const wk = getWeekKey(d);
+      if (!weeks[wk]) weeks[wk] = [];
+      weeks[wk].push(d);
+    }
+
+    let html = '';
+    for (const wk of Object.keys(weeks).sort().reverse()) {
+      const label = formatWeekLabel(wk);
+      html += `<div class="week-group"><div class="week-label">${label}</div>`;
+      for (const d of weeks[wk]) {
+        const f = fmt(d);
+        const isToday = d === today;
+        const saved = savedData[d] || {};
+        const savedCount = Object.values(saved).filter(v => v.saved).length;
+        const exists = true; // if it's in our list, it exists or has saves
+
+        html += `
+          <a class="briefing-row${isToday ? ' today' : ''}" href="/${d}.html">
+            <div class="date-block">
+              <div class="date-day">${f.day}</div>
+              <div class="date-month">${f.month} ${f.year}</div>
+              <div class="date-weekday">${f.weekday}</div>
+            </div>
+            <div class="briefing-content">
+              <div>
+                <div class="briefing-title">Morning Briefing — ${f.weekday}, ${f.month} ${f.day}</div>
+                <div class="briefing-meta">
+                  <span class="meta-tag"><span class="meta-dot" style="background:#1a3a5c"></span> Music &amp; Culture</span>
+                  <span class="meta-tag"><span class="meta-dot" style="background:#5c1a3a"></span> Industry</span>
+                  <span class="meta-tag"><span class="meta-dot" style="background:#1a5c3a"></span> Media</span>
+                </div>
+              </div>
+              <div class="briefing-right">
+                ${isToday ? '<span class="today-badge">Today</span>' : ''}
+                ${savedCount > 0 ? `<span class="saved-badge">⊕ ${savedCount} saved</span>` : ''}
+              </div>
+            </div>
+          </a>`;
+      }
+      html += '</div>';
+    }
+    list.innerHTML = html;
+  }
+
+  function renderSaved({ savedData }) {
+    const grid = document.getElementById('savedGrid');
+    const countEl = document.getElementById('savedSectionCount');
+    const allSaved = [];
+
+    for (const [date, items] of Object.entries(savedData)) {
+      for (const [cardId, data] of Object.entries(items)) {
+        if (data.saved) {
+          allSaved.push({ date, ...data });
+        }
+      }
+    }
+
+    allSaved.sort((a, b) => b.date.localeCompare(a.date));
+    countEl.textContent = allSaved.length ? `${allSaved.length} items` : '';
+
+    if (!allSaved.length) {
+      grid.innerHTML = '<div class="empty-state" style="grid-column:1/-1">Nothing saved yet — use the ⊕ Save button on any briefing item.</div>';
+      return;
+    }
+
+    grid.innerHTML = allSaved.map(item => {
+      const f = fmt(item.date);
+      return `<div class="saved-card">
+        <div class="saved-card-date">${f.weekday} ${f.month} ${f.day}, ${f.year}</div>
+        <div class="saved-card-source">${item.source || ''}</div>
+        <div class="saved-card-title">${item.title || ''}</div>
+        ${item.note ? `<div class="saved-card-note">${item.note}</div>` : ''}
+      </div>`;
+    }).join('');
+  }
+
+  async function init() {
+    const state = await discoverBriefings();
+    renderArchive(state);
+    renderSaved(state);
+  }
+
+  init();
+</script>
+</body>
+</html>

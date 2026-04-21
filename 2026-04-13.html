@@ -1,0 +1,3001 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TBC Morning Briefing — Monday, April 13, 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1a1a;
+    --ink-mid: #444;
+    --ink-light: #888;
+    --ink-faint: #bbb;
+    --rule: #e0ddd8;
+    --bg: #faf9f7;
+    --bg-warm: #f3f1ec;
+    --paper: #fff;
+    --accent: #1a3a5c;
+    --accent-light: #e8eef5;
+    --gold: #b8860b;
+    --gold-light: #fdf8ee;
+    --saved-bg: #f0f7f0;
+    --saved-border: #2d7a4f;
+    --tag-music: #1a3a5c;
+    --tag-industry: #5c1a3a;
+    --tag-media: #1a5c3a;
+    --tag-culture: #5c3a1a;
+    --sidebar-w: 220px;
+    --industry-sidebar-w: 220px;
+    --industry-accent: #854f0b;
+    --industry-bg: #faeeda;
+    --industry-border: #854f0b;
+    --top-story-accent: #993c1d;
+    --top-story-bg: #faeee7;
+    --nav-h: 44px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    min-height: 100vh;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  /* MASTHEAD */
+  .masthead {
+    background: var(--accent);
+    color: white;
+    padding: 0 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 12px rgba(26,58,92,0.18);
+  }
+  .masthead-left {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+  }
+  .masthead-wordmark {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    color: white;
+  }
+  .masthead-sub {
+    font-size: 12px;
+    font-weight: 400;
+    color: rgba(255,255,255,0.55);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .masthead-date {
+    font-size: 12px;
+    color: rgba(255,255,255,0.6);
+    font-weight: 300;
+    letter-spacing: 0.04em;
+  }
+  .masthead-actions {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+  .btn-weekly {
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.25);
+    color: white;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 6px 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    letter-spacing: 0.04em;
+    transition: background 0.2s;
+  }
+  .btn-weekly:hover { background: rgba(255,255,255,0.22); }
+  .saved-count {
+    background: var(--gold);
+    color: white;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 20px;
+    letter-spacing: 0.04em;
+  }
+
+  /* LAYOUT */
+  .layout {
+    display: flex;
+    max-width: 1280px;
+    margin: 0 auto;
+    min-height: calc(100vh - 64px - var(--nav-h));
+  }
+
+  /* HORIZONTAL NAV */
+  .horizontal-nav {
+    position: sticky;
+    top: 64px;
+    z-index: 99;
+    background: var(--bg);
+    border-bottom: 1px solid var(--rule);
+    display: flex;
+    justify-content: center;
+    gap: 0;
+    max-width: 1280px;
+    margin: 0 auto;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  }
+  .nav-item {
+    padding: 12px 20px;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: var(--ink-mid);
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+    transition: all 0.15s;
+    white-space: nowrap;
+  }
+  .nav-item:hover {
+    color: var(--accent);
+    background: var(--accent-light);
+  }
+  .nav-item.active {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+    font-weight: 600;
+  }
+
+  /* INDUSTRY NEWS LEFT SIDEBAR */
+  .industry-sidebar {
+    width: var(--industry-sidebar-w);
+    flex-shrink: 0;
+    position: sticky;
+    top: calc(64px + var(--nav-h));
+    height: calc(100vh - 64px - var(--nav-h));
+    overflow-y: auto;
+    border-right: 1px solid var(--rule);
+    background: var(--bg);
+    padding: 0;
+  }
+  .industry-header, .tips-header {
+    min-height: 72px;
+    box-sizing: border-box;
+  }
+  .industry-header {
+    padding: 20px 20px 14px;
+    border-bottom: 2px solid var(--industry-accent);
+    margin-bottom: 0;
+    background: var(--industry-bg);
+  }
+  .industry-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+  .industry-sub {
+    font-size: 10px;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--industry-accent);
+    font-weight: 500;
+  }
+  .industry-item {
+    padding: 12px 20px;
+    border-bottom: 1px solid var(--rule);
+    transition: background 0.15s;
+  }
+  .industry-item:hover { background: var(--accent-light); }
+  .industry-headline {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--ink);
+    text-decoration: none;
+    line-height: 1.4;
+    margin-bottom: 4px;
+  }
+  .industry-headline:hover { color: var(--accent); }
+  .industry-source {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 2px;
+  }
+  .industry-tag {
+    display: inline-block;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 2px 7px;
+    border-radius: 3px;
+    margin-top: 4px;
+    color: white;
+    background: var(--industry-accent);
+  }
+  .industry-tag.industry-streaming { background: #1a5c8a; }
+  .industry-tag.industry-deal { background: #b8860b; }
+  .industry-tag.industry-rights { background: #993c1d; }
+  .industry-tag.industry-labor { background: #6b3fa0; }
+  .industry-tag.industry-platform { background: #2d6b8a; }
+  .industry-tag.industry-charts { background: #0e7c6b; }
+  /* FROM THE ARCHIVES */
+  .archives-divider {
+    display: none;
+  }
+  .archives-section {
+    padding: 0;
+  }
+  .archives-header {
+    padding: 20px 20px 14px;
+    border-bottom: 2px solid #534ab7;
+    margin-bottom: 0;
+    background: #eeedfe;
+    min-height: 72px;
+    box-sizing: border-box;
+  }
+  .archives-header-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+  .archives-header-sub {
+    font-size: 10px;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: #534ab7;
+    font-weight: 500;
+  }
+  .archives-card {
+    padding: 14px 20px 20px;
+  }
+  .archives-title {
+    display: block;
+    font-family: 'Playfair Display', serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--ink);
+    text-decoration: none;
+    line-height: 1.35;
+    margin-bottom: 6px;
+  }
+  .archives-title:hover { color: #534ab7; }
+  .archives-meta {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    margin-bottom: 10px;
+  }
+  .archives-connection {
+    font-size: 12px;
+    color: var(--ink-mid);
+    line-height: 1.65;
+    margin-bottom: 10px;
+  }
+  .archives-type {
+    display: inline-block;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 2px 7px;
+    border-radius: 3px;
+    color: white;
+    background: #534ab7;
+  }
+
+  /* INDUSTRY NEWS TOGGLE */
+  .industry-toggle {
+    padding: 8px 20px;
+    cursor: pointer;
+    color: var(--industry-accent);
+    font-size: 11px;
+    font-weight: 500;
+    text-align: center;
+    transition: background 0.15s;
+  }
+  .industry-toggle:hover { background: var(--accent-light); }
+  .industry-collapsed { display: none; }
+
+  .industry-empty {
+    padding: 16px 20px;
+    font-size: 12px;
+    color: var(--ink-faint);
+    font-style: italic;
+    line-height: 1.6;
+  }
+
+  /* MAIN */
+  .main {
+    flex: 1;
+    padding: 0 48px 80px 48px;
+    min-width: 0;
+  }
+
+  /* DAILY HEADER */
+  .daily-header {
+    padding: 32px 0 24px;
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 40px;
+  }
+  .daily-header-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 8px;
+  }
+  .daily-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+  .daily-meta {
+    font-size: 12px;
+    color: var(--ink-light);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .daily-summary {
+    font-size: 14px;
+    color: var(--ink-mid);
+    font-style: italic;
+    max-width: 640px;
+    line-height: 1.7;
+  }
+
+  /* TOP STORIES */
+  .top-stories {
+    padding: 0 0 32px;
+    margin-bottom: 40px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .top-stories-header {
+    padding: 16px 20px 12px;
+    border-bottom: 2px solid var(--top-story-accent);
+    margin-bottom: 20px;
+    background: var(--top-story-bg);
+    border-radius: 4px 4px 0 0;
+  }
+  .top-stories-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 3px;
+  }
+  .top-stories-sub {
+    font-size: 10px;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--top-story-accent);
+    font-weight: 500;
+  }
+  .top-stories-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .top-story-card {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-top: 3px solid var(--top-story-accent);
+    border-radius: 6px;
+    padding: 18px 18px 14px;
+    transition: box-shadow 0.2s;
+  }
+  .top-story-card:hover { box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+  .top-story-meta {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 8px;
+  }
+  .top-story-meta .source-name {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+  }
+  .top-story-meta .source-sep { color: var(--ink-faint); font-size: 11px; }
+  .top-story-meta .source-type {
+    font-size: 11px;
+    color: var(--ink-faint);
+    font-style: italic;
+  }
+  .top-story-headline {
+    font-family: 'Playfair Display', serif;
+    font-size: 19px;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.35;
+    margin-bottom: 12px;
+  }
+  .top-story-headline a {
+    color: inherit;
+    text-decoration: none;
+  }
+  .top-story-headline a:hover { color: var(--accent); }
+  .top-story-summary {
+    font-size: 14px;
+    color: var(--ink-mid);
+    line-height: 1.75;
+    margin-bottom: 12px;
+  }
+  .top-story-type {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--top-story-accent);
+    background: var(--top-story-bg);
+    padding: 3px 9px;
+    border-radius: 3px;
+  }
+
+  /* SECTION */
+  .section {
+    margin-bottom: 56px;
+    scroll-margin-top: 132px;
+  }
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .section-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--ink-faint);
+    font-weight: 500;
+    margin-top: 2px;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--ink);
+    flex: 1;
+  }
+  .section-tag {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 3px 9px;
+    border-radius: 3px;
+    color: white;
+  }
+  .tag-c1 { background: var(--tag-music); }
+  .tag-c2 { background: var(--tag-industry); }
+  .tag-c3 { background: var(--tag-media); }
+  .tag-c4 { background: var(--tag-culture); }
+
+  .expand-toggle {
+    padding: 10px 16px;
+    margin: 8px 0;
+    cursor: pointer;
+    color: var(--accent);
+    font-size: 13px;
+    font-weight: 500;
+    text-align: center;
+    border: 1px dashed var(--rule);
+    border-radius: 6px;
+    transition: background 0.15s;
+  }
+  .expand-toggle:hover {
+    background: var(--bg-alt);
+  }
+
+  /* CARD */
+  .card {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    padding: 20px 22px;
+    margin-bottom: 14px;
+    transition: box-shadow 0.2s, border-color 0.2s;
+    position: relative;
+  }
+  .card:hover {
+    box-shadow: 0 2px 16px rgba(26,58,92,0.07);
+    border-color: #ccc;
+  }
+  .card.saved {
+    border-color: var(--saved-border);
+    background: var(--saved-bg);
+  }
+  .card-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 8px;
+  }
+  .card-source {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .source-name {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+  }
+  .source-sep { color: var(--ink-faint); font-size: 11px; }
+  .source-type {
+    font-size: 11px;
+    color: var(--ink-faint);
+    font-style: italic;
+  }
+  .card-actions {
+    display: flex;
+    gap: 6px;
+    flex-shrink: 0;
+  }
+  .action-btn {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 11px;
+    font-weight: 500;
+    padding: 4px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    border: 1px solid var(--rule);
+    background: transparent;
+    color: var(--ink-mid);
+    font-family: 'DM Sans', sans-serif;
+    transition: all 0.15s;
+    white-space: nowrap;
+  }
+  .action-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-light); }
+  .action-btn.save-btn.active { border-color: var(--saved-border); color: var(--saved-border); background: var(--saved-bg); }
+  .card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.35;
+    margin-bottom: 8px;
+  }
+  .card-title a {
+    color: inherit;
+    text-decoration: none;
+  }
+  .card-title a:hover { color: var(--accent); }
+  .card-body {
+    font-size: 14px;
+    color: var(--ink-mid);
+    line-height: 1.75;
+    margin-bottom: 10px;
+  }
+  .card-genre {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    color: var(--gold);
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    background: var(--gold-light);
+    padding: 2px 8px;
+    border-radius: 3px;
+    margin-bottom: 8px;
+  }
+  .card-youtube {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: #cc0000;
+    font-weight: 500;
+    text-decoration: none;
+    padding: 4px 0;
+  }
+  .card-youtube:hover { text-decoration: underline; }
+  .card-youtube svg { flex-shrink: 0; }
+
+  /* MUSIC RECS GRID */
+  .recs-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+  .rec-card {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    padding: 16px 18px;
+    transition: box-shadow 0.2s;
+  }
+  .rec-card:hover { box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+  .rec-card.saved { border-color: var(--saved-border); background: var(--saved-bg); }
+  .rec-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--ink-faint);
+    margin-bottom: 6px;
+  }
+  .rec-artist {
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 1px;
+  }
+  .rec-track {
+    font-size: 13px;
+    color: var(--ink-mid);
+    font-style: italic;
+    margin-bottom: 8px;
+  }
+  .rec-context {
+    font-size: 13px;
+    color: var(--ink-mid);
+    line-height: 1.65;
+    margin-bottom: 10px;
+  }
+  .rec-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+  }
+  .rec-actions {
+    display: flex;
+    gap: 6px;
+  }
+
+  /* ANNOTATIONS */
+  .annotation-area {
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px dashed var(--rule);
+    display: none;
+  }
+  .annotation-area.open { display: block; }
+  .annotation-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 6px;
+  }
+  .annotation-input {
+    width: 100%;
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 8px 12px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    color: var(--ink);
+    background: var(--bg);
+    resize: vertical;
+    min-height: 64px;
+    transition: border-color 0.2s;
+    outline: none;
+  }
+  .annotation-input:focus { border-color: var(--accent); }
+  .annotation-save {
+    margin-top: 6px;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 5px 14px;
+    border-radius: 4px;
+    border: 1px solid var(--accent);
+    background: var(--accent);
+    color: white;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    transition: opacity 0.15s;
+  }
+  .annotation-save:hover { opacity: 0.85; }
+  .annotation-display {
+    font-size: 13px;
+    color: var(--ink-mid);
+    font-style: italic;
+    background: var(--bg-warm);
+    padding: 8px 12px;
+    border-radius: 4px;
+    border-left: 3px solid var(--gold);
+    line-height: 1.6;
+  }
+
+  /* FOLLOW-UP / CONVERSATION */
+  .followup-area {
+    margin-top: 10px;
+    display: none;
+  }
+  .followup-area.open { display: block; }
+
+  /* Thread of past messages */
+  .convo-thread {
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .convo-bubble {
+    border-radius: 6px;
+    padding: 10px 13px;
+    font-size: 13px;
+    line-height: 1.7;
+    max-width: 92%;
+  }
+  .convo-bubble.user {
+    background: var(--bg-warm);
+    border: 1px solid var(--rule);
+    align-self: flex-end;
+    color: var(--ink);
+    font-style: italic;
+  }
+  .convo-bubble.assistant {
+    background: var(--accent-light);
+    border: 1px solid #c5d5e8;
+    align-self: flex-start;
+    color: var(--ink-mid);
+  }
+  .convo-bubble.thinking {
+    background: var(--accent-light);
+    border: 1px solid #c5d5e8;
+    align-self: flex-start;
+  }
+  .convo-label {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+    opacity: 0.5;
+  }
+
+  .followup-row {
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+  }
+  .followup-input {
+    flex: 1;
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 8px 12px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    color: var(--ink);
+    background: var(--bg);
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .followup-input:focus { border-color: var(--accent); }
+  .followup-submit {
+    font-size: 12px;
+    font-weight: 600;
+    padding: 8px 16px;
+    border-radius: 4px;
+    border: none;
+    background: var(--accent);
+    color: white;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    white-space: nowrap;
+    transition: opacity 0.15s;
+    flex-shrink: 0;
+  }
+  .followup-submit:hover { opacity: 0.85; }
+  .followup-submit:disabled { opacity: 0.5; cursor: not-allowed; }
+
+  .convo-clear {
+    font-size: 11px;
+    color: var(--ink-faint);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px 0;
+    font-family: 'DM Sans', sans-serif;
+    text-decoration: underline;
+    display: none;
+  }
+  .convo-clear.visible { display: inline; }
+
+  .followup-thinking {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: var(--ink-light);
+    font-style: italic;
+    padding: 4px 0;
+  }
+  .thinking-dot {
+    width: 5px; height: 5px;
+    background: var(--accent);
+    border-radius: 50%;
+    animation: blink 1.2s infinite;
+  }
+  .thinking-dot:nth-child(2) { animation-delay: 0.2s; }
+  .thinking-dot:nth-child(3) { animation-delay: 0.4s; }
+  @keyframes blink {
+    0%, 80%, 100% { opacity: 0.2; }
+    40% { opacity: 1; }
+  }
+
+  /* MUSIC NEWS SIDEBAR */
+  .tips-sidebar {
+    width: 260px;
+    flex-shrink: 0;
+    padding: 0;
+    position: sticky;
+    top: calc(64px + var(--nav-h));
+    height: calc(100vh - 64px - var(--nav-h));
+    overflow-y: auto;
+    border-left: 1px solid var(--rule);
+    background: var(--bg);
+  }
+  .tips-header {
+    padding: 20px 20px 14px;
+    border-bottom: 2px solid #0e7c6b;
+    margin-bottom: 0;
+    background: #e1f5ee;
+  }
+  .tips-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+  .tips-sub {
+    font-size: 10px;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: #0e7c6b;
+    font-weight: 500;
+  }
+  .tip-item {
+    padding: 12px 20px;
+    border-bottom: 1px solid var(--rule);
+    transition: background 0.15s;
+  }
+  .tip-item:hover { background: var(--accent-light); }
+  .tip-type {
+    display: inline-block;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 2px 7px;
+    border-radius: 3px;
+    margin-top: 4px;
+    color: white;
+  }
+  .tip-type.artist-news { background: #1a3a6b; }
+  .tip-type.tour { background: #1a6b5c; }
+  .tip-type.festival { background: #7b4a0a; }
+  .tip-source {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 4px;
+  }
+  .tip-desc {
+    font-size: 12px;
+    color: var(--ink-mid);
+    line-height: 1.6;
+    margin-bottom: 6px;
+  }
+  .tip-link {
+    display: block;
+    font-size: 12px;
+    color: var(--ink);
+    text-decoration: none;
+    margin-bottom: 4px;
+    line-height: 1.4;
+  }
+  .tip-link:hover { color: var(--accent); }
+  .tips-empty {
+    padding: 16px 20px;
+    font-size: 12px;
+    color: var(--ink-faint);
+    font-style: italic;
+    line-height: 1.6;
+  }
+
+  /* SAVED PANEL */
+  .saved-panel {
+    position: fixed;
+    top: 64px;
+    right: -380px;
+    width: 360px;
+    height: calc(100vh - 64px);
+    background: var(--paper);
+    border-left: 1px solid var(--rule);
+    overflow-y: auto;
+    z-index: 90;
+    transition: right 0.3s cubic-bezier(0.4,0,0.2,1);
+    box-shadow: -4px 0 24px rgba(0,0,0,0.08);
+    padding: 24px;
+  }
+  .saved-panel.open { right: 0; }
+  .saved-panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .saved-panel-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 600;
+  }
+  .close-btn {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: var(--ink-light);
+    padding: 4px;
+    line-height: 1;
+  }
+  .saved-item {
+    padding: 12px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .saved-item-source {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    margin-bottom: 3px;
+  }
+  .saved-item-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.4;
+    margin-bottom: 4px;
+  }
+  .saved-item-note {
+    font-size: 12px;
+    color: var(--ink-light);
+    font-style: italic;
+    line-height: 1.5;
+  }
+  .empty-saved {
+    text-align: center;
+    color: var(--ink-faint);
+    font-size: 13px;
+    padding: 40px 0;
+    font-style: italic;
+  }
+
+  /* NAV ARROWS */
+  .nav-arrows {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .nav-arrow {
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.22);
+    color: white;
+    font-size: 14px;
+    width: 30px;
+    height: 30px;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: background 0.15s;
+    line-height: 1;
+  }
+  .nav-arrow:hover { background: rgba(255,255,255,0.22); }
+  .nav-arrow.disabled { opacity: 0.25; pointer-events: none; }
+  .nav-arrow-date {
+    font-size: 11px;
+    color: rgba(255,255,255,0.55);
+    letter-spacing: 0.04em;
+    min-width: 80px;
+    text-align: center;
+  }
+
+  /* SERVER BANNER */
+  .server-banner {
+    background: #fff8e1;
+    border-bottom: 1px solid #ffe082;
+    padding: 10px 32px;
+    font-size: 12px;
+    color: #7a5c00;
+    display: none;
+    align-items: center;
+    gap: 12px;
+  }
+  .server-banner.visible { display: flex; }
+  .server-banner code {
+    font-family: 'DM Mono', monospace;
+    background: rgba(0,0,0,0.06);
+    padding: 2px 6px;
+    border-radius: 3px;
+  }
+
+  /* OVERLAY */
+  .overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.2);
+    z-index: 85;
+    display: none;
+    top: 64px;
+  }
+  .overlay.visible { display: block; }
+
+  /* SCROLL ANIMATION */
+  .section { opacity: 0; transform: translateY(16px); transition: opacity 0.4s, transform 0.4s; }
+  .section.visible { opacity: 1; transform: none; }
+
+  /* SCROLLBAR */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--rule); border-radius: 3px; }
+
+  @media (max-width: 1200px) {
+    .tips-sidebar { display: none; }
+  }
+  @media (max-width: 1000px) {
+    .industry-sidebar { display: none; }
+  }
+  @media (max-width: 900px) {
+    .main { padding: 0 20px 60px; }
+    .recs-grid { grid-template-columns: 1fr; }
+    .horizontal-nav { overflow-x: auto; -webkit-overflow-scrolling: touch; justify-content: flex-start; }
+  }
+</style>
+<style>
+  /* Public-deploy band-aids: hide server banner + Ask Claude UI */
+  .server-banner, .server-banner.visible { display: none !important; }
+  .followup-area, .followup-row, .convo-clear,
+  button[onclick*="toggleFollowup"], button.followup-submit { display: none !important; }
+</style>
+</head>
+<body>
+
+<!-- MASTHEAD -->
+<header class="masthead">
+  <div class="masthead-left">
+    <div class="masthead-wordmark">Third Bridge Creative</div>
+    <div class="masthead-sub">Morning Briefing</div>
+  </div>
+  <div class="nav-arrows">
+    <a class="nav-arrow disabled" id="navPrev" title="Previous briefing">&#8592;</a>
+    <span class="nav-arrow-date" id="navDate">Apr 13, 2026</span>
+    <a class="nav-arrow disabled" id="navNext" title="Next briefing">&#8594;</a>
+  </div>
+  <div class="masthead-actions">
+    <a class="btn-weekly" href="index.html">Archive</a>
+    <button class="btn-weekly" onclick="alert('Weekly synthesis brief — available Friday 9am')">Weekly Brief →</button>
+    <div class="saved-count" id="savedCount" onclick="toggleSavedPanel()" style="cursor:pointer;">0 saved</div>
+  </div>
+</header>
+
+<!-- SERVER BANNER -->
+<div class="server-banner" id="serverBanner">
+  <span>⚠ Saves won't persist — server not running.</span>
+  <span>In your briefings folder, run: <code>python server.py</code> then open <code>http://localhost:8000</code></span>
+</div>
+
+<!-- HORIZONTAL NAV -->
+<nav class="horizontal-nav">
+  <a class="nav-item active" onclick="scrollTo('s1')" href="#s1">Recs</a>
+  <a class="nav-item" onclick="scrollTo('s2')" href="#s2">Culture</a>
+  <a class="nav-item" onclick="scrollTo('s3')" href="#s3">Industry</a>
+  <a class="nav-item" onclick="scrollTo('s4')" href="#s4">AI + Editorial</a>
+  <a class="nav-item" onclick="scrollTo('s5')" href="#s5">Podcast</a>
+  <a class="nav-item" onclick="scrollTo('s9')" href="#s9">Media</a>
+  <a class="nav-item" onclick="scrollTo('s8')" href="#s8">Politics</a>
+  <a class="nav-item" onclick="scrollTo('s11')" href="#s11">Film</a>
+</nav>
+
+<!-- SAVED PANEL -->
+<div class="overlay" id="overlay" onclick="toggleSavedPanel()"></div>
+<div class="saved-panel" id="savedPanel">
+  <div class="saved-panel-header">
+    <div class="saved-panel-title">Saved Items</div>
+    <button class="close-btn" onclick="toggleSavedPanel()">✕</button>
+  </div>
+  <div id="savedList"><div class="empty-saved">Nothing saved yet.<br>Use the bookmark button on any item.</div></div>
+</div>
+
+<div class="layout">
+
+  <!-- INDUSTRY NEWS LEFT SIDEBAR -->
+  <aside class="industry-sidebar">
+    <div class="industry-header">
+      <div class="industry-title">Industry News</div>
+      <div class="industry-sub">Business · Deals · Rights · Charts</div>
+    </div>
+    
+    <div class="industry-item">
+      <a class="industry-headline" href="https://www.musicbusinessworldwide.com/warner-musics-spinnin-records-launches-new-label-in-germany/" target="_blank">Warner's Spinnin' Records launches Germany label</a>
+      <div class="industry-source">Music Business Worldwide</div>
+      <span class="industry-tag industry-deal">Deal</span>
+    </div>
+    <div class="industry-item">
+      <a class="industry-headline" href="https://www.digitalmusicnews.com/2026/04/12/live-nation-verified-fan-pretend-product/" target="_blank">Ticketmaster Verified Fan exposed as sales pitch</a>
+      <div class="industry-source">Digital Music News</div>
+      <span class="industry-tag industry-rights">Rights</span>
+    </div>
+    <div class="industry-item">
+      <a class="industry-headline" href="https://www.musicbusinessworldwide.com/after-closing-267m-abs-deal-seeker-music-acquires-nu-shooz-catalog/" target="_blank">Seeker Music acquires Nu Shooz catalog</a>
+      <div class="industry-source">Music Business Worldwide</div>
+      <span class="industry-tag industry-deal">Deal</span>
+    </div>
+    <div class="industry-toggle" onclick="toggleIndustryExpand(this)">
+      See 2 more ▾
+    </div>
+    <div class="industry-collapsed">
+    <div class="industry-item">
+      <a class="industry-headline" href="https://www.musicbusinessworldwide.com/sao-paulo-court-orders-shutdown-of-streaming-fraud-site-in-latest-operation-authentica-ruling/" target="_blank">Brazil shuts streaming fraud site operations</a>
+      <div class="industry-source">Music Business Worldwide</div>
+      <span class="industry-tag industry-rights">Rights</span>
+    </div>
+    <div class="industry-item">
+      <a class="industry-headline" href="https://www.musicbusinessworldwide.com/spotify-gives-users-the-option-to-switch-off-video-content-across-its-platform/" target="_blank">Spotify adds toggle to disable video content</a>
+      <div class="industry-source">Music Business Worldwide</div>
+      <span class="industry-tag industry-platform">Platform</span>
+    </div>
+    </div>
+    
+    <div class="archives-section">
+      <div class="archives-header">
+        <div class="archives-header-title">From the Archives</div>
+        <div class="archives-header-sub">Foundational · Canon · Connections</div>
+      </div>
+      <div class="archives-card">
+        <a class="archives-title" href="https://harpers.org/archive/2007/02/the-ecstasy-of-influence/" target="_blank">The Ecstasy of Influence: A Plagiarism</a>
+        <div class="archives-meta">Jonathan Lethem · Harper's Magazine · 2007</div>
+        <div class="archives-connection">Lethem's essay—composed entirely of unattributed quotations—reframes creative borrowing as inevitable inheritance rather than theft. The piece anticipated AI training debates by arguing that all culture builds on precedent, making questions of consent and attribution the real ethical battleground, not originality…</div>
+        <span class="archives-type">From the archive</span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="main">
+
+    <!-- TOP STORIES -->
+    <div class="top-stories">
+      <div class="top-stories-header">
+        <div class="top-stories-title">Today's Top Reads</div>
+        <div class="top-stories-sub">Essays · Analysis · Features</div>
+      </div>
+      <div class="top-stories-grid">
+      <div class="top-story-card">
+        <div class="top-story-meta">
+          <span class="source-name">Vinyl Culture</span>
+          <span class="source-sep">·</span>
+          <span class="source-type">Music Industry Analysis</span>
+        </div>
+        <div class="top-story-headline"><a href="https://vinylculture.substack.com/p/they-cloned-her-voice-then-claimed" target="_blank">They Cloned Her Voice, Then Claimed Her Songs | AI Music Scams Are Using Copyright Law as a Weapon Against Real Artists</a></div>
+        <div class="top-story-summary">Vinyl Culture digs into something that's been lurking at the edges of the AI music conversation: voice cloning isn't just an abstract IP concern anymore — it's an active vector for fraud, with bad actors using copyright's own enforcement mechanisms against the artists being ripped off. The piece tracks how cloned-voice tracks get uploaded, monetized, and then weaponized through Content ID disputes when the real artist tries to reclaim their own sound. It's the kind of structural inversion that should worry anyone building in this space: the infrastructure designed to protect creators is being turned against them, and the platforms have no good answer yet.</div>
+        <div class="top-story-type">AI ethics and training data/IP</div>
+      </div>
+      <div class="top-story-card">
+        <div class="top-story-meta">
+          <span class="source-name">STVDIO</span>
+          <span class="source-sep">·</span>
+          <span class="source-type">Music Industry Analysis</span>
+        </div>
+        <div class="top-story-headline"><a href="https://stvdio.substack.com/p/universal-music-should-not-be-owned" target="_blank">Universal Music should not be owned by a hedge fund</a></div>
+        <div class="top-story-summary">STVDIO's argument against Pershing Square's pursuit of Universal Music cuts past the usual private equity handwringing to something more structural: what happens when the world's largest music rights holder is governed by a hedge fund's return timeline rather than a media company's catalog logic? The piece doesn't romanticize Vivendi, but it makes a clear case that the incentives shift in ways that matter — toward aggressive licensing extraction, catalog monetization over artist development, and a posture toward AI that prioritizes short-term deals over long-term creative ecosystem health. Worth reading alongside any coverage of the majors' AI licensing negotiations.</div>
+        <div class="top-story-type">Label strategy</div>
+      </div>
+      <div class="top-story-card">
+        <div class="top-story-meta">
+          <span class="source-name">Media &amp; the Machine</span>
+          <span class="source-sep">·</span>
+          <span class="source-type">AI + Content &amp; Editorial Technology</span>
+        </div>
+        <div class="top-story-headline"><a href="https://mediaandthemachine.substack.com/p/ai-stole-7m-bookswhy-this-publishing" target="_blank">Publishing Insider on AI's 'Original Sin': Mass Book Ingestion Without Consent</a></div>
+        <div class="top-story-summary">Media &amp; the Machine interviews a publishing insider on what they're calling AI's 'original sin' — the mass ingestion of books without consent that seeded the training sets now powering commercial tools. The framing is useful: this isn't about whether the law will eventually catch up, but about the structural asymmetry baked in from the start. Publishers are negotiating from a position where their catalogs have already been absorbed, and the leverage has shifted permanently. For anyone watching the music industry's parallel negotiations with AI companies, the publishing sector's experience is a preview of the terrain.</div>
+        <div class="top-story-type">AI ethics and training data/IP</div>
+      </div>
+      </div>
+    </div>
+
+    
+    <section class="section" id="s1">
+      <div class="section-header">
+        <span class="section-num">01</span>
+        <span class="section-title">Music Recommendations</span>
+        <span class="section-tag tag-c1">Music</span>
+      </div>
+      <div class="recs-grid">
+      
+        <div class="rec-card" id="rec-1">
+          <div class="rec-num">REC 01</div>
+          <div class="rec-artist">Ave Grave &amp; Unlearn</div>
+          <div class="rec-track">Ave Grave x Unlearn</div>
+          <div class="card-genre">♪ ambient / drone / tape loops</div>
+          <div class="rec-context">Berlin-based Ave Grave collaborates with San Francisco's Unlearn on an ambient record built from Basinskian destructive tape loops and committed one-take performances. The duo combines field recordings with analog synths, piano, and baritone guitar, achieving a nostalgic sound that ebbs between drone, melody, and noise. They cite Alaskan Tapes, Sunn O))), Ethel Cain, Stars of the Lid, and Hiroshi Yoshimura as touchstones.</div>
+          <div class="card-source" style="margin-top:8px;"><span class="source-name">Flow State</span> · <a href="https://www.flowstate.fm/p/ave-grave" target="_blank" style="color:var(--accent);font-size:11px;text-decoration:none;">View source →</a></div>
+          <div class="rec-meta">
+            <a class="card-youtube" href="https://www.youtube.com/results?search_query=Ave+Grave+Unlearn" target="_blank">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="#cc0000"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0C.488 3.45.029 5.804 0 12c.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0C23.512 20.55 23.971 18.196 24 12c-.029-6.185-.484-8.549-4.385-8.816zM9 16V8l8 3.993L9 16z"/></svg>
+              Watch on YouTube
+            </a>
+            <div class="rec-actions">
+              <button class="action-btn save-btn" onclick="toggleSave('rec-1', 'Ave Grave & Unlearn — Ave Grave x Unlearn', 'Flow State')">⊕ Save</button>
+              <button class="action-btn" onclick="toggleFollowup('rec-1-fu')">Ask →</button>
+            </div>
+          </div>
+          <div class="followup-area" id="rec-1-fu">
+            <div class="convo-thread"></div>
+            <div class="followup-row">
+              <input class="followup-input" placeholder="Ask about this track or artist..." onkeydown="if(event.key==='Enter'){submitFollowup(this.nextElementSibling,'rec-1-fu')}" />
+              <button class="followup-submit" onclick="submitFollowup(this, 'rec-1-fu')">Ask Claude</button>
+            </div>
+            <button class="convo-clear" onclick="clearConversation('rec-1-fu')">clear conversation</button>
+          </div>
+        </div>
+        <div class="rec-card" id="rec-2">
+          <div class="rec-num">REC 02</div>
+          <div class="rec-artist">Buster Williams</div>
+          <div class="rec-track">Pinnacle</div>
+          <div class="card-genre">♪ spiritual jazz</div>
+          <div class="rec-context">Marcus J. Moore traces Williams' philosophy through this recently reissued album—music unconcerned with speed or aggression, instead pursuing serenity and intent. The track &quot;Tayamisha&quot; saunters like an old tune while channeling spiritual jazz on a dancefloor, reflecting Williams' Nichiren Buddhist practice and his role as a bridge between generations in Black Classical Music.</div>
+          <div class="card-source" style="margin-top:8px;"><span class="source-name">Active Listening</span> · <a href="https://activelistening.substack.com/p/gravity-and-grace-the-spiritual-sound" target="_blank" style="color:var(--accent);font-size:11px;text-decoration:none;">View source →</a></div>
+          <div class="rec-meta">
+            <a class="card-youtube" href="https://www.youtube.com/results?search_query=Buster+Williams+Pinnacle" target="_blank">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="#cc0000"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0C.488 3.45.029 5.804 0 12c.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0C23.512 20.55 23.971 18.196 24 12c-.029-6.185-.484-8.549-4.385-8.816zM9 16V8l8 3.993L9 16z"/></svg>
+              Watch on YouTube
+            </a>
+            <div class="rec-actions">
+              <button class="action-btn save-btn" onclick="toggleSave('rec-2', 'Buster Williams — Pinnacle', 'Active Listening')">⊕ Save</button>
+              <button class="action-btn" onclick="toggleFollowup('rec-2-fu')">Ask →</button>
+            </div>
+          </div>
+          <div class="followup-area" id="rec-2-fu">
+            <div class="convo-thread"></div>
+            <div class="followup-row">
+              <input class="followup-input" placeholder="Ask about this track or artist..." onkeydown="if(event.key==='Enter'){submitFollowup(this.nextElementSibling,'rec-2-fu')}" />
+              <button class="followup-submit" onclick="submitFollowup(this, 'rec-2-fu')">Ask Claude</button>
+            </div>
+            <button class="convo-clear" onclick="clearConversation('rec-2-fu')">clear conversation</button>
+          </div>
+        </div>
+        <div class="rec-card" id="rec-3">
+          <div class="rec-num">REC 03</div>
+          <div class="rec-artist">Chartreuse</div>
+          <div class="rec-track">Bless You and Be Well</div>
+          <div class="card-genre">♪ indie/experimental</div>
+          <div class="rec-context">Featured in The Line of Best Fit's Something Old, Something New column alongside Efterklang's back catalog, this 2025 release pairs with reflections on experimental post-rock lineage.</div>
+          <div class="card-source" style="margin-top:8px;"><span class="source-name">The Line of Best Fit</span> · <a href="https://bestfitmusic.substack.com/p/the-friday-dispatch-fa7" target="_blank" style="color:var(--accent);font-size:11px;text-decoration:none;">View source →</a></div>
+          <div class="rec-meta">
+            <a class="card-youtube" href="https://www.youtube.com/results?search_query=Chartreuse+Bless+You+and+Be+Well" target="_blank">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="#cc0000"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0C.488 3.45.029 5.804 0 12c.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0C23.512 20.55 23.971 18.196 24 12c-.029-6.185-.484-8.549-4.385-8.816zM9 16V8l8 3.993L9 16z"/></svg>
+              Watch on YouTube
+            </a>
+            <div class="rec-actions">
+              <button class="action-btn save-btn" onclick="toggleSave('rec-3', 'Chartreuse — Bless You and Be Well', 'The Line of Best Fit')">⊕ Save</button>
+              <button class="action-btn" onclick="toggleFollowup('rec-3-fu')">Ask →</button>
+            </div>
+          </div>
+          <div class="followup-area" id="rec-3-fu">
+            <div class="convo-thread"></div>
+            <div class="followup-row">
+              <input class="followup-input" placeholder="Ask about this track or artist..." onkeydown="if(event.key==='Enter'){submitFollowup(this.nextElementSibling,'rec-3-fu')}" />
+              <button class="followup-submit" onclick="submitFollowup(this, 'rec-3-fu')">Ask Claude</button>
+            </div>
+            <button class="convo-clear" onclick="clearConversation('rec-3-fu')">clear conversation</button>
+          </div>
+        </div>
+        <div class="rec-card" id="rec-4">
+          <div class="rec-num">REC 04</div>
+          <div class="rec-artist">Mamas Gun</div>
+          <div class="rec-track">DIG!</div>
+          <div class="card-genre">♪ neo-soul / analogue soul</div>
+          <div class="rec-context">The British five-piece's sixth album was tracked straight to 16-track analogue tape at All Things Analogue Studios in Leeds, five musicians cutting live with no overdubs as default. The title track features Brian Jackson—Gil Scott-Heron's longtime keyboard partner—sharing lead vocal with Andy Platts over a jazz-funk arrangement where Jackson's flute staggers through the verses and his keys trade phrases with Platts. Rare for the analogue-soul revival: a band with six albums and no label aesthetic to identify.</div>
+          <div class="card-source" style="margin-top:8px;"><span class="source-name">Shatter the Standards</span> · <a href="https://www.shatterthestandards.com/p/album-review-dig-by-mamas-gun" target="_blank" style="color:var(--accent);font-size:11px;text-decoration:none;">View source →</a></div>
+          <div class="rec-meta">
+            <a class="card-youtube" href="https://www.youtube.com/results?search_query=Mamas+Gun+DIG+Brian+Jackson" target="_blank">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="#cc0000"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0C.488 3.45.029 5.804 0 12c.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0C23.512 20.55 23.971 18.196 24 12c-.029-6.185-.484-8.549-4.385-8.816zM9 16V8l8 3.993L9 16z"/></svg>
+              Watch on YouTube
+            </a>
+            <div class="rec-actions">
+              <button class="action-btn save-btn" onclick="toggleSave('rec-4', 'Mamas Gun — DIG!', 'Shatter the Standards')">⊕ Save</button>
+              <button class="action-btn" onclick="toggleFollowup('rec-4-fu')">Ask →</button>
+            </div>
+          </div>
+          <div class="followup-area" id="rec-4-fu">
+            <div class="convo-thread"></div>
+            <div class="followup-row">
+              <input class="followup-input" placeholder="Ask about this track or artist..." onkeydown="if(event.key==='Enter'){submitFollowup(this.nextElementSibling,'rec-4-fu')}" />
+              <button class="followup-submit" onclick="submitFollowup(this, 'rec-4-fu')">Ask Claude</button>
+            </div>
+            <button class="convo-clear" onclick="clearConversation('rec-4-fu')">clear conversation</button>
+          </div>
+        </div>
+      </div>
+      <div class="expand-toggle" onclick="toggleExpand(this)">
+        Show 2 more recommendations ▾
+      </div>
+      <div class="collapsed-items" style="display:none;">
+      <div class="recs-grid">
+        <div class="rec-card" id="rec-5">
+          <div class="rec-num">REC 05</div>
+          <div class="rec-artist">Ave Grave</div>
+          <div class="rec-track">Field Notes</div>
+          <div class="card-genre">♪ ambient / piano / soundscape</div>
+          <div class="rec-context">Ave Grave's 2022 solo record is more piano-centric than his collaborative work, though equally wistful. The Sierra Nevada transplant combines field recording techniques with soft-spoken traditional songwriting, creating a nuanced, quiet world rooted in sonic texture.</div>
+          <div class="card-source" style="margin-top:8px;"><span class="source-name">Flow State</span> · <a href="https://www.flowstate.fm/p/ave-grave" target="_blank" style="color:var(--accent);font-size:11px;text-decoration:none;">View source →</a></div>
+          <div class="rec-meta">
+            <a class="card-youtube" href="https://www.youtube.com/results?search_query=Ave+Grave+Field+Notes" target="_blank">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="#cc0000"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0C.488 3.45.029 5.804 0 12c.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0C23.512 20.55 23.971 18.196 24 12c-.029-6.185-.484-8.549-4.385-8.816zM9 16V8l8 3.993L9 16z"/></svg>
+              Watch on YouTube
+            </a>
+            <div class="rec-actions">
+              <button class="action-btn save-btn" onclick="toggleSave('rec-5', 'Ave Grave — Field Notes', 'Flow State')">⊕ Save</button>
+              <button class="action-btn" onclick="toggleFollowup('rec-5-fu')">Ask →</button>
+            </div>
+          </div>
+          <div class="followup-area" id="rec-5-fu">
+            <div class="convo-thread"></div>
+            <div class="followup-row">
+              <input class="followup-input" placeholder="Ask about this track or artist..." onkeydown="if(event.key==='Enter'){submitFollowup(this.nextElementSibling,'rec-5-fu')}" />
+              <button class="followup-submit" onclick="submitFollowup(this, 'rec-5-fu')">Ask Claude</button>
+            </div>
+            <button class="convo-clear" onclick="clearConversation('rec-5-fu')">clear conversation</button>
+          </div>
+        </div>
+        <div class="rec-card" id="rec-6">
+          <div class="rec-num">REC 06</div>
+          <div class="rec-artist">Whiskeytown</div>
+          <div class="rec-track">16 Days</div>
+          <div class="card-genre">♪ alt-country</div>
+          <div class="rec-context">Mat's pick from The Music Swap leans into alt-country nostalgia, highlighting Ryan Adams' pre-solo outfit. The track surfaces as part of a reflection on music that holds steady importance through life's shifts.</div>
+          <div class="card-source" style="margin-top:8px;"><span class="source-name">The Music Swap</span> · <a href="https://themusicswap.substack.com/p/well-never-be-those-kids-again" target="_blank" style="color:var(--accent);font-size:11px;text-decoration:none;">View source →</a></div>
+          <div class="rec-meta">
+            <a class="card-youtube" href="https://www.youtube.com/results?search_query=Whiskeytown+16+Days" target="_blank">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="#cc0000"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0C.488 3.45.029 5.804 0 12c.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0C23.512 20.55 23.971 18.196 24 12c-.029-6.185-.484-8.549-4.385-8.816zM9 16V8l8 3.993L9 16z"/></svg>
+              Watch on YouTube
+            </a>
+            <div class="rec-actions">
+              <button class="action-btn save-btn" onclick="toggleSave('rec-6', 'Whiskeytown — 16 Days', 'The Music Swap')">⊕ Save</button>
+              <button class="action-btn" onclick="toggleFollowup('rec-6-fu')">Ask →</button>
+            </div>
+          </div>
+          <div class="followup-area" id="rec-6-fu">
+            <div class="convo-thread"></div>
+            <div class="followup-row">
+              <input class="followup-input" placeholder="Ask about this track or artist..." onkeydown="if(event.key==='Enter'){submitFollowup(this.nextElementSibling,'rec-6-fu')}" />
+              <button class="followup-submit" onclick="submitFollowup(this, 'rec-6-fu')">Ask Claude</button>
+            </div>
+            <button class="convo-clear" onclick="clearConversation('rec-6-fu')">clear conversation</button>
+          </div>
+        </div>
+      </div>
+      </div>
+      
+    </section>
+    <section class="section" id="s2">
+      <div class="section-header">
+        <span class="section-num">02</span>
+        <span class="section-title">Music Culture Analysis</span>
+        <span class="section-tag tag-c1">Music</span>
+      </div>
+      
+      
+      <div class="card" id="c2-1">
+        <div class="card-top">
+          <div class="card-source">
+            <span class="source-name">All Things Jazz</span>
+          </div>
+          <div class="card-actions">
+            <button class="action-btn save-btn" onclick="toggleSave('c2-1', 'Herbie Hancock: Inventions & Dimensions', 'All Things Jazz')">⊕ Save</button>
+            <button class="action-btn" onclick="toggleAnnotation('c2-1-ann')">✎ Note</button>
+            <button class="action-btn" onclick="toggleFollowup('c2-1-fu')">Ask →</button>
+          </div>
+        </div>
+        <div class="card-title"><a href="https://allthingsjazzoriginal.substack.com/p/herbie-hancock-inventions-and-dimensions" target="_blank">Herbie Hancock: Inventions &amp; Dimensions</a></div>
+        <div class="card-body">All Things Jazz traces how Hancock's 1963 debut recalibrated post-bop orthodoxy by centering rhythm as the structural foundation. The writer isolates Hancock's radical move: placing harmony and melody in service of Afro-Latin grooves rather than harmonic complexity. The album—piano, bass, Latin percussion, no horns—becomes a thesis on how intellectual sophistication can breathe when rooted in bodily, percussive logic. The piece grounds this in track-by-track analysis showing conversation over composition.</div>
+        <div class="annotation-area" id="c2-1-ann">
+          <div class="annotation-label">Your note</div>
+          <textarea class="annotation-input" placeholder="Add a note..."></textarea>
+          <button class="annotation-save" onclick="saveAnnotation(this, 'c2-1-ann')">Save note</button>
+        </div>
+        <div class="followup-area" id="c2-1-fu">
+          <div class="convo-thread"></div>
+          <div class="followup-row">
+            <input class="followup-input" placeholder="Ask a follow-up question..." onkeydown="if(event.key==='Enter'){submitFollowup(this.nextElementSibling,'c2-1-fu')}" />
+            <button class="followup-submit" onclick="submitFollowup(this, 'c2-1-fu')">Ask Claude</button>
+          </div>
+          <button class="convo-clear" onclick="clearConversation('c2-1-fu')">clear conversation</button>
+        </div>
+      </div>
+      <div class="card" id="c2-2">
+        <div class="card-top">
+          <div class="card-source">
+            <span class="source-name">All Things Jazz</span>
+          </div>
+          <div class="card-actions">
+            <button class="action-btn save-btn" onclick="toggleSave('c2-2', 'Billie Holiday: What She Sang Anyway', 'All Things Jazz')">⊕ Save</button>
+            <button class="action-btn" onclick="toggleAnnotation('c2-2-ann')">✎ Note</button>
+            <button class="action-btn" onclick="toggleFollowup('c2-2-fu')">Ask →</button>
+          </div>
+        </div>
+        <div class="card-title"><a href="https://allthingsjazzoriginal.substack.com/p/billie-holiday-what-she-sang-anyway" target="_blank">Billie Holiday: What She Sang Anyway</a></div>
+        <div class="card-body">All Things Jazz reframes Holiday not as stylist but as structural threat: her unsanitized emotional truth exposed the gap between official American mythology and lived reality. The writer traces the state's systematic response—federal narcotics persecution, cabaret card revocation, forced institutionalization—as architectural coercion designed to banish rather than punish. The piece draws parallels to modern drug policy's origins in moral panic, situating Holiday's persecution as a blueprint for how power neutralizes artists who refuse sanitization.</div>
+        <div class="annotation-area" id="c2-2-ann">
+          <div class="annotation-label">Your note</div>
+          <textarea class="annotation-input" placeholder="Add a note..."></textarea>
+          <button class="annotation-save" onclick="saveAnnotation(this, 'c2-2-ann')">Save note</button>
+        </div>
+        <div class="followup-area" id="c2-2-fu">
+          <div class="convo-thread"></div>
+          <div class="followup-row">
+            <input class="followup-input" placeholder="Ask a follow-up question..." onkeydown="if(event.key==='Enter'){submitFollowup(this.nextElementSibling,'c2-2-fu')}" />
+            <button class="followup-submit" onclick="submitFollowup(this, 'c2-2-fu')">Ask Claude</button>
+          </div>
+          <button class="convo-clear" onclick="clearConversation('c2-2-fu')">clear conversation</button>
+        </div>
+      </div>
+      <div class="card" id="c2-3">
+        <div class="card-top">
+          <div class="card-source">
+            <span class="source-name">Italian Disco Stories</span>
+          </div>
+          <div class="card-actions">
+            <button class="action-btn save-btn" onclick="toggleSave('c2-3', 'How Italo Disco Made Us All Dance Real Slow', 'Italian Disco Stories')">⊕ Save</button>
+            <button class="action-btn" onclick="toggleAnnotation('c2-3-ann')">✎ Note</button>
+            <button class="action-btn" onclick="toggleFollowup('c2-3-fu')">Ask →</button>
+          </div>
+        </div>
+        <div class="card-title"><a href="https://www.italiandiscostories.com/p/talo-disco-slow-bpm-playlist" target="_blank">How Italo Disco Made Us All Dance Real Slow</a></div>
+        <div class="card-body">Italian Disco Stories identifies a tonal shift in early-'80s Italo disco: the move from communal exuberance to fragmented, introspective melancholia. The writer connects this to material conditions—synths replaced live funk, production democratized, dancefloors shifted from shared joy to individual emotion—and to broader cultural movement toward ego and subgenre atomization. The argument is structural: genre change reflects a reorientation of how bodies relate to pleasure and community.</div>
+        <div class="annotation-area" id="c2-3-ann">
+          <div class="annotation-label">Your note</div>
+          <textarea class="annotation-input" placeholder="Add a note..."></textarea>
+          <button class="annotation-save" onclick="saveAnnotation(this, 'c2-3-ann')">Save note</button>
+        </div>
+        <div class="followup-area" id="c2-3-fu">
+          <div class="convo-thread"></div>
+          <div class="followup-row">
+            <input class="followup-input" placeholder="Ask a follow-up question..." onkeydown="if(event.key==='Enter'){submitFollowup(this.nextElementSibling,'c2-3-fu')}" />
+            <button class="followup-submit" onclick="submitFollowup(this, 'c2-3-fu')">Ask Claude</button>
+          </div>
+          <button class="convo-clear" onclick="clearConversation('c2-3-fu')">clear conversation</button>
+        </div>
+      </div>
+      <div class="card" id="c2-4">
+        <div class="card-top">
+          <div class="card-source">
+            <span class="source-name">Herb Sundays by Sam Valenti IV</span>
+          </div>
+          <div class="card-actions">
+            <button class="action-btn save-btn" onclick="toggleSave('c2-4', 'Herb Sundays 183: Classical (c. 1200-2025)', 'Herb Sundays by Sam Valenti IV')">⊕ Save</button>
+            <button class="action-btn" onclick="toggleAnnotation('c2-4-ann')">✎ Note</button>
+            <button class="action-btn" onclick="toggleFollowup('c2-4-fu')">Ask →</button>
+          </div>
+        </div>
+        <div class="card-title"><a href="https://herbsundays.substack.com/p/herb-sundays-183-classical-c-1200" target="_blank">Herb Sundays 183: Classical (c. 1200-2025)</a></div>
+        <div class="card-body">Ronen Givony curates a four-hour classical playlist spanning 800 years, weighted toward chamber and solo piano, with contemporary composers from Julius Eastman to Mica Levi. The accompanying essay frames classical music as a living art form—a corrective to institutional stagnation—and connects the playlist to Givony's book on the Brooklyn indie scene of the 2000s. The piece is strongest as an argument about scenes: how belief systems, venues, and visionary individuals (like choreographer Noémie Lafrance) create temporary ecologies of artistic possibility.</div>
+        <div class="annotation-area" id="c2-4-ann">
+          <div class="annotation-label">Your note</div>
+          <textarea class="annotation-input" placeholder="Add a note..."></textarea>
+          <button class="annotation-save" onclick="saveAnnotation(this, 'c2-4-ann')">Save note</button>
+        </div>
+        <div class="followup-area" id="c2-4-fu">
+          <div class="convo-thread"></div>
+          <div class="followup-row">
+            <input class="followup-input" placeholder="Ask a follow-up question..." onkeydown="if(event.key==='Enter'){submitFollowup(this.nextElementSibling,'c2-4-fu')}" />
+            <button class="followup-submit" onclick="submitFollowup(this, 'c2-4-fu')">Ask Claude</button>
+          </div>
+          <button class="convo-clear" onclick="clearConversation('c2-4-fu')">clear conversation</button>
+        </div>
+      </div>
+      
+    </section>
+    <section class="section" id="s3">
+      <div class="section-header">
+        <span class="section-num">03</span>
+        <span class="section-title">Music Industry Analysis</span>
+        <span class="section-tag tag-c1">Music</span>
+      </div>
+      
+      
+      <div class="card" id="c3-1">
+        <div class="card-top">
+          <div class="card-source">
+            <span class="source-name">Vinyl Culture</span>
+          </div>
+          <div class="card-actions">
+            <button class="action-btn save-btn" onclick="toggleSave('c3-1', 'They Cloned Her Voice, Then Claimed Her Songs | AI Music Scams Are Using Copyright Law as a Weapon Against Real Artists', 'Vinyl Culture')">⊕ Save</button>
+            <button class="action-btn" onclick="toggleAnnotation('c3-1-ann')">✎ Note</button>
+            <button class="action-btn" onclick="toggleFollowup('c3-1-fu')">Ask →</button>
+          </div>
+        </div>
+        <div class="card-title"><a href="https://vinylculture.substack.com/p/they-cloned-her-voice-then-claimed" target="_blank">They Cloned Her Voice, Then Claimed Her Songs | AI Music Scams Are Using Copyright Law as a Weapon Against Real Artists</a></div>
+        <div class="card-body">Chinmaya documents how folk musician Murphy Campbell's voice was cloned via AI, with synthetic versions of her songs uploaded to Spotify by an entity called &quot;Timeless Sounds IR&quot; through distributor Vydia. The same distributor then filed copyright claims against Campbell's original YouTube videos, leveraging YouTube's automated Content ID system that assumes the first registrant owns the song. Campbell's case mirrors attacks on Paul Bender, Veronica Swift, and Grace Mitchell—exposing a structural vulnerability where the infrastructure meant to protect artists becomes a weapon when combined with AI voice synthesis. The deeper issue: Alphabet, which owns YouTube and controls the automated enforcement system, is simultaneously investing $175–$185 billion in the AI technology enabling these attacks. A conflict of interest at scale.</div>
+        <div class="annotation-area" id="c3-1-ann">
+          <div class="annotation-label">Your note</div>
+          <textarea class="annotation-input" placeholder="Add a note..."></textarea>
+          <button class="annotation-save" onclick="saveAnnotation(this, 'c3-1-ann')">Save note</button>
+        </div>
+        <div class="followup-area" id="c3-1-fu">
+          <div class="convo-thread"></div>
+          <div class="followup-row">
+            <input class="followup-input" placeholder="Ask a follow-up question..." onkeydown="if(event.key==='Enter'){submitFollowup(this.nextElementSibling,'c3-1-fu')}" />
+            <button class="followup-submit" onclick="submitFollowup(this, 'c3-1-fu')">Ask Claude</button>
+          </div>
+          <button class="convo-clear" onclick="clearConversation('c3-1-fu')">clear conversation</button>
+        </div>
+      </div>
+      <div class="card" id="c3-2">
+        <div class="card-top">
+          <div class="card-source">
+            <span class="source-name">STVDIO</span>
+          </div>
+          <div class="card-actions">
+            <button class="action-btn save-btn" onclick="toggleSave('c3-2', 'Universal Music should not be owned by a hedge fund', 'STVDIO')">⊕ Save</button>
+            <button class="action-btn" onclick="toggleAnnotation('c3-2-ann')">✎ Note</button>
+            <button class="action-btn" onclick="toggleFollowup('c3-2-fu')">Ask →</button>
+          </div>
+        </div>
+        <div class="card-title"><a href="https://stvdio.substack.com/p/universal-music-should-not-be-owned" target="_blank">Universal Music should not be owned by a hedge fund</a></div>
+        <div class="card-body">musicben traces Universal Music Group's ownership through seven eras—from pure music label (Decca) through hardware (Panasonic), brand deals (Seagram), corporate media (Vivendi), and tech platforms (Tencent)—each owner seeing UMG as a lever for their core business. Pershing Square Capital's reported push to acquire control marks a fundamental shift: unlike predecessors, a hedge fund has no creative or distribution agenda. It sees UMG purely as a financial asset generating predictable streaming royalties. The piece argues this represents music becoming an &quot;asset class&quot; rather than a creative enterprise, with implications for artist leverage and industry structure.</div>
+        <div class="annotation-area" id="c3-2-ann">
+          <div class="annotation-label">Your note</div>
+          <textarea class="annotation-input" placeholder="Add a note..."></textarea>
+          <button class="annotation-save" onclick="saveAnnotation(this, 'c3-2-ann')">Save note</button>
+        </div>
+        <div class="followup-area" id="c3-2-fu">
+          <div class="convo-thread"></div>
+          <div class="followup-row">
+            <input class="followup-input" placeholder="Ask a follow-up question..." onkeydown="if(event.key==='Enter'){submitFollowup(this.nextElementSibling,'c3-2-fu')}" />
+            <button class="followup-submit" onclick="submitFollowup(this, 'c3-2-fu')">Ask Claude</button>
+          </div>
+          <button class="convo-clear" onclick="clearConversation('c3-2-fu')">clear conversation</button>
+        </div>
+      </div>
+      <div class="card" id="c3-3">
+        <div class="card-top">
+          <div class="card-source">
+            <span class="source-name">AI Music Newsletter</span>
+          </div>
+          <div class="card-actions">
+            <button class="action-btn save-btn" onclick="toggleSave('c3-3', 'New Singer Dominating iTunes Chart Is AI; Soundbreak Puts Songwriters in Control', 'AI Music Newsletter')">⊕ Save</button>
+            <button class="action-btn" onclick="toggleAnnotation('c3-3-ann')">✎ Note</button>
+            <button class="action-btn" onclick="toggleFollowup('c3-3-fu')">Ask →</button>
+          </div>
+        </div>
+        <div class="card-title"><a href="https://aimusicnewsletter.substack.com/p/new-singer-dominating-itunes-chart" target="_blank">New Singer Dominating iTunes Chart Is AI; Soundbreak Puts Songwriters in Control</a></div>
+        <div class="card-body">Brief item noting an AI-generated artist charting on iTunes, alongside announcements of TuneCore and RoyFi launching direct royalty advances for indie artists and Dolby advancing streaming music standards.</div>
+        <div class="annotation-area" id="c3-3-ann">
+          <div class="annotation-label">Your note</div>
+          <textarea class="annotation-input" placeholder="Add a note..."></textarea>
+          <button class="annotation-save" onclick="saveAnnotation(this, 'c3-3-ann')">Save note</button>
+        </div>
+        <div class="followup-area" id="c3-3-fu">
+          <div class="convo-thread"></div>
+          <div class="followup-row">
+            <input class="followup-input" placeholder="Ask a follow-up question..." onkeydown="if(event.key==='Enter'){submitFollowup(this.nextElementSibling,'c3-3-fu')}" />
+            <button class="followup-submit" onclick="submitFollowup(this, 'c3-3-fu')">Ask Claude</button>
+          </div>
+          <button class="convo-clear" onclick="clearConversation('c3-3-fu')">clear conversation</button>
+        </div>
+      </div>
+      
+    </section>
+    <section class="section" id="s4">
+      <div class="section-header">
+        <span class="section-num">04</span>
+        <span class="section-title">AI + Content & Editorial Technology</span>
+        <span class="section-tag tag-c2">AI</span>
+      </div>
+      
+      
+      <div class="card" id="c4-1">
+        <div class="card-top">
+          <div class="card-source">
+            <span class="source-name">(Re)Structured News | Tow-Knight Center at CUNY</span>
+          </div>
+          <div class="card-actions">
+            <button class="action-btn save-btn" onclick="toggleSave('c4-1', 'AI-Driven Feed Algorithms Could Reduce Polarization — And Increase Time on Site', '(Re)Structured News | Tow-Knight Center at CUNY')">⊕ Save</button>
+            <button class="action-btn" onclick="toggleAnnotation('c4-1-ann')">✎ Note</button>
+            <button class="action-btn" onclick="toggleFollowup('c4-1-fu')">Ask →</button>
+          </div>
+        </div>
+        <div class="card-title"><a href="https://restructurednews.substack.com/p/stray-thoughts" target="_blank">AI-Driven Feed Algorithms Could Reduce Polarization — And Increase Time on Site</a></div>
+        <div class="card-body">The Tow-Knight Center's newsletter spotlights new research from Jonathan Stray, senior scientist at UC Berkeley's Center for Human-Compatible AI, showing that specific feed algorithm designs can lower political polarization while also lifting engagement metrics — meaning there's a real business case, not just an ethical one. For anyone building editorial recommendation systems, this is a significant data point: the dominant assumption that engagement and prosocial outcomes are in tension may be empirically wrong, and that opens a design space worth exploring.</div>
+        <div class="annotation-area" id="c4-1-ann">
+          <div class="annotation-label">Your note</div>
+          <textarea class="annotation-input" placeholder="Add a note..."></textarea>
+          <button class="annotation-save" onclick="saveAnnotation(this, 'c4-1-ann')">Save note</button>
+        </div>
+        <div class="followup-area" id="c4-1-fu">
+          <div class="convo-thread"></div>
+          <div class="followup-row">
+            <input class="followup-input" placeholder="Ask a follow-up question..." onkeydown="if(event.key==='Enter'){submitFollowup(this.nextElementSibling,'c4-1-fu')}" />
+            <button class="followup-submit" onclick="submitFollowup(this, 'c4-1-fu')">Ask Claude</button>
+          </div>
+          <button class="convo-clear" onclick="clearConversation('c4-1-fu')">clear conversation</button>
+        </div>
+      </div>
+      <div class="card" id="c4-2">
+        <div class="card-top">
+          <div class="card-source">
+            <span class="source-name">Media &amp; the Machine</span>
+          </div>
+          <div class="card-actions">
+            <button class="action-btn save-btn" onclick="toggleSave('c4-2', 'Publishing Insider on AI\'s \'Original Sin\': Mass Book Ingestion Without Consent', 'Media & the Machine')">⊕ Save</button>
+            <button class="action-btn" onclick="toggleAnnotation('c4-2-ann')">✎ Note</button>
+            <button class="action-btn" onclick="toggleFollowup('c4-2-fu')">Ask →</button>
+          </div>
+        </div>
+        <div class="card-title"><a href="https://mediaandthemachine.substack.com/p/ai-stole-7m-bookswhy-this-publishing" target="_blank">Publishing Insider on AI's 'Original Sin': Mass Book Ingestion Without Consent</a></div>
+        <div class="card-body">Rob Kelly's Media &amp; the Machine interviews Thad McIlroy, a publishing veteran turned techno-optimist, who draws a sharp line between capability and ethics: LLMs trained on millions of books without compensation represent what he calls the 'original sin' of AI companies. The conversation is unusually candid for a bullish source — McIlroy acknowledges both the structural theft and the now-compounding problem of AI-generated content that mimics and competes with the authors it was trained on. Directly relevant to any platform grappling with AI authorship disclosure and creator trust.</div>
+        <div class="annotation-area" id="c4-2-ann">
+          <div class="annotation-label">Your note</div>
+          <textarea class="annotation-input" placeholder="Add a note..."></textarea>
+          <button class="annotation-save" onclick="saveAnnotation(this, 'c4-2-ann')">Save note</button>
+        </div>
+        <div class="followup-area" id="c4-2-fu">
+          <div class="convo-thread"></div>
+          <div class="followup-row">
+            <input class="followup-input" placeholder="Ask a follow-up question..." onkeydown="if(event.key==='Enter'){submitFollowup(this.nextElementSibling,'c4-2-fu')}" />
+            <button class="followup-submit" onclick="submitFollowup(this, 'c4-2-fu')">Ask Claude</button>
+          </div>
+          <button class="convo-clear" onclick="clearConversation('c4-2-fu')">clear conversation</button>
+        </div>
+      </div>
+      <div class="card" id="c4-3">
+        <div class="card-top">
+          <div class="card-source">
+            <span class="source-name">The Media Copilot</span>
+          </div>
+          <div class="card-actions">
+            <button class="action-btn save-btn" onclick="toggleSave('c4-3', 'The Trust Gap in AI-Generated Media: Capability Is Ahead of Accountability', 'The Media Copilot')">⊕ Save</button>
+            <button class="action-btn" onclick="toggleAnnotation('c4-3-ann')">✎ Note</button>
+            <button class="action-btn" onclick="toggleFollowup('c4-3-fu')">Ask →</button>
+          </div>
+        </div>
+        <div class="card-title"><a href="https://mediacopilot.substack.com/p/can-ai-generated-media-be-trusted" target="_blank">The Trust Gap in AI-Generated Media: Capability Is Ahead of Accountability</a></div>
+        <div class="card-body">The Media Copilot frames the core problem in generative AI content with useful precision: it's not what the tools can produce, it's whether brands and publishers can stand behind the provenance of what they produce. The episode with Bria CEO Dr. Yair Adato zeroes in on data sourcing, usage rights, and brand safety as the fault lines — framing the AI content ecosystem as split between capability-first and accountability-first camps. For editorial content teams, this maps directly onto the disclosure and rights infrastructure that's still largely missing.</div>
+        <div class="annotation-area" id="c4-3-ann">
+          <div class="annotation-label">Your note</div>
+          <textarea class="annotation-input" placeholder="Add a note..."></textarea>
+          <button class="annotation-save" onclick="saveAnnotation(this, 'c4-3-ann')">Save note</button>
+        </div>
+        <div class="followup-area" id="c4-3-fu">
+          <div class="convo-thread"></div>
+          <div class="followup-row">
+            <input class="followup-input" placeholder="Ask a follow-up question..." onkeydown="if(event.key==='Enter'){submitFollowup(this.nextElementSibling,'c4-3-fu')}" />
+            <button class="followup-submit" onclick="submitFollowup(this, 'c4-3-fu')">Ask Claude</button>
+          </div>
+          <button class="convo-clear" onclick="clearConversation('c4-3-fu')">clear conversation</button>
+        </div>
+      </div>
+      <div class="card" id="c4-4">
+        <div class="card-top">
+          <div class="card-source">
+            <span class="source-name">Shae O. (Substack)</span>
+          </div>
+          <div class="card-actions">
+            <button class="action-btn save-btn" onclick="toggleSave('c4-4', 'Algorithmic Agnotology: The Case for Independent Research Access to AI Systems', 'Shae O. (Substack)')">⊕ Save</button>
+            <button class="action-btn" onclick="toggleAnnotation('c4-4-ann')">✎ Note</button>
+            <button class="action-btn" onclick="toggleFollowup('c4-4-fu')">Ask →</button>
+          </div>
+        </div>
+        <div class="card-title"><a href="https://shaeomonijo.substack.com/p/why-you-need-to-think-small-about" target="_blank">Algorithmic Agnotology: The Case for Independent Research Access to AI Systems</a></div>
+        <div class="card-body">Drawing on Dr. Alondra Nelson's concept of 'algorithmic agnotology' — the deliberate manufacturing of ignorance through opaque AI systems — Shae O. argues that the entire AI governance model currently runs on the voluntary disclosure of a handful of CEOs. The argument has direct relevance for editorial platforms: the same opacity that makes AI safety audits difficult makes content recommendation audits difficult. Without independent research access mandated internationally, any platform claiming algorithmic fairness or quality is largely asking audiences to trust their word.</div>
+        <div class="annotation-area" id="c4-4-ann">
+          <div class="annotation-label">Your note</div>
+          <textarea class="annotation-input" placeholder="Add a note..."></textarea>
+          <button class="annotation-save" onclick="saveAnnotation(this, 'c4-4-ann')">Save note</button>
+        </div>
+        <div class="followup-area" id="c4-4-fu">
+          <div class="convo-thread"></div>
+          <div class="followup-row">
+            <input class="followup-input" placeholder="Ask a follow-up question..." onkeydown="if(event.key==='Enter'){submitFollowup(this.nextElementSibling,'c4-4-fu')}" />
+            <button class="followup-submit" onclick="submitFollowup(this, 'c4-4-fu')">Ask Claude</button>
+          </div>
+          <button class="convo-clear" onclick="clearConversation('c4-4-fu')">clear conversation</button>
+        </div>
+      </div>
+      <div class="expand-toggle" onclick="toggleExpand(this)">
+        Show 1 more items ▾
+      </div>
+      <div class="collapsed-items" style="display:none;">
+      <div class="card" id="c4-5">
+        <div class="card-top">
+          <div class="card-source">
+            <span class="source-name">Rishad Tobaccowala / The Future Does Not Fit In The Containers Of The Past</span>
+          </div>
+          <div class="card-actions">
+            <button class="action-btn save-btn" onclick="toggleSave('c4-5', 'Human Orchestration as Editorial Differentiator in an AI-Saturated Workflow', 'Rishad Tobaccowala / The Future Does Not Fit In The Containers Of The Past')">⊕ Save</button>
+            <button class="action-btn" onclick="toggleAnnotation('c4-5-ann')">✎ Note</button>
+            <button class="action-btn" onclick="toggleFollowup('c4-5-fu')">Ask →</button>
+          </div>
+        </div>
+        <div class="card-title"><a href="https://rishad.substack.com/p/silicon-and-soul-be-the-most-human" target="_blank">Human Orchestration as Editorial Differentiator in an AI-Saturated Workflow</a></div>
+        <div class="card-body">Rishad Tobaccowala, longtime advertising and media strategist, makes the familiar 'AI informs, humans lead' argument but grounds it usefully in the specific context of rooms and alignment — the moments where editorial and creative direction actually get decided. Less a research finding than a reframe: as AI takes over the notes and the synthesis, the competitive advantage shifts to whoever can orchestrate the human response to that output. For content strategy teams, it's a useful lens on where to concentrate human investment as workflows automate.</div>
+        <div class="annotation-area" id="c4-5-ann">
+          <div class="annotation-label">Your note</div>
+          <textarea class="annotation-input" placeholder="Add a note..."></textarea>
+          <button class="annotation-save" onclick="saveAnnotation(this, 'c4-5-ann')">Save note</button>
+        </div>
+        <div class="followup-area" id="c4-5-fu">
+          <div class="convo-thread"></div>
+          <div class="followup-row">
+            <input class="followup-input" placeholder="Ask a follow-up question..." onkeydown="if(event.key==='Enter'){submitFollowup(this.nextElementSibling,'c4-5-fu')}" />
+            <button class="followup-submit" onclick="submitFollowup(this, 'c4-5-fu')">Ask Claude</button>
+          </div>
+          <button class="convo-clear" onclick="clearConversation('c4-5-fu')">clear conversation</button>
+        </div>
+      </div>
+      </div>
+      
+    </section>
+    <section class="section" id="s5">
+      <div class="section-header">
+        <span class="section-num">05</span>
+        <span class="section-title">Podcast & Video Platform News</span>
+        <span class="section-tag tag-c3">Film + Podcast</span>
+      </div>
+      
+      
+      <div class="card" id="c5-1">
+        <div class="card-top">
+          <div class="card-source">
+            <span class="source-name">Media War &amp; Peace (Evan Shapiro / Substack)</span>
+          </div>
+          <div class="card-actions">
+            <button class="action-btn save-btn" onclick="toggleSave('c5-1', 'The Map Forks: Evan Shapiro\'s Media Universe Map Charts the Affinity Economy Divide', 'Media War & Peace (Evan Shapiro / Substack)')">⊕ Save</button>
+            <button class="action-btn" onclick="toggleAnnotation('c5-1-ann')">✎ Note</button>
+            <button class="action-btn" onclick="toggleFollowup('c5-1-fu')">Ask →</button>
+          </div>
+        </div>
+        <div class="card-title"><a href="https://eshap.substack.com/p/the-map-forks" target="_blank">The Map Forks: Evan Shapiro's Media Universe Map Charts the Affinity Economy Divide</a></div>
+        <div class="card-body">Shapiro — Emmy and Peabody-winning producer turned media cartographer, whose maps are cited by executives and universities alike — drops his April 2026 Media Universe Map with a pointed argument: the industry has hit a fork. Path one is the familiar Hollywood playbook of scale-via-merger (he names the Paramount-WBD $111B debt pile as exhibit A). Path two is the Affinity Economy — mainstream media thinking like creators, creators building like studios, with depth of fandom replacing raw reach as the operative metric. The map tracks Netflix, Spotify, WBD, Paramount, NVIDIA, OpenAI, Samsung, Walmart, The Trade Desk, and Omnicom. For TBC clients: the fandom-depth argument is a direct brief for the kind of editorial strategy TBC builds — the distinction between platforms that capture attention and ones that cultivate it.<br><br><em style="color:var(--ink-light);font-size:13px">Netflix, Spotify</em></div>
+        <div class="annotation-area" id="c5-1-ann">
+          <div class="annotation-label">Your note</div>
+          <textarea class="annotation-input" placeholder="Add a note..."></textarea>
+          <button class="annotation-save" onclick="saveAnnotation(this, 'c5-1-ann')">Save note</button>
+        </div>
+        <div class="followup-area" id="c5-1-fu">
+          <div class="convo-thread"></div>
+          <div class="followup-row">
+            <input class="followup-input" placeholder="Ask a follow-up question..." onkeydown="if(event.key==='Enter'){submitFollowup(this.nextElementSibling,'c5-1-fu')}" />
+            <button class="followup-submit" onclick="submitFollowup(this, 'c5-1-fu')">Ask Claude</button>
+          </div>
+          <button class="convo-clear" onclick="clearConversation('c5-1-fu')">clear conversation</button>
+        </div>
+      </div>
+      <div class="card" id="c5-2">
+        <div class="card-top">
+          <div class="card-source">
+            <span class="source-name">Deadline / Music Business Worldwide / Spotify Newsroom</span>
+          </div>
+          <div class="card-actions">
+            <button class="action-btn save-btn" onclick="toggleSave('c5-2', 'Netflix + Spotify Video Podcast Partnership Now Live in the U.S.', 'Deadline / Music Business Worldwide / Spotify Newsroom')">⊕ Save</button>
+            <button class="action-btn" onclick="toggleAnnotation('c5-2-ann')">✎ Note</button>
+            <button class="action-btn" onclick="toggleFollowup('c5-2-fu')">Ask →</button>
+          </div>
+        </div>
+        <div class="card-title"><a href="https://deadline.com/2025/10/netflix-video-podcast-deal-spotify-bill-simmons-1236584556/" target="_blank">Netflix + Spotify Video Podcast Partnership Now Live in the U.S.</a></div>
+        <div class="card-body">The Spotify–Netflix video podcast deal — announced in October 2025 — has begun its U.S. rollout in early 2026, with 16 shows from Spotify Studios and The Ringer (including The Bill Simmons Podcast, The Rewatchables, Dissect, and several Ringer sports titles) now streaming on both platforms simultaneously, not as exclusives. TechCrunch reported that video podcast consumption is growing 20x faster than audio-only content, and Spotify confirmed video podcast revenue jumped 300% after its Partner Program launch. The deal is structurally significant: it pulls The Ringer's catalog off YouTube, where those shows drew hundreds of thousands of views, and routes that attention into a dual-platform model. For TBC, this redraws the distribution map for creator-adjacent content — and raises the question of what premium editorial voice is worth to a streaming platform hungry for recurring engagement.<br><br><em style="color:var(--ink-light);font-size:13px">Netflix, Spotify</em></div>
+        <div class="annotation-area" id="c5-2-ann">
+          <div class="annotation-label">Your note</div>
+          <textarea class="annotation-input" placeholder="Add a note..."></textarea>
+          <button class="annotation-save" onclick="saveAnnotation(this, 'c5-2-ann')">Save note</button>
+        </div>
+        <div class="followup-area" id="c5-2-fu">
+          <div class="convo-thread"></div>
+          <div class="followup-row">
+            <input class="followup-input" placeholder="Ask a follow-up question..." onkeydown="if(event.key==='Enter'){submitFollowup(this.nextElementSibling,'c5-2-fu')}" />
+            <button class="followup-submit" onclick="submitFollowup(this, 'c5-2-fu')">Ask Claude</button>
+          </div>
+          <button class="convo-clear" onclick="clearConversation('c5-2-fu')">clear conversation</button>
+        </div>
+      </div>
+      <div class="card" id="c5-3">
+        <div class="card-top">
+          <div class="card-source">
+            <span class="source-name">TechCrunch</span>
+          </div>
+          <div class="card-actions">
+            <button class="action-btn save-btn" onclick="toggleSave('c5-3', 'YouTube Goes All-In on the Living Room — Interactive TV Features Signal Platform Shift', 'TechCrunch')">⊕ Save</button>
+            <button class="action-btn" onclick="toggleAnnotation('c5-3-ann')">✎ Note</button>
+            <button class="action-btn" onclick="toggleFollowup('c5-3-fu')">Ask →</button>
+          </div>
+        </div>
+        <div class="card-title"><a href="https://techcrunch.com/2026/04/08/as-youtube-grows-on-tv-it-eyes-more-interactive-video-across-formats/" target="_blank">YouTube Goes All-In on the Living Room — Interactive TV Features Signal Platform Shift</a></div>
+        <div class="card-body">TechCrunch's April 8 report — sourced from a wave of new YouTube job listings — documents a concerted push toward interactive TV experiences: AI-powered voice search on TVs, a second-screen 'TV Companion' feature, 24/7 linear 'Stations,' and interactive Shorts on the big screen. The data underneath this is striking: connected TVs now account for over 44% of YouTube watch time in the U.S., and YouTube commands 12.5% of all TV viewing. The platform is no longer a mobile-first UGC library — it's becoming a living room OS. For TBC clients building content strategy on YouTube, the lean-back viewing context is changing what formats and editorial rhythms actually perform.<br><br><em style="color:var(--ink-light);font-size:13px">YouTube</em></div>
+        <div class="annotation-area" id="c5-3-ann">
+          <div class="annotation-label">Your note</div>
+          <textarea class="annotation-input" placeholder="Add a note..."></textarea>
+          <button class="annotation-save" onclick="saveAnnotation(this, 'c5-3-ann')">Save note</button>
+        </div>
+        <div class="followup-area" id="c5-3-fu">
+          <div class="convo-thread"></div>
+          <div class="followup-row">
+            <input class="followup-input" placeholder="Ask a follow-up question..." onkeydown="if(event.key==='Enter'){submitFollowup(this.nextElementSibling,'c5-3-fu')}" />
+            <button class="followup-submit" onclick="submitFollowup(this, 'c5-3-fu')">Ask Claude</button>
+          </div>
+          <button class="convo-clear" onclick="clearConversation('c5-3-fu')">clear conversation</button>
+        </div>
+      </div>
+      <div class="card" id="c5-4">
+        <div class="card-top">
+          <div class="card-source">
+            <span class="source-name">TechCrunch / Spotify Newsroom</span>
+          </div>
+          <div class="card-actions">
+            <button class="action-btn save-btn" onclick="toggleSave('c5-4', 'Spotify\'s AI-Prompted Playlists Expand to Podcasts — Discovery Mechanism Gets a New Axis', 'TechCrunch / Spotify Newsroom')">⊕ Save</button>
+            <button class="action-btn" onclick="toggleAnnotation('c5-4-ann')">✎ Note</button>
+            <button class="action-btn" onclick="toggleFollowup('c5-4-fu')">Ask →</button>
+          </div>
+        </div>
+        <div class="card-title"><a href="https://techcrunch.com/2026/04/07/spotifys-prompted-playlist-feature-will-now-work-for-podcasts-too/" target="_blank">Spotify's AI-Prompted Playlists Expand to Podcasts — Discovery Mechanism Gets a New Axis</a></div>
+        <div class="card-body">Spotify's Prompted Playlist feature — which lets Premium users steer the algorithm using natural language prompts — now includes podcasts alongside music, rolling out April 7 to users in the U.S., Canada, U.K., Ireland, Australia, New Zealand, and Sweden. Each episode in the AI-generated playlist includes a note explaining why it landed there. With 34 million podcasts discovered for the first time on Spotify every week, the feature is as much a back-catalog amplification tool as a discovery engine. Crucially, Prompted Playlist enriches the intent signals flowing into Spotify's programmatic ad infrastructure — the same ad exchange that reached 170 million listeners across 12 markets by mid-2025. For TBC clients in the podcast space, this is a meaningful new surface for editorial discoverability, particularly for catalog content that doesn't benefit from new-episode algorithmic bumps.<br><br><em style="color:var(--ink-light);font-size:13px">Spotify</em></div>
+        <div class="annotation-area" id="c5-4-ann">
+          <div class="annotation-label">Your note</div>
+          <textarea class="annotation-input" placeholder="Add a note..."></textarea>
+          <button class="annotation-save" onclick="saveAnnotation(this, 'c5-4-ann')">Save note</button>
+        </div>
+        <div class="followup-area" id="c5-4-fu">
+          <div class="convo-thread"></div>
+          <div class="followup-row">
+            <input class="followup-input" placeholder="Ask a follow-up question..." onkeydown="if(event.key==='Enter'){submitFollowup(this.nextElementSibling,'c5-4-fu')}" />
+            <button class="followup-submit" onclick="submitFollowup(this, 'c5-4-fu')">Ask Claude</button>
+          </div>
+          <button class="convo-clear" onclick="clearConversation('c5-4-fu')">clear conversation</button>
+        </div>
+      </div>
+      <div class="expand-toggle" onclick="toggleExpand(this)">
+        Show 6 more items ▾
+      </div>
+      <div class="collapsed-items" style="display:none;">
+      <div class="card" id="c5-5">
+        <div class="card-top">
+          <div class="card-source">
+            <span class="source-name">9to5Google / LiveNOW from FOX</span>
+          </div>
+          <div class="card-actions">
+            <button class="action-btn save-btn" onclick="toggleSave('c5-5', 'YouTube Premium Price Hike — $2/Month Increase Is the Platform\'s First in Three Years', '9to5Google / LiveNOW from FOX')">⊕ Save</button>
+            <button class="action-btn" onclick="toggleAnnotation('c5-5-ann')">✎ Note</button>
+            <button class="action-btn" onclick="toggleFollowup('c5-5-fu')">Ask →</button>
+          </div>
+        </div>
+        <div class="card-title"><a href="https://9to5google.com/2026/04/12/youtube-premium-price-hike-2/" target="_blank">YouTube Premium Price Hike — $2/Month Increase Is the Platform's First in Three Years</a></div>
+        <div class="card-body">YouTube confirmed a $2/month price increase for all Premium plans — its first hike in roughly three years. 9to5Google's April 12 commentary makes an interesting case: unlike Netflix or Spotify, YouTube's value proposition is defensible because it transparently and directly pays creators, making the price hike feel more like infrastructure cost-sharing than margin extraction. Part of a broader 2026 streaming price hike wave hitting Netflix, Spotify, Paramount+, and Crunchyroll in the same cycle.<br><br><em style="color:var(--ink-light);font-size:13px">YouTube</em></div>
+        <div class="annotation-area" id="c5-5-ann">
+          <div class="annotation-label">Your note</div>
+          <textarea class="annotation-input" placeholder="Add a note..."></textarea>
+          <button class="annotation-save" onclick="saveAnnotation(this, 'c5-5-ann')">Save note</button>
+        </div>
+        <div class="followup-area" id="c5-5-fu">
+          <div class="convo-thread"></div>
+          <div class="followup-row">
+            <input class="followup-input" placeholder="Ask a follow-up question..." onkeydown="if(event.key==='Enter'){submitFollowup(this.nextElementSibling,'c5-5-fu')}" />
+            <button class="followup-submit" onclick="submitFollowup(this, 'c5-5-fu')">Ask Claude</button>
+          </div>
+          <button class="convo-clear" onclick="clearConversation('c5-5-fu')">clear conversation</button>
+        </div>
+      </div>
+      <div class="card" id="c5-6">
+        <div class="card-top">
+          <div class="card-source">
+            <span class="source-name">TV Guide / Tom's Guide</span>
+          </div>
+          <div class="card-actions">
+            <button class="action-btn save-btn" onclick="toggleSave('c5-6', 'Prime Video\'s The Boys Final Season Premieres April 8 — Biggest Cultural Moment for the Platform This Month', 'TV Guide / Tom\'s Guide')">⊕ Save</button>
+            <button class="action-btn" onclick="toggleAnnotation('c5-6-ann')">✎ Note</button>
+            <button class="action-btn" onclick="toggleFollowup('c5-6-fu')">Ask →</button>
+          </div>
+        </div>
+        <div class="card-title"><a href="https://www.tvguide.com/news/ultimate-guide-what-to-watch-netflix-hulu-prime-video-hbo-max-april-2026/" target="_blank">Prime Video's The Boys Final Season Premieres April 8 — Biggest Cultural Moment for the Platform This Month</a></div>
+        <div class="card-body">The fifth and final season of The Boys landed on Prime Video April 8 — TV Guide calls it the platform's biggest April release by some margin. Also arriving on Prime this month: the animated series Kevin, American Gladiators, and the Balls Up comedy film. For streaming platform content teams, the final-season event model remains a reliable engagement spike, and The Boys' satirical register has demonstrated unusually high social amplification per episode.<br><br><em style="color:var(--ink-light);font-size:13px">Amazon Prime Video</em></div>
+        <div class="annotation-area" id="c5-6-ann">
+          <div class="annotation-label">Your note</div>
+          <textarea class="annotation-input" placeholder="Add a note..."></textarea>
+          <button class="annotation-save" onclick="saveAnnotation(this, 'c5-6-ann')">Save note</button>
+        </div>
+        <div class="followup-area" id="c5-6-fu">
+          <div class="convo-thread"></div>
+          <div class="followup-row">
+            <input class="followup-input" placeholder="Ask a follow-up question..." onkeydown="if(event.key==='Enter'){submitFollowup(this.nextElementSibling,'c5-6-fu')}" />
+            <button class="followup-submit" onclick="submitFollowup(this, 'c5-6-fu')">Ask Claude</button>
+          </div>
+          <button class="convo-clear" onclick="clearConversation('c5-6-fu')">clear conversation</button>
+        </div>
+      </div>
+      <div class="card" id="c5-7">
+        <div class="card-top">
+          <div class="card-source">
+            <span class="source-name">Tom's Guide</span>
+          </div>
+          <div class="card-actions">
+            <button class="action-btn save-btn" onclick="toggleSave('c5-7', 'Apple TV+ April Slate: Outcome, Margo\'s Got Money Troubles, and Widow\'s Bay Anchor a Strong Month', 'Tom\'s Guide')">⊕ Save</button>
+            <button class="action-btn" onclick="toggleAnnotation('c5-7-ann')">✎ Note</button>
+            <button class="action-btn" onclick="toggleFollowup('c5-7-fu')">Ask →</button>
+          </div>
+        </div>
+        <div class="card-title"><a href="https://www.tomsguide.com/entertainment/apple-tv/everything-new-on-apple-tv-in-april-2026" target="_blank">Apple TV+ April Slate: Outcome, Margo's Got Money Troubles, and Widow's Bay Anchor a Strong Month</a></div>
+        <div class="card-body">Apple TV+ is running a notably star-dense April: Keanu Reeves and Cameron Diaz in Jonah Hill's Outcome (April 10), Elle Fanning in David E. Kelley's comedic series Margo's Got Money Troubles (April 15), and Matthew Rhys in the horror-comedy Widow's Bay (April 29). Jon Hamm's Friends &amp; Neighbors returns for Season 2. Solid originals slate — reinforces Apple's pattern of prestige casting over volume.<br><br><em style="color:var(--ink-light);font-size:13px">Apple TV+</em></div>
+        <div class="annotation-area" id="c5-7-ann">
+          <div class="annotation-label">Your note</div>
+          <textarea class="annotation-input" placeholder="Add a note..."></textarea>
+          <button class="annotation-save" onclick="saveAnnotation(this, 'c5-7-ann')">Save note</button>
+        </div>
+        <div class="followup-area" id="c5-7-fu">
+          <div class="convo-thread"></div>
+          <div class="followup-row">
+            <input class="followup-input" placeholder="Ask a follow-up question..." onkeydown="if(event.key==='Enter'){submitFollowup(this.nextElementSibling,'c5-7-fu')}" />
+            <button class="followup-submit" onclick="submitFollowup(this, 'c5-7-fu')">Ask Claude</button>
+          </div>
+          <button class="convo-clear" onclick="clearConversation('c5-7-fu')">clear conversation</button>
+        </div>
+      </div>
+      <div class="card" id="c5-8">
+        <div class="card-top">
+          <div class="card-source">
+            <span class="source-name">Spotify Newsroom</span>
+          </div>
+          <div class="card-actions">
+            <button class="action-btn save-btn" onclick="toggleSave('c5-8', 'Spotify First-Ever French Podcast Awards Draw 750,000+ Fan Votes', 'Spotify Newsroom')">⊕ Save</button>
+            <button class="action-btn" onclick="toggleAnnotation('c5-8-ann')">✎ Note</button>
+            <button class="action-btn" onclick="toggleFollowup('c5-8-fu')">Ask →</button>
+          </div>
+        </div>
+        <div class="card-title"><a href="https://newsroom.spotify.com/2026-04-10/podcast-awards-paris/" target="_blank">Spotify First-Ever French Podcast Awards Draw 750,000+ Fan Votes</a></div>
+        <div class="card-body">Spotify brought its fan-voted Podcast Awards to France for the first time on April 10, hosting 800 creators and 400 fans at the Grand Rex in Paris. Listeners cast over 750,000 votes across 11 categories. France streamed podcasts for 208 million hours on Spotify in 2025. The awards expansion — following Mexico last year — signals Spotify's intent to build local podcast culture infrastructure market by market.<br><br><em style="color:var(--ink-light);font-size:13px">Spotify</em></div>
+        <div class="annotation-area" id="c5-8-ann">
+          <div class="annotation-label">Your note</div>
+          <textarea class="annotation-input" placeholder="Add a note..."></textarea>
+          <button class="annotation-save" onclick="saveAnnotation(this, 'c5-8-ann')">Save note</button>
+        </div>
+        <div class="followup-area" id="c5-8-fu">
+          <div class="convo-thread"></div>
+          <div class="followup-row">
+            <input class="followup-input" placeholder="Ask a follow-up question..." onkeydown="if(event.key==='Enter'){submitFollowup(this.nextElementSibling,'c5-8-fu')}" />
+            <button class="followup-submit" onclick="submitFollowup(this, 'c5-8-fu')">Ask Claude</button>
+          </div>
+          <button class="convo-clear" onclick="clearConversation('c5-8-fu')">clear conversation</button>
+        </div>
+      </div>
+      <div class="card" id="c5-9">
+        <div class="card-top">
+          <div class="card-source">
+            <span class="source-name">TV Guide / Rotten Tomatoes</span>
+          </div>
+          <div class="card-actions">
+            <button class="action-btn save-btn" onclick="toggleSave('c5-9', 'Netflix April Content Highlights: Beef Season 2, Stranger Things: Tales From \'85, and Big Mistakes', 'TV Guide / Rotten Tomatoes')">⊕ Save</button>
+            <button class="action-btn" onclick="toggleAnnotation('c5-9-ann')">✎ Note</button>
+            <button class="action-btn" onclick="toggleFollowup('c5-9-fu')">Ask →</button>
+          </div>
+        </div>
+        <div class="card-title"><a href="https://www.tvguide.com/news/ultimate-guide-what-to-watch-netflix-hulu-prime-video-hbo-max-april-2026/" target="_blank">Netflix April Content Highlights: Beef Season 2, Stranger Things: Tales From '85, and Big Mistakes</a></div>
+        <div class="card-body">Netflix's April slate includes Beef Season 2 (now confirmed as an anthology, with Oscar Isaac, Carey Mulligan, and Cailee Spaeny), the thriller Big Mistakes (April 9), and Stranger Things: Tales From '85 arriving April 23. A busy content month — the Beef anthology model is worth watching as a format signal for how prestige IP gets extended without sequel obligations.<br><br><em style="color:var(--ink-light);font-size:13px">Netflix</em></div>
+        <div class="annotation-area" id="c5-9-ann">
+          <div class="annotation-label">Your note</div>
+          <textarea class="annotation-input" placeholder="Add a note..."></textarea>
+          <button class="annotation-save" onclick="saveAnnotation(this, 'c5-9-ann')">Save note</button>
+        </div>
+        <div class="followup-area" id="c5-9-fu">
+          <div class="convo-thread"></div>
+          <div class="followup-row">
+            <input class="followup-input" placeholder="Ask a follow-up question..." onkeydown="if(event.key==='Enter'){submitFollowup(this.nextElementSibling,'c5-9-fu')}" />
+            <button class="followup-submit" onclick="submitFollowup(this, 'c5-9-fu')">Ask Claude</button>
+          </div>
+          <button class="convo-clear" onclick="clearConversation('c5-9-fu')">clear conversation</button>
+        </div>
+      </div>
+      <div class="card" id="c5-10">
+        <div class="card-top">
+          <div class="card-source">
+            <span class="source-name">The Orchard / Daily Rind Blog</span>
+          </div>
+          <div class="card-actions">
+            <button class="action-btn save-btn" onclick="toggleSave('c5-10', 'YouTube 2026 Creator Feature Rollout: Collaboration Tags, A/B Testing, and Side-by-Side Livestream Ads', 'The Orchard / Daily Rind Blog')">⊕ Save</button>
+            <button class="action-btn" onclick="toggleAnnotation('c5-10-ann')">✎ Note</button>
+            <button class="action-btn" onclick="toggleFollowup('c5-10-fu')">Ask →</button>
+          </div>
+        </div>
+        <div class="card-title"><a href="https://www.dailyrindblog.com/new-youtube-features-2026/" target="_blank">YouTube 2026 Creator Feature Rollout: Collaboration Tags, A/B Testing, and Side-by-Side Livestream Ads</a></div>
+        <div class="card-body">The Orchard's April 8 breakdown of YouTube's 2026 creator updates covers: on-video collaboration credits (similar to TikTok/Instagram co-author tags), A/B testing for titles and thumbnails now available to all eligible creators, side-by-side ads for livestreams, and auto-highlight Shorts from mobile streams. Incremental but practical — the collaboration tag feature in particular is a real discoverability lever for emerging artists and label content teams.<br><br><em style="color:var(--ink-light);font-size:13px">YouTube</em></div>
+        <div class="annotation-area" id="c5-10-ann">
+          <div class="annotation-label">Your note</div>
+          <textarea class="annotation-input" placeholder="Add a note..."></textarea>
+          <button class="annotation-save" onclick="saveAnnotation(this, 'c5-10-ann')">Save note</button>
+        </div>
+        <div class="followup-area" id="c5-10-fu">
+          <div class="convo-thread"></div>
+          <div class="followup-row">
+            <input class="followup-input" placeholder="Ask a follow-up question..." onkeydown="if(event.key==='Enter'){submitFollowup(this.nextElementSibling,'c5-10-fu')}" />
+            <button class="followup-submit" onclick="submitFollowup(this, 'c5-10-fu')">Ask Claude</button>
+          </div>
+          <button class="convo-clear" onclick="clearConversation('c5-10-fu')">clear conversation</button>
+        </div>
+      </div>
+      </div>
+      
+    </section>
+    <section class="section" id="s7">
+      <div class="section-header">
+        <span class="section-num">07</span>
+        <span class="section-title">AI Product News</span>
+        <span class="section-tag tag-c2">AI</span>
+      </div>
+      
+      
+      <div class="card" id="c7-1">
+        <div class="card-top">
+          <div class="card-source">
+            <span class="source-name">Anthropic / NBC News / Financial Times</span>
+          </div>
+          <div class="card-actions">
+            <button class="action-btn save-btn" onclick="toggleSave('c7-1', 'Anthropic\'s Claude Mythos Preview: Too Dangerous to Release', 'Anthropic / NBC News / Financial Times')">⊕ Save</button>
+            <button class="action-btn" onclick="toggleAnnotation('c7-1-ann')">✎ Note</button>
+            <button class="action-btn" onclick="toggleFollowup('c7-1-fu')">Ask →</button>
+          </div>
+        </div>
+        <div class="card-title"><a href="https://www.nbcnews.com/tech/security/anthropic-project-glasswing-mythos-preview-claude-gets-limited-release-rcna267234" target="_blank">Anthropic's Claude Mythos Preview: Too Dangerous to Release</a></div>
+        <div class="card-body">On April 7, Anthropic announced its most capable model ever — and simultaneously declared the public can't have it. Claude Mythos Preview scored 93.9% on SWE-bench Verified and autonomously discovered zero-day exploits across every major OS and browser, including a 27-year-old OpenBSD bug. Rather than a public launch, Anthropic is deploying it exclusively through Project Glasswing — a 50-plus org defensive cybersecurity consortium including AWS, Apple, Google, Microsoft, and CrowdStrike — with over $100M in usage credits. It's the first time a leading AI lab has publicly withheld a frontier model over safety concerns since OpenAI held back GPT-2 in 2019. The decision is already reframing the competitive narrative: Anthropic gets to be the responsible adult in the room while generating enormous attention for a model nobody can use.</div>
+        <div class="annotation-area" id="c7-1-ann">
+          <div class="annotation-label">Your note</div>
+          <textarea class="annotation-input" placeholder="Add a note..."></textarea>
+          <button class="annotation-save" onclick="saveAnnotation(this, 'c7-1-ann')">Save note</button>
+        </div>
+        <div class="followup-area" id="c7-1-fu">
+          <div class="convo-thread"></div>
+          <div class="followup-row">
+            <input class="followup-input" placeholder="Ask a follow-up question..." onkeydown="if(event.key==='Enter'){submitFollowup(this.nextElementSibling,'c7-1-fu')}" />
+            <button class="followup-submit" onclick="submitFollowup(this, 'c7-1-fu')">Ask Claude</button>
+          </div>
+          <button class="convo-clear" onclick="clearConversation('c7-1-fu')">clear conversation</button>
+        </div>
+      </div>
+      <div class="card" id="c7-2">
+        <div class="card-top">
+          <div class="card-source">
+            <span class="source-name">Reuters / Financial Times / Global Banking and Finance</span>
+          </div>
+          <div class="card-actions">
+            <button class="action-btn save-btn" onclick="toggleSave('c7-2', 'Global Regulators Scramble: US Treasury, Fed, UK Financial Watchdogs Convene Emergency Meetings Over Claude Mythos', 'Reuters / Financial Times / Global Banking and Finance')">⊕ Save</button>
+            <button class="action-btn" onclick="toggleAnnotation('c7-2-ann')">✎ Note</button>
+            <button class="action-btn" onclick="toggleFollowup('c7-2-fu')">Ask →</button>
+          </div>
+        </div>
+        <div class="card-title"><a href="https://www.globalbankingandfinance.com/uk-financial-regulators-rush-assess-risks-anthropic-latest/" target="_blank">Global Regulators Scramble: US Treasury, Fed, UK Financial Watchdogs Convene Emergency Meetings Over Claude Mythos</a></div>
+        <div class="card-body">The Claude Mythos Preview release triggered coordinated emergency responses across three countries within days of its April 7 announcement. On April 10, US Treasury Secretary Scott Bessent and Fed Chair Jerome Powell convened Wall Street CEOs to warn of systemic cyber risks. The Bank of England, FCA, HM Treasury, and the NCSC are now holding urgent talks, with British banks, insurers, and exchanges to be briefed within the fortnight. The Bank of Canada convened major lenders separately. Per the Financial Times, this marks a decisive shift — regulators are no longer governing AI use after the fact; they're treating frontier model capability as a live systemic financial risk. The European Commission publicly backed Anthropic's decision to delay general release.</div>
+        <div class="annotation-area" id="c7-2-ann">
+          <div class="annotation-label">Your note</div>
+          <textarea class="annotation-input" placeholder="Add a note..."></textarea>
+          <button class="annotation-save" onclick="saveAnnotation(this, 'c7-2-ann')">Save note</button>
+        </div>
+        <div class="followup-area" id="c7-2-fu">
+          <div class="convo-thread"></div>
+          <div class="followup-row">
+            <input class="followup-input" placeholder="Ask a follow-up question..." onkeydown="if(event.key==='Enter'){submitFollowup(this.nextElementSibling,'c7-2-fu')}" />
+            <button class="followup-submit" onclick="submitFollowup(this, 'c7-2-fu')">Ask Claude</button>
+          </div>
+          <button class="convo-clear" onclick="clearConversation('c7-2-fu')">clear conversation</button>
+        </div>
+      </div>
+      <div class="card" id="c7-3">
+        <div class="card-top">
+          <div class="card-source">
+            <span class="source-name">The Founders Corner / StartupHub.ai / CoinCentral</span>
+          </div>
+          <div class="card-actions">
+            <button class="action-btn save-btn" onclick="toggleSave('c7-3', 'OpenAI\'s Leaked Cap Table: Sam Altman Owns Nothing, SoftBank Up $50B, OpenAI Foundation Holds Infinity-Return Stake', 'The Founders Corner / StartupHub.ai / CoinCentral')">⊕ Save</button>
+            <button class="action-btn" onclick="toggleAnnotation('c7-3-ann')">✎ Note</button>
+            <button class="action-btn" onclick="toggleFollowup('c7-3-fu')">Ask →</button>
+          </div>
+        </div>
+        <div class="card-title"><a href="https://www.the-founders-corner.com/p/the-852-billion-secret-that-just" target="_blank">OpenAI's Leaked Cap Table: Sam Altman Owns Nothing, SoftBank Up $50B, OpenAI Foundation Holds Infinity-Return Stake</a></div>
+        <div class="card-body">A reconstructed OpenAI cap table circulating since early April (originally posted on X by investor Sheel Mohnot) revealed the full ownership structure of the $852B post-money company. The headline: CEO Sam Altman's equity row reads &quot;None/Pending&quot; — his grant is unresolved pending PBC conversion. Microsoft invested $13B and holds ~$228B (17.6x). SoftBank committed $64.6B for 11.75% and is sitting on ~$50B in unrealized gains. The OpenAI Foundation holds 25.8% at zero cost basis — an infinity return multiple — while controlling 100% of board appointments. Early 2015 angels are looking at ~140x. IPO is targeting Q4 2026 at a potential $1 trillion valuation, where Altman's equity situation is widely expected to be resolved.</div>
+        <div class="annotation-area" id="c7-3-ann">
+          <div class="annotation-label">Your note</div>
+          <textarea class="annotation-input" placeholder="Add a note..."></textarea>
+          <button class="annotation-save" onclick="saveAnnotation(this, 'c7-3-ann')">Save note</button>
+        </div>
+        <div class="followup-area" id="c7-3-fu">
+          <div class="convo-thread"></div>
+          <div class="followup-row">
+            <input class="followup-input" placeholder="Ask a follow-up question..." onkeydown="if(event.key==='Enter'){submitFollowup(this.nextElementSibling,'c7-3-fu')}" />
+            <button class="followup-submit" onclick="submitFollowup(this, 'c7-3-fu')">Ask Claude</button>
+          </div>
+          <button class="convo-clear" onclick="clearConversation('c7-3-fu')">clear conversation</button>
+        </div>
+      </div>
+      <div class="card" id="c7-4">
+        <div class="card-top">
+          <div class="card-source">
+            <span class="source-name">SiliconAngle / PYMNTS / Data Center Knowledge</span>
+          </div>
+          <div class="card-actions">
+            <button class="action-btn save-btn" onclick="toggleSave('c7-4', 'Anthropic Launches Claude Managed Agents: The Infrastructure Tax on AI Agents Is Over', 'SiliconAngle / PYMNTS / Data Center Knowledge')">⊕ Save</button>
+            <button class="action-btn" onclick="toggleAnnotation('c7-4-ann')">✎ Note</button>
+            <button class="action-btn" onclick="toggleFollowup('c7-4-fu')">Ask →</button>
+          </div>
+        </div>
+        <div class="card-title"><a href="https://siliconangle.com/2026/04/08/anthropic-launches-claude-managed-agents-speed-ai-agent-development/" target="_blank">Anthropic Launches Claude Managed Agents: The Infrastructure Tax on AI Agents Is Over</a></div>
+        <div class="card-body">Anthropic launched Claude Managed Agents in public beta on April 8, bundling sandboxing, state management, permissions, and error recovery into a hosted $0.08/session-hour service — eliminating the infrastructure work that has blocked most enterprise agent deployments. Early customers Notion, Rakuten, Sentry, and Asana are already in production. Anthropic reports task success rates jumping up to 10 percentage points on complex multi-step workflows. PYMNTS notes this signals Anthropic's move up the stack from model provider to execution environment — raising switching costs and directly threatening the agent orchestration startup category that attracted $2.8B in VC in H1 2025 alone. Anthropic hit a $30B annualized revenue run rate this month.</div>
+        <div class="annotation-area" id="c7-4-ann">
+          <div class="annotation-label">Your note</div>
+          <textarea class="annotation-input" placeholder="Add a note..."></textarea>
+          <button class="annotation-save" onclick="saveAnnotation(this, 'c7-4-ann')">Save note</button>
+        </div>
+        <div class="followup-area" id="c7-4-fu">
+          <div class="convo-thread"></div>
+          <div class="followup-row">
+            <input class="followup-input" placeholder="Ask a follow-up question..." onkeydown="if(event.key==='Enter'){submitFollowup(this.nextElementSibling,'c7-4-fu')}" />
+            <button class="followup-submit" onclick="submitFollowup(this, 'c7-4-fu')">Ask Claude</button>
+          </div>
+          <button class="convo-clear" onclick="clearConversation('c7-4-fu')">clear conversation</button>
+        </div>
+      </div>
+      <div class="expand-toggle" onclick="toggleExpand(this)">
+        Show 8 more items ▾
+      </div>
+      <div class="collapsed-items" style="display:none;">
+      <div class="card" id="c7-5">
+        <div class="card-top">
+          <div class="card-source">
+            <span class="source-name">Lenny's Newsletter</span>
+          </div>
+          <div class="card-actions">
+            <button class="action-btn save-btn" onclick="toggleSave('c7-5', 'Keith Rabois (Khosla Ventures) on Why CMOs — Not Engineers — Will Become the Top AI Token Consumers', 'Lenny\'s Newsletter')">⊕ Save</button>
+            <button class="action-btn" onclick="toggleAnnotation('c7-5-ann')">✎ Note</button>
+            <button class="action-btn" onclick="toggleFollowup('c7-5-fu')">Ask →</button>
+          </div>
+        </div>
+        <div class="card-title"><a href="https://www.lennysnewsletter.com/p/hard-truths-about-building-in-the-ai-era" target="_blank">Keith Rabois (Khosla Ventures) on Why CMOs — Not Engineers — Will Become the Top AI Token Consumers</a></div>
+        <div class="card-body">In a wide-ranging conversation on Lenny's Newsletter, Khosla Ventures' Keith Rabois made a provocative prediction: CMOs — not engineers — are becoming the dominant consumers of AI tokens as content and marketing workflows absorb the most model output at scale. He also argued the PM role is dying, talking to customers actively harms consumer product development, and the three traits defining top-performing companies right now are distinct from the conventional wisdom. Relevant for TBC: the CMO-as-primary-AI-consumer thesis maps directly onto streaming platforms and labels scaling editorial and content operations through AI.</div>
+        <div class="annotation-area" id="c7-5-ann">
+          <div class="annotation-label">Your note</div>
+          <textarea class="annotation-input" placeholder="Add a note..."></textarea>
+          <button class="annotation-save" onclick="saveAnnotation(this, 'c7-5-ann')">Save note</button>
+        </div>
+        <div class="followup-area" id="c7-5-fu">
+          <div class="convo-thread"></div>
+          <div class="followup-row">
+            <input class="followup-input" placeholder="Ask a follow-up question..." onkeydown="if(event.key==='Enter'){submitFollowup(this.nextElementSibling,'c7-5-fu')}" />
+            <button class="followup-submit" onclick="submitFollowup(this, 'c7-5-fu')">Ask Claude</button>
+          </div>
+          <button class="convo-clear" onclick="clearConversation('c7-5-fu')">clear conversation</button>
+        </div>
+      </div>
+      <div class="card" id="c7-6">
+        <div class="card-top">
+          <div class="card-source">
+            <span class="source-name">CNBC / Axios / Meta AI Blog</span>
+          </div>
+          <div class="card-actions">
+            <button class="action-btn save-btn" onclick="toggleSave('c7-6', 'Meta Launches Muse Spark: First Model From Superintelligence Labs, Pivots From Open-Source', 'CNBC / Axios / Meta AI Blog')">⊕ Save</button>
+            <button class="action-btn" onclick="toggleAnnotation('c7-6-ann')">✎ Note</button>
+            <button class="action-btn" onclick="toggleFollowup('c7-6-fu')">Ask →</button>
+          </div>
+        </div>
+        <div class="card-title"><a href="https://www.cnbc.com/2026/04/08/meta-debuts-first-major-ai-model-since-14-billion-deal-to-bring-in-alexandr-wang.html" target="_blank">Meta Launches Muse Spark: First Model From Superintelligence Labs, Pivots From Open-Source</a></div>
+        <div class="card-body">Meta launched Muse Spark on April 8 — the first output from the Meta Superintelligence Labs unit built around Alexandr Wang after the $14.3B Scale AI deal. The model is proprietary (a sharp departure from the Llama open-source strategy), scores 52 on the Intelligence Index — trailing GPT-5.4 and Gemini 3.1 Pro (both at 57) but leading on HealthBench Hard — and is now live in the Meta AI app and meta.ai, with rollout planned for Instagram, Facebook, WhatsApp, Messenger, and Ray-Ban glasses. A Contemplating mode deploys parallel subagents for complex queries. Meta stock jumped ~10% over five trading days. Gartner called the open-source-to-proprietary shift a &quot;major strategic change.&quot; Wang's team rebuilt the entire AI stack from scratch over nine months.</div>
+        <div class="annotation-area" id="c7-6-ann">
+          <div class="annotation-label">Your note</div>
+          <textarea class="annotation-input" placeholder="Add a note..."></textarea>
+          <button class="annotation-save" onclick="saveAnnotation(this, 'c7-6-ann')">Save note</button>
+        </div>
+        <div class="followup-area" id="c7-6-fu">
+          <div class="convo-thread"></div>
+          <div class="followup-row">
+            <input class="followup-input" placeholder="Ask a follow-up question..." onkeydown="if(event.key==='Enter'){submitFollowup(this.nextElementSibling,'c7-6-fu')}" />
+            <button class="followup-submit" onclick="submitFollowup(this, 'c7-6-fu')">Ask Claude</button>
+          </div>
+          <button class="convo-clear" onclick="clearConversation('c7-6-fu')">clear conversation</button>
+        </div>
+      </div>
+      <div class="card" id="c7-7">
+        <div class="card-top">
+          <div class="card-source">
+            <span class="source-name">Crunchbase News</span>
+          </div>
+          <div class="card-actions">
+            <button class="action-btn save-btn" onclick="toggleSave('c7-7', 'Q1 2026 VC: $300B Raised, 80% AI, Four Deals Alone Account for 65% of Global Venture', 'Crunchbase News')">⊕ Save</button>
+            <button class="action-btn" onclick="toggleAnnotation('c7-7-ann')">✎ Note</button>
+            <button class="action-btn" onclick="toggleFollowup('c7-7-fu')">Ask →</button>
+          </div>
+        </div>
+        <div class="card-title"><a href="https://news.crunchbase.com/venture/record-breaking-funding-ai-global-q1-2026/" target="_blank">Q1 2026 VC: $300B Raised, 80% AI, Four Deals Alone Account for 65% of Global Venture</a></div>
+        <div class="card-body">Crunchbase data confirmed Q1 2026 as the largest venture quarter ever recorded — $300B across 6,000 startups globally, up 150%+ QoQ and YoY. Four megarounds (OpenAI $122B, Anthropic $30B, xAI $20B, Waymo $16B) absorbed $188B or 65% of global VC. Foundational AI startup funding in Q1 alone was double all of 2025. The IPO pipeline is building: OpenAI targets Q4 2026 at ~$1T, SpaceX filed confidentially at $1.75T on April 1. Context for downstream platform businesses: the scale of capital flowing into frontier labs is not slowing — it's accelerating.</div>
+        <div class="annotation-area" id="c7-7-ann">
+          <div class="annotation-label">Your note</div>
+          <textarea class="annotation-input" placeholder="Add a note..."></textarea>
+          <button class="annotation-save" onclick="saveAnnotation(this, 'c7-7-ann')">Save note</button>
+        </div>
+        <div class="followup-area" id="c7-7-fu">
+          <div class="convo-thread"></div>
+          <div class="followup-row">
+            <input class="followup-input" placeholder="Ask a follow-up question..." onkeydown="if(event.key==='Enter'){submitFollowup(this.nextElementSibling,'c7-7-fu')}" />
+            <button class="followup-submit" onclick="submitFollowup(this, 'c7-7-fu')">Ask Claude</button>
+          </div>
+          <button class="convo-clear" onclick="clearConversation('c7-7-fu')">clear conversation</button>
+        </div>
+      </div>
+      <div class="card" id="c7-8">
+        <div class="card-top">
+          <div class="card-source">
+            <span class="source-name">AI Funding Tracker</span>
+          </div>
+          <div class="card-actions">
+            <button class="action-btn save-btn" onclick="toggleSave('c7-8', 'Reflection AI in Talks to Raise $2.5B at $25B Valuation as America\'s Open-Source Answer to DeepSeek', 'AI Funding Tracker')">⊕ Save</button>
+            <button class="action-btn" onclick="toggleAnnotation('c7-8-ann')">✎ Note</button>
+            <button class="action-btn" onclick="toggleFollowup('c7-8-fu')">Ask →</button>
+          </div>
+        </div>
+        <div class="card-title"><a href="https://aifundingtracker.com/ai-startup-funding-news-today/" target="_blank">Reflection AI in Talks to Raise $2.5B at $25B Valuation as America's Open-Source Answer to DeepSeek</a></div>
+        <div class="card-body">Nvidia-backed Reflection AI entered fundraising talks targeting $2.5B at a $25B valuation, explicitly positioning itself as the US open-source challenger to DeepSeek. If it closes, it would be one of the largest frontier model raises outside the top-four labs — and a signal that the open-weight model race is becoming a geopolitical funding priority.</div>
+        <div class="annotation-area" id="c7-8-ann">
+          <div class="annotation-label">Your note</div>
+          <textarea class="annotation-input" placeholder="Add a note..."></textarea>
+          <button class="annotation-save" onclick="saveAnnotation(this, 'c7-8-ann')">Save note</button>
+        </div>
+        <div class="followup-area" id="c7-8-fu">
+          <div class="convo-thread"></div>
+          <div class="followup-row">
+            <input class="followup-input" placeholder="Ask a follow-up question..." onkeydown="if(event.key==='Enter'){submitFollowup(this.nextElementSibling,'c7-8-fu')}" />
+            <button class="followup-submit" onclick="submitFollowup(this, 'c7-8-fu')">Ask Claude</button>
+          </div>
+          <button class="convo-clear" onclick="clearConversation('c7-8-fu')">clear conversation</button>
+        </div>
+      </div>
+      <div class="card" id="c7-9">
+        <div class="card-top">
+          <div class="card-source">
+            <span class="source-name">Global Policy Watch / King &amp; Spalding</span>
+          </div>
+          <div class="card-actions">
+            <button class="action-btn save-btn" onclick="toggleSave('c7-9', 'US Trump Administration\'s National AI Policy Framework: Federal Preemption Push Escalates', 'Global Policy Watch / King & Spalding')">⊕ Save</button>
+            <button class="action-btn" onclick="toggleAnnotation('c7-9-ann')">✎ Note</button>
+            <button class="action-btn" onclick="toggleFollowup('c7-9-fu')">Ask →</button>
+          </div>
+        </div>
+        <div class="card-title"><a href="https://www.globalpolicywatch.com/2026/04/u-s-tech-legislative-regulatory-update-first-quarter-2026/" target="_blank">US Trump Administration's National AI Policy Framework: Federal Preemption Push Escalates</a></div>
+        <div class="card-body">The Trump White House released its National AI Policy Framework in March, calling for a &quot;light-touch&quot; approach and federal preemption of state AI laws deemed burdensome. The DOJ's AI Litigation Task Force — established in January — has &quot;sole responsibility&quot; to challenge state laws. Colorado's AI Act (June 30, 2026 deadline) and California's transparency laws remain in legal limbo. Q1 also saw Indiana, Utah, and Washington enact laws barring AI as the sole basis for denying health insurance claims — the sector-specific regulation pattern that's advancing even as comprehensive laws stall.</div>
+        <div class="annotation-area" id="c7-9-ann">
+          <div class="annotation-label">Your note</div>
+          <textarea class="annotation-input" placeholder="Add a note..."></textarea>
+          <button class="annotation-save" onclick="saveAnnotation(this, 'c7-9-ann')">Save note</button>
+        </div>
+        <div class="followup-area" id="c7-9-fu">
+          <div class="convo-thread"></div>
+          <div class="followup-row">
+            <input class="followup-input" placeholder="Ask a follow-up question..." onkeydown="if(event.key==='Enter'){submitFollowup(this.nextElementSibling,'c7-9-fu')}" />
+            <button class="followup-submit" onclick="submitFollowup(this, 'c7-9-fu')">Ask Claude</button>
+          </div>
+          <button class="convo-clear" onclick="clearConversation('c7-9-fu')">clear conversation</button>
+        </div>
+      </div>
+      <div class="card" id="c7-10">
+        <div class="card-top">
+          <div class="card-source">
+            <span class="source-name">Crunchbase News</span>
+          </div>
+          <div class="card-actions">
+            <button class="action-btn save-btn" onclick="toggleSave('c7-10', 'OpenAI Has Made Six Acquisitions in 2026 Already — Nearly as Many as All of 2025', 'Crunchbase News')">⊕ Save</button>
+            <button class="action-btn" onclick="toggleAnnotation('c7-10-ann')">✎ Note</button>
+            <button class="action-btn" onclick="toggleFollowup('c7-10-fu')">Ask →</button>
+          </div>
+        </div>
+        <div class="card-title"><a href="https://news.crunchbase.com/venture/foundational-ai-startup-funding-doubled-openai-anthropic-xai-q1-2026/" target="_blank">OpenAI Has Made Six Acquisitions in 2026 Already — Nearly as Many as All of 2025</a></div>
+        <div class="card-body">Crunchbase data shows OpenAI has already made six acquisitions in 2026, including developer tooling firms Astral and Promptfoo. The aggressive M&amp;A pace — nearly matching all of 2025 — reflects OpenAI's strategy to absorb open-source developer infrastructure rather than compete with it.</div>
+        <div class="annotation-area" id="c7-10-ann">
+          <div class="annotation-label">Your note</div>
+          <textarea class="annotation-input" placeholder="Add a note..."></textarea>
+          <button class="annotation-save" onclick="saveAnnotation(this, 'c7-10-ann')">Save note</button>
+        </div>
+        <div class="followup-area" id="c7-10-fu">
+          <div class="convo-thread"></div>
+          <div class="followup-row">
+            <input class="followup-input" placeholder="Ask a follow-up question..." onkeydown="if(event.key==='Enter'){submitFollowup(this.nextElementSibling,'c7-10-fu')}" />
+            <button class="followup-submit" onclick="submitFollowup(this, 'c7-10-fu')">Ask Claude</button>
+          </div>
+          <button class="convo-clear" onclick="clearConversation('c7-10-fu')">clear conversation</button>
+        </div>
+      </div>
+      <div class="card" id="c7-11">
+        <div class="card-top">
+          <div class="card-source">
+            <span class="source-name">CNBC</span>
+          </div>
+          <div class="card-actions">
+            <button class="action-btn save-btn" onclick="toggleSave('c7-11', 'Meta\'s Muse Spark: A Closed-Source Pivot That Complicates the Developer Story', 'CNBC')">⊕ Save</button>
+            <button class="action-btn" onclick="toggleAnnotation('c7-11-ann')">✎ Note</button>
+            <button class="action-btn" onclick="toggleFollowup('c7-11-fu')">Ask →</button>
+          </div>
+        </div>
+        <div class="card-title"><a href="https://www.cnbc.com/2026/04/09/metas-long-awaited-ai-model-is-finally-here-but-can-it-make-money.html" target="_blank">Meta's Muse Spark: A Closed-Source Pivot That Complicates the Developer Story</a></div>
+        <div class="card-body">Analysts and developers are raising questions about Muse Spark's monetization path now that Meta has abandoned its open-weight differentiator. Gartner called it a &quot;major shift&quot; away from Llama's developer-ecosystem play. Without the open-source moat, Meta's pitch to third-party developers becomes harder — particularly against free Chinese alternatives and cheaper proprietary models.</div>
+        <div class="annotation-area" id="c7-11-ann">
+          <div class="annotation-label">Your note</div>
+          <textarea class="annotation-input" placeholder="Add a note..."></textarea>
+          <button class="annotation-save" onclick="saveAnnotation(this, 'c7-11-ann')">Save note</button>
+        </div>
+        <div class="followup-area" id="c7-11-fu">
+          <div class="convo-thread"></div>
+          <div class="followup-row">
+            <input class="followup-input" placeholder="Ask a follow-up question..." onkeydown="if(event.key==='Enter'){submitFollowup(this.nextElementSibling,'c7-11-fu')}" />
+            <button class="followup-submit" onclick="submitFollowup(this, 'c7-11-fu')">Ask Claude</button>
+          </div>
+          <button class="convo-clear" onclick="clearConversation('c7-11-fu')">clear conversation</button>
+        </div>
+      </div>
+      <div class="card" id="c7-12">
+        <div class="card-top">
+          <div class="card-source">
+            <span class="source-name">OneTrust / Atomic Mail</span>
+          </div>
+          <div class="card-actions">
+            <button class="action-btn save-btn" onclick="toggleSave('c7-12', 'EU AI Act \'Digital Omnibus\' Delays High-Risk Compliance Deadline to 2027–2028', 'OneTrust / Atomic Mail')">⊕ Save</button>
+            <button class="action-btn" onclick="toggleAnnotation('c7-12-ann')">✎ Note</button>
+            <button class="action-btn" onclick="toggleFollowup('c7-12-fu')">Ask →</button>
+          </div>
+        </div>
+        <div class="card-title"><a href="https://www.onetrust.com/blog/where-ai-regulation-is-heading-in-2026-a-global-outlook/" target="_blank">EU AI Act 'Digital Omnibus' Delays High-Risk Compliance Deadline to 2027–2028</a></div>
+        <div class="card-body">The EU's Digital Omnibus proposal effectively pauses the high-risk AI system compliance deadline (originally 2026) until late 2027 or 2028, while extending SMC relief to companies with up to 750 employees. Prohibited practice bans (e.g., social scoring) remain active. Practical impact for platforms operating in the EU: extended runway on documentation and impact assessment requirements.</div>
+        <div class="annotation-area" id="c7-12-ann">
+          <div class="annotation-label">Your note</div>
+          <textarea class="annotation-input" placeholder="Add a note..."></textarea>
+          <button class="annotation-save" onclick="saveAnnotation(this, 'c7-12-ann')">Save note</button>
+        </div>
+        <div class="followup-area" id="c7-12-fu">
+          <div class="convo-thread"></div>
+          <div class="followup-row">
+            <input class="followup-input" placeholder="Ask a follow-up question..." onkeydown="if(event.key==='Enter'){submitFollowup(this.nextElementSibling,'c7-12-fu')}" />
+            <button class="followup-submit" onclick="submitFollowup(this, 'c7-12-fu')">Ask Claude</button>
+          </div>
+          <button class="convo-clear" onclick="clearConversation('c7-12-fu')">clear conversation</button>
+        </div>
+      </div>
+      </div>
+      
+    </section>
+    <section class="section" id="s8">
+      <div class="section-header">
+        <span class="section-num">08</span>
+        <span class="section-title">Media & Culture</span>
+        <span class="section-tag tag-c4">Culture + News</span>
+      </div>
+      
+      
+      <div class="card" id="c8-1">
+        <div class="card-top">
+          <div class="card-source">
+            <span class="source-name">i-D (Douglas Greenwood)</span>
+          </div>
+          <div class="card-actions">
+            <button class="action-btn save-btn" onclick="toggleSave('c8-1', 'Euphoria Is Our Last Good TV Show', 'i-D (Douglas Greenwood)')">⊕ Save</button>
+            <button class="action-btn" onclick="toggleAnnotation('c8-1-ann')">✎ Note</button>
+            <button class="action-btn" onclick="toggleFollowup('c8-1-fu')">Ask →</button>
+          </div>
+        </div>
+        <div class="card-title">Euphoria Is Our Last Good TV Show</div>
+        <div class="card-body">Douglas Greenwood at i-D argues that Euphoria Season 3 is less a prestige TV entry than a eulogy for the entire era — Levinson's 'histrionic doorslam on two decades of prestige TV.' The piece locates the show's cultural weight in its timing: it arrived at the peak of streaming ambition and now exits as that era visibly collapses. Greenwood's credibility signal is sharp cultural positioning; i-D's framing situates this as aesthetic autopsy, not fan coverage.</div>
+        <div class="annotation-area" id="c8-1-ann">
+          <div class="annotation-label">Your note</div>
+          <textarea class="annotation-input" placeholder="Add a note..."></textarea>
+          <button class="annotation-save" onclick="saveAnnotation(this, 'c8-1-ann')">Save note</button>
+        </div>
+        <div class="followup-area" id="c8-1-fu">
+          <div class="convo-thread"></div>
+          <div class="followup-row">
+            <input class="followup-input" placeholder="Ask a follow-up question..." onkeydown="if(event.key==='Enter'){submitFollowup(this.nextElementSibling,'c8-1-fu')}" />
+            <button class="followup-submit" onclick="submitFollowup(this, 'c8-1-fu')">Ask Claude</button>
+          </div>
+          <button class="convo-clear" onclick="clearConversation('c8-1-fu')">clear conversation</button>
+        </div>
+      </div>
+      <div class="card" id="c8-2">
+        <div class="card-top">
+          <div class="card-source">
+            <span class="source-name">The Bagatelles (Jörgen Löwenfeldt)</span>
+          </div>
+          <div class="card-actions">
+            <button class="action-btn save-btn" onclick="toggleSave('c8-2', 'The Art of the Diarist', 'The Bagatelles (Jörgen Löwenfeldt)')">⊕ Save</button>
+            <button class="action-btn" onclick="toggleAnnotation('c8-2-ann')">✎ Note</button>
+            <button class="action-btn" onclick="toggleFollowup('c8-2-fu')">Ask →</button>
+          </div>
+        </div>
+        <div class="card-title">The Art of the Diarist</div>
+        <div class="card-body">Löwenfeldt uses diary-keeping as a lens for thinking about the relationship between documentation and memory — arguing that the best diary writing isn't comprehensive but selective, trawling for the detail 'already forgotten the moment it happened.' Written in an essayistic, self-aware register, the piece doubles as a meditation on Substack as a public diary form. Quietly distinctive in its insistence that ambiguity and incompleteness are literary virtues, not failures.</div>
+        <div class="annotation-area" id="c8-2-ann">
+          <div class="annotation-label">Your note</div>
+          <textarea class="annotation-input" placeholder="Add a note..."></textarea>
+          <button class="annotation-save" onclick="saveAnnotation(this, 'c8-2-ann')">Save note</button>
+        </div>
+        <div class="followup-area" id="c8-2-fu">
+          <div class="convo-thread"></div>
+          <div class="followup-row">
+            <input class="followup-input" placeholder="Ask a follow-up question..." onkeydown="if(event.key==='Enter'){submitFollowup(this.nextElementSibling,'c8-2-fu')}" />
+            <button class="followup-submit" onclick="submitFollowup(this, 'c8-2-fu')">Ask Claude</button>
+          </div>
+          <button class="convo-clear" onclick="clearConversation('c8-2-fu')">clear conversation</button>
+        </div>
+      </div>
+      <div class="card" id="c8-3">
+        <div class="card-top">
+          <div class="card-source">
+            <span class="source-name">Look What You Made Me Do (Eugene S. Robinson)</span>
+          </div>
+          <div class="card-actions">
+            <button class="action-btn save-btn" onclick="toggleSave('c8-3', 'Punk Rock Pedophilia? On Proportionality, Culpability, and Rock\'s Uncomfortable Legacies', 'Look What You Made Me Do (Eugene S. Robinson)')">⊕ Save</button>
+            <button class="action-btn" onclick="toggleAnnotation('c8-3-ann')">✎ Note</button>
+            <button class="action-btn" onclick="toggleFollowup('c8-3-fu')">Ask →</button>
+          </div>
+        </div>
+        <div class="card-title">Punk Rock Pedophilia? On Proportionality, Culpability, and Rock's Uncomfortable Legacies</div>
+        <div class="card-body">Eugene S. Robinson — veteran punk musician and writer — uses the Anthony Kiedis controversy as a launching pad for a genuinely uncomfortable interrogation of rock culture's long history of normalized predation. Rather than absolving or condemning, Robinson asks the proportionality question that most commentators dodge: is statutory rape by a rock star morally equivalent to Epstein-scale exploitation? It's self-implicating, messy, and more honest than most takes in this space.</div>
+        <div class="annotation-area" id="c8-3-ann">
+          <div class="annotation-label">Your note</div>
+          <textarea class="annotation-input" placeholder="Add a note..."></textarea>
+          <button class="annotation-save" onclick="saveAnnotation(this, 'c8-3-ann')">Save note</button>
+        </div>
+        <div class="followup-area" id="c8-3-fu">
+          <div class="convo-thread"></div>
+          <div class="followup-row">
+            <input class="followup-input" placeholder="Ask a follow-up question..." onkeydown="if(event.key==='Enter'){submitFollowup(this.nextElementSibling,'c8-3-fu')}" />
+            <button class="followup-submit" onclick="submitFollowup(this, 'c8-3-fu')">Ask Claude</button>
+          </div>
+          <button class="convo-clear" onclick="clearConversation('c8-3-fu')">clear conversation</button>
+        </div>
+      </div>
+      <div class="card" id="c8-4">
+        <div class="card-top">
+          <div class="card-source">
+            <span class="source-name">Why Is This Interesting?</span>
+          </div>
+          <div class="card-actions">
+            <button class="action-btn save-btn" onclick="toggleSave('c8-4', 'Monday Media Diet with Steve Calder', 'Why Is This Interesting?')">⊕ Save</button>
+            <button class="action-btn" onclick="toggleAnnotation('c8-4-ann')">✎ Note</button>
+            <button class="action-btn" onclick="toggleFollowup('c8-4-fu')">Ask →</button>
+          </div>
+        </div>
+        <div class="card-title">Monday Media Diet with Steve Calder</div>
+        <div class="card-body">WITI's recurring media diet format profiles Steve Calder, co-founder of Melbourne menswear brand Informale, on his consumption habits — Instagram for fashion, X for finance, YouTube for cars and 'UFO deep dives.' The entry is more texture than argument, but it functions as a useful snapshot of how a design-world practitioner navigates fragmented media: print (WM Brown magazine) for depth, social for pulse. Routine for analytical purposes but culturally observant.</div>
+        <div class="annotation-area" id="c8-4-ann">
+          <div class="annotation-label">Your note</div>
+          <textarea class="annotation-input" placeholder="Add a note..."></textarea>
+          <button class="annotation-save" onclick="saveAnnotation(this, 'c8-4-ann')">Save note</button>
+        </div>
+        <div class="followup-area" id="c8-4-fu">
+          <div class="convo-thread"></div>
+          <div class="followup-row">
+            <input class="followup-input" placeholder="Ask a follow-up question..." onkeydown="if(event.key==='Enter'){submitFollowup(this.nextElementSibling,'c8-4-fu')}" />
+            <button class="followup-submit" onclick="submitFollowup(this, 'c8-4-fu')">Ask Claude</button>
+          </div>
+          <button class="convo-clear" onclick="clearConversation('c8-4-fu')">clear conversation</button>
+        </div>
+      </div>
+      <div class="expand-toggle" onclick="toggleExpand(this)">
+        Show 1 more items ▾
+      </div>
+      <div class="collapsed-items" style="display:none;">
+      <div class="card" id="c8-5">
+        <div class="card-top">
+          <div class="card-source">
+            <span class="source-name">Press Gazette</span>
+          </div>
+          <div class="card-actions">
+            <button class="action-btn save-btn" onclick="toggleSave('c8-5', 'Times \'Fewer, Better Stories\' Strategy and What It Signals About Editorial Survival', 'Press Gazette')">⊕ Save</button>
+            <button class="action-btn" onclick="toggleAnnotation('c8-5-ann')">✎ Note</button>
+            <button class="action-btn" onclick="toggleFollowup('c8-5-fu')">Ask →</button>
+          </div>
+        </div>
+        <div class="card-title">Times 'Fewer, Better Stories' Strategy and What It Signals About Editorial Survival</div>
+        <div class="card-body">Press Gazette reports that The Times saw page view growth after deliberately reducing total story count — a data point that cuts against the volume-first logic that still dominates digital publishing. Not a deep essay, but the finding is structurally interesting: quality-over-quantity is showing measurable audience results at a major paper of record. Worth flagging for anyone thinking about editorial strategy at scale.</div>
+        <div class="annotation-area" id="c8-5-ann">
+          <div class="annotation-label">Your note</div>
+          <textarea class="annotation-input" placeholder="Add a note..."></textarea>
+          <button class="annotation-save" onclick="saveAnnotation(this, 'c8-5-ann')">Save note</button>
+        </div>
+        <div class="followup-area" id="c8-5-fu">
+          <div class="convo-thread"></div>
+          <div class="followup-row">
+            <input class="followup-input" placeholder="Ask a follow-up question..." onkeydown="if(event.key==='Enter'){submitFollowup(this.nextElementSibling,'c8-5-fu')}" />
+            <button class="followup-submit" onclick="submitFollowup(this, 'c8-5-fu')">Ask Claude</button>
+          </div>
+          <button class="convo-clear" onclick="clearConversation('c8-5-fu')">clear conversation</button>
+        </div>
+      </div>
+      </div>
+      
+    </section>
+    <section class="section" id="s9">
+      <div class="section-header">
+        <span class="section-num">09</span>
+        <span class="section-title">Film + Podcast Industry</span>
+        <span class="section-tag tag-c3">Film + Podcast</span>
+      </div>
+      <div class="card">
+        <div class="card-body" style="color:var(--ink-faint);font-style:italic;">
+          No items found for this category today.
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- MUSIC NEWS SIDEBAR -->
+  <aside class="tips-sidebar">
+    <div class="tips-header">
+      <div class="tips-title">Music News</div>
+      <div class="tips-sub">Artist · Tour · Festival</div>
+    </div>
+
+    
+    <div class="tip-item">
+      <a class="tip-link" href="https://www.billboard.com/music/music-news/offset-appears-onstage-first-time-after-being-shot-1236221193/" target="_blank"><strong>Offset returns to perform after shooting</strong></a>
+      <div class="tip-source">Billboard</div>
+      <span class="tip-type artist-news">Artist news/profiles</span>
+    </div>
+    <div class="tip-item">
+      <a class="tip-link" href="https://www.rollingstone.com/music/music-news/offset-stage-return-after-being-shot-migos-1235545647/" target="_blank"><strong>Offset returns to stage after shooting</strong></a>
+      <div class="tip-source">Rolling Stone</div>
+      <span class="tip-type artist-news">Artist news/profiles</span>
+    </div>
+    <div class="tip-item">
+      <a class="tip-link" href="https://www.npr.org/2026/04/12/nx-s1-5779269/music-bands-coheadlining-success-tours-sharing-expenses" target="_blank"><strong>Artists increasingly pair up for co-headlining tours</strong></a>
+      <div class="tip-source">NPR</div>
+      <span class="tip-type tour">Tour announcements</span>
+    </div>
+    <div class="tip-item">
+      <a class="tip-link" href="https://stereogum.com/2495562/anitta-makes-snl-debut-shares-shakira-collab-choka-choka/news/" target="_blank"><strong>Anitta makes SNL debut as first Brazilian artist</strong></a>
+      <div class="tip-source">Stereogum</div>
+      <span class="tip-type artist-news">Artist news/profiles</span>
+    </div>
+    <div class="tip-item">
+      <a class="tip-link" href="https://pitchfork.com/news/watch-oklou-bring-out-underscores-at-coachella-2026/" target="_blank"><strong>Oklou brings out Underscores at Coachella</strong></a>
+      <div class="tip-source">Pitchfork</div>
+      <span class="tip-type festival">Festival coverage</span>
+    </div>
+    <div class="tip-item">
+      <a class="tip-link" href="https://stereogum.com/2495554/mike-patton-sings-faith-no-more-with-avett-brothers-at-avtt-pttn-tour-opener/news/" target="_blank"><strong>Mike Patton leads AVTT/PTTN tour opener</strong></a>
+      <div class="tip-source">Stereogum</div>
+      <span class="tip-type artist-news">Artist news/profiles</span>
+    </div>
+    <div class="tip-item">
+      <a class="tip-link" href="https://pitchfork.com/news/watch-karol-g-headline-the-last-night-of-coachella-2026/" target="_blank"><strong>Karol G first Latina to headline Coachella</strong></a>
+      <div class="tip-source">Pitchfork</div>
+      <span class="tip-type festival">Festival coverage</span>
+    </div>
+    <div class="tip-item">
+      <a class="tip-link" href="https://stereogum.com/2495522/newjeans-danielle-previews-new-solo-music-amid-ador-lawsuit/news/" target="_blank"><strong>NewJeans' Danielle previews new solo music</strong></a>
+      <div class="tip-source">Stereogum</div>
+      <span class="tip-type artist-news">Artist news/profiles</span>
+    </div>
+    <div class="tip-item">
+      <a class="tip-link" href="https://pitchfork.com/news/watch-sabrina-carpenter-headline-the-first-night-of-coachella-2026/" target="_blank"><strong>Sabrina Carpenter headlines Coachella opener</strong></a>
+      <div class="tip-source">Pitchfork</div>
+      <span class="tip-type festival">Festival coverage</span>
+    </div>
+    <div class="tip-item">
+      <a class="tip-link" href="https://www.billboard.com/lists/coachella-2026-day-three-best-young-thug-karol-g/" target="_blank"><strong>Young Thug, FKA Twigs lead Coachella Day 3</strong></a>
+      <div class="tip-source">Billboard</div>
+      <span class="tip-type festival">Festival coverage</span>
+    </div>
+    <div class="tip-item">
+      <a class="tip-link" href="https://pitchfork.com/news/watch-justin-bieber-headline-coachella-2026/" target="_blank"><strong>Justin Bieber headlines Coachella 2026</strong></a>
+      <div class="tip-source">Pitchfork</div>
+      <span class="tip-type festival">Festival coverage</span>
+    </div>
+    <div class="tip-item">
+      <a class="tip-link" href="https://www.billboard.com/music/music-news/katseye-coachella-2026-interview-1236221222/" target="_blank"><strong>KATSEYE performs at Coachella with HUNTR/X</strong></a>
+      <div class="tip-source">Billboard</div>
+      <span class="tip-type festival">Festival coverage</span>
+    </div>
+    <div class="tip-item">
+      <a class="tip-link" href="https://pitchfork.com/news/watch-slayyyter-tear-up-her-first-coachella-performance/" target="_blank"><strong>Slayyyter performs debut Coachella set</strong></a>
+      <div class="tip-source">Pitchfork</div>
+      <span class="tip-type festival">Festival coverage</span>
+    </div>
+    <div class="tip-item">
+      <a class="tip-link" href="https://www.billboard.com/music/music-news/justin-bieber-coachella-2026-katy-perry-zara-larsson-react-1236221215/" target="_blank"><strong>Justin Bieber headlines Coachella main stage</strong></a>
+      <div class="tip-source">Billboard</div>
+      <span class="tip-type festival">Festival coverage</span>
+    </div>
+    <div class="tip-item">
+      <a class="tip-link" href="https://pitchfork.com/news/watch-dijon-bring-out-mkgee-at-coachella-2026/" target="_blank"><strong>Dijon brings out Mk.gee at Coachella</strong></a>
+      <div class="tip-source">Pitchfork</div>
+      <span class="tip-type festival">Festival coverage</span>
+    </div>
+  </aside>
+
+</div>
+
+<script>
+  // ---- CONFIG — engine will populate these per file ----
+  const BRIEFING_DATE = '2026-04-13';  // YYYY-MM-DD
+  const PREV_DATE = '2026-04-10';               // e.g. '2026-03-04' or null
+  const NEXT_DATE = '2026-04-15';               // e.g. '2026-03-06' or null
+
+  // ---- STATE ----
+  const savedItems = {};
+  const conversations = {};
+  const cardContextCache = {};
+  let serverAvailable = false;
+
+  // ---- PERSISTENCE ----
+  async function checkServer() {
+    try {
+      const r = await fetch('/api/ping', { method: 'GET' });
+      serverAvailable = r.ok;
+    } catch { serverAvailable = false; }
+    if (!serverAvailable) {
+      document.getElementById('serverBanner').classList.add('visible');
+    }
+  }
+
+  async function loadSavedState() {
+    try {
+      const r = await fetch('/data/saved.json');
+      if (!r.ok) return;
+      const all = await r.json();
+      const day = all[BRIEFING_DATE];
+      if (!day) return;
+      for (const [cardId, data] of Object.entries(day)) {
+        if (data.saved) {
+          savedItems[cardId] = { title: data.title, source: data.source, note: data.note || '' };
+          const card = document.getElementById(cardId);
+          if (card) {
+            card.classList.add('saved');
+            const btn = card.querySelector('.save-btn');
+            if (btn) { btn.classList.add('active'); btn.textContent = '✓ Saved'; }
+          }
+        }
+        if (data.note) {
+          const annArea = document.getElementById(cardId + '-ann');
+          if (annArea) {
+            const input = annArea.querySelector('.annotation-input');
+            const saveBtn = annArea.querySelector('.annotation-save');
+            if (input) input.style.display = 'none';
+            if (saveBtn) saveBtn.style.display = 'none';
+            const display = document.createElement('div');
+            display.className = 'annotation-display';
+            display.textContent = data.note;
+            annArea.appendChild(display);
+            annArea.classList.add('open');
+          }
+        }
+        if (data.conversations) {
+          for (const [fuId, history] of Object.entries(data.conversations)) {
+            conversations[fuId] = history;
+            if (history.length) {
+              const fuArea = document.getElementById(fuId);
+              if (fuArea) { fuArea.classList.add('open'); renderThread(fuId); }
+            }
+          }
+        }
+      }
+      updateSavedCount();
+    } catch(e) { /* no saved state yet */ }
+  }
+
+  async function persistState() {
+    if (!serverAvailable) return;
+    // Build this day's state
+    const dayState = {};
+    // Saved items
+    for (const [cardId, data] of Object.entries(savedItems)) {
+      dayState[cardId] = dayState[cardId] || {};
+      Object.assign(dayState[cardId], { saved: true, title: data.title, source: data.source, note: data.note || '' });
+    }
+    // Conversations
+    for (const [fuId, history] of Object.entries(conversations)) {
+      if (!history.length) continue;
+      const cardId = fuId.replace(/-fu(-\d+)?$/, '').replace(/-\d+-fu$/, '');
+      // find card id by walking up DOM
+      const area = document.getElementById(fuId);
+      const card = area?.closest('.card, .rec-card');
+      const cid = card?.id || fuId;
+      dayState[cid] = dayState[cid] || {};
+      dayState[cid].conversations = dayState[cid].conversations || {};
+      dayState[cid].conversations[fuId] = history;
+    }
+    // Merge with existing full file
+    let all = {};
+    try {
+      const r = await fetch('/data/saved.json');
+      if (r.ok) all = await r.json();
+    } catch {}
+    all[BRIEFING_DATE] = dayState;
+    try {
+      await fetch('/api/save', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(all)
+      });
+    } catch {}
+  }
+
+  // ---- NAV ARROWS ----
+  function initNav() {
+    const prev = document.getElementById('navPrev');
+    const next = document.getElementById('navNext');
+    const dateLabel = document.getElementById('navDate');
+
+    const fmt = d => {
+      if (!d) return '';
+      const [y,m,day] = d.split('-');
+      const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+      return `${months[+m-1]} ${+day}`;
+    };
+    if (dateLabel) dateLabel.textContent = fmt(BRIEFING_DATE);
+
+    if (PREV_DATE && prev) {
+      prev.classList.remove('disabled');
+      prev.href = `${PREV_DATE}.html`;
+      prev.title = fmt(PREV_DATE);
+    }
+    if (NEXT_DATE && next) {
+      next.classList.remove('disabled');
+      next.href = `${NEXT_DATE}.html`;
+      next.title = fmt(NEXT_DATE);
+    }
+  }
+
+  // ---- SAVED STATE ----
+  function updateSavedCount() {
+    const count = Object.keys(savedItems).length;
+    document.getElementById('savedCount').textContent = count + ' saved';
+    renderSavedPanel();
+  }
+
+  function toggleExpand(btn) {
+    const items = btn.nextElementSibling;
+    if (items.style.display === 'none') {
+      items.style.display = '';
+      btn.textContent = btn.textContent.replace('Show', 'Hide').replace('▾', '▴');
+    } else {
+      items.style.display = 'none';
+      btn.textContent = btn.textContent.replace('Hide', 'Show').replace('▴', '▾');
+    }
+  }
+
+  function toggleIndustryExpand(btn) {
+    const items = btn.nextElementSibling;
+    if (items.style.display === 'none' || !items.style.display) {
+      items.style.display = 'block';
+      btn.textContent = btn.textContent.replace('See', 'Hide').replace('more ▾', '▴');
+    } else {
+      items.style.display = 'none';
+      btn.textContent = btn.textContent.replace('Hide', 'See').replace('▴', 'more ▾');
+    }
+  }
+
+  function toggleSave(id, title, source) {
+    const card = document.getElementById(id);
+    const btn = card.querySelector('.save-btn');
+    if (savedItems[id]) {
+      delete savedItems[id];
+      card.classList.remove('saved');
+      btn.classList.remove('active');
+      btn.textContent = '⊕ Save';
+    } else {
+      savedItems[id] = { title, source, note: '' };
+      card.classList.add('saved');
+      btn.classList.add('active');
+      btn.textContent = '✓ Saved';
+    }
+    updateSavedCount();
+    persistState();
+  }
+
+  function renderSavedPanel() {
+    const list = document.getElementById('savedList');
+    const keys = Object.keys(savedItems);
+    if (!keys.length) {
+      list.innerHTML = '<div class="empty-saved">Nothing saved yet.<br>Use the bookmark button on any item.</div>';
+      return;
+    }
+    list.innerHTML = keys.map(k => {
+      const item = savedItems[k];
+      return `<div class="saved-item">
+        <div class="saved-item-source">${item.source}</div>
+        <div class="saved-item-title">${item.title}</div>
+        ${item.note ? `<div class="saved-item-note">${item.note}</div>` : ''}
+      </div>`;
+    }).join('');
+  }
+
+  function toggleSavedPanel() {
+    const panel = document.getElementById('savedPanel');
+    const overlay = document.getElementById('overlay');
+    panel.classList.toggle('open');
+    overlay.classList.toggle('visible');
+  }
+
+  // ---- ANNOTATIONS ----
+  function toggleAnnotation(id) {
+    const area = document.getElementById(id);
+    area.classList.toggle('open');
+  }
+
+  function saveAnnotation(btn, areaId) {
+    const area = document.getElementById(areaId);
+    const input = area.querySelector('.annotation-input');
+    const text = input.value.trim();
+    if (!text) return;
+    input.style.display = 'none';
+    btn.style.display = 'none';
+    const display = document.createElement('div');
+    display.className = 'annotation-display';
+    display.textContent = text;
+    area.appendChild(display);
+    const card = area.closest('.card, .rec-card');
+    if (card) {
+      if (savedItems[card.id]) {
+        savedItems[card.id].note = text;
+        renderSavedPanel();
+      } else {
+        // Auto-save the card if annotated
+        const titleEl = card.querySelector('.card-title, .rec-artist');
+        const sourceEl = card.querySelector('.source-name');
+        if (titleEl && sourceEl) {
+          savedItems[card.id] = { title: titleEl.textContent.trim(), source: sourceEl.textContent.trim(), note: text };
+          card.classList.add('saved');
+          const saveBtn = card.querySelector('.save-btn');
+          if (saveBtn) { saveBtn.classList.add('active'); saveBtn.textContent = '✓ Saved'; }
+          updateSavedCount();
+        }
+      }
+    }
+    persistState();
+  }
+
+  // ---- FOLLOW-UP (multi-turn) ----
+  function getCardContext(area) {
+    const card = area.closest('.card, .rec-card');
+    if (!card) return { title: '', body: '', source: '' };
+    if (cardContextCache[card.id]) return cardContextCache[card.id];
+    const ctx = {
+      title: (card.querySelector('.card-title')?.textContent || card.querySelector('.rec-artist')?.textContent || '').trim(),
+      body: (card.querySelector('.card-body, .rec-context')?.textContent || '').slice(0, 500),
+      source: (card.querySelector('.source-name')?.textContent || '').trim()
+    };
+    cardContextCache[card.id] = ctx;
+    return ctx;
+  }
+
+  function toggleFollowup(id) {
+    const area = document.getElementById(id);
+    area.classList.toggle('open');
+    if (area.classList.contains('open')) area.querySelector('.followup-input').focus();
+  }
+
+  function renderThread(areaId) {
+    const area = document.getElementById(areaId);
+    const thread = area.querySelector('.convo-thread');
+    const history = conversations[areaId] || [];
+    const clearBtn = area.querySelector('.convo-clear');
+    thread.innerHTML = history.map(msg => {
+      const isUser = msg.role === 'user';
+      return `<div class="convo-bubble ${isUser ? 'user' : 'assistant'}">
+        <div class="convo-label">${isUser ? 'You' : 'Claude'}</div>
+        ${msg.content}
+      </div>`;
+    }).join('');
+    if (clearBtn) clearBtn.classList.toggle('visible', history.length > 0);
+    thread.scrollTop = thread.scrollHeight;
+  }
+
+  function clearConversation(areaId) {
+    conversations[areaId] = [];
+    renderThread(areaId);
+    persistState();
+  }
+
+  async function submitFollowup(btn, areaId) {
+    const area = document.getElementById(areaId);
+    const input = area.querySelector('.followup-input');
+    const question = input.value.trim();
+    if (!question) return;
+    if (!conversations[areaId]) conversations[areaId] = [];
+    const history = conversations[areaId];
+    history.push({ role: 'user', content: question });
+    input.value = '';
+    btn.disabled = true;
+    renderThread(areaId);
+    const thread = area.querySelector('.convo-thread');
+    const thinking = document.createElement('div');
+    thinking.className = 'convo-bubble thinking';
+    thinking.innerHTML = '<div class="followup-thinking"><div class="thinking-dot"></div><div class="thinking-dot"></div><div class="thinking-dot"></div><span>Claude is thinking...</span></div>';
+    thread.appendChild(thinking);
+    const ctx = getCardContext(area);
+    const systemPrompt = `You are a research assistant for Third Bridge Creative (TBC), a content strategy agency helping music streaming platforms and labels with editorial systems, taxonomies, and AI-assisted workflows. TBC's tagline is "Credibility, at Scale." You are helping Sam, the founder, think through industry content in his morning briefing.\n\nCard context:\nSource: ${ctx.source}\nTitle: ${ctx.title}\nSummary: ${ctx.body}\n\nBe concise and specific. Connect insights to TBC's positioning where genuinely relevant. Match depth to what's asked.`;
+    const messages = history.map(msg => ({ role: msg.role, content: msg.content }));
+    try {
+      const response = await fetch('https://api.anthropic.com/v1/messages', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ model: 'claude-sonnet-4-20250514', max_tokens: 1000, system: systemPrompt, messages })
+      });
+      const data = await response.json();
+      const reply = data.content?.map(b => b.text || '').join('') || 'No response.';
+      history.push({ role: 'assistant', content: reply });
+    } catch(e) {
+      history.push({ role: 'assistant', content: 'Could not reach Claude API. Please check your connection.' });
+    }
+    thinking.remove();
+    btn.disabled = false;
+    renderThread(areaId);
+    input.focus();
+    persistState();
+  }
+
+  // ---- NAV ACTIVE STATE ----
+  const sections = document.querySelectorAll('.section');
+  const navLinks = document.querySelectorAll('.nav-item');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(l => l.classList.remove('active'));
+        const active = document.querySelector(`.nav-item[href="#${entry.target.id}"]`);
+        if (active) active.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-25% 0px -65% 0px' });
+  sections.forEach(s => observer.observe(s));
+
+  // ---- SCROLL ANIMATIONS ----
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+  }, { threshold: 0.05 });
+  document.querySelectorAll('.section').forEach(s => revealObserver.observe(s));
+
+  // ---- SMOOTH SCROLL ----
+  function scrollTo(id) {
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  // ---- INIT ----
+  initNav();
+  checkServer().then(() => loadSavedState());
+</script>
+</body>
+</html>

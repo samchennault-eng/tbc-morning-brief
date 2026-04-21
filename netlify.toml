@@ -1,0 +1,5 @@
+# Netlify deploy configuration for The Morning Brief.
+# Docs: https://docs.netlify.com/configure-builds/file-based-configuration/
+
+[build]
+  publish = "."

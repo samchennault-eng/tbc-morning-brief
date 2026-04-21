@@ -1,0 +1,2251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TBC Morning Briefing — Thursday, April 16, 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1a1a;
+    --ink-mid: #444;
+    --ink-light: #888;
+    --ink-faint: #bbb;
+    --rule: #e0ddd8;
+    --bg: #faf9f7;
+    --bg-warm: #f3f1ec;
+    --paper: #fff;
+    --accent: #1a3a5c;
+    --accent-light: #e8eef5;
+    --gold: #b8860b;
+    --gold-light: #fdf8ee;
+    --saved-bg: #f0f7f0;
+    --saved-border: #2d7a4f;
+    --tag-music: #1a3a5c;
+    --tag-industry: #5c1a3a;
+    --tag-media: #1a5c3a;
+    --tag-culture: #5c3a1a;
+    --sidebar-w: 220px;
+    --industry-sidebar-w: 220px;
+    --industry-accent: #854f0b;
+    --industry-bg: #faeeda;
+    --industry-border: #854f0b;
+    --top-story-accent: #993c1d;
+    --top-story-bg: #faeee7;
+    --nav-h: 44px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    min-height: 100vh;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  /* MASTHEAD */
+  .masthead {
+    background: var(--accent);
+    color: white;
+    padding: 0 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 12px rgba(26,58,92,0.18);
+  }
+  .masthead-left {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+  }
+  .masthead-wordmark {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    color: white;
+  }
+  .masthead-sub {
+    font-size: 12px;
+    font-weight: 400;
+    color: rgba(255,255,255,0.55);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .masthead-date {
+    font-size: 12px;
+    color: rgba(255,255,255,0.6);
+    font-weight: 300;
+    letter-spacing: 0.04em;
+  }
+  .masthead-actions {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+  .btn-weekly {
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.25);
+    color: white;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 6px 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    letter-spacing: 0.04em;
+    transition: background 0.2s;
+  }
+  .btn-weekly:hover { background: rgba(255,255,255,0.22); }
+  .saved-count {
+    background: var(--gold);
+    color: white;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 20px;
+    letter-spacing: 0.04em;
+  }
+
+  /* LAYOUT */
+  .layout {
+    display: flex;
+    max-width: 1280px;
+    margin: 0 auto;
+    min-height: calc(100vh - 64px - var(--nav-h));
+  }
+
+  /* HORIZONTAL NAV */
+  .horizontal-nav {
+    position: sticky;
+    top: 64px;
+    z-index: 99;
+    background: var(--bg);
+    border-bottom: 1px solid var(--rule);
+    display: flex;
+    justify-content: center;
+    gap: 0;
+    max-width: 1280px;
+    margin: 0 auto;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  }
+  .nav-item {
+    padding: 12px 20px;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: var(--ink-mid);
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+    transition: all 0.15s;
+    white-space: nowrap;
+  }
+  .nav-item:hover {
+    color: var(--accent);
+    background: var(--accent-light);
+  }
+  .nav-item.active {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+    font-weight: 600;
+  }
+
+  /* INDUSTRY NEWS LEFT SIDEBAR */
+  .industry-sidebar {
+    width: var(--industry-sidebar-w);
+    flex-shrink: 0;
+    position: sticky;
+    top: calc(64px + var(--nav-h));
+    height: calc(100vh - 64px - var(--nav-h));
+    overflow-y: auto;
+    border-right: 1px solid var(--rule);
+    background: var(--bg);
+    padding: 0;
+  }
+  .industry-header, .tips-header {
+    min-height: 72px;
+    box-sizing: border-box;
+  }
+  .industry-header {
+    padding: 20px 20px 14px;
+    border-bottom: 2px solid var(--industry-accent);
+    margin-bottom: 0;
+    background: var(--industry-bg);
+  }
+  .industry-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+  .industry-sub {
+    font-size: 10px;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--industry-accent);
+    font-weight: 500;
+  }
+  .industry-item {
+    padding: 12px 20px;
+    border-bottom: 1px solid var(--rule);
+    transition: background 0.15s;
+  }
+  .industry-item:hover { background: var(--accent-light); }
+  .industry-headline {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--ink);
+    text-decoration: none;
+    line-height: 1.4;
+    margin-bottom: 4px;
+  }
+  .industry-headline:hover { color: var(--accent); }
+  .industry-source {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 2px;
+  }
+  .industry-tag {
+    display: inline-block;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 2px 7px;
+    border-radius: 3px;
+    margin-top: 4px;
+    color: white;
+    background: var(--industry-accent);
+  }
+  .industry-tag.industry-streaming { background: #1a5c8a; }
+  .industry-tag.industry-deal { background: #b8860b; }
+  .industry-tag.industry-rights { background: #993c1d; }
+  .industry-tag.industry-labor { background: #6b3fa0; }
+  .industry-tag.industry-platform { background: #2d6b8a; }
+  .industry-tag.industry-charts { background: #0e7c6b; }
+  /* FROM THE ARCHIVES */
+  .archives-divider {
+    display: none;
+  }
+  .archives-section {
+    padding: 0;
+  }
+  .archives-header {
+    padding: 20px 20px 14px;
+    border-bottom: 2px solid #534ab7;
+    margin-bottom: 0;
+    background: #eeedfe;
+    min-height: 72px;
+    box-sizing: border-box;
+  }
+  .archives-header-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+  .archives-header-sub {
+    font-size: 10px;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: #534ab7;
+    font-weight: 500;
+  }
+  .archives-card {
+    padding: 14px 20px 20px;
+  }
+  .archives-title {
+    display: block;
+    font-family: 'Playfair Display', serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--ink);
+    text-decoration: none;
+    line-height: 1.35;
+    margin-bottom: 6px;
+  }
+  .archives-title:hover { color: #534ab7; }
+  .archives-meta {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    margin-bottom: 10px;
+  }
+  .archives-connection {
+    font-size: 12px;
+    color: var(--ink-mid);
+    line-height: 1.65;
+    margin-bottom: 10px;
+  }
+  .archives-type {
+    display: inline-block;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 2px 7px;
+    border-radius: 3px;
+    color: white;
+    background: #534ab7;
+  }
+
+  /* INDUSTRY NEWS TOGGLE */
+  .industry-toggle {
+    padding: 8px 20px;
+    cursor: pointer;
+    color: var(--industry-accent);
+    font-size: 11px;
+    font-weight: 500;
+    text-align: center;
+    transition: background 0.15s;
+  }
+  .industry-toggle:hover { background: var(--accent-light); }
+  .industry-collapsed { display: none; }
+
+  .industry-empty {
+    padding: 16px 20px;
+    font-size: 12px;
+    color: var(--ink-faint);
+    font-style: italic;
+    line-height: 1.6;
+  }
+
+  /* MAIN */
+  .main {
+    flex: 1;
+    padding: 0 48px 80px 48px;
+    min-width: 0;
+  }
+
+  /* DAILY HEADER */
+  .daily-header {
+    padding: 32px 0 24px;
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 40px;
+  }
+  .daily-header-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 8px;
+  }
+  .daily-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+  .daily-meta {
+    font-size: 12px;
+    color: var(--ink-light);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .daily-summary {
+    font-size: 14px;
+    color: var(--ink-mid);
+    font-style: italic;
+    max-width: 640px;
+    line-height: 1.7;
+  }
+
+  /* TOP STORIES */
+  .top-stories {
+    padding: 0 0 32px;
+    margin-bottom: 40px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .top-stories-header {
+    padding: 16px 20px 12px;
+    border-bottom: 2px solid var(--top-story-accent);
+    margin-bottom: 20px;
+    background: var(--top-story-bg);
+    border-radius: 4px 4px 0 0;
+  }
+  .top-stories-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 3px;
+  }
+  .top-stories-sub {
+    font-size: 10px;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--top-story-accent);
+    font-weight: 500;
+  }
+  .top-stories-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .top-story-card {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-top: 3px solid var(--top-story-accent);
+    border-radius: 6px;
+    padding: 18px 18px 14px;
+    transition: box-shadow 0.2s;
+  }
+  .top-story-card:hover { box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+  .top-story-meta {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 8px;
+  }
+  .top-story-meta .source-name {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+  }
+  .top-story-meta .source-sep { color: var(--ink-faint); font-size: 11px; }
+  .top-story-meta .source-type {
+    font-size: 11px;
+    color: var(--ink-faint);
+    font-style: italic;
+  }
+  .top-story-headline {
+    font-family: 'Playfair Display', serif;
+    font-size: 19px;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.35;
+    margin-bottom: 12px;
+  }
+  .top-story-headline a {
+    color: inherit;
+    text-decoration: none;
+  }
+  .top-story-headline a:hover { color: var(--accent); }
+  .top-story-summary {
+    font-size: 14px;
+    color: var(--ink-mid);
+    line-height: 1.75;
+    margin-bottom: 12px;
+  }
+  .top-story-type {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--top-story-accent);
+    background: var(--top-story-bg);
+    padding: 3px 9px;
+    border-radius: 3px;
+  }
+
+  /* SECTION */
+  .section {
+    margin-bottom: 56px;
+    scroll-margin-top: 132px;
+  }
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .section-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--ink-faint);
+    font-weight: 500;
+    margin-top: 2px;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--ink);
+    flex: 1;
+  }
+  .section-tag {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 3px 9px;
+    border-radius: 3px;
+    color: white;
+  }
+  .tag-c1 { background: var(--tag-music); }
+  .tag-c2 { background: var(--tag-industry); }
+  .tag-c3 { background: var(--tag-media); }
+  .tag-c4 { background: var(--tag-culture); }
+
+  .expand-toggle {
+    padding: 10px 16px;
+    margin: 8px 0;
+    cursor: pointer;
+    color: var(--accent);
+    font-size: 13px;
+    font-weight: 500;
+    text-align: center;
+    border: 1px dashed var(--rule);
+    border-radius: 6px;
+    transition: background 0.15s;
+  }
+  .expand-toggle:hover {
+    background: var(--bg-alt);
+  }
+
+  /* CARD */
+  .card {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    padding: 20px 22px;
+    margin-bottom: 14px;
+    transition: box-shadow 0.2s, border-color 0.2s;
+    position: relative;
+  }
+  .card:hover {
+    box-shadow: 0 2px 16px rgba(26,58,92,0.07);
+    border-color: #ccc;
+  }
+  .card.saved {
+    border-color: var(--saved-border);
+    background: var(--saved-bg);
+  }
+  .card-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 8px;
+  }
+  .card-source {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .source-name {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+  }
+  .source-sep { color: var(--ink-faint); font-size: 11px; }
+  .source-type {
+    font-size: 11px;
+    color: var(--ink-faint);
+    font-style: italic;
+  }
+  .card-actions {
+    display: flex;
+    gap: 6px;
+    flex-shrink: 0;
+  }
+  .action-btn {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 11px;
+    font-weight: 500;
+    padding: 4px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    border: 1px solid var(--rule);
+    background: transparent;
+    color: var(--ink-mid);
+    font-family: 'DM Sans', sans-serif;
+    transition: all 0.15s;
+    white-space: nowrap;
+  }
+  .action-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-light); }
+  .action-btn.save-btn.active { border-color: var(--saved-border); color: var(--saved-border); background: var(--saved-bg); }
+  .card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.35;
+    margin-bottom: 8px;
+  }
+  .card-title a {
+    color: inherit;
+    text-decoration: none;
+  }
+  .card-title a:hover { color: var(--accent); }
+  .card-body {
+    font-size: 14px;
+    color: var(--ink-mid);
+    line-height: 1.75;
+    margin-bottom: 10px;
+  }
+  .card-genre {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    color: var(--gold);
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    background: var(--gold-light);
+    padding: 2px 8px;
+    border-radius: 3px;
+    margin-bottom: 8px;
+  }
+  .card-youtube {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: #cc0000;
+    font-weight: 500;
+    text-decoration: none;
+    padding: 4px 0;
+  }
+  .card-youtube:hover { text-decoration: underline; }
+  .card-youtube svg { flex-shrink: 0; }
+
+  /* MUSIC RECS GRID */
+  .recs-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+  .rec-card {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    padding: 16px 18px;
+    transition: box-shadow 0.2s;
+  }
+  .rec-card:hover { box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+  .rec-card.saved { border-color: var(--saved-border); background: var(--saved-bg); }
+  .rec-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--ink-faint);
+    margin-bottom: 6px;
+  }
+  .rec-artist {
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 1px;
+  }
+  .rec-track {
+    font-size: 13px;
+    color: var(--ink-mid);
+    font-style: italic;
+    margin-bottom: 8px;
+  }
+  .rec-context {
+    font-size: 13px;
+    color: var(--ink-mid);
+    line-height: 1.65;
+    margin-bottom: 10px;
+  }
+  .rec-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+  }
+  .rec-actions {
+    display: flex;
+    gap: 6px;
+  }
+
+  /* ANNOTATIONS */
+  .annotation-area {
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px dashed var(--rule);
+    display: none;
+  }
+  .annotation-area.open { display: block; }
+  .annotation-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 6px;
+  }
+  .annotation-input {
+    width: 100%;
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 8px 12px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    color: var(--ink);
+    background: var(--bg);
+    resize: vertical;
+    min-height: 64px;
+    transition: border-color 0.2s;
+    outline: none;
+  }
+  .annotation-input:focus { border-color: var(--accent); }
+  .annotation-save {
+    margin-top: 6px;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 5px 14px;
+    border-radius: 4px;
+    border: 1px solid var(--accent);
+    background: var(--accent);
+    color: white;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    transition: opacity 0.15s;
+  }
+  .annotation-save:hover { opacity: 0.85; }
+  .annotation-display {
+    font-size: 13px;
+    color: var(--ink-mid);
+    font-style: italic;
+    background: var(--bg-warm);
+    padding: 8px 12px;
+    border-radius: 4px;
+    border-left: 3px solid var(--gold);
+    line-height: 1.6;
+  }
+
+  /* FOLLOW-UP / CONVERSATION */
+  .followup-area {
+    margin-top: 10px;
+    display: none;
+  }
+  .followup-area.open { display: block; }
+
+  /* Thread of past messages */
+  .convo-thread {
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .convo-bubble {
+    border-radius: 6px;
+    padding: 10px 13px;
+    font-size: 13px;
+    line-height: 1.7;
+    max-width: 92%;
+  }
+  .convo-bubble.user {
+    background: var(--bg-warm);
+    border: 1px solid var(--rule);
+    align-self: flex-end;
+    color: var(--ink);
+    font-style: italic;
+  }
+  .convo-bubble.assistant {
+    background: var(--accent-light);
+    border: 1px solid #c5d5e8;
+    align-self: flex-start;
+    color: var(--ink-mid);
+  }
+  .convo-bubble.thinking {
+    background: var(--accent-light);
+    border: 1px solid #c5d5e8;
+    align-self: flex-start;
+  }
+  .convo-label {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+    opacity: 0.5;
+  }
+
+  .followup-row {
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+  }
+  .followup-input {
+    flex: 1;
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 8px 12px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    color: var(--ink);
+    background: var(--bg);
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .followup-input:focus { border-color: var(--accent); }
+  .followup-submit {
+    font-size: 12px;
+    font-weight: 600;
+    padding: 8px 16px;
+    border-radius: 4px;
+    border: none;
+    background: var(--accent);
+    color: white;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    white-space: nowrap;
+    transition: opacity 0.15s;
+    flex-shrink: 0;
+  }
+  .followup-submit:hover { opacity: 0.85; }
+  .followup-submit:disabled { opacity: 0.5; cursor: not-allowed; }
+
+  .convo-clear {
+    font-size: 11px;
+    color: var(--ink-faint);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px 0;
+    font-family: 'DM Sans', sans-serif;
+    text-decoration: underline;
+    display: none;
+  }
+  .convo-clear.visible { display: inline; }
+
+  .followup-thinking {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: var(--ink-light);
+    font-style: italic;
+    padding: 4px 0;
+  }
+  .thinking-dot {
+    width: 5px; height: 5px;
+    background: var(--accent);
+    border-radius: 50%;
+    animation: blink 1.2s infinite;
+  }
+  .thinking-dot:nth-child(2) { animation-delay: 0.2s; }
+  .thinking-dot:nth-child(3) { animation-delay: 0.4s; }
+  @keyframes blink {
+    0%, 80%, 100% { opacity: 0.2; }
+    40% { opacity: 1; }
+  }
+
+  /* MUSIC NEWS SIDEBAR */
+  .tips-sidebar {
+    width: 260px;
+    flex-shrink: 0;
+    padding: 0;
+    position: sticky;
+    top: calc(64px + var(--nav-h));
+    height: calc(100vh - 64px - var(--nav-h));
+    overflow-y: auto;
+    border-left: 1px solid var(--rule);
+    background: var(--bg);
+  }
+  .tips-header {
+    padding: 20px 20px 14px;
+    border-bottom: 2px solid #0e7c6b;
+    margin-bottom: 0;
+    background: #e1f5ee;
+  }
+  .tips-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+  .tips-sub {
+    font-size: 10px;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: #0e7c6b;
+    font-weight: 500;
+  }
+  .tip-item {
+    padding: 12px 20px;
+    border-bottom: 1px solid var(--rule);
+    transition: background 0.15s;
+  }
+  .tip-item:hover { background: var(--accent-light); }
+  .tip-type {
+    display: inline-block;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 2px 7px;
+    border-radius: 3px;
+    margin-top: 4px;
+    color: white;
+  }
+  .tip-type.artist-news { background: #1a3a6b; }
+  .tip-type.tour { background: #1a6b5c; }
+  .tip-type.festival { background: #7b4a0a; }
+  .tip-source {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 4px;
+  }
+  .tip-desc {
+    font-size: 12px;
+    color: var(--ink-mid);
+    line-height: 1.6;
+    margin-bottom: 6px;
+  }
+  .tip-link {
+    display: block;
+    font-size: 12px;
+    color: var(--ink);
+    text-decoration: none;
+    margin-bottom: 4px;
+    line-height: 1.4;
+  }
+  .tip-link:hover { color: var(--accent); }
+  .tips-empty {
+    padding: 16px 20px;
+    font-size: 12px;
+    color: var(--ink-faint);
+    font-style: italic;
+    line-height: 1.6;
+  }
+
+  /* SAVED PANEL */
+  .saved-panel {
+    position: fixed;
+    top: 64px;
+    right: -380px;
+    width: 360px;
+    height: calc(100vh - 64px);
+    background: var(--paper);
+    border-left: 1px solid var(--rule);
+    overflow-y: auto;
+    z-index: 90;
+    transition: right 0.3s cubic-bezier(0.4,0,0.2,1);
+    box-shadow: -4px 0 24px rgba(0,0,0,0.08);
+    padding: 24px;
+  }
+  .saved-panel.open { right: 0; }
+  .saved-panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .saved-panel-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 600;
+  }
+  .close-btn {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: var(--ink-light);
+    padding: 4px;
+    line-height: 1;
+  }
+  .saved-item {
+    padding: 12px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .saved-item-source {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    margin-bottom: 3px;
+  }
+  .saved-item-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.4;
+    margin-bottom: 4px;
+  }
+  .saved-item-note {
+    font-size: 12px;
+    color: var(--ink-light);
+    font-style: italic;
+    line-height: 1.5;
+  }
+  .empty-saved {
+    text-align: center;
+    color: var(--ink-faint);
+    font-size: 13px;
+    padding: 40px 0;
+    font-style: italic;
+  }
+
+  /* NAV ARROWS */
+  .nav-arrows {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .nav-arrow {
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.22);
+    color: white;
+    font-size: 14px;
+    width: 30px;
+    height: 30px;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: background 0.15s;
+    line-height: 1;
+  }
+  .nav-arrow:hover { background: rgba(255,255,255,0.22); }
+  .nav-arrow.disabled { opacity: 0.25; pointer-events: none; }
+  .nav-arrow-date {
+    font-size: 11px;
+    color: rgba(255,255,255,0.55);
+    letter-spacing: 0.04em;
+    min-width: 80px;
+    text-align: center;
+  }
+
+  /* SERVER BANNER */
+  .server-banner {
+    background: #fff8e1;
+    border-bottom: 1px solid #ffe082;
+    padding: 10px 32px;
+    font-size: 12px;
+    color: #7a5c00;
+    display: none;
+    align-items: center;
+    gap: 12px;
+  }
+  .server-banner.visible { display: flex; }
+  .server-banner code {
+    font-family: 'DM Mono', monospace;
+    background: rgba(0,0,0,0.06);
+    padding: 2px 6px;
+    border-radius: 3px;
+  }
+
+  /* OVERLAY */
+  .overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.2);
+    z-index: 85;
+    display: none;
+    top: 64px;
+  }
+  .overlay.visible { display: block; }
+
+  /* SCROLL ANIMATION */
+  .section { opacity: 0; transform: translateY(16px); transition: opacity 0.4s, transform 0.4s; }
+  .section.visible { opacity: 1; transform: none; }
+
+  /* SCROLLBAR */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--rule); border-radius: 3px; }
+
+  @media (max-width: 1200px) {
+    .tips-sidebar { display: none; }
+  }
+  @media (max-width: 1000px) {
+    .industry-sidebar { display: none; }
+  }
+  @media (max-width: 900px) {
+    .main { padding: 0 20px 60px; }
+    .recs-grid { grid-template-columns: 1fr; }
+    .horizontal-nav { overflow-x: auto; -webkit-overflow-scrolling: touch; justify-content: flex-start; }
+  }
+</style>
+<style>
+  /* Public-deploy band-aids: hide server banner + Ask Claude UI */
+  .server-banner, .server-banner.visible { display: none !important; }
+  .followup-area, .followup-row, .convo-clear,
+  button[onclick*="toggleFollowup"], button.followup-submit { display: none !important; }
+</style>
+</head>
+<body>
+
+<!-- MASTHEAD -->
+<header class="masthead">
+  <div class="masthead-left">
+    <div class="masthead-wordmark">Third Bridge Creative</div>
+    <div class="masthead-sub">Morning Briefing</div>
+  </div>
+  <div class="nav-arrows">
+    <a class="nav-arrow disabled" id="navPrev" title="Previous briefing">&#8592;</a>
+    <span class="nav-arrow-date" id="navDate">Apr 16, 2026</span>
+    <a class="nav-arrow disabled" id="navNext" title="Next briefing">&#8594;</a>
+  </div>
+  <div class="masthead-actions">
+    <a class="btn-weekly" href="index.html">Archive</a>
+    <button class="btn-weekly" onclick="alert('Weekly synthesis brief — available Friday 9am')">Weekly Brief →</button>
+    <div class="saved-count" id="savedCount" onclick="toggleSavedPanel()" style="cursor:pointer;">0 saved</div>
+  </div>
+</header>
+
+<!-- SERVER BANNER -->
+<div class="server-banner" id="serverBanner">
+  <span>⚠ Saves won't persist — server not running.</span>
+  <span>In your briefings folder, run: <code>python server.py</code> then open <code>http://localhost:8000</code></span>
+</div>
+
+<!-- HORIZONTAL NAV -->
+<nav class="horizontal-nav">
+  <a class="nav-item active" onclick="scrollTo('s1')" href="#s1">Recs</a>
+  <a class="nav-item" onclick="scrollTo('s2')" href="#s2">Scene</a>
+  <a class="nav-item" onclick="scrollTo('s3')" href="#s3">Industry</a>
+  <a class="nav-item" onclick="scrollTo('s4')" href="#s4">AI + Editorial</a>
+  <a class="nav-item" onclick="scrollTo('s5')" href="#s5">Podcast</a>
+  <a class="nav-item" onclick="scrollTo('s9')" href="#s9">Voice</a>
+  <a class="nav-item" onclick="scrollTo('s11')" href="#s11">Film</a>
+</nav>
+
+<!-- SAVED PANEL -->
+<div class="overlay" id="overlay" onclick="toggleSavedPanel()"></div>
+<div class="saved-panel" id="savedPanel">
+  <div class="saved-panel-header">
+    <div class="saved-panel-title">Saved Items</div>
+    <button class="close-btn" onclick="toggleSavedPanel()">✕</button>
+  </div>
+  <div id="savedList"><div class="empty-saved">Nothing saved yet.<br>Use the bookmark button on any item.</div></div>
+</div>
+
+<div class="layout">
+
+  <!-- INDUSTRY NEWS LEFT SIDEBAR -->
+  <aside class="industry-sidebar">
+    <div class="industry-header">
+      <div class="industry-title">Industry News</div>
+      <div class="industry-sub">Business · Deals · Rights · Charts</div>
+    </div>
+    
+    <div class="industry-item">
+      <a class="industry-headline" href="https://www.digitalmusicnews.com/2026/04/14/music-streaming-royalties-paradox-study/" target="_blank">Study Reveals Streaming Paradox for Artists</a>
+      <div class="industry-source">Digital Music News</div>
+      <span class="industry-tag industry-streaming">Streaming</span>
+    </div>
+    <div class="industry-item">
+      <a class="industry-headline" href="https://www.musicbusinessworldwide.com/india-added-nearly-4m-paid-music-streaming-subscriptions-in-2025-taking-its-total-to-14-4m-according-to-new-report/" target="_blank">India Adds 4M Paid Streaming Subscriptions</a>
+      <div class="industry-source">Music Business Worldwide</div>
+      <span class="industry-tag industry-streaming">Streaming</span>
+    </div>
+    <div class="industry-item">
+      <a class="industry-headline" href="https://www.digitalmusicnews.com/2026/04/15/tiktok-karaoke-in-app-hub-olivia-rodrigo/" target="_blank">TikTok Expands Karaoke with Olivia Rodrigo</a>
+      <div class="industry-source">Digital Music News</div>
+      <span class="industry-tag industry-deal">Deal</span>
+    </div>
+    <div class="industry-toggle" onclick="toggleIndustryExpand(this)">
+      See 12 more ▾
+    </div>
+    <div class="industry-collapsed">
+    <div class="industry-item">
+      <a class="industry-headline" href="https://www.musicbusinessworldwide.com/warner-chappell-music-signs-grammy-winner-claudia-brant-to-global-publishing-deal/" target="_blank">Warner Chappell Signs Claudia Brant Deal</a>
+      <div class="industry-source">Music Business Worldwide</div>
+      <span class="industry-tag industry-deal">Deal</span>
+    </div>
+    <div class="industry-item">
+      <a class="industry-headline" href="https://www.digitalmusicnews.com/2026/04/15/concord-rap-game-pop-smoke/" target="_blank">Concord Partners with Victor Victor Worldwide</a>
+      <div class="industry-source">Digital Music News</div>
+      <span class="industry-tag industry-deal">Deal</span>
+    </div>
+    <div class="industry-item">
+      <a class="industry-headline" href="https://www.musicbusinessworldwide.com/spotify-strikes-year-long-deal-with-national-independent-venue-association-to-boost-indie-venues-in-the-us/" target="_blank">Spotify Partners NIVA for Indie Venues</a>
+      <div class="industry-source">Music Business Worldwide</div>
+      <span class="industry-tag industry-deal">Deal</span>
+    </div>
+    <div class="industry-item">
+      <a class="industry-headline" href="https://www.digitalmusicnews.com/2026/04/15/spotify-niva-deal/" target="_blank">Spotify Partners with NIVA on Venues</a>
+      <div class="industry-source">Digital Music News</div>
+      <span class="industry-tag industry-deal">Deal</span>
+    </div>
+    <div class="industry-item">
+      <a class="industry-headline" href="https://www.billboard.com/pro/live-nation-lost-monopoly-trial-what-happens-ticketmaster/" target="_blank">Live Nation Lost Monopoly Trial: What's Next</a>
+      <div class="industry-source">Billboard Pro</div>
+      <span class="industry-tag industry-rights">Rights</span>
+    </div>
+    <div class="industry-item">
+      <a class="industry-headline" href="https://www.digitalmusicnews.com/2026/04/15/annas-archive-judgement-spotify-labels/" target="_blank">Spotify, Labels Win $322M vs. Anna's Archive</a>
+      <div class="industry-source">Digital Music News</div>
+      <span class="industry-tag industry-rights">Rights</span>
+    </div>
+    <div class="industry-item">
+      <a class="industry-headline" href="https://www.billboard.com/pro/live-nation-verdict-music-industry-reactions/" target="_blank">Live Nation Verdict: Industry Stakeholders React</a>
+      <div class="industry-source">Billboard Pro</div>
+      <span class="industry-tag industry-rights">Rights</span>
+    </div>
+    <div class="industry-item">
+      <a class="industry-headline" href="https://www.digitalmusicnews.com/2026/04/15/senators-live-nation-white-house-deal/" target="_blank">Senators Press Court on Live Nation Deal</a>
+      <div class="industry-source">Digital Music News</div>
+      <span class="industry-tag industry-rights">Rights</span>
+    </div>
+    <div class="industry-item">
+      <a class="industry-headline" href="https://www.billboard.com/pro/live-nation-verdict-ticketmaster-loses-antitrust-trial/" target="_blank">Live Nation Ruled Illegal Monopoly by Jury</a>
+      <div class="industry-source">Billboard Pro</div>
+      <span class="industry-tag industry-rights">Rights</span>
+    </div>
+    <div class="industry-item">
+      <a class="industry-headline" href="https://www.digitalmusicnews.com/2026/04/15/live-nation-trial-jury-verdict/" target="_blank">Live Nation Antitrust Trial Loss Upheld</a>
+      <div class="industry-source">Digital Music News</div>
+      <span class="industry-tag industry-rights">Rights</span>
+    </div>
+    <div class="industry-item">
+      <a class="industry-headline" href="https://www.musicbusinessworldwide.com/federal-jury-finds-live-nation-operated-as-illegal-monopoly-in-landmark-antitrust-trial/" target="_blank">Live Nation Found Illegal Monopoly Operator</a>
+      <div class="industry-source">Music Business Worldwide</div>
+      <span class="industry-tag industry-rights">Rights</span>
+    </div>
+    <div class="industry-item">
+      <a class="industry-headline" href="https://www.digitalmusicnews.com/2026/04/15/live-nation-ticketmaster-breakup/" target="_blank">Live Nation-Ticketmaster Breakup Possible</a>
+      <div class="industry-source">Digital Music News</div>
+      <span class="industry-tag industry-rights">Rights</span>
+    </div>
+    </div>
+    
+    <div class="archives-section">
+      <div class="archives-header">
+        <div class="archives-header-title">From the Archives</div>
+        <div class="archives-header-sub">Foundational · Canon · Connections</div>
+      </div>
+      <div class="archives-card">
+        <a class="archives-title" href="https://www.newyorker.com/culture/cultural-comment/the-music-critic-in-the-age-of-the-insta-release" target="_blank">The Music Critic in the Age of the Insta-Release</a>
+        <div class="archives-meta">Amanda Petrusich · New Yorker · 2016</div>
+        <div class="archives-connection">Petrusich documented music criticism's shift from institutional gatekeeping to distributed conversation. Today's themes invert that problem: how algorithmic curation has replaced human critical judgment entirely, collapsing discovery into optimization.</div>
+        <span class="archives-type">From the archive</span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="main">
+
+    <!-- TOP STORIES -->
+    <div class="top-stories">
+      <div class="top-stories-header">
+        <div class="top-stories-title">Today's Top Reads</div>
+        <div class="top-stories-sub">Essays · Analysis · Features</div>
+      </div>
+      <div class="top-stories-grid">
+      <div class="top-story-card">
+        <div class="top-story-meta">
+          <span class="source-name">Herb Sundays by Sam Valenti IV</span>
+          <span class="source-sep">·</span>
+          <span class="source-type">Music &amp; Scene</span>
+        </div>
+        <div class="top-story-headline"><a href="https://herbsundays.substack.com/p/herb-sundays-183-classical-c-1200" target="_blank">Us v. Them: The Brooklyn Independent Music Scene of the 00s/10s</a></div>
+        <div class="top-story-summary">Sam Valenti IV's Herb Sundays has been quietly assembling one of the better oral histories of the Brooklyn indie scene's peak years, and this installment lands somewhere between elegy and autopsy. The piece traces how a specific cluster of venues, labels, and social networks created the conditions for a genuinely weird moment in American guitar music — and how the usual suspects (rising rents, platform attention economics, the professionalization of DIY) hollowed it out. Valenti writes from inside the room, which gives the nostalgia some teeth. Worth reading less as history than as a case study in how scenes actually die.</div>
+        <div class="top-story-type">Scene reports (local/regional music coverage)</div>
+      </div>
+      <div class="top-story-card">
+        <div class="top-story-meta">
+          <span class="source-name">All Things Jazz</span>
+          <span class="source-sep">·</span>
+          <span class="source-type">Music &amp; Scene</span>
+        </div>
+        <div class="top-story-headline"><a href="https://allthingsjazzoriginal.substack.com/p/billie-holiday-what-she-sang-anyway" target="_blank">Billie Holiday: What She Sang Anyway</a></div>
+        <div class="top-story-summary">All Things Jazz returns to Billie Holiday not with biography but with a close listen to what she actually did with her voice — the micro-timing, the way she sat behind or ahead of the beat, how she bent lyrics into something more spoken than sung. The piece argues that Holiday's influence gets flattened into &quot;emotional delivery&quot; when the real innovation was structural: she treated the standard songbook as raw material to be dismantled and rebuilt in real time. For anyone thinking about how interpretation becomes authorship, this is the tradition.</div>
+        <div class="top-story-type">Music criticism and theory</div>
+      </div>
+      <div class="top-story-card">
+        <div class="top-story-meta">
+          <span class="source-name">Fluxblog: Music Blog</span>
+          <span class="source-sep">·</span>
+          <span class="source-type">Music &amp; Scene</span>
+        </div>
+        <div class="top-story-headline"><a href="https://fluxblog.substack.com/p/fluxblog-600-early-days-of-the-global" target="_blank">Fluxblog 600: Early Days of the Global Pop Underground</a></div>
+        <div class="top-story-summary">Fluxblog hits its 600th edition with a retrospective on the early MP3 blog era — when a handful of writers with Blogspot accounts and decent taste were genuinely shaping what got heard. Matthew Perpetua's reflection isn't just nostalgia; it's a useful artifact of what discovery looked like before algorithmic recommendation colonized the entire experience. The piece surfaces how fragile and personal that infrastructure was, and how quickly it gave way to systems that could scale. Anyone building curation products now should understand what got lost in the transition.</div>
+        <div class="top-story-type">Curation philosophy and practice</div>
+      </div>
+      </div>
+    </div>
+
+    
+    <section class="section" id="s1">
+      <div class="section-header">
+        <span class="section-num">01</span>
+        <span class="section-title">Music Recommendations</span>
+        <span class="section-tag tag-c1">Music</span>
+      </div>
+      <div class="card">
+        <div class="card-body" style="color:var(--ink-faint);font-style:italic;">
+          No items found for this category today.
+        </div>
+      </div>
+    </section>
+    <section class="section" id="s2">
+      <div class="section-header">
+        <span class="section-num">02</span>
+        <span class="section-title">Music & Scene</span>
+        <span class="section-tag tag-c1">Music</span>
+      </div>
+      
+      
+      <div class="card" id="c2-1">
+        <div class="card-top">
+          <div class="card-source">
+            <span class="source-name">Herb Sundays by Sam Valenti IV</span>
+          </div>
+          <div class="card-actions">
+            <button class="action-btn save-btn" onclick="toggleSave('c2-1', 'Us v. Them: The Brooklyn Independent Music Scene of the 00s/10s', 'Herb Sundays by Sam Valenti IV')">⊕ Save</button>
+            <button class="action-btn" onclick="toggleAnnotation('c2-1-ann')">✎ Note</button>
+            <button class="action-btn" onclick="toggleFollowup('c2-1-fu')">Ask →</button>
+          </div>
+        </div>
+        <div class="card-title"><a href="https://herbsundays.substack.com/p/herb-sundays-183-classical-c-1200" target="_blank">Us v. Them: The Brooklyn Independent Music Scene of the 00s/10s</a></div>
+        <div class="card-body">Sam Valenti IV — founder of Ghostly International, so someone who lived this — writes about Ronen Givony's new book on the Brooklyn indie scene of the 00s/10s, and the framing is usefully unsentimental: the scene was a collective delusion, potent precisely because everyone believed in it at once. Givony tracks how larger political and economic forces enabled the moment and then snapped it back, leaving 'indie' as a marketing term rather than a culture. Worth reading alongside anyone thinking about what scenes actually do before they get legible to the industry.</div>
+        <div class="annotation-area" id="c2-1-ann">
+          <div class="annotation-label">Your note</div>
+          <textarea class="annotation-input" placeholder="Add a note..."></textarea>
+          <button class="annotation-save" onclick="saveAnnotation(this, 'c2-1-ann')">Save note</button>
+        </div>
+        <div class="followup-area" id="c2-1-fu">
+          <div class="convo-thread"></div>
+          <div class="followup-row">
+            <input class="followup-input" placeholder="Ask a follow-up question..." onkeydown="if(event.key==='Enter'){submitFollowup(this.nextElementSibling,'c2-1-fu')}" />
+            <button class="followup-submit" onclick="submitFollowup(this, 'c2-1-fu')">Ask Claude</button>
+          </div>
+          <button class="convo-clear" onclick="clearConversation('c2-1-fu')">clear conversation</button>
+        </div>
+      </div>
+      <div class="card" id="c2-2">
+        <div class="card-top">
+          <div class="card-source">
+            <span class="source-name">All Things Jazz</span>
+          </div>
+          <div class="card-actions">
+            <button class="action-btn save-btn" onclick="toggleSave('c2-2', 'Billie Holiday: What She Sang Anyway', 'All Things Jazz')">⊕ Save</button>
+            <button class="action-btn" onclick="toggleAnnotation('c2-2-ann')">✎ Note</button>
+            <button class="action-btn" onclick="toggleFollowup('c2-2-fu')">Ask →</button>
+          </div>
+        </div>
+        <div class="card-title"><a href="https://allthingsjazzoriginal.substack.com/p/billie-holiday-what-she-sang-anyway" target="_blank">Billie Holiday: What She Sang Anyway</a></div>
+        <div class="card-body">All Things Jazz argues that Holiday's persecution wasn't incidental to her art — it was a direct response to it. The piece frames 'Strange Fruit' not as protest music but as prosecution, and traces how the state's campaign against her (Anslinger's FBN, the revoked cabaret card, the Lexington facility) was designed to banish rather than punish. It earns weight by drawing the throughline to the opioid crisis: the double standard isn't subtle, and the piece doesn't let it be.</div>
+        <div class="annotation-area" id="c2-2-ann">
+          <div class="annotation-label">Your note</div>
+          <textarea class="annotation-input" placeholder="Add a note..."></textarea>
+          <button class="annotation-save" onclick="saveAnnotation(this, 'c2-2-ann')">Save note</button>
+        </div>
+        <div class="followup-area" id="c2-2-fu">
+          <div class="convo-thread"></div>
+          <div class="followup-row">
+            <input class="followup-input" placeholder="Ask a follow-up question..." onkeydown="if(event.key==='Enter'){submitFollowup(this.nextElementSibling,'c2-2-fu')}" />
+            <button class="followup-submit" onclick="submitFollowup(this, 'c2-2-fu')">Ask Claude</button>
+          </div>
+          <button class="convo-clear" onclick="clearConversation('c2-2-fu')">clear conversation</button>
+        </div>
+      </div>
+      <div class="card" id="c2-3">
+        <div class="card-top">
+          <div class="card-source">
+            <span class="source-name">Fluxblog: Music Blog</span>
+          </div>
+          <div class="card-actions">
+            <button class="action-btn save-btn" onclick="toggleSave('c2-3', 'Fluxblog 600: Early Days of the Global Pop Underground', 'Fluxblog: Music Blog')">⊕ Save</button>
+            <button class="action-btn" onclick="toggleAnnotation('c2-3-ann')">✎ Note</button>
+            <button class="action-btn" onclick="toggleFollowup('c2-3-fu')">Ask →</button>
+          </div>
+        </div>
+        <div class="card-title"><a href="https://fluxblog.substack.com/p/fluxblog-600-early-days-of-the-global" target="_blank">Fluxblog 600: Early Days of the Global Pop Underground</a></div>
+        <div class="card-body">Matthew Perpetua's Fluxblog — one of the original MP3 blogs, now hitting issue 600 — uses a milestone playlist as a way to revisit a pre-algorithmic moment when global pop connoisseurship was genuinely underground. The framing is personal (early 20s, alternate universe) but the observation is real: the infrastructure for 'alternative pop for snobby connoisseurs' didn't exist yet, and these songs had nowhere to land. Artists like Robyn, M.I.A., and The Knife eventually broke through; most on this list didn't.</div>
+        <div class="annotation-area" id="c2-3-ann">
+          <div class="annotation-label">Your note</div>
+          <textarea class="annotation-input" placeholder="Add a note..."></textarea>
+          <button class="annotation-save" onclick="saveAnnotation(this, 'c2-3-ann')">Save note</button>
+        </div>
+        <div class="followup-area" id="c2-3-fu">
+          <div class="convo-thread"></div>
+          <div class="followup-row">
+            <input class="followup-input" placeholder="Ask a follow-up question..." onkeydown="if(event.key==='Enter'){submitFollowup(this.nextElementSibling,'c2-3-fu')}" />
+            <button class="followup-submit" onclick="submitFollowup(this, 'c2-3-fu')">Ask Claude</button>
+          </div>
+          <button class="convo-clear" onclick="clearConversation('c2-3-fu')">clear conversation</button>
+        </div>
+      </div>
+      <div class="card" id="c2-4">
+        <div class="card-top">
+          <div class="card-source">
+            <span class="source-name">All Things Jazz</span>
+          </div>
+          <div class="card-actions">
+            <button class="action-btn save-btn" onclick="toggleSave('c2-4', 'Herbie Hancock: Inventions & Dimensions', 'All Things Jazz')">⊕ Save</button>
+            <button class="action-btn" onclick="toggleAnnotation('c2-4-ann')">✎ Note</button>
+            <button class="action-btn" onclick="toggleFollowup('c2-4-fu')">Ask →</button>
+          </div>
+        </div>
+        <div class="card-title"><a href="https://allthingsjazzoriginal.substack.com/p/herbie-hancock-inventions-and-dimensions" target="_blank">Herbie Hancock: Inventions &amp; Dimensions</a></div>
+        <div class="card-body">All Things Jazz makes a structural argument about *Inventions &amp; Dimensions* that goes beyond anniversary appreciation: the album works because Hancock placed rhythm at the absolute center and let harmony and melody emerge from it, rather than the reverse. The piece situates that choice in its moment — the early-'60s fracturing of jazz orthodoxy that gave a conceptual thinker room to move. Track-by-track analysis grounds the argument in specifics, though the piece cuts off before finishing.</div>
+        <div class="annotation-area" id="c2-4-ann">
+          <div class="annotation-label">Your note</div>
+          <textarea class="annotation-input" placeholder="Add a note..."></textarea>
+          <button class="annotation-save" onclick="saveAnnotation(this, 'c2-4-ann')">Save note</button>
+        </div>
+        <div class="followup-area" id="c2-4-fu">
+          <div class="convo-thread"></div>
+          <div class="followup-row">
+            <input class="followup-input" placeholder="Ask a follow-up question..." onkeydown="if(event.key==='Enter'){submitFollowup(this.nextElementSibling,'c2-4-fu')}" />
+            <button class="followup-submit" onclick="submitFollowup(this, 'c2-4-fu')">Ask Claude</button>
+          </div>
+          <button class="convo-clear" onclick="clearConversation('c2-4-fu')">clear conversation</button>
+        </div>
+      </div>
+      
+    </section>
+    <section class="section" id="s3">
+      <div class="section-header">
+        <span class="section-num">03</span>
+        <span class="section-title">Music Industry Analysis</span>
+        <span class="section-tag tag-c1">Music</span>
+      </div>
+      
+      
+      <div class="card" id="c3-1">
+        <div class="card-top">
+          <div class="card-source">
+            <span class="source-name">Platform &amp; Stream</span>
+          </div>
+          <div class="card-actions">
+            <button class="action-btn save-btn" onclick="toggleSave('c3-1', 'Ticketmaster launches app within ChatGPT, bringing event discovery to OpenAI\'s chatbot', 'Platform & Stream')">⊕ Save</button>
+            <button class="action-btn" onclick="toggleAnnotation('c3-1-ann')">✎ Note</button>
+            <button class="action-btn" onclick="toggleFollowup('c3-1-fu')">Ask →</button>
+          </div>
+        </div>
+        <div class="card-title">Ticketmaster launches app within ChatGPT, bringing event discovery to OpenAI's chatbot</div>
+        <div class="card-body">Platform &amp; Stream covers Ticketmaster's move to embed event discovery inside ChatGPT — a practical bet that conversational AI is becoming a legitimate acquisition channel. The timing is notable: OpenAI is simultaneously testing sponsored placements in the chatbot, which means Ticketmaster gets both organic discovery and a paid marketing surface in one integration. Routine coverage, but the underlying pattern — live entertainment treating LLMs as the next search — is worth tracking.</div>
+        <div class="annotation-area" id="c3-1-ann">
+          <div class="annotation-label">Your note</div>
+          <textarea class="annotation-input" placeholder="Add a note..."></textarea>
+          <button class="annotation-save" onclick="saveAnnotation(this, 'c3-1-ann')">Save note</button>
+        </div>
+        <div class="followup-area" id="c3-1-fu">
+          <div class="convo-thread"></div>
+          <div class="followup-row">
+            <input class="followup-input" placeholder="Ask a follow-up question..." onkeydown="if(event.key==='Enter'){submitFollowup(this.nextElementSibling,'c3-1-fu')}" />
+            <button class="followup-submit" onclick="submitFollowup(this, 'c3-1-fu')">Ask Claude</button>
+          </div>
+          <button class="convo-clear" onclick="clearConversation('c3-1-fu')">clear conversation</button>
+        </div>
+      </div>
+      <div class="card" id="c3-2">
+        <div class="card-top">
+          <div class="card-source">
+            <span class="source-name">Platform &amp; Stream</span>
+          </div>
+          <div class="card-actions">
+            <button class="action-btn save-btn" onclick="toggleSave('c3-2', 'Radio\'s On-Demand Wake-Up Call', 'Platform & Stream')">⊕ Save</button>
+            <button class="action-btn" onclick="toggleAnnotation('c3-2-ann')">✎ Note</button>
+            <button class="action-btn" onclick="toggleFollowup('c3-2-fu')">Ask →</button>
+          </div>
+        </div>
+        <div class="card-title">Radio's On-Demand Wake-Up Call</div>
+        <div class="card-body">Platform &amp; Stream argues that radio stations are operating on assumptions that on-demand listening has already invalidated — and that the reckoning is overdue. The piece doesn't break new ground so much as press on a familiar tension: broadcast's scheduled, appointment-based logic sitting uneasily alongside a listener base that's been trained by Spotify and podcasts to expect control. Worth a skim if you work adjacent to terrestrial or digital radio strategy.</div>
+        <div class="annotation-area" id="c3-2-ann">
+          <div class="annotation-label">Your note</div>
+          <textarea class="annotation-input" placeholder="Add a note..."></textarea>
+          <button class="annotation-save" onclick="saveAnnotation(this, 'c3-2-ann')">Save note</button>
+        </div>
+        <div class="followup-area" id="c3-2-fu">
+          <div class="convo-thread"></div>
+          <div class="followup-row">
+            <input class="followup-input" placeholder="Ask a follow-up question..." onkeydown="if(event.key==='Enter'){submitFollowup(this.nextElementSibling,'c3-2-fu')}" />
+            <button class="followup-submit" onclick="submitFollowup(this, 'c3-2-fu')">Ask Claude</button>
+          </div>
+          <button class="convo-clear" onclick="clearConversation('c3-2-fu')">clear conversation</button>
+        </div>
+      </div>
+      <div class="card" id="c3-3">
+        <div class="card-top">
+          <div class="card-source">
+            <span class="source-name">Platform &amp; Stream</span>
+          </div>
+          <div class="card-actions">
+            <button class="action-btn save-btn" onclick="toggleSave('c3-3', 'Danish grassroots collective Spoiler Room forced to rebrand after Boiler Room trademark claim', 'Platform & Stream')">⊕ Save</button>
+            <button class="action-btn" onclick="toggleAnnotation('c3-3-ann')">✎ Note</button>
+            <button class="action-btn" onclick="toggleFollowup('c3-3-fu')">Ask →</button>
+          </div>
+        </div>
+        <div class="card-title">Danish grassroots collective Spoiler Room forced to rebrand after Boiler Room trademark claim</div>
+        <div class="card-body">Platform &amp; Stream reports that Spoiler Room, a Copenhagen collective built around artists sharing works-in-progress, has been forced to rename after receiving a cease and desist from Boiler Room's legal team — the dance music streamer acquired by Superstruct last year. It's a familiar pattern: a well-resourced brand protecting trademark real estate against a grassroots operation with no capacity to fight back. The detail that makes it sting is the mission mismatch — a community-oriented, process-first collective on the wrong end of corporate IP enforcement.</div>
+        <div class="annotation-area" id="c3-3-ann">
+          <div class="annotation-label">Your note</div>
+          <textarea class="annotation-input" placeholder="Add a note..."></textarea>
+          <button class="annotation-save" onclick="saveAnnotation(this, 'c3-3-ann')">Save note</button>
+        </div>
+        <div class="followup-area" id="c3-3-fu">
+          <div class="convo-thread"></div>
+          <div class="followup-row">
+            <input class="followup-input" placeholder="Ask a follow-up question..." onkeydown="if(event.key==='Enter'){submitFollowup(this.nextElementSibling,'c3-3-fu')}" />
+            <button class="followup-submit" onclick="submitFollowup(this, 'c3-3-fu')">Ask Claude</button>
+          </div>
+          <button class="convo-clear" onclick="clearConversation('c3-3-fu')">clear conversation</button>
+        </div>
+      </div>
+      <div class="card" id="c3-4">
+        <div class="card-top">
+          <div class="card-source">
+            <span class="source-name">Unknown (aggregated in Platform &amp; Stream)</span>
+          </div>
+          <div class="card-actions">
+            <button class="action-btn save-btn" onclick="toggleSave('c3-4', 'Spotify gives users the option to switch off video content across its platform', 'Unknown (aggregated in Platform & Stream)')">⊕ Save</button>
+            <button class="action-btn" onclick="toggleAnnotation('c3-4-ann')">✎ Note</button>
+            <button class="action-btn" onclick="toggleFollowup('c3-4-fu')">Ask →</button>
+          </div>
+        </div>
+        <div class="card-title"><a href="Unknown" target="_blank">Spotify gives users the option to switch off video content across its platform</a></div>
+        <div class="card-body">Spotify is adding toggles that let users turn off video content — Canvas visuals, podcast video — across the platform. The source isn't credited, so take it as trade-press level reporting. Worth noting as a quiet admission that the push toward video hasn't landed universally with listeners. Giving users an opt-out is a different posture than the confident video-first messaging Spotify has leaned on for the past few years.</div>
+        <div class="annotation-area" id="c3-4-ann">
+          <div class="annotation-label">Your note</div>
+          <textarea class="annotation-input" placeholder="Add a note..."></textarea>
+          <button class="annotation-save" onclick="saveAnnotation(this, 'c3-4-ann')">Save note</button>
+        </div>
+        <div class="followup-area" id="c3-4-fu">
+          <div class="convo-thread"></div>
+          <div class="followup-row">
+            <input class="followup-input" placeholder="Ask a follow-up question..." onkeydown="if(event.key==='Enter'){submitFollowup(this.nextElementSibling,'c3-4-fu')}" />
+            <button class="followup-submit" onclick="submitFollowup(this, 'c3-4-fu')">Ask Claude</button>
+          </div>
+          <button class="convo-clear" onclick="clearConversation('c3-4-fu')">clear conversation</button>
+        </div>
+      </div>
+      
+    </section>
+    <section class="section" id="s4">
+      <div class="section-header">
+        <span class="section-num">04</span>
+        <span class="section-title">AI + Content & Editorial Technology</span>
+        <span class="section-tag tag-c2">AI</span>
+      </div>
+      
+      
+      <div class="card" id="c4-1">
+        <div class="card-top">
+          <div class="card-source">
+            <span class="source-name">Platform &amp; Stream</span>
+          </div>
+          <div class="card-actions">
+            <button class="action-btn save-btn" onclick="toggleSave('c4-1', 'Prepare Now for the Post-Suno Era', 'Platform & Stream')">⊕ Save</button>
+            <button class="action-btn" onclick="toggleAnnotation('c4-1-ann')">✎ Note</button>
+            <button class="action-btn" onclick="toggleFollowup('c4-1-fu')">Ask →</button>
+          </div>
+        </div>
+        <div class="card-title">Prepare Now for the Post-Suno Era</div>
+        <div class="card-body">Platform &amp; Stream raises a structural question that tends to get buried under Suno's week-to-week headlines: what does it actually mean to build something on top of a platform whose legal and commercial foundation is still unresolved? The piece isn't litigation coverage — it's a prompt to think about dependency risk before the rug pull happens. If you're advising clients on AI music tooling, the argument here is essentially: the platform layer is not stable ground.</div>
+        <div class="annotation-area" id="c4-1-ann">
+          <div class="annotation-label">Your note</div>
+          <textarea class="annotation-input" placeholder="Add a note..."></textarea>
+          <button class="annotation-save" onclick="saveAnnotation(this, 'c4-1-ann')">Save note</button>
+        </div>
+        <div class="followup-area" id="c4-1-fu">
+          <div class="convo-thread"></div>
+          <div class="followup-row">
+            <input class="followup-input" placeholder="Ask a follow-up question..." onkeydown="if(event.key==='Enter'){submitFollowup(this.nextElementSibling,'c4-1-fu')}" />
+            <button class="followup-submit" onclick="submitFollowup(this, 'c4-1-fu')">Ask Claude</button>
+          </div>
+          <button class="convo-clear" onclick="clearConversation('c4-1-fu')">clear conversation</button>
+        </div>
+      </div>
+      <div class="card" id="c4-2">
+        <div class="card-top">
+          <div class="card-source">
+            <span class="source-name">AI Music Newsletter</span>
+          </div>
+          <div class="card-actions">
+            <button class="action-btn save-btn" onclick="toggleSave('c4-2', 'Danish jazz artists rage at AI tracks released under their names', 'AI Music Newsletter')">⊕ Save</button>
+            <button class="action-btn" onclick="toggleAnnotation('c4-2-ann')">✎ Note</button>
+            <button class="action-btn" onclick="toggleFollowup('c4-2-fu')">Ask →</button>
+          </div>
+        </div>
+        <div class="card-title">Danish jazz artists rage at AI tracks released under their names</div>
+        <div class="card-body">The identity fraud angle here is sharper than the usual AI-music debate: AI Music Newsletter reports that Danish jazz pianist Carsten Dahl and other artists discovered AI-generated tracks being distributed under their actual names — not their style, their name. It's a meaningful escalation from the 'sounds like' problem to the 'is credited as' problem, and it points to a gap in platform verification that streaming services haven't had to close until now.</div>
+        <div class="annotation-area" id="c4-2-ann">
+          <div class="annotation-label">Your note</div>
+          <textarea class="annotation-input" placeholder="Add a note..."></textarea>
+          <button class="annotation-save" onclick="saveAnnotation(this, 'c4-2-ann')">Save note</button>
+        </div>
+        <div class="followup-area" id="c4-2-fu">
+          <div class="convo-thread"></div>
+          <div class="followup-row">
+            <input class="followup-input" placeholder="Ask a follow-up question..." onkeydown="if(event.key==='Enter'){submitFollowup(this.nextElementSibling,'c4-2-fu')}" />
+            <button class="followup-submit" onclick="submitFollowup(this, 'c4-2-fu')">Ask Claude</button>
+          </div>
+          <button class="convo-clear" onclick="clearConversation('c4-2-fu')">clear conversation</button>
+        </div>
+      </div>
+      <div class="card" id="c4-3">
+        <div class="card-top">
+          <div class="card-source">
+            <span class="source-name">AI Music Newsletter</span>
+          </div>
+          <div class="card-actions">
+            <button class="action-btn save-btn" onclick="toggleSave('c4-3', 'Directing Creativity in the Age of AI', 'AI Music Newsletter')">⊕ Save</button>
+            <button class="action-btn" onclick="toggleAnnotation('c4-3-ann')">✎ Note</button>
+            <button class="action-btn" onclick="toggleFollowup('c4-3-fu')">Ask →</button>
+          </div>
+        </div>
+        <div class="card-title">Directing Creativity in the Age of AI</div>
+        <div class="card-body">AI Music Newsletter argues that the defining creative skill is shifting from execution to direction — the modern creative's job is less about making things and more about shaping what gets made. It's a compressed but recognizable observation: as generation gets cheaper, taste and intent become the scarce inputs. The framing will feel familiar to anyone who's watched a platform try to scale editorial voice with AI tools and discovered that the bottleneck was always curatorial judgment, not production capacity.</div>
+        <div class="annotation-area" id="c4-3-ann">
+          <div class="annotation-label">Your note</div>
+          <textarea class="annotation-input" placeholder="Add a note..."></textarea>
+          <button class="annotation-save" onclick="saveAnnotation(this, 'c4-3-ann')">Save note</button>
+        </div>
+        <div class="followup-area" id="c4-3-fu">
+          <div class="convo-thread"></div>
+          <div class="followup-row">
+            <input class="followup-input" placeholder="Ask a follow-up question..." onkeydown="if(event.key==='Enter'){submitFollowup(this.nextElementSibling,'c4-3-fu')}" />
+            <button class="followup-submit" onclick="submitFollowup(this, 'c4-3-fu')">Ask Claude</button>
+          </div>
+          <button class="convo-clear" onclick="clearConversation('c4-3-fu')">clear conversation</button>
+        </div>
+      </div>
+      <div class="card" id="c4-4">
+        <div class="card-top">
+          <div class="card-source">
+            <span class="source-name">Platform &amp; Stream</span>
+          </div>
+          <div class="card-actions">
+            <button class="action-btn save-btn" onclick="toggleSave('c4-4', 'AI Music Is Entering Everyday Life', 'Platform & Stream')">⊕ Save</button>
+            <button class="action-btn" onclick="toggleAnnotation('c4-4-ann')">✎ Note</button>
+            <button class="action-btn" onclick="toggleFollowup('c4-4-fu')">Ask →</button>
+          </div>
+        </div>
+        <div class="card-title">AI Music Is Entering Everyday Life</div>
+        <div class="card-body">Platform &amp; Stream makes the structural argument that AI music isn't just a new genre — it's a challenge to the song itself as the organizing unit of music. The piece traces how a century-old format assumption (fixed recording, discrete product) is quietly being dismantled by generative tools that produce continuous, adaptive audio. Worth a read if you're thinking about how streaming interfaces and editorial frameworks built around the track model will need to evolve.</div>
+        <div class="annotation-area" id="c4-4-ann">
+          <div class="annotation-label">Your note</div>
+          <textarea class="annotation-input" placeholder="Add a note..."></textarea>
+          <button class="annotation-save" onclick="saveAnnotation(this, 'c4-4-ann')">Save note</button>
+        </div>
+        <div class="followup-area" id="c4-4-fu">
+          <div class="convo-thread"></div>
+          <div class="followup-row">
+            <input class="followup-input" placeholder="Ask a follow-up question..." onkeydown="if(event.key==='Enter'){submitFollowup(this.nextElementSibling,'c4-4-fu')}" />
+            <button class="followup-submit" onclick="submitFollowup(this, 'c4-4-fu')">Ask Claude</button>
+          </div>
+          <button class="convo-clear" onclick="clearConversation('c4-4-fu')">clear conversation</button>
+        </div>
+      </div>
+      
+    </section>
+    <section class="section" id="s5">
+      <div class="section-header">
+        <span class="section-num">05</span>
+        <span class="section-title">Podcast & Video Platform News</span>
+        <span class="section-tag tag-c3">Film + Podcast</span>
+      </div>
+      <div class="card">
+        <div class="card-body" style="color:var(--ink-faint);font-style:italic;">
+          No items found for this category today.
+        </div>
+      </div>
+    </section>
+    <section class="section" id="s7">
+      <div class="section-header">
+        <span class="section-num">07</span>
+        <span class="section-title">AI Product News</span>
+        <span class="section-tag tag-c2">AI</span>
+      </div>
+      
+      
+      <div class="card" id="c7-1">
+        <div class="card-top">
+          <div class="card-source">
+            <span class="source-name">404 Media</span>
+          </div>
+          <div class="card-actions">
+            <button class="action-btn save-btn" onclick="toggleSave('c7-1', 'Google, Microsoft, Meta All Tracking You Even When You Opt Out, According to an Independent Audit', '404 Media')">⊕ Save</button>
+            <button class="action-btn" onclick="toggleAnnotation('c7-1-ann')">✎ Note</button>
+            <button class="action-btn" onclick="toggleFollowup('c7-1-fu')">Ask →</button>
+          </div>
+        </div>
+        <div class="card-title">Google, Microsoft, Meta All Tracking You Even When You Opt Out, According to an Independent Audit</div>
+        <div class="card-body">404 Media's Matthew Gault covers an independent audit finding that opting out of tracking on major platforms — Google, Microsoft, Meta — doesn't actually stop the tracking. The audit examined web traffic and found data collection continuing regardless of user consent signals. Worth knowing as a baseline reality check: the consent infrastructure most streaming platforms and labels rely on to claim compliance may be doing less work than assumed.</div>
+        <div class="annotation-area" id="c7-1-ann">
+          <div class="annotation-label">Your note</div>
+          <textarea class="annotation-input" placeholder="Add a note..."></textarea>
+          <button class="annotation-save" onclick="saveAnnotation(this, 'c7-1-ann')">Save note</button>
+        </div>
+        <div class="followup-area" id="c7-1-fu">
+          <div class="convo-thread"></div>
+          <div class="followup-row">
+            <input class="followup-input" placeholder="Ask a follow-up question..." onkeydown="if(event.key==='Enter'){submitFollowup(this.nextElementSibling,'c7-1-fu')}" />
+            <button class="followup-submit" onclick="submitFollowup(this, 'c7-1-fu')">Ask Claude</button>
+          </div>
+          <button class="convo-clear" onclick="clearConversation('c7-1-fu')">clear conversation</button>
+        </div>
+      </div>
+      <div class="card" id="c7-2">
+        <div class="card-top">
+          <div class="card-source">
+            <span class="source-name">The Founders Corner</span>
+          </div>
+          <div class="card-actions">
+            <button class="action-btn save-btn" onclick="toggleSave('c7-2', 'The $852 Billion Secret That Just Got Out', 'The Founders Corner')">⊕ Save</button>
+            <button class="action-btn" onclick="toggleAnnotation('c7-2-ann')">✎ Note</button>
+            <button class="action-btn" onclick="toggleFollowup('c7-2-fu')">Ask →</button>
+          </div>
+        </div>
+        <div class="card-title"><a href="https://www.the-founders-corner.com/p/the-852-billion-secret-that-just" target="_blank">The $852 Billion Secret That Just Got Out</a></div>
+        <div class="card-body">The Founders Corner breaks down a leaked OpenAI cap table that's apparently circulating in the right inboxes — and the structural oddities are genuinely strange. Sam Altman's equity row reads TBD across every column. SoftBank is sitting on $34.7B in unrealized gains before the round has closed. The OpenAI Foundation holds 2.6 billion shares at a cost basis of zero, with a return multiple listed as infinity. Less a funding story than a corporate governance puzzle nobody seems to have fully solved.</div>
+        <div class="annotation-area" id="c7-2-ann">
+          <div class="annotation-label">Your note</div>
+          <textarea class="annotation-input" placeholder="Add a note..."></textarea>
+          <button class="annotation-save" onclick="saveAnnotation(this, 'c7-2-ann')">Save note</button>
+        </div>
+        <div class="followup-area" id="c7-2-fu">
+          <div class="convo-thread"></div>
+          <div class="followup-row">
+            <input class="followup-input" placeholder="Ask a follow-up question..." onkeydown="if(event.key==='Enter'){submitFollowup(this.nextElementSibling,'c7-2-fu')}" />
+            <button class="followup-submit" onclick="submitFollowup(this, 'c7-2-fu')">Ask Claude</button>
+          </div>
+          <button class="convo-clear" onclick="clearConversation('c7-2-fu')">clear conversation</button>
+        </div>
+      </div>
+      <div class="card" id="c7-3">
+        <div class="card-top">
+          <div class="card-source">
+            <span class="source-name">404 Media</span>
+          </div>
+          <div class="card-actions">
+            <button class="action-btn save-btn" onclick="toggleSave('c7-3', 'Wildlife Cops Are Searching AI Cameras for ICE', '404 Media')">⊕ Save</button>
+            <button class="action-btn" onclick="toggleAnnotation('c7-3-ann')">✎ Note</button>
+            <button class="action-btn" onclick="toggleFollowup('c7-3-fu')">Ask →</button>
+          </div>
+        </div>
+        <div class="card-title">Wildlife Cops Are Searching AI Cameras for ICE</div>
+        <div class="card-body">404 Media's Jason Koebler reports on wildlife enforcement agencies running Flock Safety camera lookups on behalf of ICE — a data-sharing backdoor that has nothing to do with TBC's beat, but illustrates a pattern worth tracking: AI surveillance infrastructure built for one purpose quietly expanding into another. The structural observation is the useful one. Automated systems designed for narrow applications become general-purpose enforcement tools faster than policy can follow.</div>
+        <div class="annotation-area" id="c7-3-ann">
+          <div class="annotation-label">Your note</div>
+          <textarea class="annotation-input" placeholder="Add a note..."></textarea>
+          <button class="annotation-save" onclick="saveAnnotation(this, 'c7-3-ann')">Save note</button>
+        </div>
+        <div class="followup-area" id="c7-3-fu">
+          <div class="convo-thread"></div>
+          <div class="followup-row">
+            <input class="followup-input" placeholder="Ask a follow-up question..." onkeydown="if(event.key==='Enter'){submitFollowup(this.nextElementSibling,'c7-3-fu')}" />
+            <button class="followup-submit" onclick="submitFollowup(this, 'c7-3-fu')">Ask Claude</button>
+          </div>
+          <button class="convo-clear" onclick="clearConversation('c7-3-fu')">clear conversation</button>
+        </div>
+      </div>
+      <div class="card" id="c7-4">
+        <div class="card-top">
+          <div class="card-source">
+            <span class="source-name">404 Media</span>
+          </div>
+          <div class="card-actions">
+            <button class="action-btn save-btn" onclick="toggleSave('c7-4', 'Farmer Arrested for Speaking Too Long at Datacenter Town Hall Vows to Fight', '404 Media')">⊕ Save</button>
+            <button class="action-btn" onclick="toggleAnnotation('c7-4-ann')">✎ Note</button>
+            <button class="action-btn" onclick="toggleFollowup('c7-4-fu')">Ask →</button>
+          </div>
+        </div>
+        <div class="card-title">Farmer Arrested for Speaking Too Long at Datacenter Town Hall Vows to Fight</div>
+        <div class="card-body">404 Media reports on Darren Blanchard, a farmer who was handcuffed at a datacenter town hall for running a few seconds over his three-minute speaking limit — a detail that does a lot of work on its own. The incident crystallizes a familiar tension: the infrastructure buildout powering AI is landing hardest in rural communities who get a timed slot to object before decisions are effectively made. Worth a read for anyone tracking the ground-level politics of where datacenters actually get built.</div>
+        <div class="annotation-area" id="c7-4-ann">
+          <div class="annotation-label">Your note</div>
+          <textarea class="annotation-input" placeholder="Add a note..."></textarea>
+          <button class="annotation-save" onclick="saveAnnotation(this, 'c7-4-ann')">Save note</button>
+        </div>
+        <div class="followup-area" id="c7-4-fu">
+          <div class="convo-thread"></div>
+          <div class="followup-row">
+            <input class="followup-input" placeholder="Ask a follow-up question..." onkeydown="if(event.key==='Enter'){submitFollowup(this.nextElementSibling,'c7-4-fu')}" />
+            <button class="followup-submit" onclick="submitFollowup(this, 'c7-4-fu')">Ask Claude</button>
+          </div>
+          <button class="convo-clear" onclick="clearConversation('c7-4-fu')">clear conversation</button>
+        </div>
+      </div>
+      
+    </section>
+    <section class="section" id="s8">
+      <div class="section-header">
+        <span class="section-num">08</span>
+        <span class="section-title">Voice & Culture</span>
+        <span class="section-tag tag-c4">Culture + News</span>
+      </div>
+      <div class="card">
+        <div class="card-body" style="color:var(--ink-faint);font-style:italic;">
+          No items found for this category today.
+        </div>
+      </div>
+    </section>
+    <section class="section" id="s9">
+      <div class="section-header">
+        <span class="section-num">09</span>
+        <span class="section-title">Film + Podcast Industry</span>
+        <span class="section-tag tag-c3">Film + Podcast</span>
+      </div>
+      <div class="card">
+        <div class="card-body" style="color:var(--ink-faint);font-style:italic;">
+          No items found for this category today.
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- MUSIC NEWS SIDEBAR -->
+  <aside class="tips-sidebar">
+    <div class="tips-header">
+      <div class="tips-title">Music News</div>
+      <div class="tips-sub">Artist · Tour · Festival</div>
+    </div>
+
+    
+    <div class="tip-item">
+      <a class="tip-link" href="https://pitchfork.com/news/massive-attacks-first-song-in-six-years-features-tom-waits/" target="_blank"><strong>Massive Attack returns with Tom Waits</strong></a>
+      <div class="tip-source">Pitchfork</div>
+      <span class="tip-type artist-news">Artist news/profiles</span>
+    </div>
+    <div class="tip-item">
+      <a class="tip-link" href="https://www.npr.org/2026/04/15/g-s1-117406/rock-roll-hall-of-fame-africa-fela-kuti" target="_blank"><strong>Fela Kuti enters Rock &amp; Roll Hall</strong></a>
+      <div class="tip-source">NPR</div>
+      <span class="tip-type artist-news">Artist news/profiles</span>
+    </div>
+    <div class="tip-item">
+      <a class="tip-link" href="https://pitchfork.com/news/the-field-announces-first-solo-project-in-eight-years-now-you-exist/" target="_blank"><strong>The Field announces first project eight years</strong></a>
+      <div class="tip-source">Pitchfork</div>
+      <span class="tip-type artist-news">Artist news/profiles</span>
+    </div>
+    <div class="tip-item">
+      <a class="tip-link" href="https://www.billboard.com/music/pop/jessie-ware-major-international-superbloom-tour-1236224147/" target="_blank"><strong>Jessie Ware announces Superbloom tour</strong></a>
+      <div class="tip-source">Billboard</div>
+      <span class="tip-type tour">Tour announcements</span>
+    </div>
+    <div class="tip-item">
+      <a class="tip-link" href="https://pitchfork.com/news/jessie-ware-plots-fall-2026-tour/" target="_blank"><strong>Jessie Ware plots fall 2026 tour</strong></a>
+      <div class="tip-source">Pitchfork</div>
+      <span class="tip-type tour">Tour announcements</span>
+    </div>
+    <div class="tip-item">
+      <a class="tip-link" href="https://www.billboard.com/pro/grateful-dead-subscription-streaming-service-play-dead/" target="_blank"><strong>Grateful Dead launches Play Dead platform</strong></a>
+      <div class="tip-source">Billboard</div>
+      <span class="tip-type artist-news">Artist news/profiles</span>
+    </div>
+    <div class="tip-item">
+      <a class="tip-link" href="https://pitchfork.com/news/madonna-readies-confessions-on-a-dance-floor-sequel/" target="_blank"><strong>Madonna announces Confessions II album</strong></a>
+      <div class="tip-source">Pitchfork</div>
+      <span class="tip-type artist-news">Artist news/profiles</span>
+    </div>
+    <div class="tip-item">
+      <a class="tip-link" href="https://www.billboard.com/music/music-news/warp-records-cryptic-poster-boards-of-canada-1236224138/" target="_blank"><strong>Boards of Canada hints at return</strong></a>
+      <div class="tip-source">Billboard</div>
+      <span class="tip-type artist-news">Artist news/profiles</span>
+    </div>
+    <div class="tip-item">
+      <a class="tip-link" href="https://www.brooklynvegan.com/bedouine-shares-always-on-time-announces-north-american-tour/" target="_blank"><strong>Bedouine announces North American tour</strong></a>
+      <div class="tip-source">Brooklyn Vegan</div>
+      <span class="tip-type tour">Tour announcements</span>
+    </div>
+    <div class="tip-item">
+      <a class="tip-link" href="https://www.rollingstone.com/music/music-news/rihanna-first-woman-200-million-riaa-singles-1235547777/" target="_blank"><strong>Rihanna surpasses 200M certifications</strong></a>
+      <div class="tip-source">Rolling Stone</div>
+      <span class="tip-type artist-news">Artist news/profiles</span>
+    </div>
+    <div class="tip-item">
+      <a class="tip-link" href="https://www.brooklynvegan.com/underworld-announce-labor-day-weekend-shows-at-knockdown-center/" target="_blank"><strong>Underworld announces Labor Day shows</strong></a>
+      <div class="tip-source">Brooklyn Vegan</div>
+      <span class="tip-type tour">Tour announcements</span>
+    </div>
+    <div class="tip-item">
+      <a class="tip-link" href="https://www.rollingstone.com/music/music-features/rza-wu-tang-clan-rock-roll-hall-fame-interview-1235547094/" target="_blank"><strong>Wu-Tang Clan inducted into Hall Fame</strong></a>
+      <div class="tip-source">Rolling Stone</div>
+      <span class="tip-type artist-news">Artist news/profiles</span>
+    </div>
+    <div class="tip-item">
+      <a class="tip-link" href="https://stereogum.com/2495804/japanese-breakfast-earns-first-gold-record/news/" target="_blank"><strong>Japanese Breakfast earns first gold</strong></a>
+      <div class="tip-source">Stereogum</div>
+      <span class="tip-type artist-news">Artist news/profiles</span>
+    </div>
+    <div class="tip-item">
+      <a class="tip-link" href="https://www.rollingstone.com/music/music-features/slipknot-look-outside-your-window-shawn-crahan-1235534383/" target="_blank"><strong>Slipknot's Crahan discusses side band</strong></a>
+      <div class="tip-source">Rolling Stone</div>
+      <span class="tip-type artist-news">Artist news/profiles</span>
+    </div>
+    <div class="tip-item">
+      <a class="tip-link" href="https://www.brooklynvegan.com/jessie-ware-announces-fall-tour-radio-city-music-hall-included/" target="_blank"><strong>Jessie Ware announces fall tour</strong></a>
+      <div class="tip-source">Brooklyn Vegan</div>
+      <span class="tip-type tour">Tour announcements</span>
+    </div>
+  </aside>
+
+</div>
+
+<script>
+  // ---- CONFIG — engine will populate these per file ----
+  const BRIEFING_DATE = '2026-04-16';  // YYYY-MM-DD
+  const PREV_DATE = '2026-04-15';               // e.g. '2026-03-04' or null
+  const NEXT_DATE = '2026-04-17';               // e.g. '2026-03-06' or null
+
+  // ---- STATE ----
+  const savedItems = {};
+  const conversations = {};
+  const cardContextCache = {};
+  let serverAvailable = false;
+
+  // ---- PERSISTENCE ----
+  async function checkServer() {
+    try {
+      const r = await fetch('/api/ping', { method: 'GET' });
+      serverAvailable = r.ok;
+    } catch { serverAvailable = false; }
+    if (!serverAvailable) {
+      document.getElementById('serverBanner').classList.add('visible');
+    }
+  }
+
+  async function loadSavedState() {
+    try {
+      const r = await fetch('/data/saved.json');
+      if (!r.ok) return;
+      const all = await r.json();
+      const day = all[BRIEFING_DATE];
+      if (!day) return;
+      for (const [cardId, data] of Object.entries(day)) {
+        if (data.saved) {
+          savedItems[cardId] = { title: data.title, source: data.source, note: data.note || '' };
+          const card = document.getElementById(cardId);
+          if (card) {
+            card.classList.add('saved');
+            const btn = card.querySelector('.save-btn');
+            if (btn) { btn.classList.add('active'); btn.textContent = '✓ Saved'; }
+          }
+        }
+        if (data.note) {
+          const annArea = document.getElementById(cardId + '-ann');
+          if (annArea) {
+            const input = annArea.querySelector('.annotation-input');
+            const saveBtn = annArea.querySelector('.annotation-save');
+            if (input) input.style.display = 'none';
+            if (saveBtn) saveBtn.style.display = 'none';
+            const display = document.createElement('div');
+            display.className = 'annotation-display';
+            display.textContent = data.note;
+            annArea.appendChild(display);
+            annArea.classList.add('open');
+          }
+        }
+        if (data.conversations) {
+          for (const [fuId, history] of Object.entries(data.conversations)) {
+            conversations[fuId] = history;
+            if (history.length) {
+              const fuArea = document.getElementById(fuId);
+              if (fuArea) { fuArea.classList.add('open'); renderThread(fuId); }
+            }
+          }
+        }
+      }
+      updateSavedCount();
+    } catch(e) { /* no saved state yet */ }
+  }
+
+  async function persistState() {
+    if (!serverAvailable) return;
+    // Build this day's state
+    const dayState = {};
+    // Saved items
+    for (const [cardId, data] of Object.entries(savedItems)) {
+      dayState[cardId] = dayState[cardId] || {};
+      Object.assign(dayState[cardId], { saved: true, title: data.title, source: data.source, note: data.note || '' });
+    }
+    // Conversations
+    for (const [fuId, history] of Object.entries(conversations)) {
+      if (!history.length) continue;
+      const cardId = fuId.replace(/-fu(-\d+)?$/, '').replace(/-\d+-fu$/, '');
+      // find card id by walking up DOM
+      const area = document.getElementById(fuId);
+      const card = area?.closest('.card, .rec-card');
+      const cid = card?.id || fuId;
+      dayState[cid] = dayState[cid] || {};
+      dayState[cid].conversations = dayState[cid].conversations || {};
+      dayState[cid].conversations[fuId] = history;
+    }
+    // Merge with existing full file
+    let all = {};
+    try {
+      const r = await fetch('/data/saved.json');
+      if (r.ok) all = await r.json();
+    } catch {}
+    all[BRIEFING_DATE] = dayState;
+    try {
+      await fetch('/api/save', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(all)
+      });
+    } catch {}
+  }
+
+  // ---- NAV ARROWS ----
+  function initNav() {
+    const prev = document.getElementById('navPrev');
+    const next = document.getElementById('navNext');
+    const dateLabel = document.getElementById('navDate');
+
+    const fmt = d => {
+      if (!d) return '';
+      const [y,m,day] = d.split('-');
+      const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+      return `${months[+m-1]} ${+day}`;
+    };
+    if (dateLabel) dateLabel.textContent = fmt(BRIEFING_DATE);
+
+    if (PREV_DATE && prev) {
+      prev.classList.remove('disabled');
+      prev.href = `${PREV_DATE}.html`;
+      prev.title = fmt(PREV_DATE);
+    }
+    if (NEXT_DATE && next) {
+      next.classList.remove('disabled');
+      next.href = `${NEXT_DATE}.html`;
+      next.title = fmt(NEXT_DATE);
+    }
+  }
+
+  // ---- SAVED STATE ----
+  function updateSavedCount() {
+    const count = Object.keys(savedItems).length;
+    document.getElementById('savedCount').textContent = count + ' saved';
+    renderSavedPanel();
+  }
+
+  function toggleExpand(btn) {
+    const items = btn.nextElementSibling;
+    if (items.style.display === 'none') {
+      items.style.display = '';
+      btn.textContent = btn.textContent.replace('Show', 'Hide').replace('▾', '▴');
+    } else {
+      items.style.display = 'none';
+      btn.textContent = btn.textContent.replace('Hide', 'Show').replace('▴', '▾');
+    }
+  }
+
+  function toggleIndustryExpand(btn) {
+    const items = btn.nextElementSibling;
+    if (items.style.display === 'none' || !items.style.display) {
+      items.style.display = 'block';
+      btn.textContent = btn.textContent.replace('See', 'Hide').replace('more ▾', '▴');
+    } else {
+      items.style.display = 'none';
+      btn.textContent = btn.textContent.replace('Hide', 'See').replace('▴', 'more ▾');
+    }
+  }
+
+  function toggleSave(id, title, source) {
+    const card = document.getElementById(id);
+    const btn = card.querySelector('.save-btn');
+    if (savedItems[id]) {
+      delete savedItems[id];
+      card.classList.remove('saved');
+      btn.classList.remove('active');
+      btn.textContent = '⊕ Save';
+    } else {
+      savedItems[id] = { title, source, note: '' };
+      card.classList.add('saved');
+      btn.classList.add('active');
+      btn.textContent = '✓ Saved';
+    }
+    updateSavedCount();
+    persistState();
+  }
+
+  function renderSavedPanel() {
+    const list = document.getElementById('savedList');
+    const keys = Object.keys(savedItems);
+    if (!keys.length) {
+      list.innerHTML = '<div class="empty-saved">Nothing saved yet.<br>Use the bookmark button on any item.</div>';
+      return;
+    }
+    list.innerHTML = keys.map(k => {
+      const item = savedItems[k];
+      return `<div class="saved-item">
+        <div class="saved-item-source">${item.source}</div>
+        <div class="saved-item-title">${item.title}</div>
+        ${item.note ? `<div class="saved-item-note">${item.note}</div>` : ''}
+      </div>`;
+    }).join('');
+  }
+
+  function toggleSavedPanel() {
+    const panel = document.getElementById('savedPanel');
+    const overlay = document.getElementById('overlay');
+    panel.classList.toggle('open');
+    overlay.classList.toggle('visible');
+  }
+
+  // ---- ANNOTATIONS ----
+  function toggleAnnotation(id) {
+    const area = document.getElementById(id);
+    area.classList.toggle('open');
+  }
+
+  function saveAnnotation(btn, areaId) {
+    const area = document.getElementById(areaId);
+    const input = area.querySelector('.annotation-input');
+    const text = input.value.trim();
+    if (!text) return;
+    input.style.display = 'none';
+    btn.style.display = 'none';
+    const display = document.createElement('div');
+    display.className = 'annotation-display';
+    display.textContent = text;
+    area.appendChild(display);
+    const card = area.closest('.card, .rec-card');
+    if (card) {
+      if (savedItems[card.id]) {
+        savedItems[card.id].note = text;
+        renderSavedPanel();
+      } else {
+        // Auto-save the card if annotated
+        const titleEl = card.querySelector('.card-title, .rec-artist');
+        const sourceEl = card.querySelector('.source-name');
+        if (titleEl && sourceEl) {
+          savedItems[card.id] = { title: titleEl.textContent.trim(), source: sourceEl.textContent.trim(), note: text };
+          card.classList.add('saved');
+          const saveBtn = card.querySelector('.save-btn');
+          if (saveBtn) { saveBtn.classList.add('active'); saveBtn.textContent = '✓ Saved'; }
+          updateSavedCount();
+        }
+      }
+    }
+    persistState();
+  }
+
+  // ---- FOLLOW-UP (multi-turn) ----
+  function getCardContext(area) {
+    const card = area.closest('.card, .rec-card');
+    if (!card) return { title: '', body: '', source: '' };
+    if (cardContextCache[card.id]) return cardContextCache[card.id];
+    const ctx = {
+      title: (card.querySelector('.card-title')?.textContent || card.querySelector('.rec-artist')?.textContent || '').trim(),
+      body: (card.querySelector('.card-body, .rec-context')?.textContent || '').slice(0, 500),
+      source: (card.querySelector('.source-name')?.textContent || '').trim()
+    };
+    cardContextCache[card.id] = ctx;
+    return ctx;
+  }
+
+  function toggleFollowup(id) {
+    const area = document.getElementById(id);
+    area.classList.toggle('open');
+    if (area.classList.contains('open')) area.querySelector('.followup-input').focus();
+  }
+
+  function renderThread(areaId) {
+    const area = document.getElementById(areaId);
+    const thread = area.querySelector('.convo-thread');
+    const history = conversations[areaId] || [];
+    const clearBtn = area.querySelector('.convo-clear');
+    thread.innerHTML = history.map(msg => {
+      const isUser = msg.role === 'user';
+      return `<div class="convo-bubble ${isUser ? 'user' : 'assistant'}">
+        <div class="convo-label">${isUser ? 'You' : 'Claude'}</div>
+        ${msg.content}
+      </div>`;
+    }).join('');
+    if (clearBtn) clearBtn.classList.toggle('visible', history.length > 0);
+    thread.scrollTop = thread.scrollHeight;
+  }
+
+  function clearConversation(areaId) {
+    conversations[areaId] = [];
+    renderThread(areaId);
+    persistState();
+  }
+
+  async function submitFollowup(btn, areaId) {
+    const area = document.getElementById(areaId);
+    const input = area.querySelector('.followup-input');
+    const question = input.value.trim();
+    if (!question) return;
+    if (!conversations[areaId]) conversations[areaId] = [];
+    const history = conversations[areaId];
+    history.push({ role: 'user', content: question });
+    input.value = '';
+    btn.disabled = true;
+    renderThread(areaId);
+    const thread = area.querySelector('.convo-thread');
+    const thinking = document.createElement('div');
+    thinking.className = 'convo-bubble thinking';
+    thinking.innerHTML = '<div class="followup-thinking"><div class="thinking-dot"></div><div class="thinking-dot"></div><div class="thinking-dot"></div><span>Claude is thinking...</span></div>';
+    thread.appendChild(thinking);
+    const ctx = getCardContext(area);
+    const systemPrompt = `You are a research assistant for Third Bridge Creative (TBC), a content strategy agency helping music streaming platforms and labels with editorial systems, taxonomies, and AI-assisted workflows. TBC's tagline is "Credibility, at Scale." You are helping Sam, the founder, think through industry content in his morning briefing.\n\nCard context:\nSource: ${ctx.source}\nTitle: ${ctx.title}\nSummary: ${ctx.body}\n\nBe concise and specific. Connect insights to TBC's positioning where genuinely relevant. Match depth to what's asked.`;
+    const messages = history.map(msg => ({ role: msg.role, content: msg.content }));
+    try {
+      const response = await fetch('https://api.anthropic.com/v1/messages', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ model: 'claude-sonnet-4-20250514', max_tokens: 1000, system: systemPrompt, messages })
+      });
+      const data = await response.json();
+      const reply = data.content?.map(b => b.text || '').join('') || 'No response.';
+      history.push({ role: 'assistant', content: reply });
+    } catch(e) {
+      history.push({ role: 'assistant', content: 'Could not reach Claude API. Please check your connection.' });
+    }
+    thinking.remove();
+    btn.disabled = false;
+    renderThread(areaId);
+    input.focus();
+    persistState();
+  }
+
+  // ---- NAV ACTIVE STATE ----
+  const sections = document.querySelectorAll('.section');
+  const navLinks = document.querySelectorAll('.nav-item');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(l => l.classList.remove('active'));
+        const active = document.querySelector(`.nav-item[href="#${entry.target.id}"]`);
+        if (active) active.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-25% 0px -65% 0px' });
+  sections.forEach(s => observer.observe(s));
+
+  // ---- SCROLL ANIMATIONS ----
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+  }, { threshold: 0.05 });
+  document.querySelectorAll('.section').forEach(s => revealObserver.observe(s));
+
+  // ---- SMOOTH SCROLL ----
+  function scrollTo(id) {
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  // ---- INIT ----
+  initNav();
+  checkServer().then(() => loadSavedState());
+</script>
+</body>
+</html>
