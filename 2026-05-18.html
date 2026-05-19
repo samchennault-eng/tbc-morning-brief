@@ -763,9 +763,9 @@
   }
   .rail-see-more:hover { color: var(--accent); border-color: var(--accent); }
 
-  /* Click-to-play music-rec overlay. The wrap covers the iframe; clicking
-     it triggers JS that swaps `autoplay=1` into iframe src and hides the
-     wrap (rec-overlay-wrap.played). */
+  /* Click-to-play music-rec overlay. The wrap is the only thing in the
+     .rec-feature-video container until click; JS replaces it with a fresh
+     iframe carrying autoplay=1 in its initial src (see template <script>). */
   .rec-overlay-wrap {
     position: absolute;
     inset: 0;
@@ -791,7 +791,6 @@
     transition: transform 0.15s ease;
   }
   .rec-overlay-wrap:hover .rec-play-icon { transform: scale(1.08); }
-  .rec-overlay-wrap.played { display: none; }
   .story-dek {
     font-family: var(--f-sans);
     font-weight: 400;
@@ -1120,28 +1119,28 @@
       <div class="rail-title">industry news</div>
     </div>
     <div class="rail-item">
-      <a class="rail-headline" href="https://www.billboard.com/pro/george-clinton-sues-umg-over-alleged-royalty-freeze/">George Clinton sues UMG over royalty freeze</a>
-      <div class="rail-source">Billboard Pro</div>
-      <span class="tag">Rights &amp; legal</span>
-    </div>
-    <div class="rail-item">
-      <a class="rail-headline" href="https://www.billboard.com/pro/meet-tamber-an-ai-powered-music-creation-platform/">Tamber launches AI music creation platform</a>
-      <div class="rail-source">Billboard Pro</div>
-      <span class="tag">Platform &amp; product moves</span>
-    </div>
-    <div class="rail-item">
-      <a class="rail-headline" href="https://www.billboard.com/pro/cean-sleeper-deal-rise-records-bmg/">Ocean Sleeper signs with Rise Records/BMG</a>
-      <div class="rail-source">Billboard Pro</div>
-      <span class="tag">Deals &amp; business moves</span>
-    </div>
-    <div class="rail-item">
-      <a class="rail-headline" href="https://www.digitalmusicnews.com/2026/05/18/spotify-price-increases-may-2026/">Spotify adjusts prices globally, Canada up India down</a>
+      <a class="rail-headline" href="https://www.digitalmusicnews.com/2026/05/18/disney-hulu-music-festivals-livestreaming/">Disney+, Hulu livestream music festivals</a>
       <div class="rail-source">Digital Music News</div>
       <span class="tag">Streaming &amp; platform business</span>
     </div>
     <div class="rail-item">
-      <a class="rail-headline" href="https://www.digitalmusicnews.com/2026/05/17/sphere-investment-for-abu-dhabi-expansion/">Sphere secures $1.7B Abu Dhabi investment</a>
-      <div class="rail-source">Digital Music News</div>
+      <a class="rail-headline" href="https://completemusicupdate.com/spotify-increases-subscription-prices-in-canada-but-rolls-back-previous-price-increases-in-india/">Spotify adjusts prices Canada, India</a>
+      <div class="rail-source">Complete Music Update</div>
+      <span class="tag">Streaming &amp; platform business</span>
+    </div>
+    <div class="rail-item">
+      <a class="rail-headline" href="https://www.musicbusinessworldwide.com/japans-avex-sees-music-segment-revenues-grow-6-8-yoy-to-810m-in-latest-fiscal-year/">Avex music revenue grows 6.8% YoY</a>
+      <div class="rail-source">Music Business Worldwide</div>
+      <span class="tag">Streaming &amp; platform business</span>
+    </div>
+    <div class="rail-item">
+      <a class="rail-headline" href="https://www.billboard.com/pro/number_i-signs-atlantic-records/">Number_i signs with Atlantic Records</a>
+      <div class="rail-source">Billboard Pro</div>
+      <span class="tag">Deals &amp; business moves</span>
+    </div>
+    <div class="rail-item">
+      <a class="rail-headline" href="https://www.musicbusinessworldwide.com/bmi-to-acquire-soundmouse-from-orfium-to-build-largest-and-most-comprehensive-global-cue-sheet-database/">BMI acquires Soundmouse cue sheet platform</a>
+      <div class="rail-source">Music Business Worldwide</div>
       <span class="tag">Deals &amp; business moves</span>
     </div>
     <div class="rail-header rail-header--secondary">
@@ -1149,9 +1148,9 @@
       <div class="rail-title">from the archives</div>
     </div>
     <div class="rail-item">
-      <a class="rail-headline serif" href="https://pitchfork.com/features/article/why-burials-untrue-is-the-most-important-electronic-album-of-the-century-so-far/">Why Burial's Untrue Is the Most Important Electronic Album of the Century So Far</a>
-      <div class="rail-source">Simon Reynolds · Pitchfork · 2012</div>
-      <p class="rail-blurb">Reynolds identified something crucial: Burial's refusal to surface as a public figure wasn't shyness but aesthetic strategy, the music's emotional authenticity dependent on its maker remaining spectral. The anonymity wasn't separate from the art — it was the art, a rebuke to personality-driven culture that feels more urgent now than it did in 2012.</p>
+      <a class="rail-headline serif" href="https://greilmarcus.net/2014/09/08/punk-1979/">Punk 1979</a>
+      <div class="rail-source">Greil Marcus · greilmarcus.net · 1979</div>
+      <p class="rail-blurb">Marcus didn't just review punk — he gave it a language, treating safety pins and three-chord chaos as legitimate cultural critique. His insistence that aesthetic revolt and political revolt were inseparable made punk legible to people who might otherwise have dismissed it as noise.</p>
     </div>
     </aside>
 
@@ -1174,7 +1173,7 @@
 
     <article class="hero">
       <h1 class="hero-title"><a href="https://vinylculture.substack.com/p/the-music-industrys-three-body-problem">Suno's Data Grab, Spotify's Legal Fortress, and the 'Blue Dot Fever'</a></h1>
-      <p class="hero-dek">Vinyl Culture tackles three pressure points hitting the industry simultaneously: Suno's training data practices, Spotify's legal fortifications, and the compulsive playlist-checking behavior they've dubbed Blue Dot Fever. If you've caught yourself refreshing stats instead of making music, that last one will sting.</p>
+      <p class="hero-dek">Vinyl Culture bundles three pressure points into one read: Suno's training data questions, Spotify's legal armor, and the &quot;Blue Dot Fever&quot; that keeps you compulsively clearing notifications. The connective tissue is algorithmic manipulation — how platforms shape listening behavior while AI reshapes creation. If you've felt your relationship to music subtly hijacked, this names the mechanisms.</p>
       <div class="hero-meta">
         <a class="hero-read" href="https://vinylculture.substack.com/p/the-music-industrys-three-body-problem">Read on Vinyl Culture →</a>
       </div>
@@ -1184,13 +1183,13 @@
       <article class="also">
         <div class="also-meta">Beauty Blew a Fuse · Essay</div>
         <h3 class="also-title"><a href="https://markrichardson.substack.com/p/breathing-smog-thoughts-on-early">Breathing Smog: Thoughts on Early Bill Callahan</a></h3>
-        <p class="also-dek">Mark Richardson at Beauty Blew a Fuse has been writing about Bill Callahan for decades, and this piece uses the new album as a springboard into something harder to articulate: the strange grief of watching an artist outgrow the darkness that once felt like yours. If you've ever returned to early work that understood you at your worst, this one lands.</p>
+        <p class="also-dek">Mark Richardson at Beauty Blew a Fuse uses a recent Bill Callahan show as a springboard into something more personal: what happens when an artist you've followed for decades grows out of the darkness that first drew you in. The early Smog records gave voice to alienation so total it hurt. Callahan's moved on. Sometimes you haven't. That's the tension worth sitting with.</p>
         <a class="also-read" href="https://markrichardson.substack.com/p/breathing-smog-thoughts-on-early">Read →</a>
       </article>
       <article class="also">
         <div class="also-meta">Zinstrel - AI Music Culture &amp; Analysis · Essay</div>
         <h3 class="also-title"><a href="https://zinstrel.substack.com/p/ai-music-tools-dont-support-collaboration">AI Music Tools Don't Support Collaboration. The Artists Figured it Out Anyway.</a></h3>
-        <p class="also-dek">Zinstrel digs into how AI music artists are jerry-rigging collaboration tools that were never designed for it — placeholder verses, remix handoffs, mashups requiring hours of prep work. The resourcefulness is real, but so is the subtext: these platforms weren't built with creative partnership in mind. Artists are routing around that absence, not waiting for permission.</p>
+        <p class="also-dek">Zinstrel digs into how AI music artists are building collaborative workflows despite tools designed for solo use. The workarounds are clever — placeholder verses, mashup permissions, extend chains — but the real story is what happens when a community outpaces its platform. These artists aren't waiting for features; they're inventing protocol. That's how scenes form, even synthetic ones.</p>
         <a class="also-read" href="https://zinstrel.substack.com/p/ai-music-tools-dont-support-collaboration">Read →</a>
       </article>
     </div>
@@ -1486,54 +1485,54 @@
       <div class="rail-title">music news</div>
     </div>
     <div class="rail-item">
-      <a class="rail-headline" href="https://www.npr.org/2026/05/18/g-s1-122563/pop-star-shakira-is-acquitted-in-a-spanish-tax-fraud-case">Shakira acquitted in Spanish tax fraud case</a>
+      <a class="rail-headline" href="https://www.npr.org/2026/05/19/nx-s1-5826692/tomeka-reid-expands-the-possibilities-of-jazz-avant-garde-on-dance-skip-hop">Tomeka Reid expands jazz avant garde</a>
       <div class="rail-source">NPR Feed</div>
       <span class="tag">Artist news/profiles</span>
     </div>
     <div class="rail-item">
-      <a class="rail-headline" href="https://www.billboard.com/music/rb-hip-hop/mariah-the-scientist-makes-her-award-show-performance-debut-at-billboard-women-in-music-26-1236251096/">Mariah the Scientist award show performance debut</a>
-      <div class="rail-source">Billboard Feed</div>
+      <a class="rail-headline" href="https://www.rollingstone.com/music/music-news/geese-rolling-stone-rock-tour-denver-1235560603/">Geese to headline Rolling Stone Rock Tour</a>
+      <div class="rail-source">Rolling Stone Feed</div>
+      <span class="tag">Tour announcements</span>
+    </div>
+    <div class="rail-item">
+      <a class="rail-headline" href="https://www.npr.org/2026/05/14/nx-s1-5743803/rostam-album-american-stories">Rostam quilts Americana with Persian influences</a>
+      <div class="rail-source">NPR Feed</div>
       <span class="tag">Artist news/profiles</span>
     </div>
     <div class="rail-item">
-      <a class="rail-headline" href="https://www.billboard.com/music/rb-hip-hop/lauryn-hill-why-she-didnt-release-another-solo-album-1236250948/">Lauryn Hill explains post-Miseducation album absence</a>
+      <a class="rail-headline" href="https://www.billboard.com/music/rb-hip-hop/gordo-drake-maid-of-honour-interview-1236252015/">GORDO on producing Drake's new album</a>
       <div class="rail-source">Billboard Feed</div>
       <span class="tag">Artist news/profiles</span>
     </div>
-    <div class="rail-item">
-      <a class="rail-headline" href="https://www.billboard.com/lists/tecate-emblema-best-performances/">Tecate Emblema 2026 best performances ranked</a>
-      <div class="rail-source">Billboard Feed</div>
-      <span class="tag">Festival coverage</span>
-    </div>
     <div class="rail-item rail-item--extra">
-      <a class="rail-headline" href="https://www.rollingstone.com/music/music-news/bruce-springsteen-chris-christie-rift-1235564726/">Bruce Springsteen manager denies Chris Christie rift</a>
-      <div class="rail-source">Rolling Stone Feed</div>
+      <a class="rail-headline" href="https://www.npr.org/2026/05/18/g-s1-122563/pop-star-shakira-is-acquitted-in-a-spanish-tax-fraud-case">Shakira acquitted in Spanish tax fraud</a>
+      <div class="rail-source">NPR Feed</div>
       <span class="tag">Artist news/profiles</span>
     </div>
     <div class="rail-item rail-item--extra">
-      <a class="rail-headline" href="https://www.rollingstone.com/music/music-features/6lack-new-music-interview-1235564620/">6LACK discusses balance, parenthood, new album</a>
-      <div class="rail-source">Rolling Stone Feed</div>
-      <span class="tag">Artist news/profiles</span>
-    </div>
-    <div class="rail-item rail-item--extra">
-      <a class="rail-headline" href="https://www.rollingstone.com/music/music-news/smashing-pumpkins-tour-rats-in-a-cage-1235564532/">Smashing Pumpkins announce Rats in a Cage tour</a>
+      <a class="rail-headline" href="https://www.rollingstone.com/music/music-news/rolling-stone-residency-live-1235558769/">Sara Bareilles kicks off Rolling Stone residency</a>
       <div class="rail-source">Rolling Stone Feed</div>
       <span class="tag">Tour announcements</span>
     </div>
     <div class="rail-item rail-item--extra">
-      <a class="rail-headline" href="https://www.rollingstone.com/music/music-news/all-things-go-nyc-2026-lineup-lola-young-zara-larsson-1235564515/">Lola Young returns to All Things Go Fest NYC</a>
-      <div class="rail-source">Rolling Stone Feed</div>
-      <span class="tag">Festival coverage</span>
+      <a class="rail-headline" href="https://pitchfork.com/news/they-are-gutting-a-body-of-water-detail-us-tour/">They Are Gutting a Body going US tour</a>
+      <div class="rail-source">Pitchfork News Feed</div>
+      <span class="tag">Tour announcements</span>
     </div>
     <div class="rail-item rail-item--extra">
-      <a class="rail-headline" href="https://www.rollingstone.com/music/music-news/shakira-tax-case-spanish-court-64-million-refund-1235564448/">Shakira wins $64 million Spanish tax refund</a>
+      <a class="rail-headline" href="https://www.rollingstone.com/music/music-latin/colombian-folk-music-icon-toto-la-momposina-dead-85-1235565848/">Totó La Momposina dead at eighty-five</a>
       <div class="rail-source">Rolling Stone Feed</div>
       <span class="tag">Artist news/profiles</span>
     </div>
     <div class="rail-item rail-item--extra">
-      <a class="rail-headline" href="https://pitchfork.com/news/hayley-williams-mitski-ethel-cain-set-for-all-things-go-festival-2026/">Hayley Williams, Mitski set for All Things Go 2026</a>
+      <a class="rail-headline" href="https://pitchfork.com/news/posthumous-ed-askew-album-to-feature-bill-callahan-sharon-van-etten/">Posthumous Ed Askew album features Bill Callahan</a>
       <div class="rail-source">Pitchfork News Feed</div>
-      <span class="tag">Festival coverage</span>
+      <span class="tag">Artist news/profiles</span>
+    </div>
+    <div class="rail-item rail-item--extra">
+      <a class="rail-headline" href="https://www.rollingstone.com/music/music-features/america-dewey-bunnell-contemplate-retirement-1235564977/">Dewey Bunnell considering retirement from America</a>
+      <div class="rail-source">Rolling Stone Feed</div>
+      <span class="tag">Artist news/profiles</span>
     </div>
     <button class="rail-see-more" type="button">See more ↓</button>
     <div class="rail-header rail-header--secondary">
@@ -1589,7 +1588,8 @@
 
   // Music-rec click-to-play: create a fresh iframe with autoplay=1 already
   // in its initial src (carries the click gesture into YouTube cleanly) and
-  // replace the overlay with it.
+  // replace the overlay with it. The YT src is read from data-yt-src; no
+  // iframe is in the DOM until this fires (saves a YT request on page load).
   document.addEventListener('click', (e) => {
     const wrap = e.target.closest('.rec-overlay-wrap');
     if (!wrap) return;
