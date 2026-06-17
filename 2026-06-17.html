@@ -1095,6 +1095,85 @@
     .also-row { grid-template-columns: 1fr; }
     .rec-feature { grid-template-columns: 1fr; }
   }
+  /* ============================================================
+     MUSIC RECS — carousel of additional recommendations (V3)
+     The feature renders as before; render_music_rec_cards_v3 appends a
+     show-fewer/more toggle + a horizontal, scroll-snap carousel of up to
+     4 lean cards (mono artist, ink sticker genre, source link, watch-on-
+     YouTube link out). Scoped under .recx- so it never touches the
+     legacy .rec- styles.
+     ============================================================ */
+  .recx-toggle {
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+    width: 100%; margin: 24px 0 4px; padding: 9px 14px;
+    background: transparent; color: var(--ink-mid);
+    border: 1.5px dashed var(--ink-faint); border-radius: var(--r-button);
+    font-family: var(--f-mono); font-weight: 700; font-size: 11px; letter-spacing: 0.05em;
+    text-transform: lowercase; cursor: pointer; transition: border-color .12s ease, color .12s ease;
+  }
+  .recx-toggle:hover { border-color: var(--ink); color: var(--ink); }
+  .recx-count {
+    background: var(--secondary); color: var(--ink); border: 1.5px solid var(--ink);
+    border-radius: var(--r-chip); padding: 1px 7px; font-size: 10px; line-height: 1.5;
+  }
+
+  .recx-more { margin-top: 14px; }
+  .numbered-section.recs-collapsed .recx-more { display: none; }
+
+  .recx-carousel {
+    display: flex; gap: 16px; overflow-x: auto;
+    scroll-snap-type: x mandatory; scroll-behavior: smooth;
+    padding: 4px 2px 14px; scrollbar-width: thin;
+  }
+  .recx-card {
+    scroll-snap-align: start; flex: 0 0 264px; max-width: 264px;
+    display: flex; flex-direction: column;
+    background: var(--surface);
+    border: 2px solid var(--ink); border-radius: var(--r-card);
+    padding: 16px 18px;
+  }
+  .recx-card--blue { border-color: var(--accent); }
+  .recx-card--red  { border-color: var(--secondary); }
+
+  .recx-num { font-family: var(--f-mono); font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 8px; }
+  .recx-artist { font-family: var(--f-mono); font-weight: 700; font-size: 17px; line-height: 1.2; letter-spacing: -0.01em; color: var(--ink); margin: 0 0 3px; }
+  .recx-track { font-family: var(--f-mono); font-weight: 400; font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-mid); margin: 0 0 12px; }
+  .recx-genre {
+    display: inline-flex; align-items: center; gap: 5px; align-self: flex-start;
+    font-family: var(--f-mono); font-weight: 500; font-size: 11px; letter-spacing: 0.02em;
+    background: var(--ink); color: var(--on-accent);
+    border-radius: var(--r-chip); padding: 4px 10px; margin-bottom: 12px;
+  }
+  .recx-note { color: var(--hi-vis-yellow); font-size: 12px; }
+  .recx-blurb { font-family: var(--f-sans); font-weight: 400; font-size: 12.5px; line-height: 1.55; color: var(--ink-mid); margin: 0 0 14px; }
+  .recx-blurb em { font-style: italic; color: var(--ink-light); }
+
+  .recx-card-foot { margin-top: auto; padding-top: 12px; border-top: 1px solid var(--rule); }
+  .recx-source-row { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; margin-bottom: 10px; }
+  .recx-source { font-family: var(--f-mono); font-weight: 700; font-size: 9px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-light); }
+  .recx-source-link { font-family: var(--f-mono); font-weight: 500; font-size: 10px; color: var(--accent); }
+  .recx-source-link:hover { color: var(--ink); }
+  .recx-foot-actions { display: flex; align-items: center; gap: 8px; }
+  .recx-watch { display: inline-flex; align-items: center; gap: 6px; font-family: var(--f-mono); font-weight: 700; font-size: 10px; letter-spacing: 0.02em; color: var(--ember); }
+  .recx-watch:hover { color: var(--ink); }
+  .recx-yt { display: inline-flex; align-items: center; justify-content: center; width: 20px; height: 14px; background: #FF0000; color: #fff; border-radius: 3px; font-size: 8px; line-height: 1; }
+
+  .recx-carousel-foot { display: flex; align-items: center; gap: 10px; margin-top: 4px; padding: 0 2px; }
+  .recx-arrow {
+    width: 26px; height: 26px; flex: 0 0 26px; display: inline-flex; align-items: center; justify-content: center;
+    background: var(--surface); color: var(--ink); border: 1.5px solid var(--ink); border-radius: var(--r-button);
+    font-family: var(--f-mono); font-size: 13px; line-height: 1; cursor: pointer; transition: background .12s ease, color .12s ease;
+  }
+  .recx-arrow:hover { background: var(--ink); color: var(--on-accent); }
+  .recx-dots { display: flex; gap: 6px; align-items: center; }
+  .recx-dot { width: 8px; height: 8px; padding: 0; border: none; border-radius: 50%; background: var(--ink-faint); cursor: pointer; }
+  .recx-dot.on { background: var(--ink); }
+  .recx-hint { margin-left: auto; font-family: var(--f-mono); font-size: 10px; letter-spacing: 0.04em; text-transform: lowercase; color: var(--ink-light); }
+
+  @media (max-width: 700px) {
+    .recx-card { flex-basis: 82%; max-width: 82%; }
+    .recx-hint { display: none; }
+  }
 </style>
 </head>
 <body>
@@ -1440,13 +1519,22 @@
       </div>
       <div class="rec-feature">
         <div class="rec-feature-video">
-          <iframe src="https://www.youtube.com/embed/cAIyMT7gARc" allowfullscreen frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" style="width:100%;height:100%;border:0;"></iframe>
+          <div class="rec-overlay-wrap" data-yt-src="https://www.youtube.com/embed/MnVeQ93kcmA"><img class="rec-overlay-img" src="assets/Image Files for Music Recs/1.png" alt="" /><div class="rec-play-icon" aria-hidden="true">▶</div></div>
         </div>
         <div class="rec-meta">
-          <h3 class="rec-title">Yukichi Kasaku/men — "Angel No Strip"</h3>
-          <div class="rec-via"><a href="https://mbmelodies.substack.com/p/make-believe-melodies-for-june-15">via Make Believe Mailer</a></div>
-          <p class="rec-blurb">An artist who often pushes pop to the edges delivers something surprisingly immediate in its synth-pop construction. The sound takes pop pleasure and turns it slightly askew without losing the immediacy of its hook.</p>
+          <h3 class="rec-title">Rapsody — "God Gotta Afro"</h3>
+          <div class="rec-via"><a href="https://www.shatterthestandards.com/p/new-rap-from-rapsody-nipsey-hussle">via Shatter the Standards</a></div>
+          <p class="rec-blurb">Over Mr Porter production with the Karabo yaMorena Choir, Rapsody transforms morning mirror ritual into theology—afro picks, cocoa butter, and a lineage stretching four generations to a continent. Dense with Black cultural memory from Clipse to Diana Ross.</p>
         </div>
+      </div>
+      <button class="recx-toggle" type="button" aria-expanded="true"><span class="recx-toggle-label">show fewer recommendations</span><span class="recx-count">03</span></button>
+      <div class="recx-more">
+        <div class="recx-carousel">
+          <article class="recx-card recx-card--blue"><div class="recx-num">REC 01</div><h4 class="recx-artist">Ambrose Akinmusire &amp; Mary Halvorson</h4><div class="recx-track">Slo-Mo Neon Luminate Hoverings</div><span class="recx-genre"><span class="recx-note">&#9834;</span> jazz</span><p class="recx-blurb">Trumpeter Akinmusire's breath control is described as 'astonishingly artful, emotive, and articulate,' particularly stunning on ballads. This kaleidoscopic collaboration with guitarist Mary Halvorson showcases the nuanced interplay between two of jazz's most inventive voices.</p><div class="recx-card-foot"><div class="recx-source-row"><span class="recx-source">Will Hermes: New Music + Old Music</span><a class="recx-source-link" href="https://newmusicoldmusic.substack.com/p/concerts-wo-cellphones">view source &rarr;</a></div><div class="recx-foot-actions"><a class="recx-watch" href="https://www.youtube.com/watch?v=vIL7LONVn-k"><span class="recx-yt">&#9654;</span> Watch on YouTube</a></div></div></article>
+          <article class="recx-card recx-card--red"><div class="recx-num">REC 02</div><h4 class="recx-artist">Future Sound of London</h4><div class="recx-track">We Have Explosive</div><span class="recx-genre"><span class="recx-note">&#9834;</span> electronic/breakbeat</span><p class="recx-blurb">FSOL's biggest single, reaching #12 in the UK in 1997, described as 'a mixture of ferocious break, metallic rush and pure robotic vocal hook that is almost painful in its heart-pulsing power.' Line Noise calls it 'a Stakker Humanoid for the 90s'—both great pop single and towering dancefloor banger.</p><div class="recx-card-foot"><div class="recx-source-row"><span class="recx-source">Line Noise</span><a class="recx-source-link" href="https://linenoise.substack.com/p/the-future-sound-of-london-will-gloriously-e46">view source &rarr;</a></div><div class="recx-foot-actions"><a class="recx-watch" href="https://www.youtube.com/watch?v=MA7tzbsnQl4"><span class="recx-yt">&#9654;</span> Watch on YouTube</a></div></div></article>
+          <article class="recx-card recx-card--blue"><div class="recx-num">REC 03</div><h4 class="recx-artist">Blood Incantation</h4><div class="recx-track">Rain (from ambient score)</div><span class="recx-genre"><span class="recx-note">&#9834;</span> Ambient / Drone</span><p class="recx-blurb">Flow State opens with the death metal band's new ambient score work—a continuation of their cosmic drift into synthesizer territory.</p><div class="recx-card-foot"><div class="recx-source-row"><span class="recx-source">Flow State</span><a class="recx-source-link" href="https://www.flowstate.fm/p/flow-state-episode-330">view source &rarr;</a></div><div class="recx-foot-actions"><a class="recx-watch" href="https://www.youtube.com/watch?v=R-akQurhD58&amp;list=RDR-akQurhD58&amp;start_radio=1"><span class="recx-yt">&#9654;</span> Watch on YouTube</a></div></div></article>
+        </div>
+        <div class="recx-carousel-foot"><button class="recx-arrow recx-prev" type="button" aria-label="Previous recommendations">&larr;</button><div class="recx-dots"></div><button class="recx-arrow recx-next" type="button" aria-label="Next recommendations">&rarr;</button><span class="recx-hint">drag to browse &rarr;</span></div>
       </div>
     </section>
 
@@ -1728,6 +1816,43 @@
   const BRIEFING_DATE = '2026-06-17';
   const PREV_DATE = '2026-06-15';
   const NEXT_DATE = null;
+</script>
+<script>
+  /* Music Recs carousel: dots, prev/next arrows, clickable dots, show-fewer toggle. */
+  (function(){
+    var sec = document.getElementById('s3'); if(!sec) return;
+    var car = sec.querySelector('.recx-carousel'); if(!car) return;
+    var dotsWrap = sec.querySelector('.recx-dots');
+    var toggle = sec.querySelector('.recx-toggle');
+    function cards(){ return Array.prototype.slice.call(car.querySelectorAll('.recx-card')); }
+    function step(){ var c = car.querySelector('.recx-card'); return c ? c.offsetWidth + 16 : car.clientWidth; }
+    function buildDots(){
+      if(!dotsWrap) return; dotsWrap.innerHTML = '';
+      cards().forEach(function(c, i){
+        var d = document.createElement('button');
+        d.type = 'button'; d.className = 'recx-dot' + (i === 0 ? ' on' : '');
+        d.setAttribute('aria-label', 'Go to recommendation ' + (i + 1));
+        d.addEventListener('click', function(){ car.scrollTo({ left: c.offsetLeft - car.offsetLeft, behavior: 'smooth' }); });
+        dotsWrap.appendChild(d);
+      });
+    }
+    function activeDot(){
+      if(!dotsWrap) return; var l = car.scrollLeft, best = 0, bd = 1e9;
+      cards().forEach(function(c, i){ var d = Math.abs(c.offsetLeft - car.offsetLeft - l); if(d < bd){ bd = d; best = i; } });
+      Array.prototype.forEach.call(dotsWrap.children, function(x, i){ x.classList.toggle('on', i === best); });
+    }
+    car.addEventListener('scroll', function(){ window.requestAnimationFrame(activeDot); });
+    var prev = sec.querySelector('.recx-prev'), next = sec.querySelector('.recx-next');
+    if(prev) prev.addEventListener('click', function(){ car.scrollBy({ left: -step(), behavior: 'smooth' }); });
+    if(next) next.addEventListener('click', function(){ car.scrollBy({ left: step(), behavior: 'smooth' }); });
+    if(toggle) toggle.addEventListener('click', function(){
+      var collapsed = sec.classList.toggle('recs-collapsed');
+      var lbl = toggle.querySelector('.recx-toggle-label');
+      if(lbl) lbl.textContent = collapsed ? 'show more recommendations' : 'show fewer recommendations';
+      toggle.setAttribute('aria-expanded', String(!collapsed));
+    });
+    buildDots();
+  })();
 </script>
 </body>
 </html>
