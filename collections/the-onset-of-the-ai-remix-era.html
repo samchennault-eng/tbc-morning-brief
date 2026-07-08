@@ -319,9 +319,9 @@
     letter-spacing: 0.08em; text-transform: uppercase;
     color: color-mix(in oklab, #fff 82%, transparent);
   }
-  /* TEMP teaser tiles (remove with the teaser block) */
-  .side-card.teaser { cursor: default; }
-  .side-card.teaser .side-card-img { filter: saturate(0.9) brightness(0.95); }
+  /* coming-soon tiles — finalized collections not yet live (non-linking) */
+  .side-card.coming-soon { cursor: default; }
+  .side-card.coming-soon .side-card-img { filter: saturate(0.9) brightness(0.95); }
 
   /* ============================================================
      RELATED READING — full-width, 4 cards, segmented chips
@@ -433,7 +433,7 @@
     <section class="coll-header">
   <div class="coll-head-img"><img class="coll-hero-img" src="../assets/collections/the-onset-of-the-ai-remix-era/ai_remix_era_cover.png" alt="The Onset of the AI Remix Era" /></div>
   <div class="coll-head-main">
-    <span class="kicker">STORY COLLECTION</span>
+    <span class="kicker">STORY COLLECTION · <span class="kicker-badge">ESSAY</span></span>
     <h1 class="coll-headline">The Onset of the AI Remix Era</h1>
     <div class="coll-meta">11 articles · First filed <span class="lead">Jul 2026</span></div>
     <div class="coll-synth">
@@ -567,30 +567,17 @@
 </div>
   </main>
   <aside class="coll-side">
-    <!-- TEMP TEASER (remove post-launch: SHOW_TEASER_COLLECTIONS=False) -->
-<div class="side-head"><span class="t">more collections</span><span class="m">coming soon</span></div>
-  <div class="side-card teaser" aria-disabled="true">
-    <img class="side-card-img" src="../assets/collections/tidal-demonetizes-ai-generated-music/cover.png" alt="TIDAL Demonetizes AI-Generated Music" /><span class="badge">Developing</span>
+    <div class="side-head">
+  <span class="t">more collections</span>
+  <span class="m">stories</span>
+</div>
+  <div class="side-card coming-soon" aria-disabled="true">
+    <img class="side-card-img" src="../assets/collections/miles-davis-centennial/cover.png" alt="Don't Look Back: Miles Davis at 100" /><span class="badge">Reflection</span>
     <div class="side-card-overlay">
-      <div class="side-card-name">TIDAL Demonetizes AI-Generated Music</div>
+      <div class="side-card-name">Don't Look Back: Miles Davis at 100</div>
       <div class="side-card-count">coming soon</div>
     </div>
   </div>
-  <div class="side-card teaser" aria-disabled="true">
-    <img class="side-card-img" src="../assets/collections/fenix-flexins-rubberz/Cover.png" alt="Fenix Flexin's 'Rubberz' Sparks AI Authorship Fight" /><span class="badge">Dispute</span>
-    <div class="side-card-overlay">
-      <div class="side-card-name">Fenix Flexin's 'Rubberz' Sparks AI Authorship Fight</div>
-      <div class="side-card-count">coming soon</div>
-    </div>
-  </div>
-  <div class="side-card teaser" aria-disabled="true">
-    <img class="side-card-img" src="../assets/collections/miles-davis-centennial/Cover.png" alt="Miles Davis Centennial" /><span class="badge">Tribute</span>
-    <div class="side-card-overlay">
-      <div class="side-card-name">Miles Davis Centennial</div>
-      <div class="side-card-count">coming soon</div>
-    </div>
-  </div>
-<!-- /TEMP TEASER -->
   </aside>
 </div>
 
