@@ -1,0 +1,598 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg" />
+
+<title>Don't Look Back: Miles Davis at 100 — Sound Signal</title>
+
+<!-- Storyline Collection page (CM v1.5). Design authority: the timeline-spine
+     mock; rebuilt on the site's V3 tokens (NOT the mock's inline CSS). This is a
+     STANDALONE page — it carries the primary masthead only (no section-nav row,
+     which is homepage-only) and re-declares the V3 :root tokens exactly like
+     about.html. The engine writes one of these per Live storyline; every
+     reader-facing value comes from the db + curated assets, never hand-edited. -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500&family=Inter:wght@400;500;600;700;800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=JetBrains+Mono:wght@400;500;700&family=Cormorant+Garamond:ital,wght@1,500&family=Instrument+Serif:ital@0;1&display=swap" />
+
+<style>
+  /* ============================================================
+     Sound Signal V3 tokens (mirrors template_v3.html :root)
+     ============================================================ */
+  :root {
+    --page:           #f1ede2;
+    --surface:        #f6f2e6;
+    --surface-warm:   #e9e3d2;
+    --ink:            #15171a;
+    --ink-mid:        #3a3d44;
+    --ink-light:      #7a7d85;
+    --ink-faint:      #b6b8be;
+    --rule:           #d4cfbe;
+    --accent:         #1d3a8a;
+    --accent-soft:    #dde3f2;
+    --secondary:      #e3492c;
+    --secondary-soft: #f7dccc;
+    --on-accent:      #f6f2e6;
+
+    --signal-blue:    #1B3CFF;
+    --ember:          #E5573B;
+    --hi-vis-yellow:  #EBEC68;
+    --lime:           #97C617;
+    --lavender:       #C0A8F2;
+    --magenta:        #C8378E;
+    --navy:           #1F2C4A;
+    --lattice-green:  #C8E891;
+
+    --f-sans:        'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    --f-display:     'Inter Tight', 'Inter', sans-serif;
+    --f-serif:       'Source Serif 4', Georgia, serif;
+    --f-serif-quote: 'Cormorant Garamond', 'Source Serif 4', Georgia, serif;
+    --f-mono:        'JetBrains Mono', 'IBM Plex Mono', ui-monospace, monospace;
+
+    --r-chip:   2px;
+    --r-button: 3px;
+    --r-card:   4px;
+    --r-pill:   999px;
+
+    --slice-pad: clamp(16px, 2.6vw, 36px);   /* halved vs v1 — matched to the locked mock (2026-07-07) */
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--page);
+    color: var(--ink-mid);
+    font-family: var(--f-sans);
+    font-size: 15px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; text-decoration: none; }
+
+  /* ============================================================
+     MASTHEAD — copied verbatim from template_v3.html so the live
+     header wins over the mock (Sam, 07-02). Section-nav omitted.
+     ============================================================ */
+  .slice-masthead {
+    background: var(--accent);
+    color: var(--on-accent);
+    position: sticky; top: 0; z-index: 50;
+    isolation: isolate; overflow: hidden;
+  }
+  .slice-masthead::before {
+    content: ""; position: absolute; inset: 0;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='36' height='36' viewBox='0 0 36 36'><g fill='%23C8E891' fill-opacity='0.95'><rect x='17' y='6' width='2' height='24'/><rect x='6' y='17' width='24' height='2'/><circle cx='18' cy='18' r='2.2'/></g></svg>");
+    background-size: 36px 36px; background-position: center; opacity: 0.38;
+    -webkit-mask-image:
+      radial-gradient(ellipse 26% 70% at 58% 50%, #000 0%, #000 35%, transparent 85%),
+      radial-gradient(ellipse 14% 55% at 84% 50%, #000 0%, #000 30%, transparent 85%);
+    -webkit-mask-composite: source-over;
+    mask-image:
+      radial-gradient(ellipse 26% 70% at 58% 50%, #000 0%, #000 35%, transparent 85%),
+      radial-gradient(ellipse 14% 55% at 84% 50%, #000 0%, #000 30%, transparent 85%);
+    mask-composite: add; pointer-events: none; z-index: 0;
+  }
+  .masthead-inner {
+    padding: 16px var(--slice-pad);
+    display: grid; grid-template-columns: auto 1fr auto;
+    column-gap: 24px; align-items: center;
+    position: relative; z-index: 1;
+  }
+  .brand { display: flex; align-items: center; gap: 18px; }
+  .ss-dots { display: flex; flex-direction: column; gap: 6px; }
+  .ss-dots i { width: 11px; height: 11px; border-radius: 50%; display: block; }
+  .ss-dots i:nth-child(1) { background: var(--ember); }
+  .ss-dots i:nth-child(2) { background: var(--hi-vis-yellow); }
+  .ss-dots i:nth-child(3) { background: var(--lime); }
+  .ss-dots i:nth-child(4) { background: var(--on-accent); }
+  .ss-wordmark {
+    font-family: var(--f-display); font-weight: 500; font-size: 56px;
+    line-height: 1; letter-spacing: -0.045em; color: var(--on-accent); white-space: nowrap;
+  }
+  .ss-wordmark .ss-period { color: var(--on-accent); }
+  .tagline {
+    font-family: var(--f-mono); font-weight: 400; font-size: 11px;
+    letter-spacing: 0.04em; line-height: 1.3; text-transform: uppercase;
+    color: color-mix(in oklab, var(--on-accent) 75%, transparent);
+    max-width: 22ch; align-self: center;
+  }
+  .masthead-actions { display: flex; gap: 10px; align-items: center; justify-self: end; }
+  .nav-about {
+    font-family: var(--f-mono); font-weight: 700; font-size: 11px;
+    letter-spacing: 0.08em; text-transform: uppercase; display: inline-block;
+    padding: 8px 18px; background: var(--on-accent); color: var(--ink);
+    border: 1.5px solid var(--on-accent); border-radius: var(--r-button);
+    cursor: pointer; transition: background 0.12s ease, color 0.12s ease;
+  }
+  .nav-about:hover { background: var(--ink); color: var(--on-accent); }
+
+  /* ============================================================
+     PAGE SHELL — two columns (collection body · more-collections)
+     ============================================================ */
+  .coll-body {
+    padding: 28px var(--slice-pad) 0;
+    display: grid; grid-template-columns: 1fr 292px;
+    column-gap: 34px; align-items: start;
+    max-width: 1240px; margin: 0 auto;
+  }
+  .coll-main { min-width: 0; }
+
+  /* ---- kicker + shared chip/badge primitives ------------------ */
+  .kicker {
+    font-family: var(--f-mono); font-weight: 700; font-size: 11px;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    display: inline-block; padding: 6px 12px;
+    background: var(--accent); color: var(--on-accent); border-radius: var(--r-chip);
+  }
+  .badge {
+    font-family: var(--f-mono); font-weight: 700; font-size: 10px;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    display: inline-block; padding: 4px 9px; border-radius: var(--r-chip);
+    background: var(--ember); color: #fff;
+  }
+
+  /* ============================================================
+     HEADER BLOCK (lavender-tint panel)
+     ============================================================ */
+  .coll-header {
+    background: var(--accent-soft);
+    border: 1.5px solid var(--ink);              /* mock: crisp black border */
+    border-radius: 0;                            /* mock: square corners */
+    padding: 26px 30px 22px;
+    display: flow-root;                          /* contain the floated hero so the border wraps all */
+    box-shadow: 8px 8px 0 var(--ember);          /* ember drop-shadow, bottom+right — ratified 2026-07-07 */
+  }
+  .coll-head-img { float: left; margin: 2px 30px 16px 0; }   /* mock: image floats, text wraps around */
+  .coll-hero-img {
+    width: 260px; height: 260px; object-fit: cover;          /* mock: ~25% larger than v1's 208 */
+    border-radius: 0; background: var(--surface-warm);
+    display: block;
+  }
+  .coll-hero-img.placeholder {
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--f-mono); font-size: 11px; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--ink-light);
+    border: 1px dashed var(--ink-faint);
+  }
+  .coll-head-main { }   /* now a normal flow block: kicker/title/meta beside the hero, body wraps under */
+  .coll-headline {
+    font-family: var(--f-display); font-weight: 500;
+    font-size: clamp(30px, 3.4vw, 44px); line-height: 1.04;
+    letter-spacing: -0.03em; color: var(--ink);
+    margin: 12px 0 10px;
+  }
+  .coll-meta {
+    font-family: var(--f-mono); font-weight: 500; font-size: 11px;
+    letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-light);
+    border-bottom: 1px solid color-mix(in oklab, var(--accent) 22%, transparent);
+    padding-bottom: 14px; margin-bottom: 14px;
+    display: flow-root;   /* keep the hairline in the text column, not crossing the floated hero */
+  }
+  .coll-meta .lead { color: var(--ink); font-weight: 700; }
+  .coll-synth { }
+  .coll-synth p {
+    font-family: var(--f-serif); font-size: 16px; line-height: 1.62;
+    color: var(--ink-mid); margin: 0 0 12px;
+  }
+  .coll-synth p:last-child { margin-bottom: 0; }
+  .coll-filed {
+    display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+    margin-top: 18px; padding-top: 16px; clear: both;   /* always below the floated hero */
+    border-top: 1px solid color-mix(in oklab, var(--accent) 22%, transparent);
+  }
+  .coll-filed .lbl {
+    font-family: var(--f-mono); font-weight: 500; font-size: 10px;
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-light);
+  }
+  .hero-chip {
+    font-family: var(--f-mono); font-weight: 700; font-size: 11px;
+    letter-spacing: 0.04em; padding: 6px 13px; border-radius: var(--r-chip);
+    color: #fff;
+  }
+  .hero-chip.frame { background: var(--ember); }
+  .hero-chip.topic { background: var(--accent); }
+
+  /* ============================================================
+     THE STORYLINE — timeline spine
+     ============================================================ */
+  .section-bar {
+    display: flex; align-items: baseline; justify-content: space-between;
+    gap: 16px; margin: 40px 0 6px;
+    border-bottom: 2px solid var(--ink); padding-bottom: 10px;
+  }
+  .section-bar-title {
+    font-family: var(--f-mono); font-weight: 700; font-size: 22px;
+    letter-spacing: -0.02em; color: var(--ink);
+  }
+  .section-bar-sub {
+    font-family: var(--f-mono); font-weight: 600; font-size: 10px;
+    letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-light);
+  }
+  .timeline { position: relative; margin: 26px 0 0; padding-left: 26px; }
+  .timeline::before {
+    content: ""; position: absolute; left: 6px; top: 6px; bottom: 6px;
+    width: 2px; background: var(--rule);
+  }
+  .tl-item { position: relative; padding: 0 0 26px 22px; }
+  .tl-item::before {
+    content: ""; position: absolute; left: -26px; top: 4px;
+    width: 13px; height: 13px; border-radius: 50%;
+    background: var(--page); border: 3px solid var(--accent);
+  }
+  .tl-item:nth-child(even)::before { border-color: var(--secondary); }
+  .tl-top {
+    display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+    margin-bottom: 7px;
+  }
+  .tl-source {
+    font-family: var(--f-mono); font-weight: 700; font-size: 10px;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    background: var(--ink); color: var(--on-accent);
+    padding: 4px 9px; border-radius: var(--r-chip);
+  }
+  .tl-date {
+    font-family: var(--f-mono); font-weight: 500; font-size: 11px;
+    letter-spacing: 0.05em; text-transform: uppercase; color: var(--ink-light);
+  }
+  .tl-type {
+    margin-left: auto;
+    font-family: var(--f-mono); font-weight: 700; font-size: 10px;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 4px 9px; border-radius: var(--r-chip);
+    border: 1.5px solid var(--accent); color: var(--accent);
+  }
+  .tl-headline {
+    font-family: var(--f-mono); font-weight: 700; font-size: 18px;
+    line-height: 1.25; letter-spacing: -0.01em; color: var(--ink);
+    margin: 0 0 6px;
+  }
+  .tl-headline a { color: inherit; text-decoration: none; }
+  .tl-headline a:hover { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
+  .tl-dek {
+    font-family: var(--f-serif); font-size: 15px; line-height: 1.55;
+    color: var(--ink-mid); margin: 0 0 8px;
+  }
+  .tl-read {
+    font-family: var(--f-mono); font-weight: 700; font-size: 11px;
+    letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent);
+  }
+  .tl-read:hover { color: var(--secondary); }
+
+  /* ============================================================
+     SIDEBAR — more collections
+     ============================================================ */
+  .coll-side { position: sticky; top: 24px; }
+  .side-head {
+    display: flex; align-items: baseline; justify-content: space-between;
+    border-bottom: 2px solid var(--accent); padding-bottom: 8px; margin-bottom: 14px;
+  }
+  .side-head .t {
+    font-family: var(--f-mono); font-weight: 700; font-size: 14px;
+    text-transform: lowercase; color: var(--ink);
+  }
+  .side-head .m {
+    font-family: var(--f-mono); font-weight: 600; font-size: 10px;
+    letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-light);
+  }
+  /* mock: name + count OVERLAID in white on the image, ember type badge top-left */
+  .side-card { display: block; margin-bottom: 16px; position: relative; border-radius: var(--r-card); overflow: hidden; }
+  .side-card-img {
+    width: 100%; aspect-ratio: 4 / 3; object-fit: cover;
+    display: block; background: var(--surface-warm);
+  }
+  .side-card .badge { position: absolute; top: 10px; left: 10px; z-index: 2; }
+  .side-card-overlay {
+    position: absolute; left: 0; right: 0; bottom: 0; z-index: 2;
+    padding: 30px 13px 11px;
+    background: linear-gradient(to top, rgba(10,12,16,0.86) 8%, rgba(10,12,16,0.55) 46%, rgba(10,12,16,0));
+  }
+  .side-card-name {
+    font-family: var(--f-display); font-weight: 500; font-size: 17px;
+    line-height: 1.14; letter-spacing: -0.02em; color: #fff;
+    margin: 0 0 3px;
+  }
+  .side-card-count {
+    font-family: var(--f-mono); font-weight: 700; font-size: 10px;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    color: color-mix(in oklab, #fff 82%, transparent);
+  }
+  /* coming-soon tiles — finalized collections not yet live (non-linking) */
+  .side-card.coming-soon { cursor: default; }
+  .side-card.coming-soon .side-card-img { filter: saturate(0.9) brightness(0.95); }
+
+  /* ============================================================
+     RELATED READING — full-width, 4 cards, segmented chips
+     ============================================================ */
+  .related {
+    max-width: 1240px; margin: 44px auto 0; padding: 0 var(--slice-pad);
+  }
+  .related-title {
+    font-family: var(--f-mono); font-weight: 700; font-size: 14px;
+    text-transform: lowercase; color: var(--ink);
+    border-bottom: 2px solid var(--ink); padding-bottom: 10px;
+  }
+  .related-note {
+    font-family: var(--f-serif); font-size: 13px; color: var(--ink-light);
+    margin: 8px 0 18px;
+  }
+  .related-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px;
+  }
+  .rel-card {
+    border: 1px solid var(--rule); border-radius: var(--r-card);
+    background: var(--surface); padding: 14px 15px 15px;
+    display: flex; flex-direction: column; gap: 8px;
+    text-decoration: none; color: inherit; transition: border-color 0.12s ease;
+  }
+  .rel-card:hover { border-color: var(--ink); }
+  .rel-card:hover .rel-card-title { color: var(--accent); }
+  .rel-card-title {
+    font-family: var(--f-display); font-weight: 500; font-size: 16px;
+    line-height: 1.2; letter-spacing: -0.02em; color: var(--ink);
+  }
+  .rel-card-src {
+    font-family: var(--f-mono); font-weight: 600; font-size: 10px;
+    letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-light);
+    margin-top: auto;
+  }
+  /* Segmented connection chip — the join made visible. Segments are divided
+     by a token border (NOT an interpunct), because frame names contain "·"
+     internally and would otherwise be unparseable. */
+  .seg-chip {
+    display: inline-flex; align-items: stretch; align-self: flex-start;
+    border-radius: var(--r-chip); overflow: hidden;
+    font-family: var(--f-mono); font-weight: 700; font-size: 10px;
+    letter-spacing: 0.03em;
+  }
+  .seg-chip .seg { padding: 4px 9px; white-space: nowrap; }
+  .seg-chip .seg.subject { background: var(--accent); color: #fff; }
+  .seg-chip .seg.co {
+    background: var(--secondary-soft); color: var(--secondary);
+    border-left: 1.5px solid var(--secondary);
+  }
+  .seg-chip.single .seg.subject { }               /* tier 3: subject pill only */
+  .seg-chip.outline {                              /* tier 4: matter-vouched */
+    background: transparent; border: 1.5px solid var(--ink-faint);
+  }
+  .seg-chip.outline .seg { background: transparent; color: var(--ink-light); }
+
+  /* ============================================================
+     FOOTER — copied from template_v3.html (full-bleed Signal Blue)
+     ============================================================ */
+  .slice-footer { background: var(--accent); color: var(--on-accent); margin-top: 52px; }
+  .footer-inner {
+    padding: 16px var(--slice-pad); display: flex; justify-content: space-between;
+    align-items: center; gap: 18px; flex-wrap: wrap;
+  }
+  .pub { font-family: var(--f-mono); font-weight: 400; font-size: 11px; letter-spacing: 0.04em; }
+  .pub .brand-mark { text-transform: lowercase; opacity: 0.85; }
+  .pub .org { font-weight: 700; }
+  .foot-right {
+    font-family: var(--f-mono); font-size: 10px; letter-spacing: 0.12em;
+    text-transform: uppercase; opacity: 0.6;
+  }
+
+  /* ============================================================
+     RESPONSIVE
+     ============================================================ */
+  @media (max-width: 960px) {
+    .coll-body { grid-template-columns: 1fr; row-gap: 34px; }
+    .coll-side { position: static; }
+    .coll-head-img { float: none; margin: 0 0 18px; }   /* stack the hero on narrow screens */
+    .coll-hero-img { width: 100%; height: auto; aspect-ratio: 1 / 1; max-width: 320px; }
+    .related-grid { grid-template-columns: repeat(2, 1fr); }
+    .ss-wordmark { font-size: 40px; }
+    .tagline { display: none; }
+  }
+  @media (max-width: 560px) {
+    .related-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header class="slice-masthead">
+  <div class="masthead-inner">
+    <a class="brand" href="/" aria-label="Sound Signal home">
+      <span class="ss-dots" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+      <span class="ss-wordmark">Sound Signal<span class="ss-period">.</span></span>
+      <span class="tagline">Curating the feed every Monday, Wednesday and Friday</span>
+    </a>
+    <div></div>
+    <div class="masthead-actions">
+      <a class="nav-about" href="about.html">ABOUT</a>
+    </div>
+  </div>
+</header>
+
+<div class="coll-body">
+  <main class="coll-main">
+    <section class="coll-header">
+  <div class="coll-head-img"><img class="coll-hero-img" src="../assets/collections/miles-davis-centennial/cover.png" alt="Don't Look Back: Miles Davis at 100" /></div>
+  <div class="coll-head-main">
+    <span class="kicker">STORY COLLECTION · <span class="kicker-badge">REFLECTION</span></span>
+    <h1 class="coll-headline">Don't Look Back: Miles Davis at 100</h1>
+    <div class="coll-meta">10 articles</div>
+    <div class="coll-synth">
+      <p>In a Juilliard classroom around 1945, a teacher explained to the room that Black people play the blues because they were depressed and had to pick cotton. Miles Davis was nineteen, already holding his own horn. He cut through it clean. &quot;My father's rich. My mama's good looking. Right? And I can play the blues. I've never suffered and don't intend to suffer.&quot;</p>
+      <p>Miles wasn’t about to let anyone define his experience or artistry, then or ever, and that refusal defined him for the next 45 years. He was the avatar of cool who kept detonating the styles he authored, a privileged Black artist who declined every story offered to him about privilege, Blackness, suffering, and art. By the testimony of the people closest to him, he was both a genius and a man who hurt others, particularly the women who loved him. You can’t keep one without the other. And a hundred years on, we look at him and we stare deeply and we see less. Pieces come into vivid focus, but the image blurs and distorts at the edges, even now.</p>
+    </div>
+    <div class="coll-filed">
+      <span class="lbl">Filed under</span>
+      <span class="hero-chip frame">Artistic Reappraisals</span>
+      <span class="hero-chip topic">Life &amp; Times</span>
+    </div>
+  </div>
+</section>
+    <div class="section-bar">
+  <div class="section-bar-title">The Storyline</div>
+  <div class="section-bar-sub">10 pieces · Essay · Criticism/review · Reported feature · Profile</div>
+</div>
+<div class="timeline">
+    <article class="tl-item">
+      <div class="tl-top">
+        <span class="tl-source">NPR Music</span>
+        <span class="tl-date">May 26, 2026</span>
+        <span class="tl-type">essay</span>
+      </div>
+      <h3 class="tl-headline"><a href="https://www.npr.org/2026/05/26/nx-s1-5829716/miles-davis-100-years-centennial">The Miles Davis century: The definition, and evolution, of cool</a></h3>
+      <p class="tl-dek">Icon and iconoclast, Nate Chinen writes for NPR, both fit Miles Davis, the first of his paradoxes. He looms larger than any jazz musician you can name yet means something different to everyone, because he embodied so many things himself. Chinen traces the cool from the Brooks Brothers hush of Kind of Blue to the funk rupture of Bitches Brew, and reaches for Picasso, one of the few other artists so driven to remake himself. To remember Miles properly, he argues, is to contend with the contradictions.</p>
+      <a class="tl-read" href="https://www.npr.org/2026/05/26/nx-s1-5829716/miles-davis-100-years-centennial">Read &rarr;</a>
+    </article>
+    <article class="tl-item">
+      <div class="tl-top">
+        <span class="tl-source">JazzWax</span>
+        <span class="tl-date">May 27, 2026</span>
+        <span class="tl-type">essay</span>
+      </div>
+      <h3 class="tl-headline"><a href="https://www.jazzwax.com/p/miles-davis-at-100">Miles Davis at 100</a></h3>
+      <p class="tl-dek">Nineteen tracks, 1947 to 1970, a way in through the ear. Marc Myers uses the birthday to build a listening path across the whole arc, from a 1947 Charlie Parker session through Birth of the Cool, the Prestige sides, the Newport 'Round Midnight that won the Columbia deal, Kind of Blue, and the first electric experiments. His through-line is Davis as jazz's first superstar and its most restless, the fashion icon and addict who kept inventing post-war movements. Each pick carries its personnel, a route rather than a monument.</p>
+      <a class="tl-read" href="https://www.jazzwax.com/p/miles-davis-at-100">Read &rarr;</a>
+    </article>
+    <article class="tl-item">
+      <div class="tl-top">
+        <span class="tl-source">The New York Times</span>
+        <span class="tl-date">May 22, 2026</span>
+        <span class="tl-type">essay</span>
+      </div>
+      <h3 class="tl-headline"><a href="https://www.nytimes.com/2026/05/22/style/miles-davis-personal-style-photos.html">Miles Davis: A Visual Dictionary</a></h3>
+      <p class="tl-dek">Sunglasses like goggles, a canary-yellow Ferrari, MILES22 vanity plates, a floor-length snakeskin cape. The New York Times Styles desk builds its portrait from the objects that made Miles cool. A Berklee professor notes he was no gearhead, playing whatever trumpet let him sound like himself, the mute turning it human. The look shifts with the sound, cropped 1950s hair to a 1971 Afro to '80s microbraids, and the piece credits Betty Davis with pulling him into the Bitches Brew years and toward Jimi Hendrix.</p>
+      <a class="tl-read" href="https://www.nytimes.com/2026/05/22/style/miles-davis-personal-style-photos.html">Read &rarr;</a>
+    </article>
+    <article class="tl-item">
+      <div class="tl-top">
+        <span class="tl-source">Pitchfork</span>
+        <span class="tl-date">Jul 8, 2026</span>
+        <span class="tl-type">criticism/review</span>
+      </div>
+      <h3 class="tl-headline"><a href="https://pitchfork.com/reviews/albums/miles-davis-miles-56-the-prestige-recordings/">Miles '56: The Prestige Recordings</a></h3>
+      <p class="tl-dek">For a few nights in 1956, in a Greenwich Village club called the Café Bohemia, the first great quintet was a working band burning off a contract. Natalie Weiner's Pitchfork review of the centennial box set finds Davis, Coltrane, Red Garland, the twenty-year-old Paul Chambers and Philly Joe Jones cutting four albums in first takes. &quot;We're not trying to prove anything,&quot; Davis told a reporter. &quot;All we want to do is blow.&quot; Weiner hears jazz's past and future distilled into music that sounds like a place you could live.</p>
+      <a class="tl-read" href="https://pitchfork.com/reviews/albums/miles-davis-miles-56-the-prestige-recordings/">Read &rarr;</a>
+    </article>
+    <article class="tl-item">
+      <div class="tl-top">
+        <span class="tl-source">All Things Jazz</span>
+        <span class="tl-date">May 20, 2026</span>
+        <span class="tl-type">essay</span>
+      </div>
+      <h3 class="tl-headline"><a href="https://allthingsjazzoriginal.substack.com/p/miles-davis-and-the-fear-of-standing">Miles Davis and the Fear of Standing Still (1960-1969)</a></h3>
+      <p class="tl-dek">On records like Nefertiti, the horns hold the melody while the rhythm section improvises underneath, the usual order quietly reversed. All Things Jazz catches Davis in the mid-sixties with the Second Great Quintet, Herbie Hancock, Ron Carter, the teenage Tony Williams and Wayne Shorter, playing standards over something radical. He had assembled the most advanced small group in jazz and stayed dissatisfied, already hearing Betty Mabry's Hendrix and Sly Stone. The restlessness was the point. By the decade's end he no longer believed in permanence at all.</p>
+      <a class="tl-read" href="https://allthingsjazzoriginal.substack.com/p/miles-davis-and-the-fear-of-standing">Read &rarr;</a>
+    </article>
+    <article class="tl-item">
+      <div class="tl-top">
+        <span class="tl-source">EchoLocator</span>
+        <span class="tl-date">Jul 1, 2026</span>
+        <span class="tl-type">essay</span>
+      </div>
+      <h3 class="tl-headline"><a href="https://echolocator.substack.com/p/the-curious-paradox-of-miles-at-100">The Curious Paradox of Miles at 100</a></h3>
+      <p class="tl-dek">The centennial has become a machine. Tom Moon watches the Davis estate and its labels stack boxed sets, sonic upgrades and unreleased live tapes into a monument modeled on how the classical world commemorates dead composers, and finds the joke buried inside it: the man being monumentalized rarely looked back. Davis lived in nextness, Moon writes at EchoLocator, gone before the culture caught up. His proof is the 1964 quintet, five musicians inventing a different music every night, exactly what a monument cannot hold.</p>
+      <a class="tl-read" href="https://echolocator.substack.com/p/the-curious-paradox-of-miles-at-100">Read &rarr;</a>
+    </article>
+    <article class="tl-item">
+      <div class="tl-top">
+        <span class="tl-source">DownBeat</span>
+        <span class="tl-date">May 26, 2026</span>
+        <span class="tl-type">reported feature</span>
+      </div>
+      <h3 class="tl-headline"><a href="https://downbeat.com/news/detail/miles-davis-at-100-love-for-a-complicated-genius">Miles Davis at 100: Love for a Complicated Genius</a></h3>
+      <p class="tl-dek">At a Jazz Congress roundtable, the musicians who knew Miles Davis circle the same question: how do you love the music and face the man. Ashley Kahn moderates his nephew Vince Wilburn Jr., Marcus Miller and Terence Blanchard, who remember a man who kept none of his own records at home. When the writer Lauren du Graf raises his abuse of women, Miller answers without dodging. &quot;How do I reconcile the two sides? And I don't know if I can.&quot; What keeps them there is the dare in the music.</p>
+      <a class="tl-read" href="https://downbeat.com/news/detail/miles-davis-at-100-love-for-a-complicated-genius">Read &rarr;</a>
+    </article>
+    <article class="tl-item">
+      <div class="tl-top">
+        <span class="tl-source">Vanity Fair</span>
+        <span class="tl-date">Jul 8, 2026</span>
+        <span class="tl-type">essay</span>
+      </div>
+      <h3 class="tl-headline"><a href="https://www.vanityfair.com/culture/story/miles-davis-centennial-100-years">Wrestling With Miles Davis's Complicated Legacy</a></h3>
+      <p class="tl-dek">Jimmie Briggs first met Miles Davis in 1985, in a Honda scooter ad and a Miami Vice cameo, then spent years holding the genius against harm. His Vanity Fair remembrance sets the litany down without flinching: Chameleon, Bandleader, Maverick, Abuser, Icon. He names the abuse of Davis's wives, points to Pearl Cleage's 1990 &quot;Mad at Miles,&quot; and refuses to tuck it under the greatness. He offers an album road map, not a verdict, and admits he may skip the public tributes to play an early record alone.</p>
+      <a class="tl-read" href="https://www.vanityfair.com/culture/story/miles-davis-centennial-100-years">Read &rarr;</a>
+    </article>
+    <article class="tl-item">
+      <div class="tl-top">
+        <span class="tl-source">Tyler King from Jazz Journey Newsletter</span>
+        <span class="tl-date">May 27, 2026</span>
+        <span class="tl-type">profile</span>
+      </div>
+      <h3 class="tl-headline"><a href="https://sunra.substack.com/p/frances-taylor">Frances Taylor</a></h3>
+      <p class="tl-dek">Frances Taylor gave up her career for Miles Davis. The first Black dancer with the Paris Opera Ballet became the muse of Fran Dance and the face on his covers, and steered him toward the flamenco records behind Sketches of Spain. Tyler King's profile lets her speak from a 2001 interview, and what she remembers is the cost. By the E.S.P. session, she says, &quot;it was only a matter of days before I left running for my life.&quot; The centennial can reappraise everything but that.</p>
+      <a class="tl-read" href="https://sunra.substack.com/p/frances-taylor">Read &rarr;</a>
+    </article>
+    <article class="tl-item">
+      <div class="tl-top">
+        <span class="tl-source">Nate Chinen from The Gig</span>
+        <span class="tl-date">May 20, 2026</span>
+        <span class="tl-type">essay</span>
+      </div>
+      <h3 class="tl-headline"><a href="https://thegig.substack.com/p/miles-davis-at-lennies-on-the-turnpike">Miles Davis at Lennie's on the Turnpike</a></h3>
+      <p class="tl-dek">A single photograph of Miles at Lennie's on the Turnpike in 1971, horn bent to the floor, Harmon mute in the bell, half his face in shadow. Nate Chinen tries to pin it down and watches every detail slip. The date is uncertain, the poem he recalls may be misremembered, the bootleg is from another night. Every tribute is a translation, he writes, and Davis refused to translate himself. Chinen lets the mystery stand. We only have what is in front of us, and Miles is already gone.</p>
+      <a class="tl-read" href="https://thegig.substack.com/p/miles-davis-at-lennies-on-the-turnpike">Read &rarr;</a>
+    </article>
+</div>
+  </main>
+  <aside class="coll-side">
+    <div class="side-head">
+  <span class="t">more collections</span>
+  <span class="m">stories</span>
+</div>
+  <div class="side-card coming-soon" aria-disabled="true">
+    <img class="side-card-img" src="../assets/collections/the-onset-of-the-ai-remix-era/ai_remix_era_cover.png" alt="The Onset of the AI Remix Era" /><span class="badge">Essay</span>
+    <div class="side-card-overlay">
+      <div class="side-card-name">The Onset of the AI Remix Era</div>
+      <div class="side-card-count">coming soon</div>
+    </div>
+  </div>
+  </aside>
+</div>
+
+<section class="related">
+  <div class="related-title">related reading</div>
+  <div class="related-grid">
+    <a class="rel-card" href="https://michellemercer.substack.com/p/run-the-voodoo-down">
+      <div class="rel-card-title">Run the Voodoo Down</div>
+      <div class="rel-card-src">Call &amp; Response with Michelle Mercer · May 1, 2026</div>
+      <span class="seg-chip outline" title="matter similarity"><span class="seg">from this collection</span></span>
+    </a>
+    <a class="rel-card" href="https://allthingsjazzoriginal.substack.com/p/east-st-louis-to-52nd-street-miles">
+      <div class="rel-card-title">East St. Louis to 52nd Street: Miles Davis Learns to Move Forward</div>
+      <div class="rel-card-src">All Things Jazz · May 8, 2026</div>
+      <span class="seg-chip outline" title="matter similarity"><span class="seg">from this collection</span></span>
+    </a>
+  </div>
+</section>
+
+<footer class="slice-footer">
+  <div class="footer-inner">
+    <div class="pub">
+      <span class="brand-mark">sound signal</span> · <span class="org">Third Bridge Creative</span>
+    </div>
+    <div class="foot-right">Story Collection · Miles at 100</div>
+  </div>
+</footer>
+
+</body>
+</html>
