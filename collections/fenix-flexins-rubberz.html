@@ -231,22 +231,35 @@
     font-family: var(--f-mono); font-weight: 600; font-size: 10px;
     letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-light);
   }
-  .timeline { position: relative; margin: 26px 0 0; padding-left: 26px; }
-  .timeline::before {
-    content: ""; position: absolute; left: 6px; top: 6px; bottom: 6px;
-    width: 2px; background: var(--rule);
+  .timeline { position: relative; margin: 26px 0 0; }
+  /* Beat group: a colored spine SEGMENT (alternating navy/red group-to-group) with a filled beat
+     node at its head. Consecutive groups' segments touch → one continuous line that changes color at
+     each beat. Entries carry no per-entry node (removed 2026-07-08). */
+  .beat-group { position: relative; padding-left: 30px; --seg: var(--accent); }
+  .beat-group.beat-c1 { --seg: var(--secondary); }
+  .beat-group::before {
+    content: ""; position: absolute; left: 7px; top: 0; bottom: 0; width: 2px; background: var(--seg);
   }
-  .tl-item { position: relative; padding: 0 0 26px 22px; }
-  .tl-item::before {
-    content: ""; position: absolute; left: -26px; top: 4px;
-    width: 13px; height: 13px; border-radius: 50%;
-    background: var(--page); border: 3px solid var(--accent);
+  .tl-item { position: relative; padding: 0 0 26px 0; }
+  /* Beat header — mono/upper/tracked, in the group's color; the filled node sits on the spine. */
+  .beat-head {
+    position: relative; font-family: var(--f-mono); font-weight: 700; font-size: 12px;
+    letter-spacing: 0.15em; text-transform: uppercase; color: var(--seg); margin: 22px 0 14px;
   }
-  .tl-item:nth-child(even)::before { border-color: var(--secondary); }
+  .beat-group:first-child .beat-head { margin-top: 4px; }
+  .beat-head::before {
+    content: ""; position: absolute; left: -30px; top: 0; width: 15px; height: 15px;
+    border-radius: 50%; background: var(--seg); box-shadow: 0 0 0 3px var(--page);
+  }
   .tl-top {
     display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
     margin-bottom: 7px;
   }
+  .tl-byline {
+    font-family: var(--f-mono); font-weight: 500; font-size: 11px;
+    letter-spacing: 0.02em; color: var(--ink-mid);
+  }
+  .tl-byline::after { content: "·"; margin-left: 10px; color: var(--ink-faint); }
   .tl-source {
     font-family: var(--f-mono); font-weight: 700; font-size: 10px;
     letter-spacing: 0.08em; text-transform: uppercase;
@@ -333,6 +346,7 @@
     font-family: var(--f-mono); font-weight: 700; font-size: 14px;
     text-transform: lowercase; color: var(--ink);
     border-bottom: 2px solid var(--ink); padding-bottom: 10px;
+    margin-bottom: 22px;   /* clearly separate the header rule from the card module below */
   }
   .related-note {
     font-family: var(--f-serif); font-size: 13px; color: var(--ink-light);
@@ -433,14 +447,13 @@
     <section class="coll-header">
   <div class="coll-head-img"><img class="coll-hero-img" src="../assets/collections/fenix-flexins-rubberz/cover.png" alt="Me and the Devil: Fenix Flexin's AI Authorship Fight" /></div>
   <div class="coll-head-main">
-    <span class="kicker">STORY COLLECTION · <span class="kicker-badge">DISPUTE</span></span>
+    <span class="kicker">STORYLINE #1</span>
     <h1 class="coll-headline">Me and the Devil: Fenix Flexin's AI Authorship Fight</h1>
-    <div class="coll-meta">9 articles · First filed <span class="lead">Jul 2026</span></div>
+    <div class="coll-meta">9 articles · Tracking since <span class="lead">Jul 2026</span></div>
     <div class="coll-synth">
-      <p>﻿Nobody disputes what &quot;Rubberz&quot; sounds like. Street-rap verses sung in a put-on British accent over '80s synth-pop; think the Smiths by way of Shoreline Mafia. What's disputed is whether a human made it. Fenix has denied AI involvement from the first comment section onward (&quot;No sirrrrrrr, recorded same as all music I do!&quot;), crediting autotune, reverb, and a fake UK accent. The evidence has been less obliging. Detection platform HumanStandard cleared it as human-made twice, then retrained on Treblo, a free generator whose stacked models slip past screens, and reclassified the song fully AI-generated. Treblo's founder, asked whether &quot;Rubberz&quot; came from his platform, declined to deny it. Onstage, Fenix has lip-synced, botched the chorus a cappella, and gone off-key trying to prove the voice is his.</p>
-      <p>There's no mechanism for settling the question, no chart policy, no shared detection standard, no disclosure rule, and music's first doping controversy is being run without a referee. We’ve been here before. Sampling's definitional crisis ended in a fee schedule; lip-sync ended in Milli Vanilli's revoked Grammy; ghostwriting settled into a quiet credit economy. Each break was resolved with a price instead of a definition. This one stalls because a sample can be proven and a model's contribution cannot.</p>
-      <p>Fans aren’t even sure that they care. Sure, some recoil, but a hot track is a hot track, after all. Welcome to the future.</p>
-      <p>Below, we’ll track the story through its phases, and explore the angles through analysis and historical grounding.</p>
+      <p>One of the summer’s hottest songs is also one of the most controversial. “Rubberz,” the left-field hit from Fenix Flexin, one half of the LA rap duo Shoreline Mafia, delivers street-rap verses in a put-on British accent over '80s synth-pop. It’s an unexpected, weirdly compelling earworm of a song, and also maybe not real? Since it dropped, audiences, critics, and town criers on both sides of the music’s AI discussion have been debating whether this is purely Flexin’s concoction, or whether he used AI to create his hit.</p>
+      <p>For this edition of Storylines, we’ll trace the story from the early rumblings and denials to the evidence drop that strongly suggested that Flexin was juicin’, and we’ll also capture the postscript commentary and root this in the historical precedent of other music industry debates around authorship and ownership. And we’ll present this through contemporaneous coverage from some of music’s finest minds, linked out and annotated below. With its twists and turns, and its rich layer of news and commentary, it’s just the type of story the Storyline format was designed to capture.</p>
+      <p>In the end, there's no industry mechanism for settling the question that “Rubberz” presents. There’s no chart policy, no shared detection standard, nor any disclosure rules, and music's first doping controversy is being run without a referee. And we’ve been here before. Sampling's definitional crisis ended in a fee schedule; lip-sync ended in Milli Vanilli's revoked Grammy; and ghostwriting settled into a quiet credit economy. Each break was resolved with a payout instead of a definition. It’s too early to know who’ll be cutting the check for this one, but we’re all tuned in.</p>
     </div>
     <div class="coll-filed">
       <span class="lbl">Filed under</span>
@@ -451,122 +464,136 @@
 </section>
     <div class="section-bar">
   <div class="section-bar-title">The Storyline</div>
-  <div class="section-bar-sub">9 pieces · Criticism/review · News brief · Reported feature · Essay · Column/advice</div>
+  <div class="section-bar-sub">9 pieces</div>
 </div>
 <div class="timeline">
-    <article class="tl-item">
-      <div class="tl-top">
-        <span class="tl-source">Pitchfork</span>
-        <span class="tl-date">Jun 5, 2026</span>
-        <span class="tl-type">criticism/review</span>
-      </div>
-      <h3 class="tl-headline"><a href="https://pitchfork.com/reviews/tracks/fenix-flexin-rubberz/">&quot;Rubberz&quot; Track Review</a></h3>
-      <p class="tl-dek">A heartbroken British man is what one half of Shoreline Mafia has become, Alphonse Pierre writes, reviewing &quot;Rubberz&quot; for Pitchfork the day it dropped. He knows about the AI allegations and doesn't buy them. The mash-up of Morrissey's sadboy misery with street-rap flexing feels far too strange for a machine, and Fenix told Big Boy he spent months walking around in a British accent preparing. No story here!</p>
-      <a class="tl-read" href="https://pitchfork.com/reviews/tracks/fenix-flexin-rubberz/">Read &rarr;</a>
-    </article>
-    <article class="tl-item">
-      <div class="tl-top">
-        <span class="tl-source">Billboard</span>
-        <span class="tl-date">Jun 11, 2026</span>
-        <span class="tl-type">news brief</span>
-      </div>
-      <h3 class="tl-headline"><a href="https://www.billboard.com/music/rb-hip-hop/fenix-flexin-denies-rubberz-ai-allegations-1236270807/">Fenix Flexin Denies 'RUBBERZ' AI Allegations</a></h3>
-      <p class="tl-dek">Six days after release, Fenix put his defense on the record in the comments under his On the Radar performance. &quot;No sirrrrrrr, recorded same as all music I do! Only difference is auto-tune reverb and me using my fake uk accent lol.&quot; Angel Diaz, covering the flap for Billboard, pairs it with a receipt from months earlier: Fenix told XXL he planned to revamp his sound in stages, dropping &quot;tidbits and tadbits&quot; until the transition felt comfortable. Still no story here!</p>
-      <a class="tl-read" href="https://www.billboard.com/music/rb-hip-hop/fenix-flexin-denies-rubberz-ai-allegations-1236270807/">Read &rarr;</a>
-    </article>
-    <article class="tl-item">
-      <div class="tl-top">
-        <span class="tl-source">POW MAG</span>
-        <span class="tl-date">Jun 24, 2026</span>
-        <span class="tl-type">reported feature</span>
-      </div>
-      <h3 class="tl-headline"><a href="https://www.powmag.net/p/fenix-flexin-rubberz-ai-artificial-intelligence-allegations">Did Fenix Flexin Make the Song of the Summer—Or Did AI?</a></h3>
-      <p class="tl-dek">Every musician POW MAG interviewed believes AI touched &quot;Rubberz.&quot; They differ only on how much. Grant Rindner's reporting, published as the song chased Song of the Summer talk, catches suspicion hardening into consensus among people who make records for a living. Taylor Gang producer 6AM went loudest, calling the track &quot;Pandora's box&quot; and warning that anybody with no talent could now put out a song and claim it as art. Maybe we have a story…</p>
-      <a class="tl-read" href="https://www.powmag.net/p/fenix-flexin-rubberz-ai-artificial-intelligence-allegations">Read &rarr;</a>
-    </article>
-    <article class="tl-item">
-      <div class="tl-top">
-        <span class="tl-source">Zinstrel - AI Music Culture &amp; Analysis</span>
-        <span class="tl-date">Jun 26, 2026</span>
-        <span class="tl-type">reported feature</span>
-      </div>
-      <h3 class="tl-headline"><a href="https://zinstrel.substack.com/p/the-first-mainstream-ai-music-hit">Fenix Flexin: The AI Music Hit Hiding on the Hot 100</a></h3>
-      <p class="tl-dek">HumanStandard cleared &quot;Rubberz&quot; as human-made twice before it got it right. Marcus Lawrence's Zinstrel traces why. Treblo, a free generator that stacks separate vocal and instrumental models, sits outside the training data most detectors rely on. A community tip sent founder Rasha Rahman to scrape a thousand Treblo tracks and retrain, and the song came back fully AI-generated. Asked point-blank whether &quot;Rubberz&quot; was made on his platform, Treblo's founder declined to say. Transparent AI creators get mocked, Lawrence adds, while a denial with major distribution behind it keeps climbing. What now?!?</p>
-      <a class="tl-read" href="https://zinstrel.substack.com/p/the-first-mainstream-ai-music-hit">Read &rarr;</a>
-    </article>
-    <article class="tl-item">
-      <div class="tl-top">
-        <span class="tl-source">the andre gee newsletter</span>
-        <span class="tl-date">Jun 26, 2026</span>
-        <span class="tl-type">essay</span>
-      </div>
-      <h3 class="tl-headline"><a href="https://andrejgee.substack.com/p/how-do-you-define-an-ai-song">How Do You Define An 'AI Song?'</a></h3>
-      <p class="tl-dek">Fenix's own defense creates the problem Andre Gee circles. Purps merely put autotune and reverb on his vocals, Fenix insisted to two men on an LA street, half-heartedly reciting his Morrissey-channeling bars as proof. Take him at his word and the song is studio processing of a human performance; the doubters hear AI vocals. That is the new gray area Gee names, and every answer indicts somebody. The album snippet Fenix played on Channel 5, he notes, sounds much more like his regular voice.</p>
-      <a class="tl-read" href="https://andrejgee.substack.com/p/how-do-you-define-an-ai-song">Read &rarr;</a>
-    </article>
-    <article class="tl-item">
-      <div class="tl-top">
-        <span class="tl-source">Sam Hockley-Smith from New Environments</span>
-        <span class="tl-date">Jun 22, 2026</span>
-        <span class="tl-type">column/advice</span>
-      </div>
-      <h3 class="tl-headline"><a href="https://newenvironments.substack.com/p/my-number-one-song-is-not-ai">My Number One Song Is Not AI</a></h3>
-      <p class="tl-dek">Sam Hockley-Smith is tired of wondering whether art was made by a person, and &quot;Rubberz&quot; made him do it anyway. The AI question is fair but boring, he writes; the song is odd either way, gritty lyrics about pills and insomnia sung in a politely fake British accent over a structure he traces to &quot;One Night in Bangkok.&quot; Even his complaint about the On the Radar clip is an old one, a performer lip-syncing to his own recording. He recommends the song regardless. &quot;Milli Vanilli had some jams too.&quot;</p>
-      <a class="tl-read" href="https://newenvironments.substack.com/p/my-number-one-song-is-not-ai">Read &rarr;</a>
-    </article>
-    <article class="tl-item">
-      <div class="tl-top">
-        <span class="tl-source">POW MAG</span>
-        <span class="tl-date">Aug 3, 2015</span>
-        <span class="tl-type">essay</span>
-      </div>
-      <h3 class="tl-headline"><a href="https://www.powmag.net/p/why-it-matters-that-drake-isnt-writing-his-own-songs">The Spotlight Makes You Nervous: Why It Matters That Drake Isn't Writing His Own Songs</a></h3>
-      <p class="tl-dek">&quot;Authorship is everything,&quot; Doc Zeus wrote at POW MAG in 2015, watching Drake beat Meek Mill in public while Quentin Miller's leaked reference tracks corroborated the accusation underneath. The essay's real subject is the price of the question: confessional music trades on the presumption its author lived it, so proof of another pen bleeds value from every song. Drake won the beef and kept the charts. What he lost, Doc Zeus argues, is anyone ever fully believing he writes his raps again.</p>
-      <a class="tl-read" href="https://www.powmag.net/p/why-it-matters-that-drake-isnt-writing-his-own-songs">Read &rarr;</a>
-    </article>
-    <article class="tl-item">
-      <div class="tl-top">
-        <span class="tl-source">NPR Music</span>
-        <span class="tl-date">May 1, 2013</span>
-        <span class="tl-type">reported feature</span>
-      </div>
-      <h3 class="tl-headline"><a href="https://www.npr.org/sections/therecord/2013/05/01/180375856/20-years-ago-biz-markie-got-the-last-laugh">20 Years Ago Biz Markie Got The Last Laugh</a></h3>
-      <p class="tl-dek">Music has been here before. In 1991 Gilbert O'Sullivan sued Biz Markie over the piano loop in &quot;Alone Again,&quot; and Judge Kevin Duffy's ruling, with $250,000 in damages and a referral to criminal court, ended sampling's anything-goes era. Oliver Wang's NPR retrospective follows what the industry built instead of a definition: clearance departments, buried and obscured lifts, a shadow catalog of songs unreleasable because the paperwork failed. Biz answered two years later with an album titled All Samples Cleared!, the samples itemized on the back cover.</p>
-      <a class="tl-read" href="https://www.npr.org/sections/therecord/2013/05/01/180375856/20-years-ago-biz-markie-got-the-last-laugh">Read &rarr;</a>
-    </article>
-    <article class="tl-item">
-      <div class="tl-top">
-        <span class="tl-source">Stems</span>
-        <span class="tl-date">Jul 3, 2026</span>
-        <span class="tl-type">reported feature</span>
-      </div>
-      <h3 class="tl-headline"><a href="https://www.stems.media/p/hot-100-ai-controversy-fenix-flexin-rubberz">The Hot 100's First AI Doping Controversy is Here</a></h3>
-      <p class="tl-dek">Music is running its first doping controversy, Stems' Nathan Brackett writes, and like cycling's, it may never resolve. No shared detection standard exists across streamers, distributors, labels, or publishers, so the verdict on &quot;Rubberz&quot; stays he-said-she-said while the song sits in the Hot 100's 60s. The Stems team typed Fenix's name into Treblo themselves and got vocals uncannily close to the record. Fenix, meanwhile, says the all-'80s album is &quot;basically done.&quot; In the end, there's no ending to this story, which is the story.</p>
-      <a class="tl-read" href="https://www.stems.media/p/hot-100-ai-controversy-fenix-flexin-rubberz">Read &rarr;</a>
-    </article>
+  <section class="beat-group beat-c0">
+    <div class="beat-head">The Story</div>
+      <article class="tl-item">
+        <div class="tl-top">
+          <span class="tl-source">Pitchfork</span>
+          <span class="tl-byline">Alphonse Pierre</span>
+          <span class="tl-date">Jun 5, 2026</span>
+        </div>
+        <h3 class="tl-headline"><a href="https://pitchfork.com/reviews/tracks/fenix-flexin-rubberz/">&quot;Rubberz&quot; Track Review</a></h3>
+        <p class="tl-dek">A heartbroken British man is what one half of Shoreline Mafia has become, Alphonse Pierre writes, reviewing &quot;Rubberz&quot; for Pitchfork the day it dropped. He knows about the AI allegations and doesn't buy them. The mash-up of Morrissey's sadboy misery with street-rap flexing feels far too strange for a machine, and Fenix told Big Boy he spent months walking around in a British accent preparing. No story here!</p>
+        <a class="tl-read" href="https://pitchfork.com/reviews/tracks/fenix-flexin-rubberz/">Read &rarr;</a>
+      </article>
+      <article class="tl-item">
+        <div class="tl-top">
+          <span class="tl-source">Billboard</span>
+          <span class="tl-byline">Angel Diaz</span>
+          <span class="tl-date">Jun 11, 2026</span>
+        </div>
+        <h3 class="tl-headline"><a href="https://www.billboard.com/music/rb-hip-hop/fenix-flexin-denies-rubberz-ai-allegations-1236270807/">Fenix Flexin Denies 'RUBBERZ' AI Allegations</a></h3>
+        <p class="tl-dek">Six days after release, Fenix put his defense on the record in the comments under his On the Radar performance. &quot;No sirrrrrrr, recorded same as all music I do! Only difference is auto-tune reverb and me using my fake uk accent lol.&quot; Angel Diaz, covering the flap for Billboard, pairs it with a receipt from months earlier: Fenix told XXL he planned to revamp his sound in stages, dropping &quot;tidbits and tadbits&quot; until the transition felt comfortable. Still no story here!</p>
+        <a class="tl-read" href="https://www.billboard.com/music/rb-hip-hop/fenix-flexin-denies-rubberz-ai-allegations-1236270807/">Read &rarr;</a>
+      </article>
+  </section>
+  <section class="beat-group beat-c1">
+    <div class="beat-head">The Evidence Drop</div>
+      <article class="tl-item">
+        <div class="tl-top">
+          <span class="tl-source">POW MAG</span>
+          <span class="tl-byline">Grant Rindner</span>
+          <span class="tl-date">Jun 24, 2026</span>
+        </div>
+        <h3 class="tl-headline"><a href="https://www.powmag.net/p/fenix-flexin-rubberz-ai-artificial-intelligence-allegations">Did Fenix Flexin Make the Song of the Summer—Or Did AI?</a></h3>
+        <p class="tl-dek">Every musician POW MAG interviewed believes AI touched &quot;Rubberz.&quot; They differ only on how much. Grant Rindner's reporting, published as the song chased Song of the Summer talk, catches suspicion hardening into consensus among people who make records for a living. Taylor Gang producer 6AM went loudest, calling the track &quot;Pandora's box&quot; and warning that anybody with no talent could now put out a song and claim it as art. Maybe we have a story…</p>
+        <a class="tl-read" href="https://www.powmag.net/p/fenix-flexin-rubberz-ai-artificial-intelligence-allegations">Read &rarr;</a>
+      </article>
+      <article class="tl-item">
+        <div class="tl-top">
+          <span class="tl-source">Zinstrel - AI Music Culture &amp; Analysis</span>
+          <span class="tl-byline">Marcus Lawrence</span>
+          <span class="tl-date">Jun 26, 2026</span>
+        </div>
+        <h3 class="tl-headline"><a href="https://zinstrel.substack.com/p/the-first-mainstream-ai-music-hit">Fenix Flexin: The AI Music Hit Hiding on the Hot 100</a></h3>
+        <p class="tl-dek">HumanStandard cleared &quot;Rubberz&quot; as human-made twice before it got it right. Marcus Lawrence's Zinstrel traces why. Treblo, a free generator that stacks separate vocal and instrumental models, sits outside the training data most detectors rely on. A community tip sent founder Rasha Rahman to scrape a thousand Treblo tracks and retrain, and the song came back fully AI-generated. Asked point-blank whether &quot;Rubberz&quot; was made on his platform, Treblo's founder declined to say. Transparent AI creators get mocked, Lawrence adds, while a denial with major distribution behind it keeps climbing. What now?!?</p>
+        <a class="tl-read" href="https://zinstrel.substack.com/p/the-first-mainstream-ai-music-hit">Read &rarr;</a>
+      </article>
+  </section>
+  <section class="beat-group beat-c0">
+    <div class="beat-head">The Read</div>
+      <article class="tl-item">
+        <div class="tl-top">
+          <span class="tl-source">the andre gee newsletter</span>
+          <span class="tl-byline">Andre Gee</span>
+          <span class="tl-date">Jun 26, 2026</span>
+        </div>
+        <h3 class="tl-headline"><a href="https://andrejgee.substack.com/p/how-do-you-define-an-ai-song">How Do You Define An 'AI Song?'</a></h3>
+        <p class="tl-dek">Fenix's own defense creates the problem Andre Gee circles. Purps merely put autotune and reverb on his vocals, Fenix insisted to two men on an LA street, half-heartedly reciting his Morrissey-channeling bars as proof. Take him at his word and the song is studio processing of a human performance; the doubters hear AI vocals. That is the new gray area Gee names, and every answer indicts somebody. The album snippet Fenix played on Channel 5, he notes, sounds much more like his regular voice.</p>
+        <a class="tl-read" href="https://andrejgee.substack.com/p/how-do-you-define-an-ai-song">Read &rarr;</a>
+      </article>
+      <article class="tl-item">
+        <div class="tl-top">
+          <span class="tl-source">Sam Hockley-Smith from New Environments</span>
+          <span class="tl-byline">Sam Hockley-Smith</span>
+          <span class="tl-date">Jun 22, 2026</span>
+        </div>
+        <h3 class="tl-headline"><a href="https://newenvironments.substack.com/p/my-number-one-song-is-not-ai">My Number One Song Is Not AI</a></h3>
+        <p class="tl-dek">Sam Hockley-Smith is tired of wondering whether art was made by a person, and &quot;Rubberz&quot; made him do it anyway. The AI question is fair but boring, he writes; the song is odd either way, gritty lyrics about pills and insomnia sung in a politely fake British accent over a structure he traces to &quot;One Night in Bangkok.&quot; Even his complaint about the On the Radar clip is an old one, a performer lip-syncing to his own recording. He recommends the song regardless. &quot;Milli Vanilli had some jams too.&quot;</p>
+        <a class="tl-read" href="https://newenvironments.substack.com/p/my-number-one-song-is-not-ai">Read &rarr;</a>
+      </article>
+  </section>
+  <section class="beat-group beat-c1">
+    <div class="beat-head">Historical Precedents</div>
+      <article class="tl-item">
+        <div class="tl-top">
+          <span class="tl-source">POW MAG</span>
+          <span class="tl-byline">Doc Zeus</span>
+          <span class="tl-date">Aug 3, 2015</span>
+        </div>
+        <h3 class="tl-headline"><a href="https://www.powmag.net/p/why-it-matters-that-drake-isnt-writing-his-own-songs">The Spotlight Makes You Nervous: Why It Matters That Drake Isn't Writing His Own Songs</a></h3>
+        <p class="tl-dek">&quot;Authorship is everything,&quot; Doc Zeus wrote at POW MAG in 2015, watching Drake beat Meek Mill in public while Quentin Miller's leaked reference tracks corroborated the accusation underneath. The essay's real subject is the price of the question: confessional music trades on the presumption its author lived it, so proof of another pen bleeds value from every song. Drake won the beef and kept the charts. What he lost, Doc Zeus argues, is anyone ever fully believing he writes his raps again.</p>
+        <a class="tl-read" href="https://www.powmag.net/p/why-it-matters-that-drake-isnt-writing-his-own-songs">Read &rarr;</a>
+      </article>
+      <article class="tl-item">
+        <div class="tl-top">
+          <span class="tl-source">NPR Music</span>
+          <span class="tl-byline">Oliver Wang</span>
+          <span class="tl-date">May 1, 2013</span>
+        </div>
+        <h3 class="tl-headline"><a href="https://www.npr.org/sections/therecord/2013/05/01/180375856/20-years-ago-biz-markie-got-the-last-laugh">20 Years Ago Biz Markie Got The Last Laugh</a></h3>
+        <p class="tl-dek">Music has been here before. In 1991 Gilbert O'Sullivan sued Biz Markie over the piano loop in &quot;Alone Again,&quot; and Judge Kevin Duffy's ruling, with $250,000 in damages and a referral to criminal court, ended sampling's anything-goes era. Oliver Wang's NPR retrospective follows what the industry built instead of a definition: clearance departments, buried and obscured lifts, a shadow catalog of songs unreleasable because the paperwork failed. Biz answered two years later with an album titled All Samples Cleared!, the samples itemized on the back cover.</p>
+        <a class="tl-read" href="https://www.npr.org/sections/therecord/2013/05/01/180375856/20-years-ago-biz-markie-got-the-last-laugh">Read &rarr;</a>
+      </article>
+  </section>
+  <section class="beat-group beat-c0">
+    <div class="beat-head">Where It Stands</div>
+      <article class="tl-item">
+        <div class="tl-top">
+          <span class="tl-source">Stems</span>
+          <span class="tl-byline">Nathan Brackett</span>
+          <span class="tl-date">Jul 3, 2026</span>
+        </div>
+        <h3 class="tl-headline"><a href="https://www.stems.media/p/hot-100-ai-controversy-fenix-flexin-rubberz">The Hot 100's First AI Doping Controversy is Here</a></h3>
+        <p class="tl-dek">Music is running its first doping controversy, Stems' Nathan Brackett writes, and like cycling's, it may never resolve. No shared detection standard exists across streamers, distributors, labels, or publishers, so the verdict on &quot;Rubberz&quot; stays he-said-she-said while the song sits in the Hot 100's 60s. The Stems team typed Fenix's name into Treblo themselves and got vocals uncannily close to the record. Fenix, meanwhile, says the all-'80s album is &quot;basically done.&quot; In the end, there's no ending to this story, which is the story.</p>
+        <a class="tl-read" href="https://www.stems.media/p/hot-100-ai-controversy-fenix-flexin-rubberz">Read &rarr;</a>
+      </article>
+  </section>
 </div>
   </main>
   <aside class="coll-side">
     <div class="side-head">
-  <span class="t">more collections</span>
-  <span class="m">stories</span>
+  <span class="t">more storylines</span>
 </div>
   <a class="side-card" href="miles-davis-centennial.html">
-    <img class="side-card-img" src="../assets/collections/miles-davis-centennial/cover.png" alt="Don't Look Back: Miles Davis at 100" /><span class="badge">Reflection</span>
+    <img class="side-card-img" src="../assets/collections/miles-davis-centennial/cover.png" alt="Don't Look Back: Miles Davis at 100" /><span class="badge">Storyline #2</span>
     <div class="side-card-overlay">
       <div class="side-card-name">Don't Look Back: Miles Davis at 100</div>
       <div class="side-card-count">10 articles &rarr;</div>
     </div>
   </a>
   <a class="side-card" href="the-onset-of-the-ai-remix-era.html">
-    <img class="side-card-img" src="../assets/collections/the-onset-of-the-ai-remix-era/ai_remix_era_cover.png" alt="The Onset of the AI Remix Era" /><span class="badge">Essay</span>
+    <img class="side-card-img" src="../assets/collections/the-onset-of-the-ai-remix-era/ai_remix_era_cover.png" alt="The Onset of the AI Remix Era" /><span class="badge">Storyline #3</span>
     <div class="side-card-overlay">
       <div class="side-card-name">The Onset of the AI Remix Era</div>
       <div class="side-card-count">11 articles &rarr;</div>
     </div>
   </a>
   <div class="side-card coming-soon" aria-disabled="true">
-    <img class="side-card-img" src="../assets/collections/tidal-demonetizes-ai-generated-music/cover.png" alt="TIDAL Demonetizes AI-Generated Music" />
+    <img class="side-card-img" src="../assets/collections/tidal-demonetizes-ai-generated-music/cover.png" alt="TIDAL Demonetizes AI-Generated Music" /><span class="badge">Storyline #4</span>
     <div class="side-card-overlay">
       <div class="side-card-name">TIDAL Demonetizes AI-Generated Music</div>
       <div class="side-card-count">coming soon</div>
