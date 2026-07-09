@@ -412,14 +412,91 @@
   /* ============================================================
      RESPONSIVE
      ============================================================ */
+  /* Beat-chip nav + footer links + all-collections link — hidden on desktop,
+     revealed in the mobile blocks below. */
+  .coll-nav { display: none; }
+  .foot-links { display: none; }
+  .side-all { display: none; }
+
   @media (max-width: 960px) {
     .coll-body { grid-template-columns: 1fr; row-gap: 34px; }
     .coll-side { position: static; }
     .coll-head-img { float: none; margin: 0 0 18px; }   /* stack the hero on narrow screens */
-    .coll-hero-img { width: 100%; height: auto; aspect-ratio: 1 / 1; max-width: 320px; }
+    /* Cover 16:9, full width at mobile (was 1:1 capped 320px) — port item 18 */
+    .coll-hero-img { width: 100%; height: auto; aspect-ratio: 16 / 9; max-width: none; }
     .related-grid { grid-template-columns: repeat(2, 1fr); }
-    .ss-wordmark { font-size: 40px; }
+
+    /* AUDIT FIX 1 (shared with edition) — masthead scrolls away; the chip nav
+       is the only sticky chrome. MUST stay `relative`, not `static` — the
+       lattice ::before is absolutely positioned and escapes overflow:hidden
+       (tiling the page) if the masthead stops being its containing block. */
+    .slice-masthead { position: relative; }
+
+    /* Beat-chip nav — same grammar as the edition chip nav; chips generated
+       per beat head at render time (render_coll_nav). */
+    .coll-nav {
+      display: block;
+      position: sticky;
+      top: 0;
+      z-index: 49;
+      background: var(--surface);
+      border-top: 1px solid var(--ink);
+      border-bottom: 1px solid var(--rule);
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .coll-nav::-webkit-scrollbar { display: none; }
+    .coll-nav-inner { display: flex; padding: 0 16px; width: max-content; }
+    .coll-nav a {
+      font-family: var(--f-mono); font-weight: 500; font-size: 12px;
+      text-transform: lowercase; color: var(--ink-mid);
+      padding: 13px 14px;                 /* ~44px tap height */
+      border-bottom: 2px solid transparent;
+      white-space: nowrap;
+    }
+    .coll-nav a.active {
+      color: var(--accent); font-weight: 600;
+      border-bottom-color: var(--accent);
+    }
+
+    /* Anchor jumps land clear of the sticky nav */
+    .coll-header[id], .beat-group[id], .coll-side[id], .related[id] { scroll-margin-top: 56px; }
+
+    /* More storylines: cap at two cards + an all-collections link. Cards 3+
+       carry .side-card--extra from the generator (safer than :nth-child, which
+       breaks if the aside's child mix changes). */
+    .coll-side .side-card--extra { display: none; }
+    .side-all {
+      display: block;
+      font-family: var(--f-mono); font-weight: 700; font-size: 11px;
+      letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent);
+      padding: 10px 0;
+    }
+
+    /* Tap-target pass: READ links get real hit areas */
+    .tl-read { display: inline-block; padding: 10px 0; margin: -4px 0; }
+
+    /* Footer: back to top + all collections */
+    .foot-links { display: flex; gap: 18px; font-family: var(--f-mono); font-size: 11px; letter-spacing: 0.04em; }
+    .foot-links a { color: var(--on-accent); text-decoration: underline; text-underline-offset: 3px; }
+  }
+
+  @media (max-width: 700px) {
+    /* Compact masthead — identical rules to the edition mobile port: single
+       row (~52px), 28px wordmark, horizontal dots, ABOUT absolutely centered. */
     .tagline { display: none; }
+    .masthead-inner { display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; }
+    .brand { gap: 10px; }
+    .ss-dots { flex-direction: row; gap: 4px; }
+    .ss-dots i { width: 7px; height: 7px; }
+    .ss-wordmark { font-size: 28px; }
+    .masthead-actions { position: absolute; right: 10px; top: 50%; transform: translateY(-50%); gap: 6px; }
+    .nav-about { padding: 5px 12px; font-size: 9px; }
+
+    /* Header panel breathes less at phone */
+    .coll-header { padding: 20px 18px 18px; }
+    .coll-headline { font-size: clamp(28px, 8vw, 36px); }
   }
   @media (max-width: 560px) {
     .related-grid { grid-template-columns: 1fr; }
@@ -442,9 +519,23 @@
   </div>
 </header>
 
+<!-- Mobile-only beat-chip nav (revealed <960px); generated per collection -->
+<nav class="coll-nav" aria-label="Collection navigation">
+  <div class="coll-nav-inner">
+    <a href="#brief" class="active">the brief</a>
+    <a href="#b1">the beginning</a>
+    <a href="#b2">the evidence drop</a>
+    <a href="#b3">the read</a>
+    <a href="#b4">historical precedents</a>
+    <a href="#b5">where it stands</a>
+    <a href="#more">more storylines</a>
+    <a href="#related">related</a>
+  </div>
+</nav>
+
 <div class="coll-body">
   <main class="coll-main">
-    <section class="coll-header">
+    <section class="coll-header" id="brief">
   <div class="coll-head-img"><img class="coll-hero-img" src="../assets/collections/fenix-flexins-rubberz/cover.png" alt="Me and the Devil: Fenix Flexin's AI Authorship Fight" /></div>
   <div class="coll-head-main">
     <span class="kicker">STORYLINE #1</span>
@@ -467,7 +558,7 @@
   <div class="section-bar-sub">9 pieces</div>
 </div>
 <div class="timeline">
-  <section class="beat-group beat-c0">
+  <section class="beat-group beat-c0" id="b1">
     <div class="beat-head">The Beginning</div>
       <article class="tl-item">
         <div class="tl-top">
@@ -490,7 +581,7 @@
         <a class="tl-read" href="https://www.billboard.com/music/rb-hip-hop/fenix-flexin-denies-rubberz-ai-allegations-1236270807/">Read &rarr;</a>
       </article>
   </section>
-  <section class="beat-group beat-c1">
+  <section class="beat-group beat-c1" id="b2">
     <div class="beat-head">The Evidence Drop</div>
       <article class="tl-item">
         <div class="tl-top">
@@ -513,7 +604,7 @@
         <a class="tl-read" href="https://zinstrel.substack.com/p/the-first-mainstream-ai-music-hit">Read &rarr;</a>
       </article>
   </section>
-  <section class="beat-group beat-c0">
+  <section class="beat-group beat-c0" id="b3">
     <div class="beat-head">The Read</div>
       <article class="tl-item">
         <div class="tl-top">
@@ -536,7 +627,7 @@
         <a class="tl-read" href="https://newenvironments.substack.com/p/my-number-one-song-is-not-ai">Read &rarr;</a>
       </article>
   </section>
-  <section class="beat-group beat-c1">
+  <section class="beat-group beat-c1" id="b4">
     <div class="beat-head">Historical Precedents</div>
       <article class="tl-item">
         <div class="tl-top">
@@ -559,7 +650,7 @@
         <a class="tl-read" href="https://www.npr.org/sections/therecord/2013/05/01/180375856/20-years-ago-biz-markie-got-the-last-laugh">Read &rarr;</a>
       </article>
   </section>
-  <section class="beat-group beat-c0">
+  <section class="beat-group beat-c0" id="b5">
     <div class="beat-head">Where It Stands</div>
       <article class="tl-item">
         <div class="tl-top">
@@ -574,35 +665,29 @@
   </section>
 </div>
   </main>
-  <aside class="coll-side">
+  <aside class="coll-side" id="more">
     <div class="side-head">
   <span class="t">more storylines</span>
 </div>
   <a class="side-card" href="miles-davis-centennial.html">
-    <img class="side-card-img" src="../assets/collections/miles-davis-centennial/cover.png" alt="Don't Look Back: Miles Davis at 100" /><span class="badge">Storyline #2</span>
+    <img class="side-card-img" src="../assets/collections/miles-davis-centennial/cover.png" alt="Don't Look Back: Miles Davis at 100" /><span class="badge">Storyline #3</span>
     <div class="side-card-overlay">
       <div class="side-card-name">Don't Look Back: Miles Davis at 100</div>
       <div class="side-card-count">10 articles &rarr;</div>
     </div>
   </a>
   <a class="side-card" href="the-onset-of-the-ai-remix-era.html">
-    <img class="side-card-img" src="../assets/collections/the-onset-of-the-ai-remix-era/ai_remix_era_cover.png" alt="The Onset of the AI Remix Era" /><span class="badge">Storyline #3</span>
+    <img class="side-card-img" src="../assets/collections/the-onset-of-the-ai-remix-era/ai_remix_era_cover.png" alt="The Onset of the AI Remix Era" /><span class="badge">Storyline #2</span>
     <div class="side-card-overlay">
       <div class="side-card-name">The Onset of the AI Remix Era</div>
       <div class="side-card-count">11 articles &rarr;</div>
     </div>
   </a>
-  <div class="side-card coming-soon" aria-disabled="true">
-    <img class="side-card-img" src="../assets/collections/tidal-demonetizes-ai-generated-music/cover.png" alt="TIDAL Demonetizes AI-Generated Music" /><span class="badge">Storyline #4</span>
-    <div class="side-card-overlay">
-      <div class="side-card-name">TIDAL Demonetizes AI-Generated Music</div>
-      <div class="side-card-count">coming soon</div>
-    </div>
-  </div>
+<a class="side-all" href="index.html">all collections &rarr;</a>
   </aside>
 </div>
 
-<section class="related">
+<section class="related" id="related">
   <div class="related-title">related reading</div>
   <div class="related-grid">
     <a class="rel-card" href="https://songsommelier.substack.com/p/training-our-ears-to-whats-real">
@@ -633,9 +718,37 @@
     <div class="pub">
       <span class="brand-mark">sound signal</span> · <span class="org">Third Bridge Creative</span>
     </div>
+    <div class="foot-links"><a href="#brief">back to top ↑</a><a href="index.html">all collections</a></div>
     <div class="foot-right">Story Collection · Fenix Flexin's AI Controversy</div>
   </div>
 </footer>
+
+<script>
+  // Position-based scroll spy for the beat-chip nav (order-agnostic — computes
+  // the active chip from live bounding-rect positions against the sticky-nav
+  // line, so it stays correct regardless of DOM order). Mobile-only (<960px);
+  // no-ops on desktop where the nav is hidden.
+  (function () {
+    var nav = document.querySelector('.coll-nav');
+    if (!nav) return;
+    var chips = Array.prototype.slice.call(nav.querySelectorAll('a[href^="#"]'));
+    var targets = chips.map(function (c) {
+      return document.getElementById(c.getAttribute('href').slice(1));
+    });
+    function spy() {
+      if (!window.matchMedia('(max-width: 960px)').matches) return;
+      var line = nav.getBoundingClientRect().bottom + 10;
+      var current = 0;
+      targets.forEach(function (t, i) {
+        if (t && t.getBoundingClientRect().top <= line) current = i;
+      });
+      chips.forEach(function (c, i) { c.classList.toggle('active', i === current); });
+    }
+    window.addEventListener('scroll', spy, { passive: true });
+    window.addEventListener('resize', spy);
+    spy();
+  })();
+</script>
 
 </body>
 </html>

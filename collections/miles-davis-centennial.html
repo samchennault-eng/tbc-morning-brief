@@ -231,22 +231,35 @@
     font-family: var(--f-mono); font-weight: 600; font-size: 10px;
     letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-light);
   }
-  .timeline { position: relative; margin: 26px 0 0; padding-left: 26px; }
-  .timeline::before {
-    content: ""; position: absolute; left: 6px; top: 6px; bottom: 6px;
-    width: 2px; background: var(--rule);
+  .timeline { position: relative; margin: 26px 0 0; }
+  /* Beat group: a colored spine SEGMENT (alternating navy/red group-to-group) with a filled beat
+     node at its head. Consecutive groups' segments touch → one continuous line that changes color at
+     each beat. Entries carry no per-entry node (removed 2026-07-08). */
+  .beat-group { position: relative; padding-left: 30px; --seg: var(--accent); }
+  .beat-group.beat-c1 { --seg: var(--secondary); }
+  .beat-group::before {
+    content: ""; position: absolute; left: 7px; top: 0; bottom: 0; width: 2px; background: var(--seg);
   }
-  .tl-item { position: relative; padding: 0 0 26px 22px; }
-  .tl-item::before {
-    content: ""; position: absolute; left: -26px; top: 4px;
-    width: 13px; height: 13px; border-radius: 50%;
-    background: var(--page); border: 3px solid var(--accent);
+  .tl-item { position: relative; padding: 0 0 26px 0; }
+  /* Beat header — mono/upper/tracked, in the group's color; the filled node sits on the spine. */
+  .beat-head {
+    position: relative; font-family: var(--f-mono); font-weight: 700; font-size: 12px;
+    letter-spacing: 0.15em; text-transform: uppercase; color: var(--seg); margin: 22px 0 14px;
   }
-  .tl-item:nth-child(even)::before { border-color: var(--secondary); }
+  .beat-group:first-child .beat-head { margin-top: 4px; }
+  .beat-head::before {
+    content: ""; position: absolute; left: -30px; top: 0; width: 15px; height: 15px;
+    border-radius: 50%; background: var(--seg); box-shadow: 0 0 0 3px var(--page);
+  }
   .tl-top {
     display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
     margin-bottom: 7px;
   }
+  .tl-byline {
+    font-family: var(--f-mono); font-weight: 500; font-size: 11px;
+    letter-spacing: 0.02em; color: var(--ink-mid);
+  }
+  .tl-byline::after { content: "·"; margin-left: 10px; color: var(--ink-faint); }
   .tl-source {
     font-family: var(--f-mono); font-weight: 700; font-size: 10px;
     letter-spacing: 0.08em; text-transform: uppercase;
@@ -333,6 +346,7 @@
     font-family: var(--f-mono); font-weight: 700; font-size: 14px;
     text-transform: lowercase; color: var(--ink);
     border-bottom: 2px solid var(--ink); padding-bottom: 10px;
+    margin-bottom: 22px;   /* clearly separate the header rule from the card module below */
   }
   .related-note {
     font-family: var(--f-serif); font-size: 13px; color: var(--ink-light);
@@ -398,14 +412,91 @@
   /* ============================================================
      RESPONSIVE
      ============================================================ */
+  /* Beat-chip nav + footer links + all-collections link — hidden on desktop,
+     revealed in the mobile blocks below. */
+  .coll-nav { display: none; }
+  .foot-links { display: none; }
+  .side-all { display: none; }
+
   @media (max-width: 960px) {
     .coll-body { grid-template-columns: 1fr; row-gap: 34px; }
     .coll-side { position: static; }
     .coll-head-img { float: none; margin: 0 0 18px; }   /* stack the hero on narrow screens */
-    .coll-hero-img { width: 100%; height: auto; aspect-ratio: 1 / 1; max-width: 320px; }
+    /* Cover 16:9, full width at mobile (was 1:1 capped 320px) — port item 18 */
+    .coll-hero-img { width: 100%; height: auto; aspect-ratio: 16 / 9; max-width: none; }
     .related-grid { grid-template-columns: repeat(2, 1fr); }
-    .ss-wordmark { font-size: 40px; }
+
+    /* AUDIT FIX 1 (shared with edition) — masthead scrolls away; the chip nav
+       is the only sticky chrome. MUST stay `relative`, not `static` — the
+       lattice ::before is absolutely positioned and escapes overflow:hidden
+       (tiling the page) if the masthead stops being its containing block. */
+    .slice-masthead { position: relative; }
+
+    /* Beat-chip nav — same grammar as the edition chip nav; chips generated
+       per beat head at render time (render_coll_nav). */
+    .coll-nav {
+      display: block;
+      position: sticky;
+      top: 0;
+      z-index: 49;
+      background: var(--surface);
+      border-top: 1px solid var(--ink);
+      border-bottom: 1px solid var(--rule);
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .coll-nav::-webkit-scrollbar { display: none; }
+    .coll-nav-inner { display: flex; padding: 0 16px; width: max-content; }
+    .coll-nav a {
+      font-family: var(--f-mono); font-weight: 500; font-size: 12px;
+      text-transform: lowercase; color: var(--ink-mid);
+      padding: 13px 14px;                 /* ~44px tap height */
+      border-bottom: 2px solid transparent;
+      white-space: nowrap;
+    }
+    .coll-nav a.active {
+      color: var(--accent); font-weight: 600;
+      border-bottom-color: var(--accent);
+    }
+
+    /* Anchor jumps land clear of the sticky nav */
+    .coll-header[id], .beat-group[id], .coll-side[id], .related[id] { scroll-margin-top: 56px; }
+
+    /* More storylines: cap at two cards + an all-collections link. Cards 3+
+       carry .side-card--extra from the generator (safer than :nth-child, which
+       breaks if the aside's child mix changes). */
+    .coll-side .side-card--extra { display: none; }
+    .side-all {
+      display: block;
+      font-family: var(--f-mono); font-weight: 700; font-size: 11px;
+      letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent);
+      padding: 10px 0;
+    }
+
+    /* Tap-target pass: READ links get real hit areas */
+    .tl-read { display: inline-block; padding: 10px 0; margin: -4px 0; }
+
+    /* Footer: back to top + all collections */
+    .foot-links { display: flex; gap: 18px; font-family: var(--f-mono); font-size: 11px; letter-spacing: 0.04em; }
+    .foot-links a { color: var(--on-accent); text-decoration: underline; text-underline-offset: 3px; }
+  }
+
+  @media (max-width: 700px) {
+    /* Compact masthead — identical rules to the edition mobile port: single
+       row (~52px), 28px wordmark, horizontal dots, ABOUT absolutely centered. */
     .tagline { display: none; }
+    .masthead-inner { display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; }
+    .brand { gap: 10px; }
+    .ss-dots { flex-direction: row; gap: 4px; }
+    .ss-dots i { width: 7px; height: 7px; }
+    .ss-wordmark { font-size: 28px; }
+    .masthead-actions { position: absolute; right: 10px; top: 50%; transform: translateY(-50%); gap: 6px; }
+    .nav-about { padding: 5px 12px; font-size: 9px; }
+
+    /* Header panel breathes less at phone */
+    .coll-header { padding: 20px 18px 18px; }
+    .coll-headline { font-size: clamp(28px, 8vw, 36px); }
   }
   @media (max-width: 560px) {
     .related-grid { grid-template-columns: 1fr; }
@@ -428,14 +519,17 @@
   </div>
 </header>
 
+<!-- Mobile-only beat-chip nav (revealed <960px); generated per collection -->
+
+
 <div class="coll-body">
   <main class="coll-main">
-    <section class="coll-header">
+    <section class="coll-header" id="brief">
   <div class="coll-head-img"><img class="coll-hero-img" src="../assets/collections/miles-davis-centennial/cover.png" alt="Don't Look Back: Miles Davis at 100" /></div>
   <div class="coll-head-main">
-    <span class="kicker">STORY COLLECTION · <span class="kicker-badge">REFLECTION</span></span>
+    <span class="kicker">STORYLINE #3</span>
     <h1 class="coll-headline">Don't Look Back: Miles Davis at 100</h1>
-    <div class="coll-meta">10 articles · First filed <span class="lead">Jul 2026</span></div>
+    <div class="coll-meta">10 articles · Tracking since <span class="lead">Jul 2026</span></div>
     <div class="coll-synth">
       <p>In a Juilliard classroom around 1945, a teacher explained to the room that Black people play the blues because they were depressed and had to pick cotton. Miles Davis was nineteen, already holding his own horn. He cut through it clean. &quot;My father's rich. My mama's good looking. Right? And I can play the blues. I've never suffered and don't intend to suffer.&quot;</p>
       <p>Miles wasn’t about to let anyone define his experience or artistry, then or ever, and that refusal defined him for the next 45 years. He was the avatar of cool who kept detonating the styles he authored, a privileged Black artist who declined every story offered to him about privilege, Blackness, suffering, and art. By the testimony of the people closest to him, he was both a genius and a man who hurt others, particularly the women who loved him. You can’t keep one without the other. And a hundred years on, we look at him and we stare deeply and we see less. Pieces come into vivid focus, but the image blurs and distorts at the edges, even now.</p>
@@ -449,141 +543,136 @@
 </section>
     <div class="section-bar">
   <div class="section-bar-title">The Storyline</div>
-  <div class="section-bar-sub">10 pieces · Essay · Criticism/review · Reported feature · Profile</div>
+  <div class="section-bar-sub">10 pieces</div>
 </div>
 <div class="timeline">
-    <article class="tl-item">
-      <div class="tl-top">
-        <span class="tl-source">NPR Music</span>
-        <span class="tl-date">May 26, 2026</span>
-        <span class="tl-type">essay</span>
-      </div>
-      <h3 class="tl-headline"><a href="https://www.npr.org/2026/05/26/nx-s1-5829716/miles-davis-100-years-centennial">The Miles Davis century: The definition, and evolution, of cool</a></h3>
-      <p class="tl-dek">Icon and iconoclast, Nate Chinen writes for NPR, both fit Miles Davis, the first of his paradoxes. He looms larger than any jazz musician you can name yet means something different to everyone, because he embodied so many things himself. Chinen traces the cool from the Brooks Brothers hush of Kind of Blue to the funk rupture of Bitches Brew, and reaches for Picasso, one of the few other artists so driven to remake himself. To remember Miles properly, he argues, is to contend with the contradictions.</p>
-      <a class="tl-read" href="https://www.npr.org/2026/05/26/nx-s1-5829716/miles-davis-100-years-centennial">Read &rarr;</a>
-    </article>
-    <article class="tl-item">
-      <div class="tl-top">
-        <span class="tl-source">JazzWax</span>
-        <span class="tl-date">May 27, 2026</span>
-        <span class="tl-type">essay</span>
-      </div>
-      <h3 class="tl-headline"><a href="https://www.jazzwax.com/p/miles-davis-at-100">Miles Davis at 100</a></h3>
-      <p class="tl-dek">Nineteen tracks, 1947 to 1970, a way in through the ear. Marc Myers uses the birthday to build a listening path across the whole arc, from a 1947 Charlie Parker session through Birth of the Cool, the Prestige sides, the Newport 'Round Midnight that won the Columbia deal, Kind of Blue, and the first electric experiments. His through-line is Davis as jazz's first superstar and its most restless, the fashion icon and addict who kept inventing post-war movements. Each pick carries its personnel, a route rather than a monument.</p>
-      <a class="tl-read" href="https://www.jazzwax.com/p/miles-davis-at-100">Read &rarr;</a>
-    </article>
-    <article class="tl-item">
-      <div class="tl-top">
-        <span class="tl-source">The New York Times</span>
-        <span class="tl-date">May 22, 2026</span>
-        <span class="tl-type">essay</span>
-      </div>
-      <h3 class="tl-headline"><a href="https://www.nytimes.com/2026/05/22/style/miles-davis-personal-style-photos.html">Miles Davis: A Visual Dictionary</a></h3>
-      <p class="tl-dek">Sunglasses like goggles, a canary-yellow Ferrari, MILES22 vanity plates, a floor-length snakeskin cape. The New York Times Styles desk builds its portrait from the objects that made Miles cool. A Berklee professor notes he was no gearhead, playing whatever trumpet let him sound like himself, the mute turning it human. The look shifts with the sound, cropped 1950s hair to a 1971 Afro to '80s microbraids, and the piece credits Betty Davis with pulling him into the Bitches Brew years and toward Jimi Hendrix.</p>
-      <a class="tl-read" href="https://www.nytimes.com/2026/05/22/style/miles-davis-personal-style-photos.html">Read &rarr;</a>
-    </article>
-    <article class="tl-item">
-      <div class="tl-top">
-        <span class="tl-source">Pitchfork</span>
-        <span class="tl-date">Jul 8, 2026</span>
-        <span class="tl-type">criticism/review</span>
-      </div>
-      <h3 class="tl-headline"><a href="https://pitchfork.com/reviews/albums/miles-davis-miles-56-the-prestige-recordings/">Miles '56: The Prestige Recordings</a></h3>
-      <p class="tl-dek">For a few nights in 1956, in a Greenwich Village club called the Café Bohemia, the first great quintet was a working band burning off a contract. Natalie Weiner's Pitchfork review of the centennial box set finds Davis, Coltrane, Red Garland, the twenty-year-old Paul Chambers and Philly Joe Jones cutting four albums in first takes. &quot;We're not trying to prove anything,&quot; Davis told a reporter. &quot;All we want to do is blow.&quot; Weiner hears jazz's past and future distilled into music that sounds like a place you could live.</p>
-      <a class="tl-read" href="https://pitchfork.com/reviews/albums/miles-davis-miles-56-the-prestige-recordings/">Read &rarr;</a>
-    </article>
-    <article class="tl-item">
-      <div class="tl-top">
-        <span class="tl-source">All Things Jazz</span>
-        <span class="tl-date">May 20, 2026</span>
-        <span class="tl-type">essay</span>
-      </div>
-      <h3 class="tl-headline"><a href="https://allthingsjazzoriginal.substack.com/p/miles-davis-and-the-fear-of-standing">Miles Davis and the Fear of Standing Still (1960-1969)</a></h3>
-      <p class="tl-dek">On records like Nefertiti, the horns hold the melody while the rhythm section improvises underneath, the usual order quietly reversed. All Things Jazz catches Davis in the mid-sixties with the Second Great Quintet, Herbie Hancock, Ron Carter, the teenage Tony Williams and Wayne Shorter, playing standards over something radical. He had assembled the most advanced small group in jazz and stayed dissatisfied, already hearing Betty Mabry's Hendrix and Sly Stone. The restlessness was the point. By the decade's end he no longer believed in permanence at all.</p>
-      <a class="tl-read" href="https://allthingsjazzoriginal.substack.com/p/miles-davis-and-the-fear-of-standing">Read &rarr;</a>
-    </article>
-    <article class="tl-item">
-      <div class="tl-top">
-        <span class="tl-source">EchoLocator</span>
-        <span class="tl-date">Jul 1, 2026</span>
-        <span class="tl-type">essay</span>
-      </div>
-      <h3 class="tl-headline"><a href="https://echolocator.substack.com/p/the-curious-paradox-of-miles-at-100">The Curious Paradox of Miles at 100</a></h3>
-      <p class="tl-dek">The centennial has become a machine. Tom Moon watches the Davis estate and its labels stack boxed sets, sonic upgrades and unreleased live tapes into a monument modeled on how the classical world commemorates dead composers, and finds the joke buried inside it: the man being monumentalized rarely looked back. Davis lived in nextness, Moon writes at EchoLocator, gone before the culture caught up. His proof is the 1964 quintet, five musicians inventing a different music every night, exactly what a monument cannot hold.</p>
-      <a class="tl-read" href="https://echolocator.substack.com/p/the-curious-paradox-of-miles-at-100">Read &rarr;</a>
-    </article>
-    <article class="tl-item">
-      <div class="tl-top">
-        <span class="tl-source">DownBeat</span>
-        <span class="tl-date">May 26, 2026</span>
-        <span class="tl-type">reported feature</span>
-      </div>
-      <h3 class="tl-headline"><a href="https://downbeat.com/news/detail/miles-davis-at-100-love-for-a-complicated-genius">Miles Davis at 100: Love for a Complicated Genius</a></h3>
-      <p class="tl-dek">At a Jazz Congress roundtable, the musicians who knew Miles Davis circle the same question: how do you love the music and face the man. Ashley Kahn moderates his nephew Vince Wilburn Jr., Marcus Miller and Terence Blanchard, who remember a man who kept none of his own records at home. When the writer Lauren du Graf raises his abuse of women, Miller answers without dodging. &quot;How do I reconcile the two sides? And I don't know if I can.&quot; What keeps them there is the dare in the music.</p>
-      <a class="tl-read" href="https://downbeat.com/news/detail/miles-davis-at-100-love-for-a-complicated-genius">Read &rarr;</a>
-    </article>
-    <article class="tl-item">
-      <div class="tl-top">
-        <span class="tl-source">Vanity Fair</span>
-        <span class="tl-date">Jul 8, 2026</span>
-        <span class="tl-type">essay</span>
-      </div>
-      <h3 class="tl-headline"><a href="https://www.vanityfair.com/culture/story/miles-davis-centennial-100-years">Wrestling With Miles Davis's Complicated Legacy</a></h3>
-      <p class="tl-dek">Jimmie Briggs first met Miles Davis in 1985, in a Honda scooter ad and a Miami Vice cameo, then spent years holding the genius against harm. His Vanity Fair remembrance sets the litany down without flinching: Chameleon, Bandleader, Maverick, Abuser, Icon. He names the abuse of Davis's wives, points to Pearl Cleage's 1990 &quot;Mad at Miles,&quot; and refuses to tuck it under the greatness. He offers an album road map, not a verdict, and admits he may skip the public tributes to play an early record alone.</p>
-      <a class="tl-read" href="https://www.vanityfair.com/culture/story/miles-davis-centennial-100-years">Read &rarr;</a>
-    </article>
-    <article class="tl-item">
-      <div class="tl-top">
-        <span class="tl-source">Tyler King from Jazz Journey Newsletter</span>
-        <span class="tl-date">May 27, 2026</span>
-        <span class="tl-type">profile</span>
-      </div>
-      <h3 class="tl-headline"><a href="https://sunra.substack.com/p/frances-taylor">Frances Taylor</a></h3>
-      <p class="tl-dek">Frances Taylor gave up her career for Miles Davis. The first Black dancer with the Paris Opera Ballet became the muse of Fran Dance and the face on his covers, and steered him toward the flamenco records behind Sketches of Spain. Tyler King's profile lets her speak from a 2001 interview, and what she remembers is the cost. By the E.S.P. session, she says, &quot;it was only a matter of days before I left running for my life.&quot; The centennial can reappraise everything but that.</p>
-      <a class="tl-read" href="https://sunra.substack.com/p/frances-taylor">Read &rarr;</a>
-    </article>
-    <article class="tl-item">
-      <div class="tl-top">
-        <span class="tl-source">Nate Chinen from The Gig</span>
-        <span class="tl-date">May 20, 2026</span>
-        <span class="tl-type">essay</span>
-      </div>
-      <h3 class="tl-headline"><a href="https://thegig.substack.com/p/miles-davis-at-lennies-on-the-turnpike">Miles Davis at Lennie's on the Turnpike</a></h3>
-      <p class="tl-dek">A single photograph of Miles at Lennie's on the Turnpike in 1971, horn bent to the floor, Harmon mute in the bell, half his face in shadow. Nate Chinen tries to pin it down and watches every detail slip. The date is uncertain, the poem he recalls may be misremembered, the bootleg is from another night. Every tribute is a translation, he writes, and Davis refused to translate himself. Chinen lets the mystery stand. We only have what is in front of us, and Miles is already gone.</p>
-      <a class="tl-read" href="https://thegig.substack.com/p/miles-davis-at-lennies-on-the-turnpike">Read &rarr;</a>
-    </article>
+  <section class="beat-group beat-c0" id="b1">
+      <article class="tl-item">
+        <div class="tl-top">
+          <span class="tl-source">NPR Music</span>
+          
+          <span class="tl-date">May 26, 2026</span>
+        </div>
+        <h3 class="tl-headline"><a href="https://www.npr.org/2026/05/26/nx-s1-5829716/miles-davis-100-years-centennial">The Miles Davis century: The definition, and evolution, of cool</a></h3>
+        <p class="tl-dek">Icon and iconoclast, Nate Chinen writes for NPR, both fit Miles Davis, the first of his paradoxes. He looms larger than any jazz musician you can name yet means something different to everyone, because he embodied so many things himself. Chinen traces the cool from the Brooks Brothers hush of Kind of Blue to the funk rupture of Bitches Brew, and reaches for Picasso, one of the few other artists so driven to remake himself. To remember Miles properly, he argues, is to contend with the contradictions.</p>
+        <a class="tl-read" href="https://www.npr.org/2026/05/26/nx-s1-5829716/miles-davis-100-years-centennial">Read &rarr;</a>
+      </article>
+      <article class="tl-item">
+        <div class="tl-top">
+          <span class="tl-source">JazzWax</span>
+          
+          <span class="tl-date">May 27, 2026</span>
+        </div>
+        <h3 class="tl-headline"><a href="https://www.jazzwax.com/p/miles-davis-at-100">Miles Davis at 100</a></h3>
+        <p class="tl-dek">Nineteen tracks, 1947 to 1970, a way in through the ear. Marc Myers uses the birthday to build a listening path across the whole arc, from a 1947 Charlie Parker session through Birth of the Cool, the Prestige sides, the Newport 'Round Midnight that won the Columbia deal, Kind of Blue, and the first electric experiments. His through-line is Davis as jazz's first superstar and its most restless, the fashion icon and addict who kept inventing post-war movements. Each pick carries its personnel, a route rather than a monument.</p>
+        <a class="tl-read" href="https://www.jazzwax.com/p/miles-davis-at-100">Read &rarr;</a>
+      </article>
+      <article class="tl-item">
+        <div class="tl-top">
+          <span class="tl-source">The New York Times</span>
+          
+          <span class="tl-date">May 22, 2026</span>
+        </div>
+        <h3 class="tl-headline"><a href="https://www.nytimes.com/2026/05/22/style/miles-davis-personal-style-photos.html">Miles Davis: A Visual Dictionary</a></h3>
+        <p class="tl-dek">Sunglasses like goggles, a canary-yellow Ferrari, MILES22 vanity plates, a floor-length snakeskin cape. The New York Times Styles desk builds its portrait from the objects that made Miles cool. A Berklee professor notes he was no gearhead, playing whatever trumpet let him sound like himself, the mute turning it human. The look shifts with the sound, cropped 1950s hair to a 1971 Afro to '80s microbraids, and the piece credits Betty Davis with pulling him into the Bitches Brew years and toward Jimi Hendrix.</p>
+        <a class="tl-read" href="https://www.nytimes.com/2026/05/22/style/miles-davis-personal-style-photos.html">Read &rarr;</a>
+      </article>
+      <article class="tl-item">
+        <div class="tl-top">
+          <span class="tl-source">Pitchfork</span>
+          
+          <span class="tl-date">Jul 8, 2026</span>
+        </div>
+        <h3 class="tl-headline"><a href="https://pitchfork.com/reviews/albums/miles-davis-miles-56-the-prestige-recordings/">Miles '56: The Prestige Recordings</a></h3>
+        <p class="tl-dek">For a few nights in 1956, in a Greenwich Village club called the Café Bohemia, the first great quintet was a working band burning off a contract. Natalie Weiner's Pitchfork review of the centennial box set finds Davis, Coltrane, Red Garland, the twenty-year-old Paul Chambers and Philly Joe Jones cutting four albums in first takes. &quot;We're not trying to prove anything,&quot; Davis told a reporter. &quot;All we want to do is blow.&quot; Weiner hears jazz's past and future distilled into music that sounds like a place you could live.</p>
+        <a class="tl-read" href="https://pitchfork.com/reviews/albums/miles-davis-miles-56-the-prestige-recordings/">Read &rarr;</a>
+      </article>
+      <article class="tl-item">
+        <div class="tl-top">
+          <span class="tl-source">All Things Jazz</span>
+          
+          <span class="tl-date">May 20, 2026</span>
+        </div>
+        <h3 class="tl-headline"><a href="https://allthingsjazzoriginal.substack.com/p/miles-davis-and-the-fear-of-standing">Miles Davis and the Fear of Standing Still (1960-1969)</a></h3>
+        <p class="tl-dek">On records like Nefertiti, the horns hold the melody while the rhythm section improvises underneath, the usual order quietly reversed. All Things Jazz catches Davis in the mid-sixties with the Second Great Quintet, Herbie Hancock, Ron Carter, the teenage Tony Williams and Wayne Shorter, playing standards over something radical. He had assembled the most advanced small group in jazz and stayed dissatisfied, already hearing Betty Mabry's Hendrix and Sly Stone. The restlessness was the point. By the decade's end he no longer believed in permanence at all.</p>
+        <a class="tl-read" href="https://allthingsjazzoriginal.substack.com/p/miles-davis-and-the-fear-of-standing">Read &rarr;</a>
+      </article>
+      <article class="tl-item">
+        <div class="tl-top">
+          <span class="tl-source">EchoLocator</span>
+          <span class="tl-byline">Tom Moon</span>
+          <span class="tl-date">Jul 1, 2026</span>
+        </div>
+        <h3 class="tl-headline"><a href="https://echolocator.substack.com/p/the-curious-paradox-of-miles-at-100">The Curious Paradox of Miles at 100</a></h3>
+        <p class="tl-dek">The centennial has become a machine. Tom Moon watches the Davis estate and its labels stack boxed sets, sonic upgrades and unreleased live tapes into a monument modeled on how the classical world commemorates dead composers, and finds the joke buried inside it: the man being monumentalized rarely looked back. Davis lived in nextness, Moon writes at EchoLocator, gone before the culture caught up. His proof is the 1964 quintet, five musicians inventing a different music every night, exactly what a monument cannot hold.</p>
+        <a class="tl-read" href="https://echolocator.substack.com/p/the-curious-paradox-of-miles-at-100">Read &rarr;</a>
+      </article>
+      <article class="tl-item">
+        <div class="tl-top">
+          <span class="tl-source">DownBeat</span>
+          
+          <span class="tl-date">May 26, 2026</span>
+        </div>
+        <h3 class="tl-headline"><a href="https://downbeat.com/news/detail/miles-davis-at-100-love-for-a-complicated-genius">Miles Davis at 100: Love for a Complicated Genius</a></h3>
+        <p class="tl-dek">At a Jazz Congress roundtable, the musicians who knew Miles Davis circle the same question: how do you love the music and face the man. Ashley Kahn moderates his nephew Vince Wilburn Jr., Marcus Miller and Terence Blanchard, who remember a man who kept none of his own records at home. When the writer Lauren du Graf raises his abuse of women, Miller answers without dodging. &quot;How do I reconcile the two sides? And I don't know if I can.&quot; What keeps them there is the dare in the music.</p>
+        <a class="tl-read" href="https://downbeat.com/news/detail/miles-davis-at-100-love-for-a-complicated-genius">Read &rarr;</a>
+      </article>
+      <article class="tl-item">
+        <div class="tl-top">
+          <span class="tl-source">Vanity Fair</span>
+          
+          <span class="tl-date">Jul 8, 2026</span>
+        </div>
+        <h3 class="tl-headline"><a href="https://www.vanityfair.com/culture/story/miles-davis-centennial-100-years">Wrestling With Miles Davis's Complicated Legacy</a></h3>
+        <p class="tl-dek">Jimmie Briggs first met Miles Davis in 1985, in a Honda scooter ad and a Miami Vice cameo, then spent years holding the genius against harm. His Vanity Fair remembrance sets the litany down without flinching: Chameleon, Bandleader, Maverick, Abuser, Icon. He names the abuse of Davis's wives, points to Pearl Cleage's 1990 &quot;Mad at Miles,&quot; and refuses to tuck it under the greatness. He offers an album road map, not a verdict, and admits he may skip the public tributes to play an early record alone.</p>
+        <a class="tl-read" href="https://www.vanityfair.com/culture/story/miles-davis-centennial-100-years">Read &rarr;</a>
+      </article>
+      <article class="tl-item">
+        <div class="tl-top">
+          <span class="tl-source">Tyler King from Jazz Journey Newsletter</span>
+          <span class="tl-byline">Tyler King</span>
+          <span class="tl-date">May 27, 2026</span>
+        </div>
+        <h3 class="tl-headline"><a href="https://sunra.substack.com/p/frances-taylor">Frances Taylor</a></h3>
+        <p class="tl-dek">Frances Taylor gave up her career for Miles Davis. The first Black dancer with the Paris Opera Ballet became the muse of Fran Dance and the face on his covers, and steered him toward the flamenco records behind Sketches of Spain. Tyler King's profile lets her speak from a 2001 interview, and what she remembers is the cost. By the E.S.P. session, she says, &quot;it was only a matter of days before I left running for my life.&quot; The centennial can reappraise everything but that.</p>
+        <a class="tl-read" href="https://sunra.substack.com/p/frances-taylor">Read &rarr;</a>
+      </article>
+      <article class="tl-item">
+        <div class="tl-top">
+          <span class="tl-source">Nate Chinen from The Gig</span>
+          <span class="tl-byline">Nate Chinen</span>
+          <span class="tl-date">May 20, 2026</span>
+        </div>
+        <h3 class="tl-headline"><a href="https://thegig.substack.com/p/miles-davis-at-lennies-on-the-turnpike">Miles Davis at Lennie's on the Turnpike</a></h3>
+        <p class="tl-dek">A single photograph of Miles at Lennie's on the Turnpike in 1971, horn bent to the floor, Harmon mute in the bell, half his face in shadow. Nate Chinen tries to pin it down and watches every detail slip. The date is uncertain, the poem he recalls may be misremembered, the bootleg is from another night. Every tribute is a translation, he writes, and Davis refused to translate himself. Chinen lets the mystery stand. We only have what is in front of us, and Miles is already gone.</p>
+        <a class="tl-read" href="https://thegig.substack.com/p/miles-davis-at-lennies-on-the-turnpike">Read &rarr;</a>
+      </article>
+  </section>
 </div>
   </main>
-  <aside class="coll-side">
+  <aside class="coll-side" id="more">
     <div class="side-head">
-  <span class="t">more collections</span>
-  <span class="m">stories</span>
+  <span class="t">more storylines</span>
 </div>
   <a class="side-card" href="fenix-flexins-rubberz.html">
-    <img class="side-card-img" src="../assets/collections/fenix-flexins-rubberz/cover.png" alt="Me and the Devil: Fenix Flexin's AI Authorship Fight" /><span class="badge">Dispute</span>
+    <img class="side-card-img" src="../assets/collections/fenix-flexins-rubberz/cover.png" alt="Me and the Devil: Fenix Flexin's AI Authorship Fight" /><span class="badge">Storyline #1</span>
     <div class="side-card-overlay">
       <div class="side-card-name">Me and the Devil: Fenix Flexin's AI Authorship Fight</div>
       <div class="side-card-count">9 articles &rarr;</div>
     </div>
   </a>
   <a class="side-card" href="the-onset-of-the-ai-remix-era.html">
-    <img class="side-card-img" src="../assets/collections/the-onset-of-the-ai-remix-era/ai_remix_era_cover.png" alt="The Onset of the AI Remix Era" /><span class="badge">Essay</span>
+    <img class="side-card-img" src="../assets/collections/the-onset-of-the-ai-remix-era/ai_remix_era_cover.png" alt="The Onset of the AI Remix Era" /><span class="badge">Storyline #2</span>
     <div class="side-card-overlay">
       <div class="side-card-name">The Onset of the AI Remix Era</div>
       <div class="side-card-count">11 articles &rarr;</div>
     </div>
   </a>
-  <div class="side-card coming-soon" aria-disabled="true">
-    <img class="side-card-img" src="../assets/collections/tidal-demonetizes-ai-generated-music/cover.png" alt="TIDAL Demonetizes AI-Generated Music" />
-    <div class="side-card-overlay">
-      <div class="side-card-name">TIDAL Demonetizes AI-Generated Music</div>
-      <div class="side-card-count">coming soon</div>
-    </div>
-  </div>
+<a class="side-all" href="index.html">all collections &rarr;</a>
   </aside>
 </div>
 
-<section class="related">
+<section class="related" id="related">
   <div class="related-title">related reading</div>
   <div class="related-grid">
     <a class="rel-card" href="https://michellemercer.substack.com/p/run-the-voodoo-down">
@@ -604,9 +693,37 @@
     <div class="pub">
       <span class="brand-mark">sound signal</span> · <span class="org">Third Bridge Creative</span>
     </div>
+    <div class="foot-links"><a href="#brief">back to top ↑</a><a href="index.html">all collections</a></div>
     <div class="foot-right">Story Collection · Miles at 100</div>
   </div>
 </footer>
+
+<script>
+  // Position-based scroll spy for the beat-chip nav (order-agnostic — computes
+  // the active chip from live bounding-rect positions against the sticky-nav
+  // line, so it stays correct regardless of DOM order). Mobile-only (<960px);
+  // no-ops on desktop where the nav is hidden.
+  (function () {
+    var nav = document.querySelector('.coll-nav');
+    if (!nav) return;
+    var chips = Array.prototype.slice.call(nav.querySelectorAll('a[href^="#"]'));
+    var targets = chips.map(function (c) {
+      return document.getElementById(c.getAttribute('href').slice(1));
+    });
+    function spy() {
+      if (!window.matchMedia('(max-width: 960px)').matches) return;
+      var line = nav.getBoundingClientRect().bottom + 10;
+      var current = 0;
+      targets.forEach(function (t, i) {
+        if (t && t.getBoundingClientRect().top <= line) current = i;
+      });
+      chips.forEach(function (c, i) { c.classList.toggle('active', i === current); });
+    }
+    window.addEventListener('scroll', spy, { passive: true });
+    window.addEventListener('resize', spy);
+    spy();
+  })();
+</script>
 
 </body>
 </html>
