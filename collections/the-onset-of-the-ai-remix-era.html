@@ -231,22 +231,35 @@
     font-family: var(--f-mono); font-weight: 600; font-size: 10px;
     letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-light);
   }
-  .timeline { position: relative; margin: 26px 0 0; padding-left: 26px; }
-  .timeline::before {
-    content: ""; position: absolute; left: 6px; top: 6px; bottom: 6px;
-    width: 2px; background: var(--rule);
+  .timeline { position: relative; margin: 26px 0 0; }
+  /* Beat group: a colored spine SEGMENT (alternating navy/red group-to-group) with a filled beat
+     node at its head. Consecutive groups' segments touch → one continuous line that changes color at
+     each beat. Entries carry no per-entry node (removed 2026-07-08). */
+  .beat-group { position: relative; padding-left: 30px; --seg: var(--accent); }
+  .beat-group.beat-c1 { --seg: var(--secondary); }
+  .beat-group::before {
+    content: ""; position: absolute; left: 7px; top: 0; bottom: 0; width: 2px; background: var(--seg);
   }
-  .tl-item { position: relative; padding: 0 0 26px 22px; }
-  .tl-item::before {
-    content: ""; position: absolute; left: -26px; top: 4px;
-    width: 13px; height: 13px; border-radius: 50%;
-    background: var(--page); border: 3px solid var(--accent);
+  .tl-item { position: relative; padding: 0 0 26px 0; }
+  /* Beat header — mono/upper/tracked, in the group's color; the filled node sits on the spine. */
+  .beat-head {
+    position: relative; font-family: var(--f-mono); font-weight: 700; font-size: 12px;
+    letter-spacing: 0.15em; text-transform: uppercase; color: var(--seg); margin: 22px 0 14px;
   }
-  .tl-item:nth-child(even)::before { border-color: var(--secondary); }
+  .beat-group:first-child .beat-head { margin-top: 4px; }
+  .beat-head::before {
+    content: ""; position: absolute; left: -30px; top: 0; width: 15px; height: 15px;
+    border-radius: 50%; background: var(--seg); box-shadow: 0 0 0 3px var(--page);
+  }
   .tl-top {
     display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
     margin-bottom: 7px;
   }
+  .tl-byline {
+    font-family: var(--f-mono); font-weight: 500; font-size: 11px;
+    letter-spacing: 0.02em; color: var(--ink-mid);
+  }
+  .tl-byline::after { content: "·"; margin-left: 10px; color: var(--ink-faint); }
   .tl-source {
     font-family: var(--f-mono); font-weight: 700; font-size: 10px;
     letter-spacing: 0.08em; text-transform: uppercase;
@@ -333,6 +346,7 @@
     font-family: var(--f-mono); font-weight: 700; font-size: 14px;
     text-transform: lowercase; color: var(--ink);
     border-bottom: 2px solid var(--ink); padding-bottom: 10px;
+    margin-bottom: 22px;   /* clearly separate the header rule from the card module below */
   }
   .related-note {
     font-family: var(--f-serif); font-size: 13px; color: var(--ink-light);
@@ -398,14 +412,91 @@
   /* ============================================================
      RESPONSIVE
      ============================================================ */
+  /* Beat-chip nav + footer links + all-collections link — hidden on desktop,
+     revealed in the mobile blocks below. */
+  .coll-nav { display: none; }
+  .foot-links { display: none; }
+  .side-all { display: none; }
+
   @media (max-width: 960px) {
     .coll-body { grid-template-columns: 1fr; row-gap: 34px; }
     .coll-side { position: static; }
     .coll-head-img { float: none; margin: 0 0 18px; }   /* stack the hero on narrow screens */
-    .coll-hero-img { width: 100%; height: auto; aspect-ratio: 1 / 1; max-width: 320px; }
+    /* Cover 16:9, full width at mobile (was 1:1 capped 320px) — port item 18 */
+    .coll-hero-img { width: 100%; height: auto; aspect-ratio: 16 / 9; max-width: none; }
     .related-grid { grid-template-columns: repeat(2, 1fr); }
-    .ss-wordmark { font-size: 40px; }
+
+    /* AUDIT FIX 1 (shared with edition) — masthead scrolls away; the chip nav
+       is the only sticky chrome. MUST stay `relative`, not `static` — the
+       lattice ::before is absolutely positioned and escapes overflow:hidden
+       (tiling the page) if the masthead stops being its containing block. */
+    .slice-masthead { position: relative; }
+
+    /* Beat-chip nav — same grammar as the edition chip nav; chips generated
+       per beat head at render time (render_coll_nav). */
+    .coll-nav {
+      display: block;
+      position: sticky;
+      top: 0;
+      z-index: 49;
+      background: var(--surface);
+      border-top: 1px solid var(--ink);
+      border-bottom: 1px solid var(--rule);
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .coll-nav::-webkit-scrollbar { display: none; }
+    .coll-nav-inner { display: flex; padding: 0 16px; width: max-content; }
+    .coll-nav a {
+      font-family: var(--f-mono); font-weight: 500; font-size: 12px;
+      text-transform: lowercase; color: var(--ink-mid);
+      padding: 13px 14px;                 /* ~44px tap height */
+      border-bottom: 2px solid transparent;
+      white-space: nowrap;
+    }
+    .coll-nav a.active {
+      color: var(--accent); font-weight: 600;
+      border-bottom-color: var(--accent);
+    }
+
+    /* Anchor jumps land clear of the sticky nav */
+    .coll-header[id], .beat-group[id], .coll-side[id], .related[id] { scroll-margin-top: 56px; }
+
+    /* More storylines: cap at two cards + an all-collections link. Cards 3+
+       carry .side-card--extra from the generator (safer than :nth-child, which
+       breaks if the aside's child mix changes). */
+    .coll-side .side-card--extra { display: none; }
+    .side-all {
+      display: block;
+      font-family: var(--f-mono); font-weight: 700; font-size: 11px;
+      letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent);
+      padding: 10px 0;
+    }
+
+    /* Tap-target pass: READ links get real hit areas */
+    .tl-read { display: inline-block; padding: 10px 0; margin: -4px 0; }
+
+    /* Footer: back to top + all collections */
+    .foot-links { display: flex; gap: 18px; font-family: var(--f-mono); font-size: 11px; letter-spacing: 0.04em; }
+    .foot-links a { color: var(--on-accent); text-decoration: underline; text-underline-offset: 3px; }
+  }
+
+  @media (max-width: 700px) {
+    /* Compact masthead — identical rules to the edition mobile port: single
+       row (~52px), 28px wordmark, horizontal dots, ABOUT absolutely centered. */
     .tagline { display: none; }
+    .masthead-inner { display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; }
+    .brand { gap: 10px; }
+    .ss-dots { flex-direction: row; gap: 4px; }
+    .ss-dots i { width: 7px; height: 7px; }
+    .ss-wordmark { font-size: 28px; }
+    .masthead-actions { position: absolute; right: 10px; top: 50%; transform: translateY(-50%); gap: 6px; }
+    .nav-about { padding: 5px 12px; font-size: 9px; }
+
+    /* Header panel breathes less at phone */
+    .coll-header { padding: 20px 18px 18px; }
+    .coll-headline { font-size: clamp(28px, 8vw, 36px); }
   }
   @media (max-width: 560px) {
     .related-grid { grid-template-columns: 1fr; }
@@ -428,19 +519,34 @@
   </div>
 </header>
 
+<!-- Mobile-only beat-chip nav (revealed <960px); generated per collection -->
+<nav class="coll-nav" aria-label="Collection navigation">
+  <div class="coll-nav-inner">
+    <a href="#brief" class="active">the brief</a>
+    <a href="#b1">the story</a>
+    <a href="#b2">the money</a>
+    <a href="#b3">the battle lines</a>
+    <a href="#b4">the new fans</a>
+    <a href="#b5">the third leg</a>
+    <a href="#b6">from the archive</a>
+    <a href="#more">more storylines</a>
+    <a href="#related">related</a>
+  </div>
+</nav>
+
 <div class="coll-body">
   <main class="coll-main">
-    <section class="coll-header">
+    <section class="coll-header" id="brief">
   <div class="coll-head-img"><img class="coll-hero-img" src="../assets/collections/the-onset-of-the-ai-remix-era/ai_remix_era_cover.png" alt="The Onset of the AI Remix Era" /></div>
   <div class="coll-head-main">
-    <span class="kicker">STORY COLLECTION · <span class="kicker-badge">ESSAY</span></span>
+    <span class="kicker">STORYLINE #2</span>
     <h1 class="coll-headline">The Onset of the AI Remix Era</h1>
-    <div class="coll-meta">11 articles · First filed <span class="lead">Jul 2026</span></div>
+    <div class="coll-meta">11 articles · Tracking since <span class="lead">Jul 2026</span></div>
     <div class="coll-synth">
-      <p>On May 21, 2026, Spotify and Universal licensed something the industry had spent two years suing to stop: fans paying to remix the catalog. Though seemingly innocuous, it points to an intersection of two powerful currents in the music industry, one that steers how we listen to music, and the other that determines where the money flows.</p>
-      <p>Platforms optimize for engagement, engagement rewards nostalgia, and consumption tilts toward catalog, which by Luminate's count reached 73.3% of US listening in 2024. And catalog that dependable draws serious, quiet money. Blackstone paid $1.58 billion for the collapsed Hipgnosis fund, saw it revalued at $2.36 billion within ninety days, and sovereign wealth funds and private equity now stand behind Sony's $4 billion grab.</p>
-      <p>And so, using the most powerful, future-forward technology to push listeners into the past is a no-brainer. Two dissolutions of what it means to be an “artist” follow. Suno's vision dissolves technical skill as a price of entry, while the paid remix tool obliterates the line between creator and consumer altogether. And while the industry fights it out between those two futures, the working artist stands outside, organizing into craft collectives that neither side represents.</p>
-      <p>Below, we’ll track the story through its phases, and explore the angles through analysis and historical grounding.</p>
+      <p>The music industry spent two years suing to stop fans from making AI remixes of its songs. And then, on May 21, it signed the deals to sell them the tool to do just that. Spotify and Universal's new agreement lets fans generate AI covers and remixes of participating artists' catalogs, sold as a paid add-on, with artists sharing the revenue. It's the sort of modest product announcement that gives away the game: the same companies that call AI music an existential threat have decided it's a revenue line, provided the checks clear.</p>
+      <p>For this edition of Storylines, we'll slowly unravel this story, and try to understand what it means for the larger culture of music. We’ll start with the deal itself, then follow the money that made it inevitable, from the quiet billions behind the catalog boom to the battle lines the platforms are drawing over what counts as real music. We'll meet the superfans who've started making the songs instead of streaming them, and the working artists organizing outside the whole fight. And we'll present it through contemporaneous coverage from some of music's finest minds and best analysis, linked out and annotated below, before reaching back into the archive for the essay that saw all of this coming twenty years ago.</p>
+      <p>Underneath the deal, there are two currents. Platforms optimize for engagement, engagement rewards nostalgia, and catalog now accounts for nearly three-quarters of US listening. Value that dependable draws serious, quiet money: Blackstone, sovereign wealth funds, Sony's four-billion-dollar money grabs.</p>
+      <p>Point the most future-forward technology at all that and it pushes listeners into the past. What's left unsettled is the definition of what an “artist” is once tools like Suno and Udio dissolve technical skill as a price of entry and the remix deal completely obliterates the line between creator and consumer. Of course, the working artist stands outside both of these futures, trying to find their footing in a sea of shredded nostalgia. The tool doesn't even have a launch date yet, but the fight over what it means is underway, and we're keeping this file very open.</p>
     </div>
     <div class="coll-filed">
       <span class="lbl">Filed under</span>
@@ -451,151 +557,162 @@
 </section>
     <div class="section-bar">
   <div class="section-bar-title">The Storyline</div>
-  <div class="section-bar-sub">11 pieces · News brief · Analysis · Interview/Q&amp;A · Essay · Profile · Reported feature</div>
+  <div class="section-bar-sub">11 pieces</div>
 </div>
 <div class="timeline">
-    <article class="tl-item">
-      <div class="tl-top">
-        <span class="tl-source">Music Business Worldwide</span>
-        <span class="tl-date">May 22, 2026</span>
-        <span class="tl-type">news brief</span>
-      </div>
-      <h3 class="tl-headline"><a href="https://us.list-manage.com/ZzrRGpDOdXB?e=f03d07a6be&amp;c2id=325c784cf0b279ec03a7dbe2557f39c9">Spotify and Universal Music Group Strike Landmark Deal to Let Fans Create AI Covers and Remixes</a></h3>
-      <p class="tl-dek">This is the seed of the story: Spotify and Universal let fans generate AI covers and remixes of participating artists' songs, sold as a paid add-on to Premium and playable by everyone on the platform. The May 21 agreements, reported by Music Business Worldwide, put revenue-sharing at the center: artists and songwriters who opt in share in what the tool earns. Alex Norström framed the model as consent, credit, and compensation, and Grainge called it artist-centric and rooted in responsible AI. No price, launch date, or underlying technology came with it.</p>
-      <a class="tl-read" href="https://us.list-manage.com/ZzrRGpDOdXB?e=f03d07a6be&amp;c2id=325c784cf0b279ec03a7dbe2557f39c9">Read &rarr;</a>
-    </article>
-    <article class="tl-item">
-      <div class="tl-top">
-        <span class="tl-source">musicben at STVDIO</span>
-        <span class="tl-date">May 27, 2026</span>
-        <span class="tl-type">analysis</span>
-      </div>
-      <h3 class="tl-headline"><a href="https://stvdio.substack.com/p/the-quiet-money-behind-4-billion">The &quot;quiet money&quot; behind $4 billion music catalog deals</a></h3>
-      <p class="tl-dek">Sony spent $4 billion for Justin Bieber, Beyoncé, and Fleetwood Mac in one deal, and Warner took the Chili Peppers' masters for $300 million days later. The cash came from elsewhere. STVDIO follows it to the quiet money behind the catalog boom: sovereign wealth funds and private equity, Singapore's GIC and Bain Capital among them, the kind of capital that measures itself in the hundreds of billions and wants a predictable yield. The frustration writes itself, billions for old songs and nothing new. The counter is colder. That money was never allowed near new artists to begin with.</p>
-      <a class="tl-read" href="https://stvdio.substack.com/p/the-quiet-money-behind-4-billion">Read &rarr;</a>
-    </article>
-    <article class="tl-item">
-      <div class="tl-top">
-        <span class="tl-source">Billboard</span>
-        <span class="tl-date">Jul 7, 2026</span>
-        <span class="tl-type">analysis</span>
-      </div>
-      <h3 class="tl-headline"><a href="https://www.billboard.com/pro/catalog-boom-analysis-for-the-record/">Is New Music Killing Old Music?</a></h3>
-      <p class="tl-dek">Catalog crossed 69.8% of US album consumption in 2021, Billboard's Robert Levine reported, up from under 40% before streaming took hold. The number reads like old music devouring new, and Levine spends the column complicating it. The biggest catalog acts were Drake, Juice WRLD, and Taylor Swift; Drake alone outstreamed every record made before 1980. Catalog is less a vault of Dylan and Springsteen than last decade's hits aging into the category. Everything eventually becomes catalog.</p>
-      <a class="tl-read" href="https://www.billboard.com/pro/catalog-boom-analysis-for-the-record/">Read &rarr;</a>
-    </article>
-    <article class="tl-item">
-      <div class="tl-top">
-        <span class="tl-source">Music Business Worldwide</span>
-        <span class="tl-date">May 29, 2026</span>
-        <span class="tl-type">interview/Q&amp;A</span>
-      </div>
-      <h3 class="tl-headline"><a href="https://us.list-manage.com/v0VO0L3YO6l?e=f03d07a6be&amp;c2id=325c784cf0b279ec03a7dbe2557f39c9">Sir Lucian Grainge on AI, Spotify, and why he's not in the 'functional music' industry</a></h3>
-      <p class="tl-dek">Perhaps anticipating pushback, Grainge closed Britain's GREATER Together LA trade summit hours after the deal, and he drew Universal's line hard. Name, likeness, and voice are opt-in, and on that he would not bend. &quot;That's religion.&quot; Talking with Ankler's Janice Min, he set Universal apart from what he calls the &quot;functional music&quot; business, a swipe at Suno and other AI creator tools. Universal still has no deal with Suno. It is suing instead.</p>
-      <a class="tl-read" href="https://us.list-manage.com/v0VO0L3YO6l?e=f03d07a6be&amp;c2id=325c784cf0b279ec03a7dbe2557f39c9">Read &rarr;</a>
-    </article>
-    <article class="tl-item">
-      <div class="tl-top">
-        <span class="tl-source">Music Business Worldwide</span>
-        <span class="tl-date">Jun 12, 2026</span>
-        <span class="tl-type">news brief</span>
-      </div>
-      <h3 class="tl-headline"><a href="https://us.list-manage.com/F_bsTuRQPAW?e=f03d07a6be&amp;c2id=325c784cf0b279ec03a7dbe2557f39c9">Deezer launches AI music detection tool for consumers to scan playlists on rival services</a></h3>
-      <p class="tl-dek">Deezer answered the licensing rush by betting the other way. Its free detector now scans playlists on Spotify and Apple Music to tell listeners how much of what they saved was machine-made, extending a system Music Business Worldwide notes made Deezer the first to tag fully AI tracks at the platform level a year ago. The company flags at least 75,000 fully AI uploads a day, and says 43% of libraries imported by new users already carry some.</p>
-      <a class="tl-read" href="https://us.list-manage.com/F_bsTuRQPAW?e=f03d07a6be&amp;c2id=325c784cf0b279ec03a7dbe2557f39c9">Read &rarr;</a>
-    </article>
-    <article class="tl-item">
-      <div class="tl-top">
-        <span class="tl-source">Bruce Ramos</span>
-        <span class="tl-date">Jun 3, 2026</span>
-        <span class="tl-type">analysis</span>
-      </div>
-      <h3 class="tl-headline"><a href="https://bruceramos.substack.com/p/spotify-and-universal-just-agreed">Spotify and Universal Just Agreed to Let Fans Pay to Remix the Catalog</a></h3>
-      <p class="tl-dek">Run a label, Bruce Ramos writes, and the deal reads in a single line. The catalog stopped being a library people press play on and became raw material fans pay to build on. The industry spent two years trying to sue that behavior out of existence, and now the largest paid platform in music meters it. The fight got productized. That same fortnight, Suno's US downloads quadrupled as people fed their group chats into it. Licensed or viral, the fan is no longer only a listener.</p>
-      <a class="tl-read" href="https://bruceramos.substack.com/p/spotify-and-universal-just-agreed">Read &rarr;</a>
-    </article>
-    <article class="tl-item">
-      <div class="tl-top">
-        <span class="tl-source">Rolling Stone</span>
-        <span class="tl-date">Jun 1, 2026</span>
-        <span class="tl-type">essay</span>
-      </div>
-      <h3 class="tl-headline"><a href="https://www.rollingstone.com/music/music-features/tiktok-ai-text-to-song-trend-1235567638/">When the Superfans Start Making the Songs</a></h3>
-      <p class="tl-dek">AI music's real future, Nathan Brackett argues in Rolling Stone, is not fake stars gaming the Billboard charts. It is a woman's panicked texts about hiding from a fling's jealous girlfriend, turned into a song and lip-synced across 28,000 TikToks. That trend pushed Suno to the top of Apple's app store. MiDia's Olivia Jones calls the people doing it consumer creators, and the unsettling part is who they are: superfans who spend the most on tickets and merch, now making their own versions instead of streaming yours.</p>
-      <a class="tl-read" href="https://www.rollingstone.com/music/music-features/tiktok-ai-text-to-song-trend-1235567638/">Read &rarr;</a>
-    </article>
-    <article class="tl-item">
-      <div class="tl-top">
-        <span class="tl-source">Zinstrel - AI Music Culture &amp; Analysis</span>
-        <span class="tl-date">Jun 10, 2026</span>
-        <span class="tl-type">profile</span>
-      </div>
-      <h3 class="tl-headline"><a href="https://zinstrel.substack.com/p/the-300-person-collective-keeping">The 300-Person Collective Keeping Lyrics Human</a></h3>
-      <p class="tl-dek">The third position belongs to people like Mike Anning, a Western Australian poet who found that AI tools gave his verse a life he had not imagined, then found the Suno communities around those tools aggressive and mostly noise. Marcus Lawrence, writing in Zinstrel, profiles the roughly 300-person group Anning built in response, The LAMP, or Lyrical AI Music Producers. Its members are not anti-AI; they use the tools seriously and cap the group at 300 on purpose. What they will not hand over is the writing. The lyrics stay human.</p>
-      <a class="tl-read" href="https://zinstrel.substack.com/p/the-300-person-collective-keeping">Read &rarr;</a>
-    </article>
-    <article class="tl-item">
-      <div class="tl-top">
-        <span class="tl-source">Music Business Worldwide</span>
-        <span class="tl-date">Jun 26, 2026</span>
-        <span class="tl-type">news brief</span>
-      </div>
-      <h3 class="tl-headline"><a href="https://www.musicbusinessworldwide.com/suno-is-paying-grants-to-independent-artists-so-long-as-they-agree-never-to-criticize-suno/">Suno is paying grants to independent artists… so long as they agree not to criticize Suno</a></h3>
-      <p class="tl-dek">Suno is offering grants to independent artists at the same moment independent artists are suing it over its training data. The new Spark program gives unsigned musicians thousands to tens of thousands of dollars plus mentorship and marketing, and Music Business Worldwide found the fine print carries a clause headed Good Vibes Only: participants agree never to portray Suno or its products in a negative light, on pain of termination. The standard terms also waive the right to a class action, the very tool those artists are using against it.</p>
-      <a class="tl-read" href="https://www.musicbusinessworldwide.com/suno-is-paying-grants-to-independent-artists-so-long-as-they-agree-never-to-criticize-suno/">Read &rarr;</a>
-    </article>
-    <article class="tl-item">
-      <div class="tl-top">
-        <span class="tl-source">harpers.org</span>
-        <span class="tl-date">Jan 1, 2025</span>
-        <span class="tl-type">reported feature</span>
-      </div>
-      <h3 class="tl-headline"><a href="https://harpers.org/archive/2025/01/the-ghosts-in-the-machine-liz-pelly-spotify-musicians/">The Ghosts in the Machine</a></h3>
-      <p class="tl-dek">In her now influential essay for Harper’s, Liz Pelly went looking for how Spotify's playlists actually get filled, and the answer she found was ghost artists. Her Harper's investigation, drawn from the book Mood Machine, lays out Perfect Fit Content: the program that seeds playlists with cheap tracks from hundreds of pseudonymous acts, padding the catalog while holding down royalties. Pelly's read is that algorithmic curation, followed to its end, writes the real musician out of the system. The platform filling its own playlists with cheap stand-ins is the same one now selling fans a tool to remix the catalog.</p>
-      <a class="tl-read" href="https://harpers.org/archive/2025/01/the-ghosts-in-the-machine-liz-pelly-spotify-musicians/">Read &rarr;</a>
-    </article>
-    <article class="tl-item">
-      <div class="tl-top">
-        <span class="tl-source">Simon Reynolds</span>
-        <span class="tl-date">Nov 1, 2006</span>
-        <span class="tl-type">essay</span>
-      </div>
-      <h3 class="tl-headline"><a href="https://reynoldsretro.blogspot.com/2012/05/800x600-normal-0-false-false-false-en.html">Haunted Audio, a/k/a Society of the Spectral</a></h3>
-      <p class="tl-dek">Simon Reynolds's 2006 Wire essay, the ur-text of hauntology, traces the lineage from dub's ghost captains through the Radiophonic Workshop to Ghost Box's imagined institutions, music assembled from the decaying culture-matter of postwar Britain. Phonography, he writes, never shed its &quot;Edisonian function of keeping the dead alive,&quot; and sampling goes further still, &quot;a mixture of séance and time-travel.&quot; Twenty years down the line, it hits differently. The industry has licensed the séance.</p>
-      <a class="tl-read" href="https://reynoldsretro.blogspot.com/2012/05/800x600-normal-0-false-false-false-en.html">Read &rarr;</a>
-    </article>
+  <section class="beat-group beat-c0" id="b1">
+    <div class="beat-head">The Story</div>
+      <article class="tl-item">
+        <div class="tl-top">
+          <span class="tl-source">Music Business Worldwide</span>
+          
+          <span class="tl-date">May 22, 2026</span>
+        </div>
+        <h3 class="tl-headline"><a href="https://us.list-manage.com/ZzrRGpDOdXB?e=f03d07a6be&amp;c2id=325c784cf0b279ec03a7dbe2557f39c9">Spotify and Universal Music Group Strike Landmark Deal to Let Fans Create AI Covers and Remixes</a></h3>
+        <p class="tl-dek">This is the seed of the story: Spotify and Universal let fans generate AI covers and remixes of participating artists' songs, sold as a paid add-on to Premium and playable by everyone on the platform. The May 21 agreements, reported by Music Business Worldwide, put revenue-sharing at the center: artists and songwriters who opt in share in what the tool earns. Alex Norström framed the model as consent, credit, and compensation, and Grainge called it artist-centric and rooted in responsible AI. No price, launch date, or underlying technology came with it.</p>
+        <a class="tl-read" href="https://us.list-manage.com/ZzrRGpDOdXB?e=f03d07a6be&amp;c2id=325c784cf0b279ec03a7dbe2557f39c9">Read &rarr;</a>
+      </article>
+  </section>
+  <section class="beat-group beat-c1" id="b2">
+    <div class="beat-head">The Money</div>
+      <article class="tl-item">
+        <div class="tl-top">
+          <span class="tl-source">musicben at STVDIO</span>
+          <span class="tl-byline">Benjamin</span>
+          <span class="tl-date">May 27, 2026</span>
+        </div>
+        <h3 class="tl-headline"><a href="https://stvdio.substack.com/p/the-quiet-money-behind-4-billion">The &quot;quiet money&quot; behind $4 billion music catalog deals</a></h3>
+        <p class="tl-dek">Sony spent $4 billion for Justin Bieber, Beyoncé, and Fleetwood Mac in one deal, and Warner took the Chili Peppers' masters for $300 million days later. The cash came from elsewhere. STVDIO follows it to the quiet money behind the catalog boom: sovereign wealth funds and private equity, Singapore's GIC and Bain Capital among them, the kind of capital that measures itself in the hundreds of billions and wants a predictable yield. The frustration writes itself, billions for old songs and nothing new. The counter is colder. That money was never allowed near new artists to begin with.</p>
+        <a class="tl-read" href="https://stvdio.substack.com/p/the-quiet-money-behind-4-billion">Read &rarr;</a>
+      </article>
+      <article class="tl-item">
+        <div class="tl-top">
+          <span class="tl-source">Billboard</span>
+          <span class="tl-byline">Robert Levine</span>
+          <span class="tl-date">Jul 7, 2026</span>
+        </div>
+        <h3 class="tl-headline"><a href="https://www.billboard.com/pro/catalog-boom-analysis-for-the-record/">Is New Music Killing Old Music?</a></h3>
+        <p class="tl-dek">Catalog crossed 69.8% of US album consumption in 2021, Billboard's Robert Levine reported, up from under 40% before streaming took hold. The number reads like old music devouring new, and Levine spends the column complicating it. The biggest catalog acts were Drake, Juice WRLD, and Taylor Swift; Drake alone outstreamed every record made before 1980. Catalog is less a vault of Dylan and Springsteen than last decade's hits aging into the category. Everything eventually becomes catalog.</p>
+        <a class="tl-read" href="https://www.billboard.com/pro/catalog-boom-analysis-for-the-record/">Read &rarr;</a>
+      </article>
+  </section>
+  <section class="beat-group beat-c0" id="b3">
+    <div class="beat-head">The Battle Lines</div>
+      <article class="tl-item">
+        <div class="tl-top">
+          <span class="tl-source">Music Business Worldwide</span>
+          <span class="tl-byline">Murray Stassen</span>
+          <span class="tl-date">May 29, 2026</span>
+        </div>
+        <h3 class="tl-headline"><a href="https://us.list-manage.com/v0VO0L3YO6l?e=f03d07a6be&amp;c2id=325c784cf0b279ec03a7dbe2557f39c9">Sir Lucian Grainge on AI, Spotify, and why he's not in the 'functional music' industry</a></h3>
+        <p class="tl-dek">Perhaps anticipating pushback, Grainge closed Britain's GREATER Together LA trade summit hours after the deal, and he drew Universal's line hard. Name, likeness, and voice are opt-in, and on that he would not bend. &quot;That's religion.&quot; Talking with Ankler's Janice Min, he set Universal apart from what he calls the &quot;functional music&quot; business, a swipe at Suno and other AI creator tools. Universal still has no deal with Suno. It is suing instead.</p>
+        <a class="tl-read" href="https://us.list-manage.com/v0VO0L3YO6l?e=f03d07a6be&amp;c2id=325c784cf0b279ec03a7dbe2557f39c9">Read &rarr;</a>
+      </article>
+      <article class="tl-item">
+        <div class="tl-top">
+          <span class="tl-source">Music Business Worldwide</span>
+          
+          <span class="tl-date">Jun 12, 2026</span>
+        </div>
+        <h3 class="tl-headline"><a href="https://us.list-manage.com/F_bsTuRQPAW?e=f03d07a6be&amp;c2id=325c784cf0b279ec03a7dbe2557f39c9">Deezer launches AI music detection tool for consumers to scan playlists on rival services</a></h3>
+        <p class="tl-dek">Deezer answered the licensing rush by betting the other way. Its free detector now scans playlists on Spotify and Apple Music to tell listeners how much of what they saved was machine-made, extending a system Music Business Worldwide notes made Deezer the first to tag fully AI tracks at the platform level a year ago. The company flags at least 75,000 fully AI uploads a day, and says 43% of libraries imported by new users already carry some.</p>
+        <a class="tl-read" href="https://us.list-manage.com/F_bsTuRQPAW?e=f03d07a6be&amp;c2id=325c784cf0b279ec03a7dbe2557f39c9">Read &rarr;</a>
+      </article>
+  </section>
+  <section class="beat-group beat-c1" id="b4">
+    <div class="beat-head">The New Fans</div>
+      <article class="tl-item">
+        <div class="tl-top">
+          <span class="tl-source">Bruce Ramos</span>
+          <span class="tl-byline">Bruce Ramos</span>
+          <span class="tl-date">Jun 3, 2026</span>
+        </div>
+        <h3 class="tl-headline"><a href="https://bruceramos.substack.com/p/spotify-and-universal-just-agreed">Spotify and Universal Just Agreed to Let Fans Pay to Remix the Catalog</a></h3>
+        <p class="tl-dek">Run a label, Bruce Ramos writes, and the deal reads in a single line. The catalog stopped being a library people press play on and became raw material fans pay to build on. The industry spent two years trying to sue that behavior out of existence, and now the largest paid platform in music meters it. The fight got productized. That same fortnight, Suno's US downloads quadrupled as people fed their group chats into it. Licensed or viral, the fan is no longer only a listener.</p>
+        <a class="tl-read" href="https://bruceramos.substack.com/p/spotify-and-universal-just-agreed">Read &rarr;</a>
+      </article>
+      <article class="tl-item">
+        <div class="tl-top">
+          <span class="tl-source">Rolling Stone</span>
+          <span class="tl-byline">Nathan Brackett</span>
+          <span class="tl-date">Jun 1, 2026</span>
+        </div>
+        <h3 class="tl-headline"><a href="https://www.rollingstone.com/music/music-features/tiktok-ai-text-to-song-trend-1235567638/">When the Superfans Start Making the Songs</a></h3>
+        <p class="tl-dek">AI music's real future, Nathan Brackett argues in Rolling Stone, is not fake stars gaming the Billboard charts. It is a woman's panicked texts about hiding from a fling's jealous girlfriend, turned into a song and lip-synced across 28,000 TikToks. That trend pushed Suno to the top of Apple's app store. MiDia's Olivia Jones calls the people doing it consumer creators, and the unsettling part is who they are: superfans who spend the most on tickets and merch, now making their own versions instead of streaming yours.</p>
+        <a class="tl-read" href="https://www.rollingstone.com/music/music-features/tiktok-ai-text-to-song-trend-1235567638/">Read &rarr;</a>
+      </article>
+  </section>
+  <section class="beat-group beat-c0" id="b5">
+    <div class="beat-head">The Third Leg</div>
+      <article class="tl-item">
+        <div class="tl-top">
+          <span class="tl-source">Zinstrel - AI Music Culture &amp; Analysis</span>
+          <span class="tl-byline">Marcus Lawrence</span>
+          <span class="tl-date">Jun 10, 2026</span>
+        </div>
+        <h3 class="tl-headline"><a href="https://zinstrel.substack.com/p/the-300-person-collective-keeping">The 300-Person Collective Keeping Lyrics Human</a></h3>
+        <p class="tl-dek">The third position belongs to people like Mike Anning, a Western Australian poet who found that AI tools gave his verse a life he had not imagined, then found the Suno communities around those tools aggressive and mostly noise. Marcus Lawrence, writing in Zinstrel, profiles the roughly 300-person group Anning built in response, The LAMP, or Lyrical AI Music Producers. Its members are not anti-AI; they use the tools seriously and cap the group at 300 on purpose. What they will not hand over is the writing. The lyrics stay human.</p>
+        <a class="tl-read" href="https://zinstrel.substack.com/p/the-300-person-collective-keeping">Read &rarr;</a>
+      </article>
+      <article class="tl-item">
+        <div class="tl-top">
+          <span class="tl-source">Music Business Worldwide</span>
+          
+          <span class="tl-date">Jun 26, 2026</span>
+        </div>
+        <h3 class="tl-headline"><a href="https://www.musicbusinessworldwide.com/suno-is-paying-grants-to-independent-artists-so-long-as-they-agree-never-to-criticize-suno/">Suno is paying grants to independent artists… so long as they agree not to criticize Suno</a></h3>
+        <p class="tl-dek">Suno is offering grants to independent artists at the same moment independent artists are suing it over its training data. The new Spark program gives unsigned musicians thousands to tens of thousands of dollars plus mentorship and marketing, and Music Business Worldwide found the fine print carries a clause headed Good Vibes Only: participants agree never to portray Suno or its products in a negative light, on pain of termination. The standard terms also waive the right to a class action, the very tool those artists are using against it.</p>
+        <a class="tl-read" href="https://www.musicbusinessworldwide.com/suno-is-paying-grants-to-independent-artists-so-long-as-they-agree-never-to-criticize-suno/">Read &rarr;</a>
+      </article>
+  </section>
+  <section class="beat-group beat-c1" id="b6">
+    <div class="beat-head">From the Archive</div>
+      <article class="tl-item">
+        <div class="tl-top">
+          <span class="tl-source">harpers.org</span>
+          <span class="tl-byline">Liz Pelly</span>
+          <span class="tl-date">Jan 1, 2025</span>
+        </div>
+        <h3 class="tl-headline"><a href="https://harpers.org/archive/2025/01/the-ghosts-in-the-machine-liz-pelly-spotify-musicians/">The Ghosts in the Machine</a></h3>
+        <p class="tl-dek">In her now influential essay for Harper’s, Liz Pelly went looking for how Spotify's playlists actually get filled, and the answer she found was ghost artists. Her Harper's investigation, drawn from the book Mood Machine, lays out Perfect Fit Content: the program that seeds playlists with cheap tracks from hundreds of pseudonymous acts, padding the catalog while holding down royalties. Pelly's read is that algorithmic curation, followed to its end, writes the real musician out of the system. The platform filling its own playlists with cheap stand-ins is the same one now selling fans a tool to remix the catalog.</p>
+        <a class="tl-read" href="https://harpers.org/archive/2025/01/the-ghosts-in-the-machine-liz-pelly-spotify-musicians/">Read &rarr;</a>
+      </article>
+      <article class="tl-item">
+        <div class="tl-top">
+          <span class="tl-source">Simon Reynolds</span>
+          <span class="tl-byline">Simon Reynolds</span>
+          <span class="tl-date">Nov 1, 2006</span>
+        </div>
+        <h3 class="tl-headline"><a href="https://reynoldsretro.blogspot.com/2012/05/800x600-normal-0-false-false-false-en.html">Haunted Audio, a/k/a Society of the Spectral</a></h3>
+        <p class="tl-dek">Simon Reynolds's 2006 Wire essay, the ur-text of hauntology, traces the lineage from dub's ghost captains through the Radiophonic Workshop to Ghost Box's imagined institutions, music assembled from the decaying culture-matter of postwar Britain. Phonography, he writes, never shed its &quot;Edisonian function of keeping the dead alive,&quot; and sampling goes further still, &quot;a mixture of séance and time-travel.&quot; Twenty years down the line, it hits differently. The industry has licensed the séance.</p>
+        <a class="tl-read" href="https://reynoldsretro.blogspot.com/2012/05/800x600-normal-0-false-false-false-en.html">Read &rarr;</a>
+      </article>
+  </section>
 </div>
   </main>
-  <aside class="coll-side">
+  <aside class="coll-side" id="more">
     <div class="side-head">
-  <span class="t">more collections</span>
-  <span class="m">stories</span>
+  <span class="t">more storylines</span>
 </div>
   <a class="side-card" href="fenix-flexins-rubberz.html">
-    <img class="side-card-img" src="../assets/collections/fenix-flexins-rubberz/cover.png" alt="Me and the Devil: Fenix Flexin's AI Authorship Fight" /><span class="badge">Dispute</span>
+    <img class="side-card-img" src="../assets/collections/fenix-flexins-rubberz/cover.png" alt="Me and the Devil: Fenix Flexin's AI Authorship Fight" /><span class="badge">Storyline #1</span>
     <div class="side-card-overlay">
       <div class="side-card-name">Me and the Devil: Fenix Flexin's AI Authorship Fight</div>
       <div class="side-card-count">9 articles &rarr;</div>
     </div>
   </a>
   <a class="side-card" href="miles-davis-centennial.html">
-    <img class="side-card-img" src="../assets/collections/miles-davis-centennial/cover.png" alt="Don't Look Back: Miles Davis at 100" /><span class="badge">Reflection</span>
+    <img class="side-card-img" src="../assets/collections/miles-davis-centennial/cover.png" alt="Don't Look Back: Miles Davis at 100" /><span class="badge">Storyline #3</span>
     <div class="side-card-overlay">
       <div class="side-card-name">Don't Look Back: Miles Davis at 100</div>
       <div class="side-card-count">10 articles &rarr;</div>
     </div>
   </a>
-  <div class="side-card coming-soon" aria-disabled="true">
-    <img class="side-card-img" src="../assets/collections/tidal-demonetizes-ai-generated-music/cover.png" alt="TIDAL Demonetizes AI-Generated Music" />
-    <div class="side-card-overlay">
-      <div class="side-card-name">TIDAL Demonetizes AI-Generated Music</div>
-      <div class="side-card-count">coming soon</div>
-    </div>
-  </div>
+<a class="side-all" href="index.html">all collections &rarr;</a>
   </aside>
 </div>
 
-<section class="related">
+<section class="related" id="related">
   <div class="related-title">related reading</div>
   <div class="related-grid">
     <a class="rel-card" href="https://andrejgee.substack.com/p/friday-roundup-maga-is-using-drake">
@@ -621,9 +738,37 @@
     <div class="pub">
       <span class="brand-mark">sound signal</span> · <span class="org">Third Bridge Creative</span>
     </div>
+    <div class="foot-links"><a href="#brief">back to top ↑</a><a href="index.html">all collections</a></div>
     <div class="foot-right">Story Collection · AI (Re)Maxxxing</div>
   </div>
 </footer>
+
+<script>
+  // Position-based scroll spy for the beat-chip nav (order-agnostic — computes
+  // the active chip from live bounding-rect positions against the sticky-nav
+  // line, so it stays correct regardless of DOM order). Mobile-only (<960px);
+  // no-ops on desktop where the nav is hidden.
+  (function () {
+    var nav = document.querySelector('.coll-nav');
+    if (!nav) return;
+    var chips = Array.prototype.slice.call(nav.querySelectorAll('a[href^="#"]'));
+    var targets = chips.map(function (c) {
+      return document.getElementById(c.getAttribute('href').slice(1));
+    });
+    function spy() {
+      if (!window.matchMedia('(max-width: 960px)').matches) return;
+      var line = nav.getBoundingClientRect().bottom + 10;
+      var current = 0;
+      targets.forEach(function (t, i) {
+        if (t && t.getBoundingClientRect().top <= line) current = i;
+      });
+      chips.forEach(function (c, i) { c.classList.toggle('active', i === current); });
+    }
+    window.addEventListener('scroll', spy, { passive: true });
+    window.addEventListener('resize', spy);
+    spy();
+  })();
+</script>
 
 </body>
 </html>
