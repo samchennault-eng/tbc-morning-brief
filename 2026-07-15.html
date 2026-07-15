@@ -2140,13 +2140,11 @@
     const sections = [...document.querySelectorAll('.numbered-section[id]')];
     const navItems = [...document.querySelectorAll('.nav-item[href^="#s"]')];
     if (!sections.length || !navItems.length) return;
-    const navEl = document.querySelector('.slice-nav');
+    const setActive = (id) => navItems.forEach(item =>
+      item.classList.toggle('active', item.getAttribute('href') === '#' + id));
     const activeLine = () => {
-      // Bottom edge of the sticky nav (top:0 at mobile, the 96px+ stack at
-      // desktop) + breathing room. getBoundingClientRect covers both without
-      // branching on viewport width.
-      const r = navEl ? navEl.getBoundingClientRect() : null;
-      return (r ? r.bottom : 0) + 8;
+      const sm = parseFloat(getComputedStyle(sections[0]).scrollMarginTop) || 0;
+      return sm + 1;
     };
     let ticking = false;
     const updateNav = () => {
@@ -2159,14 +2157,13 @@
         if (top < firstTop) { firstTop = top; first = s; }
         if (top <= line && top > activeTop) { activeTop = top; active = s; }
       }
-      const id = (active || first).id;
-      navItems.forEach(item => {
-        item.classList.toggle('active', item.getAttribute('href') === '#' + id);
-      });
+      setActive((active || first).id);
     };
     const onScroll = () => { if (!ticking) { ticking = true; requestAnimationFrame(updateNav); } };
     window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('resize', onScroll);
+    navItems.forEach(item => item.addEventListener('click', () =>
+      setActive((item.getAttribute('href') || '').slice(1))));
     updateNav();
   })();
 
