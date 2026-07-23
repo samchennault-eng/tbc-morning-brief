@@ -1,0 +1,821 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg" />
+
+<title>2026, the Summer of Nostalgia — Sound Signal</title>
+
+<!-- Storyline Collection page (CM v1.5). Design authority: the timeline-spine
+     mock; rebuilt on the site's V3 tokens (NOT the mock's inline CSS). This is a
+     STANDALONE page — it carries the primary masthead only (no section-nav row,
+     which is homepage-only) and re-declares the V3 :root tokens exactly like
+     about.html. The engine writes one of these per Live storyline; every
+     reader-facing value comes from the db + curated assets, never hand-edited. -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500&family=Inter:wght@400;500;600;700;800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=JetBrains+Mono:wght@400;500;700&family=Cormorant+Garamond:ital,wght@1,500&family=Instrument+Serif:ital@0;1&display=swap" />
+
+<style>
+  /* ============================================================
+     Sound Signal V3 tokens (mirrors template_v3.html :root)
+     ============================================================ */
+  :root {
+    --page:           #f1ede2;
+    --surface:        #f6f2e6;
+    --surface-warm:   #e9e3d2;
+    --ink:            #15171a;
+    --ink-mid:        #3a3d44;
+    --ink-light:      #7a7d85;
+    --ink-faint:      #b6b8be;
+    --rule:           #d4cfbe;
+    --accent:         #1d3a8a;
+    --accent-soft:    #dde3f2;
+    --secondary:      #e3492c;
+    --secondary-soft: #f7dccc;
+    --on-accent:      #f6f2e6;
+
+    --signal-blue:    #1B3CFF;
+    --ember:          #E5573B;
+    --hi-vis-yellow:  #EBEC68;
+    --lime:           #97C617;
+    --lavender:       #C0A8F2;
+    --magenta:        #C8378E;
+    --navy:           #1F2C4A;
+    --lattice-green:  #C8E891;
+
+    --f-sans:        'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    --f-display:     'Inter Tight', 'Inter', sans-serif;
+    --f-serif:       'Source Serif 4', Georgia, serif;
+    --f-serif-quote: 'Cormorant Garamond', 'Source Serif 4', Georgia, serif;
+    --f-mono:        'JetBrains Mono', 'IBM Plex Mono', ui-monospace, monospace;
+
+    --r-chip:   2px;
+    --r-button: 3px;
+    --r-card:   4px;
+    --r-pill:   999px;
+
+    --slice-pad: clamp(16px, 2.6vw, 36px);   /* halved vs v1 — matched to the locked mock (2026-07-07) */
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--page);
+    color: var(--ink-mid);
+    font-family: var(--f-sans);
+    font-size: 15px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; text-decoration: none; }
+
+  /* ============================================================
+     MASTHEAD — copied verbatim from template_v3.html so the live
+     header wins over the mock (Sam, 07-02). Section-nav omitted.
+     ============================================================ */
+  .slice-masthead {
+    background: var(--accent);
+    color: var(--on-accent);
+    position: sticky; top: 0; z-index: 50;
+    isolation: isolate; overflow: hidden;
+  }
+  .slice-masthead::before {
+    content: ""; position: absolute; inset: 0;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='36' height='36' viewBox='0 0 36 36'><g fill='%23C8E891' fill-opacity='0.95'><rect x='17' y='6' width='2' height='24'/><rect x='6' y='17' width='24' height='2'/><circle cx='18' cy='18' r='2.2'/></g></svg>");
+    background-size: 36px 36px; background-position: center; opacity: 0.38;
+    -webkit-mask-image:
+      radial-gradient(ellipse 26% 70% at 58% 50%, #000 0%, #000 35%, transparent 85%),
+      radial-gradient(ellipse 14% 55% at 84% 50%, #000 0%, #000 30%, transparent 85%);
+    -webkit-mask-composite: source-over;
+    mask-image:
+      radial-gradient(ellipse 26% 70% at 58% 50%, #000 0%, #000 35%, transparent 85%),
+      radial-gradient(ellipse 14% 55% at 84% 50%, #000 0%, #000 30%, transparent 85%);
+    mask-composite: add; pointer-events: none; z-index: 0;
+  }
+  .masthead-inner {
+    padding: 16px var(--slice-pad);
+    display: grid; grid-template-columns: auto 1fr auto;
+    column-gap: 24px; align-items: center;
+    position: relative; z-index: 1;
+  }
+  .brand { display: flex; align-items: center; gap: 18px; }
+  .ss-dots { display: flex; flex-direction: column; gap: 6px; }
+  .ss-dots i { width: 11px; height: 11px; border-radius: 50%; display: block; }
+  .ss-dots i:nth-child(1) { background: var(--ember); }
+  .ss-dots i:nth-child(2) { background: var(--hi-vis-yellow); }
+  .ss-dots i:nth-child(3) { background: var(--lime); }
+  .ss-dots i:nth-child(4) { background: var(--on-accent); }
+  .ss-wordmark {
+    font-family: var(--f-display); font-weight: 500; font-size: 56px;
+    line-height: 1; letter-spacing: -0.045em; color: var(--on-accent); white-space: nowrap;
+  }
+  .ss-wordmark .ss-period { color: var(--on-accent); }
+  .tagline {
+    font-family: var(--f-mono); font-weight: 400; font-size: 11px;
+    letter-spacing: 0.04em; line-height: 1.3; text-transform: uppercase;
+    color: color-mix(in oklab, var(--on-accent) 75%, transparent);
+    max-width: 22ch; align-self: center;
+  }
+  .masthead-actions { display: flex; gap: 10px; align-items: center; justify-self: end; }
+  .nav-about {
+    font-family: var(--f-mono); font-weight: 700; font-size: 11px;
+    letter-spacing: 0.08em; text-transform: uppercase; display: inline-block;
+    padding: 8px 18px; background: var(--on-accent); color: var(--ink);
+    border: 1.5px solid var(--on-accent); border-radius: var(--r-button);
+    cursor: pointer; transition: background 0.12s ease, color 0.12s ease;
+  }
+  .nav-about:hover { background: var(--ink); color: var(--on-accent); }
+
+  /* ============================================================
+     PAGE SHELL — two columns (collection body · more-collections)
+     ============================================================ */
+  .coll-body {
+    padding: 28px var(--slice-pad) 0;
+    display: grid; grid-template-columns: 1fr 292px;
+    column-gap: 34px; align-items: start;
+    max-width: 1240px; margin: 0 auto;
+  }
+  .coll-main { min-width: 0; }
+
+  /* ---- kicker + shared chip/badge primitives ------------------ */
+  .kicker {
+    font-family: var(--f-mono); font-weight: 700; font-size: 11px;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    display: inline-block; padding: 6px 12px;
+    background: var(--accent); color: var(--on-accent); border-radius: var(--r-chip);
+  }
+  .badge {
+    font-family: var(--f-mono); font-weight: 700; font-size: 10px;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    display: inline-block; padding: 4px 9px; border-radius: var(--r-chip);
+    background: var(--ember); color: #fff;
+  }
+
+  /* ============================================================
+     HEADER BLOCK (lavender-tint panel)
+     ============================================================ */
+  .coll-header {
+    background: var(--accent-soft);
+    border: 1.5px solid var(--ink);              /* mock: crisp black border */
+    border-radius: 0;                            /* mock: square corners */
+    padding: 26px 30px 22px;
+    display: flow-root;                          /* contain the floated hero so the border wraps all */
+    box-shadow: 8px 8px 0 var(--ember);          /* ember drop-shadow, bottom+right — ratified 2026-07-07 */
+  }
+  .coll-head-img { float: left; margin: 2px 30px 16px 0; }   /* mock: image floats, text wraps around */
+  .coll-hero-img {
+    width: 260px; height: 260px; object-fit: cover;          /* mock: ~25% larger than v1's 208 */
+    border-radius: 0; background: var(--surface-warm);
+    display: block;
+  }
+  .coll-hero-img.placeholder {
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--f-mono); font-size: 11px; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--ink-light);
+    border: 1px dashed var(--ink-faint);
+  }
+  .coll-head-main { }   /* now a normal flow block: kicker/title/meta beside the hero, body wraps under */
+  .coll-headline {
+    font-family: var(--f-display); font-weight: 500;
+    font-size: clamp(30px, 3.4vw, 44px); line-height: 1.04;
+    letter-spacing: -0.03em; color: var(--ink);
+    margin: 12px 0 10px;
+  }
+  .coll-meta {
+    font-family: var(--f-mono); font-weight: 500; font-size: 11px;
+    letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-light);
+    border-bottom: 1px solid color-mix(in oklab, var(--accent) 22%, transparent);
+    padding-bottom: 14px; margin-bottom: 14px;
+    display: flow-root;   /* keep the hairline in the text column, not crossing the floated hero */
+  }
+  .coll-meta .lead { color: var(--ink); font-weight: 700; }
+  .coll-synth { }
+  .coll-synth p {
+    font-family: var(--f-serif); font-size: 16px; line-height: 1.62;
+    color: var(--ink-mid); margin: 0 0 12px;
+  }
+  .coll-synth p:last-child { margin-bottom: 0; }
+  .coll-filed {
+    display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+    margin-top: 18px; padding-top: 16px; clear: both;   /* always below the floated hero */
+    border-top: 1px solid color-mix(in oklab, var(--accent) 22%, transparent);
+  }
+  .coll-filed .lbl {
+    font-family: var(--f-mono); font-weight: 500; font-size: 10px;
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-light);
+  }
+  .hero-chip {
+    font-family: var(--f-mono); font-weight: 700; font-size: 11px;
+    letter-spacing: 0.04em; padding: 6px 13px; border-radius: var(--r-chip);
+    color: #fff;
+  }
+  .hero-chip.frame { background: var(--ember); }
+  .hero-chip.topic { background: var(--accent); }
+
+  /* ============================================================
+     THE STORYLINE — timeline spine
+     ============================================================ */
+  .section-bar {
+    display: flex; align-items: baseline; justify-content: space-between;
+    gap: 16px; margin: 40px 0 6px;
+    border-bottom: 2px solid var(--ink); padding-bottom: 10px;
+  }
+  .section-bar-title {
+    font-family: var(--f-mono); font-weight: 700; font-size: 22px;
+    letter-spacing: -0.02em; color: var(--ink);
+  }
+  .section-bar-sub {
+    font-family: var(--f-mono); font-weight: 600; font-size: 10px;
+    letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-light);
+  }
+  .timeline { position: relative; margin: 26px 0 0; }
+  /* Beat group: a colored spine SEGMENT (alternating navy/red group-to-group) with a filled beat
+     node at its head. Consecutive groups' segments touch → one continuous line that changes color at
+     each beat. Entries carry no per-entry node (removed 2026-07-08). */
+  .beat-group { position: relative; padding-left: 30px; --seg: var(--accent); }
+  .beat-group.beat-c1 { --seg: var(--secondary); }
+  .beat-group::before {
+    content: ""; position: absolute; left: 7px; top: 0; bottom: 0; width: 2px; background: var(--seg);
+  }
+  .tl-item { position: relative; padding: 0 0 26px 0; }
+  /* Beat header — mono/upper/tracked, in the group's color; the filled node sits on the spine. */
+  .beat-head {
+    position: relative; font-family: var(--f-mono); font-weight: 700; font-size: 12px;
+    letter-spacing: 0.15em; text-transform: uppercase; color: var(--seg); margin: 22px 0 14px;
+  }
+  .beat-group:first-child .beat-head { margin-top: 4px; }
+  .beat-head::before {
+    content: ""; position: absolute; left: -30px; top: 0; width: 15px; height: 15px;
+    border-radius: 50%; background: var(--seg); box-shadow: 0 0 0 3px var(--page);
+  }
+  .tl-top {
+    display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+    margin-bottom: 7px;
+  }
+  .tl-byline {
+    font-family: var(--f-mono); font-weight: 500; font-size: 11px;
+    letter-spacing: 0.02em; color: var(--ink-mid);
+  }
+  .tl-byline::after { content: "·"; margin-left: 10px; color: var(--ink-faint); }
+  .tl-source {
+    font-family: var(--f-mono); font-weight: 700; font-size: 10px;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    background: var(--ink); color: var(--on-accent);
+    padding: 4px 9px; border-radius: var(--r-chip);
+  }
+  .tl-date {
+    font-family: var(--f-mono); font-weight: 500; font-size: 11px;
+    letter-spacing: 0.05em; text-transform: uppercase; color: var(--ink-light);
+  }
+  .tl-type {
+    margin-left: auto;
+    font-family: var(--f-mono); font-weight: 700; font-size: 10px;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 4px 9px; border-radius: var(--r-chip);
+    border: 1.5px solid var(--accent); color: var(--accent);
+  }
+  .tl-headline {
+    font-family: var(--f-mono); font-weight: 700; font-size: 18px;
+    line-height: 1.25; letter-spacing: -0.01em; color: var(--ink);
+    margin: 0 0 6px;
+  }
+  .tl-headline a { color: inherit; text-decoration: none; }
+  .tl-headline a:hover { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
+  .tl-dek {
+    font-family: var(--f-serif); font-size: 15px; line-height: 1.55;
+    color: var(--ink-mid); margin: 0 0 8px;
+  }
+  .tl-read {
+    font-family: var(--f-mono); font-weight: 700; font-size: 11px;
+    letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent);
+  }
+  .tl-read:hover { color: var(--secondary); }
+
+  /* ============================================================
+     SIDEBAR — more collections
+     ============================================================ */
+  .coll-side { position: sticky; top: 24px; }
+  .side-head {
+    display: flex; align-items: baseline; justify-content: space-between;
+    border-bottom: 2px solid var(--accent); padding-bottom: 8px; margin-bottom: 14px;
+  }
+  .side-head .t {
+    font-family: var(--f-mono); font-weight: 700; font-size: 14px;
+    text-transform: lowercase; color: var(--ink);
+  }
+  .side-head .m {
+    font-family: var(--f-mono); font-weight: 600; font-size: 10px;
+    letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-light);
+  }
+  /* mock: name + count OVERLAID in white on the image, ember type badge top-left */
+  .side-card { display: block; margin-bottom: 16px; position: relative; border-radius: var(--r-card); overflow: hidden; }
+  .side-card-img {
+    width: 100%; aspect-ratio: 4 / 3; object-fit: cover;
+    display: block; background: var(--surface-warm);
+  }
+  .side-card .badge { position: absolute; top: 10px; left: 10px; z-index: 2; }
+  .side-card-overlay {
+    position: absolute; left: 0; right: 0; bottom: 0; z-index: 2;
+    padding: 30px 13px 11px;
+    background: linear-gradient(to top, rgba(10,12,16,0.86) 8%, rgba(10,12,16,0.55) 46%, rgba(10,12,16,0));
+  }
+  .side-card-name {
+    font-family: var(--f-display); font-weight: 500; font-size: 17px;
+    line-height: 1.14; letter-spacing: -0.02em; color: #fff;
+    margin: 0 0 3px;
+  }
+  .side-card-count {
+    font-family: var(--f-mono); font-weight: 700; font-size: 10px;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    color: color-mix(in oklab, #fff 82%, transparent);
+  }
+  /* coming-soon tiles — finalized collections not yet live (non-linking) */
+  .side-card.coming-soon { cursor: default; }
+  .side-card.coming-soon .side-card-img { filter: saturate(0.9) brightness(0.95); }
+
+  /* ============================================================
+     RELATED READING — full-width, 4 cards, segmented chips
+     ============================================================ */
+  .related {
+    max-width: 1240px; margin: 44px auto 0; padding: 0 var(--slice-pad);
+  }
+  .related-title {
+    font-family: var(--f-mono); font-weight: 700; font-size: 14px;
+    text-transform: lowercase; color: var(--ink);
+    border-bottom: 2px solid var(--ink); padding-bottom: 10px;
+    margin-bottom: 22px;   /* clearly separate the header rule from the card module below */
+  }
+  .related-note {
+    font-family: var(--f-serif); font-size: 13px; color: var(--ink-light);
+    margin: 8px 0 18px;
+  }
+  .related-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px;
+  }
+  .rel-card {
+    border: 1px solid var(--rule); border-radius: var(--r-card);
+    background: var(--surface); padding: 14px 15px 15px;
+    display: flex; flex-direction: column; gap: 8px;
+    text-decoration: none; color: inherit; transition: border-color 0.12s ease;
+  }
+  .rel-card:hover { border-color: var(--ink); }
+  .rel-card:hover .rel-card-title { color: var(--accent); }
+  .rel-card-title {
+    font-family: var(--f-display); font-weight: 500; font-size: 16px;
+    line-height: 1.2; letter-spacing: -0.02em; color: var(--ink);
+  }
+  .rel-card-src {
+    font-family: var(--f-mono); font-weight: 600; font-size: 10px;
+    letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-light);
+    margin-top: auto;
+  }
+  /* Segmented connection chip — the join made visible. Segments are divided
+     by a token border (NOT an interpunct), because frame names contain "·"
+     internally and would otherwise be unparseable. */
+  .seg-chip {
+    display: inline-flex; align-items: stretch; align-self: flex-start;
+    border-radius: var(--r-chip); overflow: hidden;
+    font-family: var(--f-mono); font-weight: 700; font-size: 10px;
+    letter-spacing: 0.03em;
+  }
+  .seg-chip .seg { padding: 4px 9px; white-space: nowrap; }
+  .seg-chip .seg.subject { background: var(--accent); color: #fff; }
+  .seg-chip .seg.co {
+    background: var(--secondary-soft); color: var(--secondary);
+    border-left: 1.5px solid var(--secondary);
+  }
+  .seg-chip.single .seg.subject { }               /* tier 3: subject pill only */
+  .seg-chip.outline {                              /* tier 4: matter-vouched */
+    background: transparent; border: 1.5px solid var(--ink-faint);
+  }
+  .seg-chip.outline .seg { background: transparent; color: var(--ink-light); }
+
+  /* ============================================================
+     FOOTER — copied from template_v3.html (full-bleed Signal Blue)
+     ============================================================ */
+  .slice-footer { background: var(--accent); color: var(--on-accent); margin-top: 52px; }
+  .footer-inner {
+    padding: 16px var(--slice-pad); display: flex; justify-content: space-between;
+    align-items: center; gap: 18px; flex-wrap: wrap;
+  }
+  .pub { font-family: var(--f-mono); font-weight: 400; font-size: 11px; letter-spacing: 0.04em; }
+  .pub .brand-mark { text-transform: lowercase; opacity: 0.85; }
+  .pub .org { font-weight: 700; }
+  .foot-right {
+    font-family: var(--f-mono); font-size: 10px; letter-spacing: 0.12em;
+    text-transform: uppercase; opacity: 0.6;
+  }
+
+  /* ============================================================
+     RESPONSIVE
+     ============================================================ */
+  /* Beat-chip nav + footer links + all-collections link — hidden on desktop,
+     revealed in the mobile blocks below. */
+  .coll-nav { display: none; }
+  .foot-links { display: none; }
+  .side-all { display: none; }
+
+  @media (max-width: 960px) {
+    .coll-body { grid-template-columns: 1fr; row-gap: 34px; }
+    .coll-side { position: static; }
+    .coll-head-img { float: none; margin: 0 0 18px; }   /* stack the hero on narrow screens */
+    /* Cover 16:9, full width at mobile (was 1:1 capped 320px) — port item 18 */
+    .coll-hero-img { width: 100%; height: auto; aspect-ratio: 16 / 9; max-width: none; }
+    .related-grid { grid-template-columns: repeat(2, 1fr); }
+
+    /* AUDIT FIX 1 (shared with edition) — masthead scrolls away; the chip nav
+       is the only sticky chrome. MUST stay `relative`, not `static` — the
+       lattice ::before is absolutely positioned and escapes overflow:hidden
+       (tiling the page) if the masthead stops being its containing block. */
+    .slice-masthead { position: relative; }
+
+    /* Beat-chip nav — same grammar as the edition chip nav; chips generated
+       per beat head at render time (render_coll_nav). */
+    .coll-nav {
+      display: block;
+      position: sticky;
+      top: 0;
+      z-index: 49;
+      background: var(--surface);
+      border-top: 1px solid var(--ink);
+      border-bottom: 1px solid var(--rule);
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .coll-nav::-webkit-scrollbar { display: none; }
+    .coll-nav-inner { display: flex; padding: 0 16px; width: max-content; }
+    .coll-nav a {
+      font-family: var(--f-mono); font-weight: 500; font-size: 12px;
+      text-transform: lowercase; color: var(--ink-mid);
+      padding: 13px 14px;                 /* ~44px tap height */
+      border-bottom: 2px solid transparent;
+      white-space: nowrap;
+    }
+    .coll-nav a.active {
+      color: var(--accent); font-weight: 600;
+      border-bottom-color: var(--accent);
+    }
+
+    /* Anchor jumps land clear of the sticky nav */
+    .coll-header[id], .beat-group[id], .coll-side[id], .related[id] { scroll-margin-top: 56px; }
+
+    /* More storylines: cap at two cards + an all-collections link. Cards 3+
+       carry .side-card--extra from the generator (safer than :nth-child, which
+       breaks if the aside's child mix changes). */
+    .coll-side .side-card--extra { display: none; }
+    .side-all {
+      display: block;
+      font-family: var(--f-mono); font-weight: 700; font-size: 11px;
+      letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent);
+      padding: 10px 0;
+    }
+
+    /* Tap-target pass: READ links get real hit areas */
+    .tl-read { display: inline-block; padding: 10px 0; margin: -4px 0; }
+
+    /* Footer: back to top + all collections */
+    .foot-links { display: flex; gap: 18px; font-family: var(--f-mono); font-size: 11px; letter-spacing: 0.04em; }
+    .foot-links a { color: var(--on-accent); text-decoration: underline; text-underline-offset: 3px; }
+  }
+
+  @media (max-width: 700px) {
+    /* Compact masthead — identical rules to the edition mobile port: single
+       row (~52px), 28px wordmark, horizontal dots, ABOUT absolutely centered. */
+    .tagline { display: none; }
+    .masthead-inner { display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; }
+    .brand { gap: 10px; }
+    .ss-dots { flex-direction: row; gap: 4px; }
+    .ss-dots i { width: 7px; height: 7px; }
+    .ss-wordmark { font-size: 28px; }
+    .masthead-actions { position: absolute; right: 10px; top: 50%; transform: translateY(-50%); gap: 6px; }
+    .nav-about { padding: 5px 12px; font-size: 9px; }
+
+    /* Header panel breathes less at phone */
+    .coll-header { padding: 20px 18px 18px; }
+    .coll-headline { font-size: clamp(28px, 8vw, 36px); }
+  }
+  @media (max-width: 560px) {
+    .related-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header class="slice-masthead">
+  <div class="masthead-inner">
+    <a class="brand" href="/" aria-label="Sound Signal home">
+      <span class="ss-dots" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+      <span class="ss-wordmark">Sound Signal<span class="ss-period">.</span></span>
+      <span class="tagline">Curating the feed every Monday, Wednesday and Friday</span>
+    </a>
+    <div></div>
+    <div class="masthead-actions">
+      <a class="nav-about" href="about.html">ABOUT</a>
+    </div>
+  </div>
+</header>
+
+<!-- Mobile-only beat-chip nav (revealed <960px); generated per collection -->
+<nav class="coll-nav" aria-label="Collection navigation">
+  <div class="coll-nav-inner">
+    <a href="#brief" class="active">the brief</a>
+    <a href="#b1">lede</a>
+    <a href="#b2">the returns</a>
+    <a href="#b3">the mechanism</a>
+    <a href="#b4">the feeling</a>
+    <a href="#b5">landing</a>
+    <a href="#more">more storylines</a>
+    <a href="#related">related</a>
+  </div>
+</nav>
+
+<div class="coll-body">
+  <main class="coll-main">
+    <section class="coll-header" id="brief">
+  <div class="coll-head-img"><img class="coll-hero-img" src="../assets/collections/the-summer-of-nostalgia/nostalgia.png" alt="2026, the Summer of Nostalgia" /></div>
+  <div class="coll-head-main">
+    <span class="kicker">STORYLINE #4</span>
+    <h1 class="coll-headline">2026, the Summer of Nostalgia</h1>
+    <div class="coll-meta">15 articles · Tracking since <span class="lead">Jul 2026</span></div>
+    <div class="coll-synth">
+      <p>The Michael Jackson biopic crossed a billion dollars. Madonna sequeled her own 2005 album into a slot in the World Cup halftime show. Olivia crushed on the Cure. Jay-Z owned Yankee Stadium (and rap dialogue). And throwback jams &quot;Iris,&quot; &quot;Mr. Brightside,&quot; and &quot;Wonderwall&quot; dominated the charts decades after their release. Spotify's Carl Chery's quarter-century ledger of summer songs simply stops. It's already been a weird, long summer. 2026 could very well be defined not by what the music and culture created, but by what it remembered.</p>
+      <p>This storyline assembles the footnotes to the season that scrambled us all. The &quot;returns&quot; come first: the Blueprint anniversaries, the Confessions II machine, the Miles centurion economy, Michael at $1.001 billion, with a hundred million monthly listeners trailing behind it. Then the &quot;mechanism&quot;, because nostalgia is not just a mood but a business model, and, of course, everything is structural. Catalog acquisition heated up; new music fell below a quarter of streaming consumption last year; and the industry's own stated priority is moving money from new songs to old ones. After that, all we're left with are our feelings to process: sun stroke nostalgia and calendar dysmorphia.</p>
+      <p>The desk's AI Remix Era collection told the technological half of this story, and this is the cultural site, an account of swimming in the shards of yesteryear.</p>
+    </div>
+    <div class="coll-filed">
+      <span class="lbl">Filed under</span>
+      <span class="hero-chip frame">Personal Essay &amp; Memoir</span>
+      <span class="hero-chip topic">On Taste</span>
+    </div>
+  </div>
+</section>
+    <div class="section-bar">
+  <div class="section-bar-title">The Storyline</div>
+  <div class="section-bar-sub">15 pieces</div>
+</div>
+<div class="timeline">
+  <section class="beat-group beat-c0" id="b1">
+    <div class="beat-head">Lede</div>
+      <article class="tl-item">
+        <div class="tl-top">
+          <span class="tl-source">Carl Chery</span>
+          <span class="tl-byline">Carl Chery</span>
+          <span class="tl-date">Jul 20, 2026</span>
+          
+        </div>
+        <h3 class="tl-headline"><a href="https://carlchery.substack.com/p/is-the-song-of-the-summer-dead">Is the Song of the Summer Dead?</a></h3>
+        <p class="tl-dek">Twenty-five years of &quot;songs of the summer&quot; end in a blank. Carl Chery's ledger runs from &quot;Family Affair&quot; in 2001 to &quot;Not Like Us&quot; in 2024, and then marks 2025 with no consensus winner and 2026 TBD. He blames fading nightlife and the end of monoculture, and his sharpest point is about who filled the void. The Michael biopic pushed MJ past 100 million Spotify monthly listeners. A lot of people are simply having an MJ summer.</p>
+        <a class="tl-read" href="https://carlchery.substack.com/p/is-the-song-of-the-summer-dead">Read &rarr;</a>
+      </article>
+  </section>
+  <section class="beat-group beat-c1" id="b2">
+    <div class="beat-head">The Returns</div>
+      <article class="tl-item">
+        <div class="tl-top">
+          <span class="tl-source">Nelson George from The Nelson George Mixtape</span>
+          <span class="tl-byline">Nelson George</span>
+          <span class="tl-date">Jul 20, 2026</span>
+          
+        </div>
+        <h3 class="tl-headline"><a href="https://nelsongeorge.substack.com/p/jay-z-rhymes-into-middle-age">JAY-Z RHYMES INTO MIDDLE AGE</a></h3>
+        <p class="tl-dek">Nelson George checks the price of the nostalgia at Yankee Stadium. Five hundred dollars for the upper deck, $5K up front, and a crowd mostly over 40 experiencing &quot;Empire State of Mind&quot; as a monument to its own youth. His verdict on Jay-Z at 57 is &quot;the Rolling Stones of hip-hop.&quot; Jigga is the only rapper of his generation who could sell three hometown stadium nights, and a man single-mindedly determined to resurrect his past as an enduring monument.</p>
+        <a class="tl-read" href="https://nelsongeorge.substack.com/p/jay-z-rhymes-into-middle-age">Read &rarr;</a>
+      </article>
+      <article class="tl-item">
+        <div class="tl-top">
+          <span class="tl-source">theguardian.com</span>
+          <span class="tl-byline">Alexis Petridis</span>
+          <span class="tl-date">Jul 2, 2026</span>
+          
+        </div>
+        <h3 class="tl-headline"><a href="https://www.theguardian.com/music/2026/jul/02/madonna-confessions-ii-album-review">Madonna: Confessions II review — nostalgic dancefloor trip (album of the week)</a></h3>
+        <p class="tl-dek">Whether the sequel is for Madonna or for her wandering fans is the question Alexis Petridis builds his review around. He supplies the ledger: every album since 2005's Confessions on a Dance Floor has sold half its predecessor. The record answers that deficit with defiantly old-school dance music — Lil Louis and Inner City in its DNA — and vivid vignettes of early-80s New York downtown and the Danceteria door. He calls it &quot;an accommodation with her past that bodes well for her future.&quot;</p>
+        <a class="tl-read" href="https://www.theguardian.com/music/2026/jul/02/madonna-confessions-ii-album-review">Read &rarr;</a>
+      </article>
+      <article class="tl-item">
+        <div class="tl-top">
+          <span class="tl-source">The New York Times</span>
+          <span class="tl-byline">Lindsay Zoladz</span>
+          <span class="tl-date">Jul 20, 2026</span>
+          
+        </div>
+        <h3 class="tl-headline"><a href="https://www.nytimes.com/2026/07/19/arts/music/world-cup-halftime-show-review.html">First World Cup Halftime Show: Lots of Stars, Little Purpose</a></h3>
+        <p class="tl-dek">The World Cup's first halftime show booked Madonna, BTS, Justin Bieber, and the Muppets doing &quot;Seven Nation Army,&quot; and Times pop critic Lindsay Zoladz finds the problem isn't the talent but the purpose. Nearly everyone plays the safe old hit, and the spectacle runs seamless and forgettable. The one performer who cuts through is Bieber, gambling on an unreleased song. On the season's biggest stage, the past was the program and the present was a risk.</p>
+        <a class="tl-read" href="https://www.nytimes.com/2026/07/19/arts/music/world-cup-halftime-show-review.html">Read &rarr;</a>
+      </article>
+      <article class="tl-item tl-config">
+        <div class="tl-top">
+          <span class="tl-source">EchoLocator</span>
+          <span class="tl-byline">Tom Moon</span>
+          <span class="tl-date">Jun 30, 2026</span>
+          
+        </div>
+        <h3 class="tl-headline"><a href="https://echolocator.substack.com/p/the-curious-paradox-of-miles-at-100">The Curious Paradox of Miles at 100</a></h3>
+        <p class="tl-dek">Miles Davis at 100 is as much a business initiative as it is a music memorial. Tom Moon maps the Davis Estate's centennial campaign, run with the labels that issued Davis's primary recordings plus boutique imprints and grey-market opportunists. The roll-out is modeled on classical composer anniversaries: boxed sets, audiophile upgrades, unreleased live albums, tribute tours, and chatty podcasts. The paradox is the man at the center, who lived in tomorrow and rarely looked back. Moon argues that, in a culture where everything fits on the grid, the present needs that radical lunge.</p>
+        <a class="tl-read" href="https://echolocator.substack.com/p/the-curious-paradox-of-miles-at-100">Read &rarr;</a>
+      </article>
+      <article class="tl-item">
+        <div class="tl-top">
+          <span class="tl-source">Music Business Worldwide</span>
+          
+          <span class="tl-date">Jul 15, 2026</span>
+          
+        </div>
+        <h3 class="tl-headline"><a href="https://us.list-manage.com/69fR9NVLqq2?e=f03d07a6be&amp;c2id=325c784cf0b279ec03a7dbe2557f39c9">Michael Jackson movie becomes first biopic to cross $1 billion at global box office</a></h3>
+        <p class="tl-dek">Lionsgate called it on July 12: Michael crossed $1.001 billion worldwide, the first biopic ever to do it, $371.8 million domestic and $629.8 million abroad. The milestone is only part of the story for Sony Music, which owns half of Jackson's catalog and watched his Spotify monthly listeners climb from roughly 68 million before release to about 105 million after.</p>
+        <a class="tl-read" href="https://us.list-manage.com/69fR9NVLqq2?e=f03d07a6be&amp;c2id=325c784cf0b279ec03a7dbe2557f39c9">Read &rarr;</a>
+      </article>
+      <article class="tl-item">
+        <div class="tl-top">
+          <span class="tl-source">Mikal Gilmore from Night Beat</span>
+          <span class="tl-byline">Mikal Gilmore</span>
+          <span class="tl-date">May 8, 2026</span>
+          
+        </div>
+        <h3 class="tl-headline"><a href="https://mikalggilmore.substack.com/p/night-beat-post-96-the-problem-of">Night Beat Post 96 - The Problem of Michael Jackson Part I</a></h3>
+        <p class="tl-dek">Mikal Gilmore argued about Michael Jackson more than any other pop figure of his Herald Examiner years, wrote the Rolling Stone obituary, and now says he probably wishes he hadn't. Gilmore traces what drew him in and what left him disillusioned, saddened, and after the obituary angry, partly at himself, for not seeing the man behind the mask.</p>
+        <a class="tl-read" href="https://mikalggilmore.substack.com/p/night-beat-post-96-the-problem-of">Read &rarr;</a>
+      </article>
+      <article class="tl-item">
+        <div class="tl-top">
+          <span class="tl-source">Can't Get Much Higher</span>
+          <span class="tl-byline">Chris Dalla Riva</span>
+          <span class="tl-date">Jul 17, 2026</span>
+          
+        </div>
+        <h3 class="tl-headline"><a href="https://www.cantgetmuchhigher.com/p/the-intergenerational-duet">The Intergenerational Duet</a></h3>
+        <p class="tl-dek">Olivia Rodrigo and Robert Smith is a data point, and Chris Dalla Riva has the series. Charting duets between artists at least fifteen years apart, he finds the rate climbing since the Reagan era to a 2010s peak, Sabrina Carpenter and Madonna, Post Malone and Dolly Parton, and Springsteen's young collaborators all on the same curve. His causes are structural: longer lives, recordings that never age out of earshot, a professionalized industry, with hip-hop's collaborative habits and streaming amplifying it all. The seam between old and new is now a genre.</p>
+        <a class="tl-read" href="https://www.cantgetmuchhigher.com/p/the-intergenerational-duet">Read &rarr;</a>
+      </article>
+  </section>
+  <section class="beat-group beat-c0" id="b3">
+    <div class="beat-head">The Mechanism</div>
+      <article class="tl-item">
+        <div class="tl-top">
+          <span class="tl-source">Bruce Ramos</span>
+          <span class="tl-byline">Bruce Ramos</span>
+          <span class="tl-date">May 27, 2026</span>
+          
+        </div>
+        <h3 class="tl-headline"><a href="https://bruceramos.substack.com/p/the-catalog-wave-hit-13-the-money">The Catalog Wave Hit 13. The Money Was Never for New Artists.</a></h3>
+        <p class="tl-dek">Thirteen catalog-buying vehicles stood up in nine weeks this spring, at least $5.4 billion in disclosed capital, and Bruce Ramos reads the wave as a real asset class forming, the way commercial real estate got its buy-side in the REIT era. And the money was never for new artists. Catalog capital comes from yield mandates that would otherwise sit in infrastructure, a different pool from the one that funds A&amp;R, and the two, he argues, never competed on the margin.</p>
+        <a class="tl-read" href="https://bruceramos.substack.com/p/the-catalog-wave-hit-13-the-money">Read &rarr;</a>
+      </article>
+      <article class="tl-item">
+        <div class="tl-top">
+          <span class="tl-source">musicben at STVDIO</span>
+          <span class="tl-byline">Benjamin</span>
+          <span class="tl-date">Jul 10, 2026</span>
+          
+        </div>
+        <h3 class="tl-headline"><a href="https://stvdio.substack.com/p/a-worrying-trend-old-music-is-still">A worrying trend: old music is still pushing out new music</a></h3>
+        <p class="tl-dek">The numbers behind the vibe. New music fell below 25 percent of streaming consumption in 2025, a first. By January 2026 it held 3.5 percent of Spotify's Global Top 50, down from 9.4 percent in 2024. Benjamin at STVDIO counts four causes: familiarity-favoring algorithms, catalog owners spending to reignite their purchases, the end of a shared mainstream, and a release volume that drives listeners back to what they know.</p>
+        <a class="tl-read" href="https://stvdio.substack.com/p/a-worrying-trend-old-music-is-still">Read &rarr;</a>
+      </article>
+      <article class="tl-item">
+        <div class="tl-top">
+          <span class="tl-source">Music Business Worldwide</span>
+          <span class="tl-byline">Kenny Gates</span>
+          <span class="tl-date">May 15, 2026</span>
+          
+        </div>
+        <h3 class="tl-headline"><a href="https://us.list-manage.com/BU6NKeUL3KD?e=f03d07a6be&amp;c2id=325c784cf0b279ec03a7dbe2557f39c9">'The UK Albums Chart Has Stopped Measuring the Future of Music' – Kenny Gates Op-Ed</a></h3>
+        <p class="tl-dek">A 20-year-old Essential Michael Jackson compilation beat Kneecap's Fenian to No. 1, and PIAS co-founder Kenny Gates blames the refs for killing the UK Albums Chart. Streams convert to album-equivalent sales, handing catalog a structural advantage built on decades of passive listening, the chart measures endurance rather than momentum, and new artists are stranded on first base.</p>
+        <a class="tl-read" href="https://us.list-manage.com/BU6NKeUL3KD?e=f03d07a6be&amp;c2id=325c784cf0b279ec03a7dbe2557f39c9">Read &rarr;</a>
+      </article>
+      <article class="tl-item">
+        <div class="tl-top">
+          <span class="tl-source">Ted Gioia</span>
+          <span class="tl-byline">Ted Gioia</span>
+          <span class="tl-date">May 18, 2026</span>
+          
+        </div>
+        <h3 class="tl-headline"><a href="https://tedgioia.substack.com/p/the-hottest-musician-in-2026-is-problematic">The Hottest Musician in 2026 Is 'Problematic' Michael Jackson</a></h3>
+        <p class="tl-dek">The music business would rather make money on dead musicians than living ones, Ted Gioia argues. Michael at $700 million in four weeks proved cancellation has no economic force; Paramount signed a first-look biopic deal with Warner Music covering Bowie to Cardi B; four Beatles films land in 2028. His sharper point sits underneath. The industry's stated priority is shifting money from new songs to old ones, and he closes asking readers to leave cultural space for new musicians, &quot;otherwise we're just living in the past.&quot;</p>
+        <a class="tl-read" href="https://tedgioia.substack.com/p/the-hottest-musician-in-2026-is-problematic">Read &rarr;</a>
+      </article>
+  </section>
+  <section class="beat-group beat-c1" id="b4">
+    <div class="beat-head">The Feeling</div>
+      <article class="tl-item">
+        <div class="tl-top">
+          <span class="tl-source">The New Yorker</span>
+          <span class="tl-byline">Jia Tolentino</span>
+          <span class="tl-date">Jul 8, 2026</span>
+          
+        </div>
+        <h3 class="tl-headline"><a href="https://www.newyorker.com/culture/songs-of-summer/the-summer-when-everyone-wanted-a-good-good-night">The Summer When Everyone Wanted a Good, Good Night</a></h3>
+        <p class="tl-dek">The New Yorker looks back with a summer-songs series that digs up DJ Earworm's &quot;United State of Pop 2009,&quot; the mega-mashup with 55 million views that never made it to Spotify, whose college-Photoshop cover art alone still triggers what the writer calls an instant shiver of pathos and pain. A 2009 artifact revisited for 2026 readers, in a series that spends this summer on summers already gone.</p>
+        <a class="tl-read" href="https://www.newyorker.com/culture/songs-of-summer/the-summer-when-everyone-wanted-a-good-good-night">Read &rarr;</a>
+      </article>
+      <article class="tl-item">
+        <div class="tl-top">
+          <span class="tl-source">Fast &amp; Loose by Yasi Salek</span>
+          <span class="tl-byline">Yasi Salek</span>
+          <span class="tl-date">Jul 13, 2026</span>
+          
+        </div>
+        <h3 class="tl-headline"><a href="https://www.fast-loose.com/p/my-song-of-the-summer-came-out-last">My song of the summer came out last October</a></h3>
+        <p class="tl-dek">Yasi Salek's song of the summer came out last October. Deep Heaven's &quot;When I'm Not Around&quot; played five times straight in the Subaru, and her defense doubles as a theory: a perfect summer song must be buoyant with a gossamer thread of sorrow, because summer's whole transcendence is knowing it ends. The season's official soundtrack never materialized, so she built her own from wherever the feeling lived.</p>
+        <a class="tl-read" href="https://www.fast-loose.com/p/my-song-of-the-summer-came-out-last">Read &rarr;</a>
+      </article>
+  </section>
+  <section class="beat-group beat-c0" id="b5">
+    <div class="beat-head">Landing</div>
+      <article class="tl-item tl-config">
+        <div class="tl-top">
+          <span class="tl-source">openDemocracy</span>
+          <span class="tl-byline">Mark Fisher</span>
+          <span class="tl-date">2014</span>
+          <span class="tl-tag archive">From the Archives</span>
+        </div>
+        <h3 class="tl-headline"><a href="https://www.opendemocracy.net/en/mark-fisher-ghosts-retromania/">Ghosts of My Life (excerpt)</a></h3>
+        <p class="tl-dek">The frame for the whole season is twelve years old. In Ghosts of My Life, Mark Fisher borrows Franco Berardi's phrase for what got underway in the 1970s and 80s, the slow cancellation of the future, and describes a culture that lost the ability to grasp its own present, let alone imagine a new one. His sharpest inversion still stings: the young can no longer be assumed to sit at the leading edge of cultural change. Written in 2014, it remains depressingly relevant.</p>
+        <a class="tl-read" href="https://www.opendemocracy.net/en/mark-fisher-ghosts-retromania/">Read &rarr;</a>
+      </article>
+  </section>
+</div>
+  </main>
+  <aside class="coll-side" id="more">
+    <div class="side-head">
+  <span class="t">more storylines</span>
+</div>
+  <a class="side-card" href="the-onset-of-the-ai-remix-era.html">
+    <img class="side-card-img" src="../assets/collections/the-onset-of-the-ai-remix-era/ai_remix_era_cover.png" alt="The Onset of the AI Remix Era" /><span class="badge">Storyline #2</span>
+    <div class="side-card-overlay">
+      <div class="side-card-name">The Onset of the AI Remix Era</div>
+      <div class="side-card-count">11 articles &rarr;</div>
+    </div>
+  </a>
+  <div class="side-card coming-soon" aria-disabled="true">
+    <img class="side-card-img" src="../assets/collections/fenix-flexins-rubberz/cover.png" alt="Me and the Devil: Fenix Flexin's AI Authorship Fight" /><span class="badge">Storyline #1</span>
+    <div class="side-card-overlay">
+      <div class="side-card-name">Me and the Devil: Fenix Flexin's AI Authorship Fight</div>
+      <div class="side-card-count">coming soon</div>
+    </div>
+  </div>
+  <div class="side-card coming-soon side-card--extra" aria-disabled="true">
+    <img class="side-card-img" src="../assets/collections/miles-davis-centennial/cover.png" alt="Don't Look Back: Miles Davis at 100" /><span class="badge">Storyline #3</span>
+    <div class="side-card-overlay">
+      <div class="side-card-name">Don't Look Back: Miles Davis at 100</div>
+      <div class="side-card-count">coming soon</div>
+    </div>
+  </div>
+<a class="side-all" href="index.html">all collections &rarr;</a>
+  </aside>
+</div>
+
+<section class="related" id="related">
+  <div class="related-title">related reading</div>
+  <div class="related-grid">
+    <a class="rel-card" href="https://andrewryce.substack.com/p/futureproofing-39-confessions-ii">
+      <div class="rel-card-title">Futureproofing #39: Confessions II Made Me Realize Music Is Madonna's Best Album</div>
+      <div class="rel-card-src">Andrew Ryce / Futureproofing · Jul 22, 2026</div>
+      <span class="seg-chip single" title="shared subject: Madonna"><span class="seg subject">Madonna</span></span>
+    </a>
+  </div>
+</section>
+
+<footer class="slice-footer">
+  <div class="footer-inner">
+    <div class="pub">
+      <span class="brand-mark">sound signal</span> · <span class="org">Third Bridge Creative</span>
+    </div>
+    <div class="foot-links"><a href="#brief">back to top ↑</a><a href="index.html">all collections</a></div>
+    <div class="foot-right">Storyline · Summer Nostalgia</div>
+  </div>
+</footer>
+
+<script>
+  // Position-based scroll spy for the beat-chip nav (order-agnostic — computes
+  // the active chip from live bounding-rect positions against the sticky-nav
+  // line, so it stays correct regardless of DOM order). Mobile-only (<960px);
+  // no-ops on desktop where the nav is hidden.
+  (function () {
+    var nav = document.querySelector('.coll-nav');
+    if (!nav) return;
+    var chips = Array.prototype.slice.call(nav.querySelectorAll('a[href^="#"]'));
+    var targets = chips.map(function (c) {
+      return document.getElementById(c.getAttribute('href').slice(1));
+    });
+    function spy() {
+      if (!window.matchMedia('(max-width: 960px)').matches) return;
+      var line = nav.getBoundingClientRect().bottom + 10;
+      var current = 0;
+      targets.forEach(function (t, i) {
+        if (t && t.getBoundingClientRect().top <= line) current = i;
+      });
+      chips.forEach(function (c, i) { c.classList.toggle('active', i === current); });
+    }
+    window.addEventListener('scroll', spy, { passive: true });
+    window.addEventListener('resize', spy);
+    spy();
+  })();
+</script>
+
+</body>
+</html>
