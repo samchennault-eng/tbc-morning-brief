@@ -1386,7 +1386,7 @@
      hovered — one rule covers all four rail positions (industry news + archives
      on the left, music news + wisdom on the right). The rail sits at top:134px,
      clear of the masthead, so a lifted rail never overlaps it. */
-  .rail:has(.xp:hover), .rail:has(.xp[data-open]) { z-index: 60; }
+  .rail:has(.xp:hover), .rail:has(.xp[data-open]) { overflow: visible; z-index: 60; }
   @media (hover: none) { .xp:hover .xp-card { display: none; } .xp[data-open] .xp-card { display: block; } }
   /* Phone: the glyph-anchored card overflows the viewport on long titles; re-anchor to the header
      as a full-header-width panel under the header line. */
