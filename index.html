@@ -459,6 +459,7 @@
 
   /* Cover slot (NEW — 21:9 image + ember label + descriptor) */
   .cover-slot { margin-bottom: 26px; }
+  .cover-link { display: block; }   /* cover image links to its article — block so the anchor wraps the image cleanly */
   .cover-image {
     aspect-ratio: 16 / 9;
     width: 100%;
@@ -1376,6 +1377,16 @@
   /* Rails are overflow boxes at desktop — card must fit the column */
   .rail .xp-card { width: 186px; left: -30px; }
   .rail .xp--right .xp-card { left: auto; right: -30px; }
+  /* Stacking fix (2026-07-28): a .rail is a `position: sticky` stacking context
+     with NO z-index, so it paints BELOW the center column's sticky bars (the
+     masthead, z-index 50, and the Top Reads .section-bar, z-index 49). An open
+     explainer card inside a rail was therefore covered by the adjacent center
+     section no matter its own z-index:60 (that 60 only orders WITHIN the rail's
+     context). Lift the whole rail above those bars while its card is open or
+     hovered — one rule covers all four rail positions (industry news + archives
+     on the left, music news + wisdom on the right). The rail sits at top:134px,
+     clear of the masthead, so a lifted rail never overlaps it. */
+  .rail:has(.xp:hover), .rail:has(.xp[data-open]) { z-index: 60; }
   @media (hover: none) { .xp:hover .xp-card { display: none; } .xp[data-open] .xp-card { display: block; } }
   /* Phone: the glyph-anchored card overflows the viewport on long titles; re-anchor to the header
      as a full-header-width panel under the header line. */
@@ -1509,7 +1520,7 @@
     </div>
 
     <div class="cover-slot">
-      <img class="cover-image" src="assets/Cover Image/Suno 2.png" alt="On the cover" />
+      <a class="cover-link" href="https://yougottabecrazy.substack.com/p/the-suno-of-booking"><img class="cover-image" src="assets/Cover Image/Suno 2.png" alt="On the cover" /></a>
       <div class="cover-caption">
         <span class="cover-kicker-label">On the Cover</span>
         <span class="cover-feature">Featured on &quot;The Suno of Booking&quot;</span>
@@ -1768,7 +1779,7 @@
       <div class="recx-more">
         <div class="recx-carousel">
           <article class="recx-card recx-card--blue"><div class="recx-num">REC 01</div><h4 class="recx-artist">Neuro… No Neuro</h4><div class="recx-track">MemLoss</div><span class="recx-genre"><span class="recx-note">&#9834;</span> post-glitch ambient minimalism</span><p class="recx-blurb">Kirk Markarian's record documents the confusion left behind by his speech and memory becoming inconsistent. His music is unrepentantly electronic, honing in on machine-generated tones, oscillations and pads, isolating and sculpting fragments into soundscapes that despite irregular pulses, bleeps and whirs have a chaotic yet cohesive, cosmically attuned flow.</p><div class="recx-card-foot"><div class="recx-source-row"><span class="recx-source">The Slow Music Movement</span><a class="recx-source-link" href="https://theslowmusicmovement.substack.com/p/sunday-sounds">view source &rarr;</a></div><div class="recx-foot-actions"><a class="recx-watch" href="https://www.youtube.com/watch?v=qUM2uDa-2T4"><span class="recx-yt">&#9654;</span> Watch on YouTube</a></div></div></article>
-          <article class="recx-card recx-card--red"><div class="recx-num">REC 02</div><h4 class="recx-artist">Steve Lacy + Erykah Badu</h4><div class="recx-track">Pure Color</div><p class="recx-blurb"></p><div class="recx-card-foot"><div class="recx-source-row"><span class="recx-source">shatterthestandards.com</span><a class="recx-source-link" href="https://www.shatterthestandards.com/p/album-review-oh-yeah-by-steve-lacy">view source &rarr;</a></div><div class="recx-foot-actions"><a class="recx-watch" href="https://www.youtube.com/watch?v=YwaWd6slszg"><span class="recx-yt">&#9654;</span> Watch on YouTube</a></div></div></article>
+          <article class="recx-card recx-card--red"><div class="recx-num">REC 02</div><h4 class="recx-artist">Steve Lacy + Erykah Badu</h4><div class="recx-track">Pure Color</div><span class="recx-genre"><span class="recx-note">&#9834;</span> neo-soul / funk</span><p class="recx-blurb">Erykah Badu has been Lacy's named influence since he was a teenager, and on 'pure colour' she meanders through his loosest soul groove, bending her lines however she likes while he keeps it carefully constructed, singing that she does not recognize herself anymore. In his response verse, he confronts relatives who think he'll turn into his father: 'They don't know shit, take control of me.'</p><div class="recx-card-foot"><div class="recx-source-row"><span class="recx-source">shatterthestandards.com</span><a class="recx-source-link" href="https://www.shatterthestandards.com/p/album-review-oh-yeah-by-steve-lacy">view source &rarr;</a></div><div class="recx-foot-actions"><a class="recx-watch" href="https://www.youtube.com/watch?v=YwaWd6slszg"><span class="recx-yt">&#9654;</span> Watch on YouTube</a></div></div></article>
           <article class="recx-card recx-card--blue"><div class="recx-num">REC 03</div><h4 class="recx-artist">Standing on the Corner</h4><div class="recx-track">Gimmie My Gun</div><span class="recx-genre"><span class="recx-note">&#9834;</span> experimental hip-hop / avant-soul collage</span><p class="recx-blurb">Off Standing on the Corner II, Gio Escobar's outfit oscillates between gospel keys and blistering guitar solos, part of a heat check that trades accessibility for creative entropy. Their distorted mix of jazz, hip-hop, soul, funk, and spoken word delivers dispatches from a crumbling society where Black and Brown folks pick up the pieces, moving through samples like expert collagists.</p><div class="recx-card-foot"><div class="recx-source-row"><span class="recx-source">Pitchfork</span><a class="recx-source-link" href="https://pitchfork.com/reviews/albums/standing-on-the-corner-standing-on-the-corner-ii/">view source &rarr;</a></div><div class="recx-foot-actions"><a class="recx-watch" href="https://www.youtube.com/watch?v=prXINf9xZQ8"><span class="recx-yt">&#9654;</span> Watch on YouTube</a></div></div></article>
           <article class="recx-card recx-card--red"><div class="recx-num">REC 04</div><h4 class="recx-artist">Benny Blanco + Bb trickz</h4><div class="recx-track">&quot;Joven y Salvaje&quot;</div><p class="recx-blurb">A simple repeating melodic figure sits over a house-inspired beat while Trickz (last seen on Charli XCX's Brat remix album) delivers verses on the recklessness of youth: &quot;Young and wild / I haven't slept, and it's a Tuesday.&quot; Jake Schreier's video moves her through minimalist white space into racing gear before the room erupts in fireworks. A preview of Blanco's fourth album, Hermoso.</p><div class="recx-card-foot"><div class="recx-source-row"><span class="recx-source">Billboard</span><a class="recx-source-link" href="https://www.billboard.com/music/latin/benny-blanco-joven-salvaje-bb-trickz-spanish-album-hermoso-1236292176/">view source &rarr;</a></div><div class="recx-foot-actions"><a class="recx-watch" href="https://www.youtube.com/watch?v=Nff376uwqNE"><span class="recx-yt">&#9654;</span> Watch on YouTube</a></div></div></article>
           <article class="recx-card recx-card--blue"><div class="recx-num">REC 05</div><h4 class="recx-artist">Kiyasume</h4><div class="recx-track">silent</div><span class="recx-genre"><span class="recx-note">&#9834;</span> experimental bedroom pop</span><p class="recx-blurb">The bedroom artist, who died earlier this year, was working on silent before her passing. Where her catalog favored sparse voice-and-guitar 'negative pop songs,' these introduce experimental electronic touches: discombobulation on the jittery 'Wakaranai Koto,' glossy synthesized strings on 'Karaapo.' A gorgeous, bittersweet document of being caught between life and death.</p><div class="recx-card-foot"><div class="recx-source-row"><span class="recx-source">Make Believe Melodies</span><a class="recx-source-link" href="https://mbmelodies.substack.com/p/make-believe-melodies-for-july-20">view source &rarr;</a></div><div class="recx-foot-actions"><a class="recx-watch" href="https://www.youtube.com/watch?v=8cD3GYDsYA8"><span class="recx-yt">&#9654;</span> Watch on YouTube</a></div></div></article>
