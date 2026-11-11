@@ -1,0 +1,2442 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+<!-- Google tag (gtag.js) — GA4 + Consent Mode v2 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PJD0ZZHN1G"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+
+  gtag('consent', 'default', {
+    'ad_storage': 'denied',
+    'ad_user_data': 'denied',
+    'ad_personalization': 'denied',
+    'analytics_storage': 'granted'
+  });
+
+  gtag('consent', 'default', {
+    'analytics_storage': 'denied',
+    'region': ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE','GB','CH','IS','LI','NO']
+  });
+
+  gtag('js', new Date());
+  gtag('config', 'G-PJD0ZZHN1G');
+</script>
+
+<title>Sound Signal — Wednesday, November 11, 2026</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500&family=Inter:wght@400;500;600;700;800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=JetBrains+Mono:wght@400;500;700&family=Cormorant+Garamond:ital,wght@1,500&family=Instrument+Serif:ital@0;1&display=swap" />
+
+<style>
+  /* ============================================================
+     Sound Signal × Morning Brief — pass 3, built off style guide v1
+     ============================================================ */
+
+  :root {
+    /* Semantic palette */
+    --page:           #f1ede2;
+    --surface:        #f6f2e6;
+    --surface-warm:   #e9e3d2;
+    --ink:            #15171a;
+    --ink-mid:        #3a3d44;
+    --ink-light:      #7a7d85;
+    --ink-faint:      #b6b8be;
+    --rule:           #d4cfbe;
+    --accent:         #1d3a8a;
+    --accent-soft:    #dde3f2;
+    --secondary:      #e3492c;
+    --secondary-soft: #f7dccc;
+    --on-accent:      #f6f2e6;
+
+    /* Brand accent (Sound Signal) */
+    --signal-blue:    #1B3CFF;
+    --ember:          #E5573B;
+    --hi-vis-yellow:  #EBEC68;
+    --lime:           #97C617;
+    --lavender:       #C0A8F2;
+    --magenta:        #C8378E;
+    --navy:           #1F2C4A;
+    --lattice-green:  #C8E891;
+
+    /* Type stack */
+    --f-sans:        'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    --f-display:     'Inter Tight', 'Inter', sans-serif;
+    --f-serif:       'Source Serif 4', Georgia, serif;
+    --f-serif-quote: 'Cormorant Garamond', 'Source Serif 4', Georgia, serif;
+    --f-mono:        'JetBrains Mono', 'IBM Plex Mono', ui-monospace, monospace;
+
+    /* Radius scale (small) */
+    --r-chip:   2px;
+    --r-button: 3px;
+    --r-card:   4px;
+    --r-pill:   999px;
+
+    /* Layout — fluid: viewport-wide content with min/max gutters */
+    --slice-w:  1100px; /* legacy reference; layout is now fluid */
+    --slice-pad: clamp(20px, 5vw, 70px);
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--page);
+    color: var(--ink-mid);
+    font-family: var(--f-sans);
+    font-size: 15px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  a { color: inherit; text-decoration: none; }
+  a:hover { color: var(--accent); }
+
+  /* ============================================================
+     SLICE WRAPPER (1100px fixed)
+     ============================================================ */
+  .slice-inner {
+    max-width: var(--slice-w);
+    margin: 0 auto;
+  }
+
+  /* ============================================================
+     MASTHEAD (full-bleed, Signal Blue, sparkle-cross lattice)
+     ============================================================ */
+  .slice-masthead {
+    background: var(--accent);
+    color: var(--on-accent);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    isolation: isolate;
+    overflow: hidden;
+  }
+  /* sparkle-cross lattice — two radial fades blooming in the empty
+     pockets between brand cluster and right-side controls */
+  .slice-masthead::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='36' height='36' viewBox='0 0 36 36'><g fill='%23C8E891' fill-opacity='0.95'><rect x='17' y='6' width='2' height='24'/><rect x='6' y='17' width='24' height='2'/><circle cx='18' cy='18' r='2.2'/></g></svg>");
+    background-size: 36px 36px;
+    background-position: center;
+    opacity: 0.38;
+    -webkit-mask-image:
+      radial-gradient(ellipse 26% 70% at 58% 50%, #000 0%, #000 35%, transparent 85%),
+      radial-gradient(ellipse 14% 55% at 84% 50%, #000 0%, #000 30%, transparent 85%);
+    -webkit-mask-composite: source-over;
+    mask-image:
+      radial-gradient(ellipse 26% 70% at 58% 50%, #000 0%, #000 35%, transparent 85%),
+      radial-gradient(ellipse 14% 55% at 84% 50%, #000 0%, #000 30%, transparent 85%);
+    mask-composite: add;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .masthead-inner {
+    padding: 16px var(--slice-pad);
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    column-gap: 24px;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Brand cluster: dots + wordmark + tagline, all horizontal */
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+  }
+  .ss-dots {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .ss-dots i {
+    width: 11px; height: 11px;
+    border-radius: 50%;
+    display: block;
+  }
+  /* Order: ember → hi-vis yellow → lime → cream
+     (original signal-blue dot suppressed because it would vanish on blue) */
+  .ss-dots i:nth-child(1) { background: var(--ember); }
+  .ss-dots i:nth-child(2) { background: var(--hi-vis-yellow); }
+  .ss-dots i:nth-child(3) { background: var(--lime); }
+  .ss-dots i:nth-child(4) { background: var(--on-accent); }
+
+  .ss-wordmark {
+    font-family: var(--f-display);
+    font-weight: 500;
+    font-size: 56px;
+    line-height: 1;
+    letter-spacing: -0.045em;
+    color: var(--on-accent);
+    white-space: nowrap;
+  }
+  .ss-wordmark .ss-period { color: var(--on-accent); }
+
+  .tagline {
+    font-family: var(--f-mono);
+    font-weight: 400;
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    line-height: 1.3;
+    text-transform: uppercase;
+    color: color-mix(in oklab, var(--on-accent) 75%, transparent);
+    max-width: 22ch;
+    align-self: center;
+  }
+
+  /* Right-side masthead controls */
+  .masthead-actions {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+  .nav-about {
+    font-family: var(--f-mono);
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    display: inline-block;
+    padding: 8px 18px;
+    background: var(--on-accent);
+    color: var(--ink);
+    border: 1.5px solid var(--on-accent);
+    border-radius: var(--r-button);
+    cursor: pointer;
+    transition: background 0.12s ease, color 0.12s ease;
+  }
+  .nav-about:hover { background: var(--ink); color: var(--on-accent); }
+
+  .btn-ghost {
+    font-family: var(--f-mono);
+    font-weight: 500;
+    font-size: 11px;
+    letter-spacing: 0;
+    text-transform: lowercase;
+    padding: 6px 12px;
+    background: transparent;
+    color: var(--on-accent);
+    border: 1.5px dashed rgba(241, 237, 226, 0.55);
+    border-radius: var(--r-button);
+    cursor: pointer;
+    transition: border-color 0.12s ease, background 0.12s ease;
+  }
+  .btn-ghost:hover {
+    border-color: var(--on-accent);
+    background: rgba(255, 255, 255, 0.06);
+  }
+
+  /* ============================================================
+     SECTION NAV (scroll-jump)
+     ============================================================ */
+  .slice-nav {
+    background: var(--surface);
+    border-top: 1px solid var(--ink);
+    border-bottom: 1px solid var(--rule);
+    position: sticky;
+    top: 96px;       /* below masthead */
+    z-index: 49;
+  }
+  .slice-nav-inner {
+    padding: 0 var(--slice-pad);
+    display: flex;
+    justify-content: center;
+    gap: 0;
+  }
+  .nav-item {
+    font-family: var(--f-mono);
+    font-weight: 500;
+    font-size: 11px;
+    letter-spacing: 0;
+    text-transform: lowercase;
+    color: var(--ink-mid);
+    padding: 11px 18px;
+    border-bottom: 2px solid transparent;
+    transition: color 0.12s ease, border-color 0.12s ease;
+    white-space: nowrap;
+  }
+  .nav-item:hover { color: var(--accent); }
+  .nav-item.active {
+    color: var(--accent);
+    font-weight: 600;
+    border-bottom-color: var(--accent);
+  }
+
+  /* ============================================================
+     SLICE BODY GRID — 220 · 1fr · 240
+     ============================================================ */
+  .slice-body {
+    padding: 0 var(--slice-pad);
+    display: grid;
+    grid-template-columns: 220px 1fr 240px;
+    column-gap: 0;
+    align-items: start;
+  }
+
+  /* ============================================================
+     RAILS
+     ============================================================ */
+  .rail {
+    background: var(--surface-warm);
+    font-size: 14px;
+    position: sticky;
+    top: 134px;      /* below masthead + nav */
+    max-height: calc(100vh - 150px);
+    overflow-y: auto;
+  }
+  .rail-left  { border-right: 1px solid var(--rule); }
+  .rail-right { border-left:  1px solid var(--rule); }
+
+  .rail-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 18px 12px;
+    background: var(--surface);
+    border-bottom: 2px solid var(--accent);
+  }
+  .rail-header--secondary { border-bottom-color: var(--secondary); }
+  .rail-icon {
+    width: 28px; height: 28px;
+    flex: 0 0 28px;
+    display: block;
+    object-fit: contain;
+  }
+  .rail-title {
+    font-family: var(--f-mono);
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 1;
+    letter-spacing: -0.01em;
+    text-transform: lowercase;
+    color: var(--ink);
+    white-space: nowrap;
+  }
+
+  .rail-item {
+    padding: 11px 18px;
+    border-bottom: 1px solid var(--rule);
+    background: var(--surface-warm);
+    transition: background 0.12s ease;
+  }
+  .rail-item:last-of-type { border-bottom: none; }
+  .rail-item:hover { background: var(--surface); }
+
+  .rail-headline {
+    display: block;
+    font-family: var(--f-sans);
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 1.4;
+    color: var(--ink);
+    margin-bottom: 6px;
+  }
+  .rail-headline:hover { color: var(--accent); }
+  .rail-source {
+    font-family: var(--f-sans);
+    font-weight: 700;
+    font-size: 9px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    margin-bottom: 6px;
+  }
+  .rail-blurb {
+    font-family: var(--f-sans);
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 1.5;
+    color: var(--ink-mid);
+    margin: 8px 0 0;
+  }
+
+  /* Tag pill — rail variant */
+  .tag {
+    display: inline-block;
+    font-family: var(--f-mono);
+    font-weight: 700;
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 2px 7px;
+    border: 1px solid var(--ink);
+    border-radius: var(--r-button);
+    background: var(--accent);
+    color: var(--on-accent);
+  }
+  .tag--secondary {
+    background: var(--secondary);
+    color: var(--ink);
+  }
+
+  .rail-see-more {
+    display: block;
+    padding: 11px 18px;
+    font-family: var(--f-mono);
+    font-size: 10px;
+    color: var(--ink-light);
+    letter-spacing: 0.04em;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  /* Pull quote — right rail variant */
+  .rail-pullquote {
+    padding: 16px 18px 18px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .rail-pullquote blockquote {
+    font-family: var(--f-serif-quote);
+    font-style: italic;
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 1.3;
+    letter-spacing: -0.005em;
+    color: var(--ink);
+    margin: 0 0 10px;
+  }
+  .rail-pullquote cite {
+    font-family: var(--f-sans);
+    font-style: normal;
+    font-weight: 700;
+    font-size: 9px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+  }
+
+  /* ============================================================
+     CENTER COLUMN
+     ============================================================ */
+  .center {
+    padding: 28px 32px 36px;
+    background: transparent;
+    min-width: 0;
+  }
+
+  /* Section bar — "Today's Top Reads" */
+  .section-bar {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    column-gap: 14px;
+    align-items: center;
+    padding: 14px 14px 14px 0;
+    border-bottom: 2px solid var(--ink);
+    margin-bottom: 22px;
+  }
+  .section-bar::before {
+    content: "";
+    width: 38px; height: 38px;
+    border: 1.5px solid var(--ink);
+    border-radius: var(--r-card);
+    background:
+      radial-gradient(var(--secondary) 1.2px, transparent 1.6px) 0 0 / 6px 6px,
+      var(--surface);
+  }
+  .section-bar-title {
+    font-family: var(--f-mono);
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+  }
+  .section-bar-sub {
+    font-family: var(--f-sans);
+    font-weight: 600;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+  }
+
+  /* Cover slot (NEW — 21:9 image + ember label + descriptor) */
+  .cover-slot { margin-bottom: 26px; }
+  .cover-link { display: block; }   /* cover image links to its article — block so the anchor wraps the image cleanly */
+  .cover-image {
+    aspect-ratio: 16 / 9;
+    width: 100%;
+    object-fit: cover;     /* crop image to fit the 21:9 frame without distortion */
+    object-position: center top;  /* anchor crop to the top so subjects' faces stay in frame */
+    background: var(--ink);
+    border: 2px solid var(--ink);
+    display: block;
+  }
+  .cover-caption {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+    padding: 12px 0 14px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .cover-kicker-label {
+    background: var(--secondary);
+    color: var(--ink);
+    border: 1.5px solid var(--ink);
+    border-radius: var(--r-chip);
+    font-family: var(--f-mono);
+    font-weight: 700;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 4px 9px;
+    flex: 0 0 auto;
+  }
+  .cover-feature {
+    font-family: var(--f-sans);
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.4;
+    color: var(--ink);
+  }
+  .cover-feature em {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--ink);
+  }
+
+  /* Hero (cover layout) */
+  .hero { padding: 18px 0 26px; border-bottom: 1px solid var(--rule); }
+  .hero-title {
+    font-family: var(--f-sans);
+    font-weight: 800;
+    font-size: 40px;
+    line-height: 1.08;
+    letter-spacing: -0.025em;
+    color: var(--ink);
+    margin: 0 0 14px;
+    text-wrap: pretty;
+  }
+  .hero-dek {
+    font-family: var(--f-sans);
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--ink-mid);
+    margin: 0 0 16px;
+    max-width: 100ch;
+  }
+  .hero-meta {
+    padding-top: 12px;
+    border-top: 1px solid var(--rule);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+    font-family: var(--f-mono);
+  }
+  .hero-kicker {
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+  }
+  .hero-tag {
+    font-family: var(--f-mono);
+    font-weight: 700;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    background: var(--secondary);
+    color: var(--ink);
+    border: 1.5px solid var(--ink);
+    border-radius: var(--r-chip);
+    padding: 3px 8px;
+  }
+  .hero-read {
+    margin-left: auto;
+    font-family: var(--f-mono);
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  /* Also row — two-column companion reads */
+  .also-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    padding: 22px 0 8px;
+  }
+  .also {
+    padding-left: 14px;
+    border-left: 2px solid var(--accent);
+  }
+  .also-meta {
+    font-family: var(--f-sans);
+    font-weight: 700;
+    font-size: 9px;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    margin-bottom: 8px;
+  }
+  .also-title {
+    font-family: var(--f-mono);
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 1.3;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin: 0 0 8px;
+  }
+  .also-dek {
+    font-family: var(--f-sans);
+    font-weight: 400;
+    font-size: 12.5px;
+    line-height: 1.6;
+    color: var(--ink-mid);
+    margin: 0 0 10px;
+  }
+  .also-read {
+    font-family: var(--f-mono);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  /* ============================================================
+     NUMBERED SECTIONS — Option C + refinements
+     L-frame: 4px top + left border in section's color (ember for
+     culture, signal blue for industry/tech). Section-header gets
+     a tinted strip for header-body hierarchy. End marker closes
+     each section with a 1px ink rule + section counter at right.
+     ============================================================ */
+  .center { counter-reset: section; }
+  .numbered-section {
+    border-top: 4px solid var(--secondary);
+    border-left: 4px solid var(--secondary);
+    padding: 0 0 18px 18px;
+    margin-top: 44px;
+    counter-increment: section;
+    /* Sticky-nav stack is 134px (masthead 96 + slice-nav ~38). Add ~22px
+       breathing room above the section header so nav-anchor jumps don't
+       land flush against the bottom edge of the nav. */
+    scroll-margin-top: 156px;
+  }
+  .numbered-section--cool {
+    border-top-color: var(--accent);
+    border-left-color: var(--accent);
+  }
+  .numbered-section:first-of-type { margin-top: 36px; }
+
+  .section-header {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    column-gap: 14px;
+    align-items: center;
+    background: var(--surface-warm);
+    padding: 14px 18px 12px;
+    border-bottom: 2px solid var(--ink);
+    margin: 0 0 18px -18px;
+  }
+
+  .numbered-section::after {
+    content: "/ end / " counter(section, decimal-leading-zero);
+    display: block;
+    text-align: right;
+    font-family: var(--f-mono);
+    font-weight: 500;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: lowercase;
+    color: var(--ink-light);
+    border-top: 1px solid var(--ink);
+    padding: 10px 18px 0 18px;
+    margin: 22px 0 0 -18px;
+  }
+
+  /* See-more toggle: sections default to 2 visible stories; click expands up to 4.
+     Bolder chip treatment — color tracks the section's frame color. */
+  .section-expand {
+    display: block;
+    margin: 22px auto 6px;
+    padding: 4px 12px;
+    background: var(--secondary);
+    color: var(--ink);
+    border: 1.5px solid var(--ink);
+    border-radius: var(--r-button);
+    font-family: var(--f-mono);
+    font-weight: 700;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.12s ease, color 0.12s ease;
+  }
+  .section-expand:hover {
+    background: var(--ink);
+    color: var(--on-accent);
+  }
+  .numbered-section--cool .section-expand {
+    background: var(--accent);
+    color: var(--on-accent);
+  }
+  .numbered-section--cool .section-expand:hover {
+    background: var(--ink);
+  }
+  /* Hide 3rd+ story by default; reveal when section is expanded */
+  .numbered-section > article.story:nth-of-type(n+3) { display: none; }
+  .numbered-section.expanded > article.story:nth-of-type(n+3) { display: block; }
+  .section-num {
+    font-family: var(--f-mono);
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 1;
+    color: var(--on-accent);
+    background: var(--accent);
+    border-radius: var(--r-button);
+    padding: 2px 10px;
+  }
+  .section-title {
+    font-family: var(--f-mono);
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+  }
+  /* Section tag — colors INVERTED from rail tag (per guide) */
+  .section-tag {
+    font-family: var(--f-mono);
+    font-weight: 700;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border: 1.5px solid var(--ink);
+    border-radius: var(--r-button);
+    background: var(--secondary);
+    color: var(--ink);
+  }
+  .section-tag--secondary {
+    background: var(--accent);
+    color: var(--on-accent);
+  }
+
+  /* Story (long-form section item) */
+  .story {
+    padding: 18px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .story:last-child { border-bottom: none; }
+  .story-meta {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 8px;
+    font-family: var(--f-mono);
+    font-weight: 700;
+    font-size: 10px;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--ink-mid);
+  }
+  .story-source {
+    background: var(--ink);
+    color: var(--on-accent);
+    padding: 3px 8px;
+    border-radius: var(--r-chip);
+  }
+  .story-title {
+    font-family: var(--f-mono);
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 1.28;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin: 0 0 8px;
+  }
+  /* Title anchors inherit the heading's style; hover swaps to the accent. */
+  .story-title a,
+  .hero-title a,
+  .also-title a,
+  .rec-via a { color: inherit; text-decoration: none; }
+  .story-title a:hover,
+  .hero-title a:hover,
+  .also-title a:hover,
+  .rec-via a:hover { color: var(--accent); }
+
+  /* Music News rail see-more: items 5-10 hidden until .rail.expanded; the
+     button rendered by render_music_news_rail_v3 toggles the parent rail. */
+  .rail-item--extra { display: none; }
+  .rail.expanded .rail-item--extra { display: block; }
+  .rail-see-more {
+    display: block;
+    margin: 8px 0 0;
+    padding: 6px 10px;
+    background: transparent;
+    border: 1px solid var(--ink);
+    border-radius: var(--r-chip);
+    font-family: var(--f-mono);
+    font-size: 10px;
+    font-weight: 500;
+    text-transform: lowercase;
+    color: var(--ink);
+    cursor: pointer;
+    transition: color 0.12s ease, border-color 0.12s ease;
+  }
+  .rail-see-more:hover { color: var(--accent); border-color: var(--accent); }
+
+  /* Click-to-play music-rec overlay. The wrap is the only thing in the
+     .rec-feature-video container until click; JS replaces it with a fresh
+     iframe carrying autoplay=1 in its initial src (see template <script>). */
+  .rec-overlay-wrap {
+    position: absolute;
+    inset: 0;
+    cursor: pointer;
+  }
+  .rec-overlay-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .rec-play-icon {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 48px;
+    line-height: 1;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.55);
+    pointer-events: none;
+    transition: transform 0.15s ease;
+  }
+  .rec-overlay-wrap:hover .rec-play-icon { transform: scale(1.08); }
+  .story-dek {
+    font-family: var(--f-sans);
+    font-weight: 400;
+    font-size: 13.5px;
+    line-height: 1.65;
+    color: var(--ink-mid);
+    margin: 0 0 10px;
+  }
+  .story-foot {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+  }
+  .story-cta {
+    font-family: var(--f-mono);
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  /* Rec card (music recommendation) */
+  .rec-card {
+    border: 1.5px solid var(--ink);
+    border-radius: var(--r-card);
+    padding: 16px 18px;
+    background: var(--surface);
+    box-shadow: 4px 4px 0 var(--accent);
+  }
+  .rec-card--secondary { box-shadow: 4px 4px 0 var(--secondary); }
+  .rec-num {
+    font-family: var(--f-mono);
+    font-size: 9px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 8px;
+  }
+  .rec-artist {
+    font-family: var(--f-mono);
+    font-weight: 700;
+    font-size: 16px;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+    color: var(--ink);
+    margin: 0 0 4px;
+  }
+  .rec-track {
+    font-family: var(--f-mono);
+    font-weight: 400;
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--ink-mid);
+    margin: 0 0 10px;
+  }
+  .rec-genre {
+    display: inline-block;
+    font-family: var(--f-mono);
+    font-weight: 400;
+    font-size: 10px;
+    letter-spacing: 0.05em;
+    background: var(--ink);
+    color: var(--on-accent);
+    padding: 3px 8px;
+    border-radius: var(--r-chip);
+    margin-bottom: 10px;
+  }
+  .rec-blurb {
+    font-family: var(--f-sans);
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--ink-mid);
+    margin: 0 0 14px;
+  }
+  .rec-foot {
+    padding-top: 9px;
+    border-top: 1px solid var(--rule);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+  }
+  .rec-source {
+    font-family: var(--f-mono);
+    font-weight: 700;
+    font-size: 9px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+  }
+
+  /* Music rec — single curated card (video stacked, info below) */
+  .rec-feature {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding-top: 18px;
+  }
+  .rec-feature-video {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    background: var(--ink);
+    border: 2px solid var(--ink);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255,255,255,0.35);
+    font-family: var(--f-mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .rec-feature-video::after {
+    content: "✦";
+    position: absolute;
+    top: -6px; right: -6px;
+    width: 16px; height: 16px;
+    background: var(--ember);
+    color: var(--ink);
+    font-size: 11px;
+    line-height: 16px;
+    text-align: center;
+    border: 1.5px solid var(--ink);
+  }
+  .rec-duration {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background: var(--ink);
+    color: var(--on-accent);
+    font-family: var(--f-mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    padding: 3px 8px;
+    border-radius: var(--r-chip);
+  }
+  .rec-title {
+    font-family: var(--f-sans);
+    font-weight: 800;
+    font-size: 22px;
+    line-height: 1.25;
+    letter-spacing: -0.018em;
+    color: var(--ink);
+    margin: 0 0 6px;
+  }
+  .rec-via {
+    font-family: var(--f-mono);
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--secondary);
+    margin: 0 0 14px;
+  }
+  .numbered-section--cool .rec-via { color: var(--accent); }
+  .rec-feature .rec-blurb {
+    font-size: 15px;
+    margin: 0;
+  }
+
+  /* ============================================================
+     FOOTER (full-bleed, Signal Blue)
+     ============================================================ */
+  .slice-footer {
+    background: var(--accent);
+    color: var(--on-accent);
+    margin-top: 48px;
+  }
+  .footer-inner {
+    padding: 16px var(--slice-pad);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 18px;
+    flex-wrap: wrap;
+  }
+  .pub {
+    font-family: var(--f-mono);
+    font-weight: 400;
+    font-size: 11px;
+    letter-spacing: 0.04em;
+  }
+  .pub .brand-mark {
+    text-transform: lowercase;
+    opacity: 0.85;
+  }
+  .pub .org { font-weight: 700; }
+  .foot-right {
+    font-family: var(--f-mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    opacity: 0.6;
+  }
+
+  /* ============================================================
+     RESPONSIVE — tablet (<960px) and phone (<700px)
+     Strategy: stack single-column. Center column reads through
+     first, then rails surface as "More from Today" zone at bottom.
+     Masthead stays sticky; section-nav hidden on mobile;
+     cover image switches to 16:9.
+     ============================================================ */
+
+  .more-divider { display: none; }
+  .more-divider-title {
+    font-family: var(--f-mono);
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--ink);
+  }
+  .more-divider-sub {
+    font-family: var(--f-mono);
+    font-weight: 600;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    padding-top: 8px;
+  }
+
+  /* Mobile orientation strip — does the desktop tagline's work for cold
+     arrivals (email/social). Hidden by default; revealed in the <700 block. */
+  .mobile-orient { display: none; }
+
+  /* Footer nav links — hidden on desktop; revealed in the <960 block. */
+  .foot-links { display: none; }
+
+  /* Top-reads expander — mobile-only, revealed in the <960 block. Collapsed
+     top reads (hero + first also card) sit above it; click reveals the rest. */
+  .top-reads-expand {
+    display: none;
+    margin: 22px auto 6px;
+    padding: 4px 12px;
+    background: var(--secondary);
+    color: var(--ink);
+    border: 1.5px solid var(--ink);
+    border-radius: var(--r-button);
+    font-family: var(--f-mono);
+    font-weight: 700;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.12s ease, color 0.12s ease;
+  }
+  .top-reads-expand:hover {
+    background: var(--ink);
+    color: var(--on-accent);
+  }
+
+  @media (max-width: 960px) {
+    /* Single column; reorder: center → divider → rails */
+    .slice-body { grid-template-columns: 1fr; }
+    .center        { order: 1; padding: 24px 0 32px; }
+    .more-divider  { order: 2; display: block; padding: 32px 0 4px; }
+    .rail-left     { order: 3; border-right: none; border-bottom: 1px solid var(--rule); }
+    .rail-right    { order: 4; border-left:  none; border-top: none; }
+
+    /* Rails: stop being sticky, let them flow */
+    .rail {
+      position: static;
+      max-height: none;
+      overflow-y: visible;
+    }
+
+    /* AUDIT FIX 1 — masthead scrolls away at mobile; the chip nav below is
+       the only sticky chrome (~44px vs the old 153px stack).
+       NOTE: must stay `relative`, not `static` — the lattice ::before is
+       absolutely positioned and escapes the masthead's overflow:hidden clip
+       (tiling the whole page) if the masthead stops being its containing
+       block. Hit during verification. */
+    .slice-masthead { position: relative; }
+
+    /* AUDIT FIX 2 — section nav becomes a horizontally scrollable chip row
+       (not display:none). Sticky at top; hidden scrollbar. */
+    .slice-nav {
+      display: block;
+      position: sticky;
+      top: 0;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .slice-nav::-webkit-scrollbar { display: none; }
+    .slice-nav-inner {
+      justify-content: flex-start;
+      padding: 0 16px;
+      width: max-content;
+    }
+    .nav-item {
+      font-size: 12px;
+      padding: 13px 14px;   /* ~44px tap height */
+    }
+
+    /* AUDIT FIX 3 — anchor jumps land clear of the sticky chip nav. Overrides
+       the desktop 156px stack; rails need ids so More-from-Today jumps land. */
+    .numbered-section[id], .rail-header[id] { scroll-margin-top: 56px; }
+
+    /* More from Today sub-labels are jump links */
+    .more-divider-sub a {
+      color: var(--ink-light);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    /* Cover image: 21:9 → 16:9 (spec B) */
+    .cover-image { aspect-ratio: 16 / 9; }
+
+    /* Section L-frame thins to 2px */
+    .numbered-section {
+      border-top-width: 2px;
+      border-left-width: 2px;
+    }
+
+    /* Masthead at tablet width — actions wrap if needed */
+    .masthead-inner { grid-template-columns: auto auto; column-gap: 16px; row-gap: 12px; }
+
+    /* COMPOSITION (Sam, 2026-07-08) — mobile-only resequencing.
+       Live ids: s1 scene → s3 recs → s2 industry → s5 sound on sight →
+       s4 voice → s6 ai + editorial → s7 ai product. Section number badges
+       and end markers are renumbered to visual order by renumberSections()
+       at the bottom of the file — CSS counters follow document order, not
+       flex order, so they can't do it. */
+    .center { display: flex; flex-direction: column; }
+    .center > * { order: 10; }   /* pre-section content keeps doc order */
+    .center > #s1 { order: 20; }
+    .center > #s3 { order: 21; }  /* recs above industry */
+    .center > #s2 { order: 22; }
+    .center > #s5 { order: 23; }  /* sound on sight above voice */
+    .center > #s4 { order: 24; }
+    .center > #s6 { order: 25; }
+    .center > #sx { order: 26; }   /* Storylines — id is `sx`, outside the numeric sequence */
+    .center > #s7 { order: 27; }
+
+    /* Chip nav follows the mobile section order */
+    .slice-nav-inner a[href="#s1"] { order: 1; }
+    .slice-nav-inner a[href="#s3"] { order: 2; }
+    .slice-nav-inner a[href="#s2"] { order: 3; }
+    .slice-nav-inner a[href="#s5"] { order: 4; }
+    .slice-nav-inner a[href="#s4"] { order: 5; }
+    .slice-nav-inner a[href="#s6"] { order: 6; }
+    .slice-nav-inner a[href="#sx"] { order: 7; }
+    .slice-nav-inner a[href="#s7"] { order: 8; }
+
+    /* End markers follow the renumbered mobile order (data-mnum is set by
+       renumberSections; the desktop counter() can't track flex order). */
+    .numbered-section[data-mnum]::after { content: "/ end / " attr(data-mnum); }
+
+    /* Two top reads (hero + first also card); the rest behind the expander. */
+    .also-row .also:nth-of-type(n+2) { display: none; }
+    .center.top-reads-expanded .also-row .also { display: block; }
+    /* Tucked left under the last card, not centered (Sam, 2026-07-08). */
+    .top-reads-expand { display: block; margin: 10px 0 6px; }
+
+    /* AUDIT FIX 6 — footer stops being a dead end. */
+    .foot-links {
+      display: flex;
+      gap: 18px;
+      font-family: var(--f-mono);
+      font-size: 11px;
+      letter-spacing: 0.04em;
+    }
+    .foot-links a { color: var(--on-accent); text-decoration: underline; text-underline-offset: 3px; }
+
+    /* AUDIT FIX 13 — tap targets ≥44px at touch widths. Inline "read" links
+       and small chips get vertical padding; compensating negative margin
+       keeps the visual rhythm. No visual redesign. */
+    .story-cta, .also-read, .hero-read,
+    .recx-source-link, .recx-watch {
+      display: inline-block;
+      padding-top: 13px; padding-bottom: 13px;
+      margin-top: -13px; margin-bottom: -13px;
+    }
+    .rail-headline {
+      padding-top: 12px; padding-bottom: 12px;
+      margin-top: -8px;   /* net +4 over the base; keeps the source line snug */
+    }
+    .btn-mini { padding-top: 11px; padding-bottom: 11px; }
+    .section-expand, .top-reads-expand, .recx-toggle {
+      padding-top: 13px; padding-bottom: 13px;
+    }
+    .rail-see-more { padding-top: 15px; padding-bottom: 15px; }
+    .recx-arrow { width: 34px; height: 34px; flex-basis: 34px; }
+    .recx-dot { width: 12px; height: 12px; }
+  }
+
+  @media (max-width: 700px) {
+    /* AUDIT FIX 1 — phone masthead: single compact row (~52px), wordmark
+       left, ABOUT absolutely positioned right and vertically centered on the
+       wordmark. Dots go horizontal + shrink. Ghost buttons hidden. */
+    .tagline { display: none; }
+    .masthead-inner {
+      grid-template-columns: auto auto;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 16px;
+      column-gap: 12px;
+      row-gap: 0;
+    }
+    .brand { gap: 10px; }
+    .ss-dots { flex-direction: row; gap: 4px; }
+    .ss-dots i { width: 7px; height: 7px; }
+    .ss-wordmark { font-size: 28px; }
+    .masthead-actions {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      gap: 6px;
+    }
+    .btn-ghost { display: none; }
+    .nav-about { padding: 5px 12px; font-size: 9px; }
+
+    /* AUDIT FIX 4 — orientation line for cold arrivals (email/social) */
+    .mobile-orient {
+      display: block;
+      font-family: var(--f-mono);
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      background: var(--surface-warm);
+      border-bottom: 1px solid var(--rule);
+      padding: 8px 16px;
+    }
+
+    /* AUDIT FIX 5 — Top Reads bar: title holds one line; category dropped */
+    .section-bar { grid-template-columns: auto 1fr; }
+    .section-bar-sub { display: none; }
+
+    /* Hero + content compressions */
+    .hero-title { font-size: clamp(26px, 7vw, 34px); }
+    /* Hero CTA on its own line, left-aligned — the desktop right-push strands
+       it mid-left otherwise (matches the story-card READ → CTAs). */
+    .hero-meta { row-gap: 10px; }
+    .hero-read { flex-basis: 100%; margin-left: 0; }
+    .also-row { grid-template-columns: 1fr; }
+    .rec-feature { grid-template-columns: 1fr; }
+  }
+
+  /* ============================================================
+     MUSIC RECS — carousel of additional recommendations (V3)
+     The feature renders as before; render_music_rec_cards_v3 appends a
+     show-fewer/more toggle + a horizontal, scroll-snap carousel of up to
+     4 lean cards (mono artist, ink sticker genre, source link, watch-on-
+     YouTube link out). Scoped under .recx- so it never touches the
+     legacy .rec- styles.
+     ============================================================ */
+  .recx-toggle {
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+    width: 100%; margin: 24px 0 4px; padding: 9px 14px;
+    background: transparent; color: var(--ink-mid);
+    border: 1.5px dashed var(--ink-faint); border-radius: var(--r-button);
+    font-family: var(--f-mono); font-weight: 700; font-size: 11px; letter-spacing: 0.05em;
+    text-transform: lowercase; cursor: pointer; transition: border-color .12s ease, color .12s ease;
+  }
+  .recx-toggle:hover { border-color: var(--ink); color: var(--ink); }
+  .recx-count {
+    background: var(--secondary); color: var(--ink); border: 1.5px solid var(--ink);
+    border-radius: var(--r-chip); padding: 1px 7px; font-size: 10px; line-height: 1.5;
+  }
+
+  .recx-more { margin-top: 14px; }
+  .numbered-section.recs-collapsed .recx-more { display: none; }
+
+  .recx-carousel {
+    display: flex; gap: 16px; overflow-x: auto;
+    scroll-snap-type: x mandatory; scroll-behavior: smooth;
+    padding: 4px 2px 14px; scrollbar-width: thin;
+  }
+  .recx-card {
+    scroll-snap-align: start; flex: 0 0 264px; max-width: 264px;
+    display: flex; flex-direction: column;
+    background: var(--surface);
+    border: 2px solid var(--ink); border-radius: var(--r-card);
+    padding: 16px 18px;
+  }
+  .recx-card--blue { border-color: var(--accent); }
+  .recx-card--red  { border-color: var(--secondary); }
+
+  .recx-num { font-family: var(--f-mono); font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 8px; }
+  .recx-artist { font-family: var(--f-mono); font-weight: 700; font-size: 17px; line-height: 1.2; letter-spacing: -0.01em; color: var(--ink); margin: 0 0 3px; }
+  .recx-track { font-family: var(--f-mono); font-weight: 400; font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-mid); margin: 0 0 12px; }
+  .recx-genre {
+    display: inline-flex; align-items: center; gap: 5px; align-self: flex-start;
+    font-family: var(--f-mono); font-weight: 500; font-size: 11px; letter-spacing: 0.02em;
+    background: var(--ink); color: var(--on-accent);
+    border-radius: var(--r-chip); padding: 4px 10px; margin-bottom: 12px;
+  }
+  .recx-note { color: var(--hi-vis-yellow); font-size: 12px; }
+  .recx-blurb { font-family: var(--f-sans); font-weight: 400; font-size: 12.5px; line-height: 1.55; color: var(--ink-mid); margin: 0 0 14px; }
+  .recx-blurb em { font-style: italic; color: var(--ink-light); }
+
+  .recx-card-foot { margin-top: auto; padding-top: 12px; border-top: 1px solid var(--rule); }
+  .recx-source-row { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; margin-bottom: 10px; }
+  .recx-source { font-family: var(--f-mono); font-weight: 700; font-size: 9px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-light); }
+  .recx-source-link { font-family: var(--f-mono); font-weight: 500; font-size: 10px; color: var(--accent); }
+  .recx-source-link:hover { color: var(--ink); }
+  .recx-foot-actions { display: flex; align-items: center; gap: 8px; }
+  .recx-watch { display: inline-flex; align-items: center; gap: 6px; font-family: var(--f-mono); font-weight: 700; font-size: 10px; letter-spacing: 0.02em; color: var(--ember); }
+  .recx-watch:hover { color: var(--ink); }
+  .recx-yt { display: inline-flex; align-items: center; justify-content: center; width: 20px; height: 14px; background: #FF0000; color: #fff; border-radius: 3px; font-size: 8px; line-height: 1; }
+
+  .recx-carousel-foot { display: flex; align-items: center; gap: 10px; margin-top: 4px; padding: 0 2px; }
+  .recx-arrow {
+    width: 26px; height: 26px; flex: 0 0 26px; display: inline-flex; align-items: center; justify-content: center;
+    background: var(--surface); color: var(--ink); border: 1.5px solid var(--ink); border-radius: var(--r-button);
+    font-family: var(--f-mono); font-size: 13px; line-height: 1; cursor: pointer; transition: background .12s ease, color .12s ease;
+  }
+  .recx-arrow:hover { background: var(--ink); color: var(--on-accent); }
+  .recx-dots { display: flex; gap: 6px; align-items: center; }
+  .recx-dot { width: 8px; height: 8px; padding: 0; border: none; border-radius: 50%; background: var(--ink-faint); cursor: pointer; }
+  .recx-dot.on { background: var(--ink); }
+  .recx-hint { margin-left: auto; font-family: var(--f-mono); font-size: 10px; letter-spacing: 0.04em; text-transform: lowercase; color: var(--ink-light); }
+
+  @media (max-width: 700px) {
+    .recx-card { flex-basis: 82%; max-width: 82%; }
+    .recx-hint { display: none; }
+  }
+
+  /* ============================================================
+     STORYLINES MODULE — carousel treatment (UI lane, 2026-08-27)
+     Recs/SoS grammar: feature card + see-more toggle + recx
+     carousel. Cards gain a cropped cover (new .recx-card-img).
+     The three rules are the mock's, byte-identical — including
+     .sx-open:hover using --secondary (the spec's prose says
+     "accent->ember"; the mock is what Sam blessed and --secondary
+     is what this template already uses, 14 times against 3).
+     Ported 2026-08-30; the mock's note about placeholder summaries
+     no longer applies — real card copy landed in Data/collections.csv.
+     ============================================================ */
+  .recx-card-img {
+    width: calc(100% + 32px); margin: -16px -16px 12px;
+    aspect-ratio: 16 / 9; object-fit: cover; display: block;
+    border-bottom: 1.5px solid var(--ink);
+  }
+  .sx-open {
+    font-family: var(--f-mono); font-weight: 700; font-size: 11px;
+    letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent);
+  }
+  .sx-open:hover { color: var(--secondary); }
+  .sx-count {
+    font-family: var(--f-mono); font-weight: 700; font-size: 10px;
+    letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-light);
+    margin: 0 0 10px;
+  }
+</style>
+<style>
+  /* RAIL EXPLAINERS — treatment v1.1 (engine-owned copy of the mock's marked block).
+     Glyph after the surface title; anchored card on hover/pin; re-anchors to the header at <=700px. */
+  .xp { position: relative; display: inline-flex; align-items: center; margin-left: 10px; }
+  .xp-btn {
+    width: 22px; height: 22px; padding: 0; margin: 0;
+    display: inline-flex; align-items: center; justify-content: center;
+    font-family: var(--f-mono); font-weight: 700; font-size: 13px; line-height: 1;
+    color: var(--ink); background: transparent;
+    border: 1.5px solid var(--ink); border-radius: var(--r-chip);
+    cursor: help; position: relative;
+  }
+  .xp-btn::after { content: ""; position: absolute; inset: -11px; }  /* 44px tap target */
+  .xp-btn:hover, .xp[data-open] .xp-btn {
+    background: var(--ink); color: var(--on-accent, #f6f2e6);
+  }
+  .xp-card {
+    position: absolute; top: calc(100% + 10px); left: -8px; z-index: 60;
+    width: 240px; max-width: 76vw;
+    background: var(--surface); border: 1.5px solid var(--ink);
+    border-radius: var(--r-card);
+    box-shadow: 4px 4px 0 var(--xp-accent, var(--accent));
+    padding: 10px 12px;
+    font-family: var(--f-sans); font-weight: 400; font-size: 12.5px;
+    line-height: 1.5; letter-spacing: 0; text-transform: none; color: var(--ink-mid);
+    display: none; text-align: left; white-space: normal;
+  }
+  .xp:hover .xp-card, .xp[data-open] .xp-card { display: block; }
+  .xp--right .xp-card { left: auto; right: -8px; }
+  .xp--ember { --xp-accent: var(--secondary); }
+  /* Rails are overflow boxes at desktop — card must fit the column */
+  .rail .xp-card { width: 186px; left: -30px; }
+  .rail .xp--right .xp-card { left: auto; right: -30px; }
+  /* Rail tooltip escape (2026-07-28): a .rail is `overflow-y: auto` (a scroll
+     box for tall rails), and a scroll box clips overflow on BOTH axes — so an
+     open explainer card, which extends past the rail's edge into the centre
+     column, was CLIPPED at that edge (headless-verified). It was never a
+     stacking problem: a positioned sticky .rail already paints above the static
+     .center, so z-index alone did nothing. While a card is open or hovered, drop
+     the rail's clip so the card can spill out; keep a defensive z-index for any
+     positioned centre content. One rule covers all four rail positions (industry
+     news + archives left, music news + wisdom right); verified on both rails. */
+  .rail:has(.xp:hover), .rail:has(.xp[data-open]) { overflow: visible; z-index: 60; }
+  @media (hover: none) { .xp:hover .xp-card { display: none; } .xp[data-open] .xp-card { display: block; } }
+  /* Phone: the glyph-anchored card overflows the viewport on long titles; re-anchor to the header
+     as a full-header-width panel under the header line. */
+  @media (max-width: 700px) {
+    .section-header, .rail-header, .section-bar { position: relative; }
+    .xp { position: static; }
+    .xp-card, .rail .xp-card {
+      left: 0; right: auto; top: calc(100% + 6px);
+      width: calc(100% - 5px); max-width: none;
+    }
+  }
+</style>
+<style>
+  /* RAIL INTRO — treatment v1 (option C, header band). Custom-rail sections only. */
+  .numbered-section--rail .section-header { row-gap: 10px; padding-bottom: 16px; }
+  .ri { grid-column: 2 / -1; }
+  .ri-text {
+    font-family: var(--f-sans); font-weight: 400; font-size: 15px; line-height: 1.6;
+    color: var(--ink); margin: 0; max-width: 64ch; text-wrap: pretty;
+  }
+  .ri-count {
+    justify-self: end; white-space: nowrap;
+    font-family: var(--f-mono); font-weight: 700; font-size: 10px;
+    letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-mid);
+  }
+  @media (max-width: 700px) {
+    .numbered-section--rail .ri-count { grid-column: 2; grid-row: 2; justify-self: start; margin-top: -6px; } /* offsets the 10px row-gap */
+    .ri { grid-column: 1 / -1; grid-row: 3; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     MASTHEAD
+     ============================================================ -->
+<header class="slice-masthead" id="top">
+  <div class="masthead-inner">
+    <a class="brand" href="/" aria-label="Sound Signal home">
+      <span class="ss-dots" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+      <span class="ss-wordmark">Sound Signal<span class="ss-period">.</span></span>
+      <span class="tagline">Curating the feed every Monday, Wednesday and Friday</span>
+    </a>
+    <div></div>
+    <div class="masthead-actions">
+      <a class="nav-about" href="about.html">ABOUT</a>
+    </div>
+  </div>
+</header>
+
+<!-- Mobile-only orientation strip (audit fix 4) — hidden ≥700px -->
+<div class="mobile-orient">Curating the feed · Mon / Wed / Fri · Nov 11, 2026</div>
+
+<!-- ============================================================
+     SECTION NAV
+     ============================================================ -->
+<nav class="slice-nav" aria-label="Section jump">
+  <div class="slice-nav-inner">
+    <a class="nav-item active" href="#s1">scene</a>
+    <a class="nav-item" href="#s2">industry</a>
+    <a class="nav-item" href="#s3">recs</a>
+    <a class="nav-item" href="#s4">voice</a>
+    <a class="nav-item" href="#s5">video</a>
+    <a class="nav-item" href="#s6">attack bots</a>
+    <a class="nav-item" href="#sx">storylines</a>
+    <a class="nav-item" href="#s7">streaming s</a>
+  </div>
+</nav>
+
+<!-- ============================================================
+     SLICE BODY (1100px · 220 / 1fr / 240)
+     ============================================================ -->
+<div class="slice-body">
+
+  <!-- ===== LEFT RAIL =================================== -->
+  <aside class="rail rail-left">
+    <div class="rail-header" id="m-industry">
+      <img class="rail-icon" src="assets/icons/industry-b-globe-filled-dot.png" alt="" aria-hidden="true" />
+      <div class="rail-title">industry news<span class="xp"><button class="xp-btn" type="button" aria-expanded="false" aria-label="What is this section?">?</button><span class="xp-card" role="note">Short headlines covering the business side of music, including deals, lawsuits, platform moves, and policy.</span></span></div>
+    </div>
+    <div class="rail-item">
+      <a class="rail-headline" href="https://www.billboard.com/pro/youtube-streaming-data-return-billboard-charts/">YouTube Streaming Data to Return to Billboard Charts</a>
+      <div class="rail-source">Billboard</div>
+      <span class="tag">Chart methodology &amp; relevance debates</span>
+    </div>
+    <div class="rail-item">
+      <a class="rail-headline" href="https://www.billboard.com/video/billion-dollar-deal-primary-wave-kobalt-on-the-record/">Primary Wave acquires Kobalt for $1B</a>
+      <div class="rail-source">Billboard Feed</div>
+      <span class="tag">Deals &amp; business moves</span>
+    </div>
+    <div class="rail-item">
+      <a class="rail-headline" href="https://www.digitalmusicnews.com/2026/11/10/umg-v-suno-discovery-dispute/">UMG v. Suno: AI Training Rights Questioned</a>
+      <div class="rail-source">Digital Music News</div>
+      <span class="tag">Rights &amp; legal</span>
+    </div>
+    <div class="rail-item">
+      <a class="rail-headline" href="https://www.digitalmusicnews.com/2026/11/09/siriusxm-anjali-sud-jennifer-witz-ceo/">SiriusXM CEO Jennifer Witz Steps Down</a>
+      <div class="rail-source">Digital Music News</div>
+      <span class="tag">Labor &amp; executive moves</span>
+    </div>
+    <div class="rail-item">
+      <a class="rail-headline" href="https://www.digitalmusicnews.com/2026/11/10/blue-wave-change-rules-for-music-ai/">Democratic Victory Could Change Music AI Rules</a>
+      <div class="rail-source">Digital Music News</div>
+      <span class="tag">Rights &amp; legal</span>
+    </div>
+    <div class="rail-item rail-item--extra">
+      <a class="rail-headline" href="https://musically.com/2026/11/11/tiktok-throws-soundons-weight-behind-daddy-yankees-new-lp/">TikTok SoundOn Backs Daddy Yankee Album</a>
+      <div class="rail-source">Music Ally</div>
+      <span class="tag">Deals &amp; business moves</span>
+    </div>
+    <div class="rail-item rail-item--extra">
+      <a class="rail-headline" href="https://www.digitalmusicnews.com/2026/11/10/garth-brooks-buying-nashville-radio-station/">Garth Brooks Buys Nashville Radio Station</a>
+      <div class="rail-source">Digital Music News</div>
+      <span class="tag">Deals &amp; business moves</span>
+    </div>
+    <div class="rail-item rail-item--extra">
+      <a class="rail-headline" href="https://www.billboard.com/pro/global-touring-growth-islowed-infrastructure/">Live Music Infrastructure Shortage Slows Growth</a>
+      <div class="rail-source">Billboard Pro</div>
+      <span class="tag">Touring/live industry shake-ups</span>
+    </div>
+    <div class="rail-item rail-item--extra">
+      <a class="rail-headline" href="https://musically.com/2026/11/10/audio-tech-brand-harman-has-launched-its-own-music-discovery-app/">Harman Launches Drops Music Discovery App</a>
+      <div class="rail-source">Music Ally</div>
+      <span class="tag">Platform &amp; product moves</span>
+    </div>
+    <div class="rail-item rail-item--extra">
+      <a class="rail-headline" href="https://www.musicbusinessworldwide.com/josh-van-valkenburg-named-president-of-umpg-nashville-as-troy-tomlinson-moves-into-advisory-role/">Josh Van Valkenburg Named UMPG Nashville President</a>
+      <div class="rail-source">Music Business Worldwide</div>
+      <span class="tag">Labor &amp; executive moves</span>
+    </div>
+    <button class="rail-see-more" type="button">See more ↓</button>
+    <div class="rail-header rail-header--secondary" id="m-archives">
+      <img class="rail-icon" src="assets/icons/archives-d-folder-stack.png" alt="" aria-hidden="true" />
+      <div class="rail-title">from the archives<span class="xp xp--ember"><button class="xp-btn" type="button" aria-expanded="false" aria-label="What is this section?">?</button><span class="xp-card" role="note">An older piece selected for its relevance to today&#x27;s coverage. Essays and reporting that shaped how current stories are understood.</span></span></div>
+    </div>
+    <div class="rail-item">
+      <a class="rail-headline serif" href="https://www.technologyreview.com/2024/08/16/1096276/spotify-algorithms-music-discovery-ux/">How to break free of Spotify's algorithm</a>
+      <div class="rail-source">Jennifer Kingson · MIT Technology Review · 2024</div>
+      <p class="rail-blurb">Kingson maps the specific design choices that keep listeners inside Spotify's recommendation loop: autoplay defaults, homepage weighting, playlist architecture engineered so that opting out takes deliberate effort most people never make. The value here is naming the mechanisms rather than the vibe. Discovery isn't passively shaped by an algorithm; it's actively funneled by UX decisions that treat your own curiosity as friction to be designed away.</p>
+    </div>
+    </aside>
+
+  <!-- ===== CENTER ====================================== -->
+  <main class="center">
+
+    <!-- Section bar -->
+    <div class="section-bar">
+      <div class="section-bar-title">Today's Top Reads<span class="xp"><button class="xp-btn" type="button" aria-expanded="false" aria-label="What is this section?">?</button><span class="xp-card" role="note">The day&#x27;s three most essential reads, selected from the full sweep of music, culture, and industry coverage.</span></span></div>
+      <div class="section-bar-sub">Essays · Analysis · Features</div>
+    </div>
+
+    <div class="cover-slot">
+      <a class="cover-link" href="https://pitchfork.com/story/pavement-indie-rock-cover-story/"><img class="cover-image" src="assets/Cover Image/Pavement.png" alt="On the cover" /></a>
+      <div class="cover-caption">
+        <span class="cover-kicker-label">On the Cover</span>
+        <span class="cover-feature">Featured on &quot;The Fate of Pavement&quot;</span>
+      </div>
+    </div>
+
+    <article class="hero">
+      <h1 class="hero-title"><a href="https://pitchfork.com/story/pavement-indie-rock-cover-story/">The Fate of Pavement</a></h1>
+      <p class="hero-dek">Grayson Haver Currin files a dispatch from Pavement's rained-out last show, and turns a canceled gig into a meditation on legacy management. The band walked with a few hundred grand, more than they ever made in the '90s, and that's the tension: how long can you play the past before it curdles into a cash-in? The piece lands on the question every heritage act and catalog rights-holder is quietly asking, as a viral &quot;Harness Your Hopes&quot; keeps rewriting who Pavement is for.</p>
+      <div class="hero-meta">
+        <span class="hero-kicker">Music &amp; Scene</span>
+        <a class="hero-read" href="https://pitchfork.com/story/pavement-indie-rock-cover-story/">Read on Pitchfork →</a>
+      </div>
+    </article>
+
+    <div class="also-row">
+      <article class="also">
+        <div class="also-meta">The New York Times · Music &amp; Scene</div>
+        <h3 class="also-title"><a href="https://www.nytimes.com/2026/11/09/arts/music/talafreako-lil-texxan-viral-song.html">‘Talafreako’ Is, Accidentally, the Campaign Song of the Moment</a></h3>
+        <p class="also-dek">Jon Caramanica, the Times critic with a long ear for how rap moves through the culture, tracks a song that picked its own candidate. &quot;Talafreako (Ken Paxton Diss)&quot; is a single unwritten freestyle by a previously unknown Dallas rapper, Lil Texxan, built over a YouTube beat and spread through local bending videos until James Talarico's campaign grabbed it. Caramanica's real warning: the organic hit becomes the template. Next come campaigns paying local rappers to manufacture it.</p>
+        <a class="also-read" href="https://www.nytimes.com/2026/11/09/arts/music/talafreako-lil-texxan-viral-song.html">Read →</a>
+      </article>
+      <article class="also">
+        <div class="also-meta">James O'Sullivan (Substack) · AI + Content &amp; Editorial Technology</div>
+        <h3 class="also-title"><a href="https://jamescosullivan.substack.com/p/generative-ai-as-siren-servers">Generative AI as Siren Servers</a></h3>
+        <p class="also-dek">Writing in 2013, Jaron Lanier called them &quot;siren servers&quot;: systems that lure you in with free services while quietly harvesting your labor as training data, then use that data to dismantle the profession that produced it. Machine translation did it to translators first. James O'Sullivan revives the framework for the generative AI moment, and the fit is uncomfortable. Every blurb, every curated list, every editorial judgment you've published is corpus now.</p>
+        <a class="also-read" href="https://jamescosullivan.substack.com/p/generative-ai-as-siren-servers">Read →</a>
+      </article>
+    </div>
+
+    <!-- Mobile-only top-reads expander (revealed <960px) -->
+    <button class="top-reads-expand" type="button">more top reads ↓</button>
+
+        <section class="numbered-section" id="s1">
+      <div class="section-header">
+        <span class="section-num">01</span>
+        <span class="section-title">Music &amp; Scene</span><span class="xp xp--ember"><button class="xp-btn" type="button" aria-expanded="false" aria-label="What is this section?">?</button><span class="xp-card" role="note">Writing about music and the culture around it. Criticism, profiles, interviews, and scene reporting, selected for insight rather than news value.</span></span>
+      </div>
+      <article class="story">
+        <div class="story-meta">
+          <span class="story-source">Pitchfork</span>
+        </div>
+        <h3 class="story-title"><a href="https://pitchfork.com/story/the-100-best-indie-rock-albums-of-all-time/">The 100 Best Indie Rock Albums of All Time</a></h3>
+        <p class="story-dek">Pitchfork builds its list around a prescriptive definition: American, independent-label, guitar-driven, started around 1980, crystallized in 1988. The exclusions do the real work. No Velvet Underground, Strokes, or LCD Soundsystem (major labels); no My Bloody Valentine or Cocteau Twins (wrong genre priority).</p>
+        <div class="story-foot">
+          <a class="story-cta" href="https://pitchfork.com/story/the-100-best-indie-rock-albums-of-all-time/">Read on Pitchfork →</a>
+        </div>
+      </article>
+      <article class="story">
+        <div class="story-meta">
+          <span class="story-source">Pitchfork</span>
+        </div>
+        <h3 class="story-title"><a href="https://pitchfork.com/story/what-is-indie-rock-we-asked-33-artists-labels-and-critics/">What Is Indie Rock? We Asked 33 Artists, Labels, and Critics</a></h3>
+        <p class="story-dek">Pitchfork polled 33 artists, label heads, and critics to define indie rock and got no consensus, which is the point. Gerard Cosloy insists it never existed as a genre; Simon Reynolds calls it a class demographic and a discourse; Lou Barlow traces how collapsing major-label economics in 1999 let indies chart on failure-level sales.</p>
+        <div class="story-foot">
+          <a class="story-cta" href="https://pitchfork.com/story/what-is-indie-rock-we-asked-33-artists-labels-and-critics/">Read on Pitchfork →</a>
+        </div>
+      </article>
+      <article class="story">
+        <div class="story-meta">
+          <span class="story-source">POW MAG</span>
+        </div>
+        <h3 class="story-title"><a href="https://www.powmag.net/p/mulholland-drive-david-lynch-music">The Sound of Silencio</a></h3>
+        <p class="story-dek">An essay exploring the music and sound design of David Lynch's Mulholland Drive, discussing the difficulty of accessing the soundtrack and the fictional nightclub Silencio, while offering ways to experience both the film and its locations in Los Angeles.</p>
+        <div class="story-foot">
+          <a class="story-cta" href="https://www.powmag.net/p/mulholland-drive-david-lynch-music">Read on POW MAG →</a>
+        </div>
+      </article>
+      <article class="story">
+        <div class="story-meta">
+          <span class="story-source">The Guardian</span>
+        </div>
+        <h3 class="story-title"><a href="https://www.theguardian.com/tv-and-radio/2026/nov/07/eurovision-asia-bangkok-song-contest">Eurovision’s Asia experiment gets under way in flamboyant Bangkok</a></h3>
+        <p class="story-dek">Eurovision Song Contest Asia launches next weekend in Bangkok with 11 regional acts, and The Guardian finds the enthusiasm thinner than the hype: tickets still available, only 65,000 following the sister account. One scholar argues the format is peculiarly European, born of postwar TV and integration, and points to the flopped American Song Contest. India and China are absent; Thailand and Cambodia, at war last year, may trade bloc votes.</p>
+        <div class="story-foot">
+          <a class="story-cta" href="https://www.theguardian.com/tv-and-radio/2026/nov/07/eurovision-asia-bangkok-song-contest">Read on The Guardian →</a>
+        </div>
+      </article>
+      <article class="story">
+        <div class="story-meta">
+          <span class="story-source">The Quietus</span>
+        </div>
+        <h3 class="story-title"><a href="https://thequietus.com/quietus-reviews/live-reviews/international-feel-highlights-from-le-guess-who-2026/">International Feel: Highlights from Le Guess Who? 2026</a></h3>
+        <p class="story-dek">The defining feeling of Utrecht's Le Guess Who? 2026 isn't a sound but a geography: The Quietus clocks four continents across the first three shows. From Bethlehem's cross-border hymns born of the Gaza genocide to Róis reworking Irish keening, the festival functions as a convergence point for the same boundary-pushing impulse, expressed in wildly different local dialects.</p>
+        <div class="story-foot">
+          <a class="story-cta" href="https://thequietus.com/quietus-reviews/live-reviews/international-feel-highlights-from-le-guess-who-2026/">Read on The Quietus →</a>
+        </div>
+      </article>
+      <article class="story">
+        <div class="story-meta">
+          <span class="story-source">Shhh / Peaceful di Giulio Pecci</span>
+        </div>
+        <h3 class="story-title"><a href="https://sshhhpeaceful.substack.com/p/deforrest-brown-jr-wanted-to-turn">DeForrest Brown Jr. «Wanted to Turn the Theological into the Technological»</a></h3>
+        <p class="story-dek">In this interview, theorist and Speaker Music producer DeForrest Brown Jr. reads Juan Atkins' death from Berlin and argues we're living inside the Detroit pioneer's blueprint: Atkins was theorizing Bandcamp, Spotify, and even cryptocurrency-style self-distribution back in the 1980s. Brown treats techno as philosophy, applying rigorous thought to Atkins' and Gerald Donald's liner notes and lyrics.</p>
+        <div class="story-foot">
+          <a class="story-cta" href="https://sshhhpeaceful.substack.com/p/deforrest-brown-jr-wanted-to-turn">Read on Shhh / Peaceful di Giulio Pecci →</a>
+        </div>
+      </article>
+      <article class="story">
+        <div class="story-meta">
+          <span class="story-source">The New York Times</span>
+        </div>
+        <h3 class="story-title"><a href="https://www.nytimes.com/2026/11/10/arts/music/a-jazz-experiment-ends-like-it-began-throwing-down-every-night.html">The Bad Plus Ends Like It Began: ‘Throwing Down’ Every Night</a></h3>
+        <p class="story-dek">After 26 years and roughly 170 shows a year, the leaderless Bad Plus disbands in 2026, and the New York Times frames the reason as a verdict on jazz's touring economy: promoters want the next novelty, and a band with an established sound and body of work no longer counts. Bassist Reid Anderson says that's exactly why they're stopping. The farewell tour closes Thursday at Le Poisson Rouge.</p>
+        <div class="story-foot">
+          <a class="story-cta" href="https://www.nytimes.com/2026/11/10/arts/music/a-jazz-experiment-ends-like-it-began-throwing-down-every-night.html">Read on The New York Times →</a>
+        </div>
+      </article>
+      <article class="story">
+        <div class="story-meta">
+          <span class="story-source">The Line of Best Fit</span>
+        </div>
+        <h3 class="story-title"><a href="https://bestfitmusic.substack.com/p/2026-emo-chanel-beads-midwest">For some reason, this year made an emo of me</a></h3>
+        <p class="story-dek">Seeing Chanel Beads in Bristol cracks open a longer confession in The Line of Best Fit: after three decades of irrational anti-emo prejudice, 2026 was the year a writer finally caved. Starting with American Football and winding through Mineral, Cap'n Jazz, and the Midwest emo canon, it tracks how a genre once dismissed as whiny became load-bearing, and argues emo's vulnerability drives rock's most innovative work.</p>
+        <div class="story-foot">
+          <a class="story-cta" href="https://bestfitmusic.substack.com/p/2026-emo-chanel-beads-midwest">Read on The Line of Best Fit →</a>
+        </div>
+      </article>
+      <article class="story">
+        <div class="story-meta">
+          <span class="story-source">Focused Curve</span>
+        </div>
+        <h3 class="story-title"><a href="https://focusedcurve.substack.com/p/a-brief-guide-to-music-magazines">A brief guide to music magazines in 2026</a></h3>
+        <p class="story-dek">The generalist music monthly is dead (NME went free, then online; Q folded in 2020), but Focused Curve argues the survivors found a model in specificity. MOJO leans legacy with its cover CDs, The Wire runs on subscriptions and underground density, Crack Magazine stays free via paid supporters, and Uncut sells band-curated collector's editions like Pavement's. Niche, not breadth, keeps print alive.</p>
+        <div class="story-foot">
+          <a class="story-cta" href="https://focusedcurve.substack.com/p/a-brief-guide-to-music-magazines">Read on Focused Curve →</a>
+        </div>
+      </article>
+      <article class="story">
+        <div class="story-meta">
+          <span class="story-source">POW MAG</span>
+        </div>
+        <h3 class="story-title"><a href="https://www.powmag.net/p/a-tribe-called-quest-we-got-it-from-here-thank-you-4-your-service-ten-years">We Got To Get It Together</a></h3>
+        <p class="story-dek">An essay reflecting on the tenth anniversary of A Tribe Called Quest's final album We got it from Here … Thank You 4 Your Service, examining how grief and remembrance frame the record following Phife Dawg's death in 2016. The piece discusses the band's SNL performance and how the album captures the group's legacy and the loss of their departed member.</p>
+        <div class="story-foot">
+          <a class="story-cta" href="https://www.powmag.net/p/a-tribe-called-quest-we-got-it-from-here-thank-you-4-your-service-ten-years">Read on POW MAG →</a>
+        </div>
+      </article>
+      <button class="section-expand" type="button">see more ↓</button>
+    </section>
+
+    <section class="numbered-section numbered-section--cool" id="s2">
+      <div class="section-header">
+        <span class="section-num">02</span>
+        <span class="section-title">Music Industry Analysis</span><span class="xp"><button class="xp-btn" type="button" aria-expanded="false" aria-label="What is this section?">?</button><span class="xp-card" role="note">Analysis of the music business. Deals, streaming economics, rights, and the power dynamics that shape what gets made and who gets paid.</span></span>
+      </div>
+      <article class="story">
+        <div class="story-meta">
+          <span class="story-source">The Guardian</span>
+        </div>
+        <h3 class="story-title"><a href="https://www.theguardian.com/commentisfree/2026/nov/11/albaneses-love-affair-with-music-is-on-the-rocks-over-ai-can-he-write-a-different-tune">Albanese’s love affair with music is on the rocks over AI. Can he write a different tune?</a></h3>
+        <p class="story-dek">The Guardian argues that Albanese's half-century alliance with Australian musicians, from the Whitlams to Pete Garrett, is fracturing over AI. Anthropic, chasing a $1.5tn valuation, wants to base its training models in Australia in exchange for relaxed copyright laws, a deal creators call turning the country into the Cayman Islands of copyright. The proposed fix: a Hawke-style cultural accord mandating labelling, consent, and shared benefit from any value the models generate.</p>
+        <div class="story-foot">
+          <a class="story-cta" href="https://www.theguardian.com/commentisfree/2026/nov/11/albaneses-love-affair-with-music-is-on-the-rocks-over-ai-can-he-write-a-different-tune">Read on The Guardian →</a>
+        </div>
+      </article>
+      <article class="story">
+        <div class="story-meta">
+          <span class="story-source">Hypebot</span>
+        </div>
+        <h3 class="story-title"><a href="https://www.hypebot.com/we-need-an-onlyfans-for-music/">We Need an OnlyFans for Music</a></h3>
+        <p class="story-dek">Streaming's problems (opaque discovery, broken royalties, thin fan engagement) point toward a direct subscription model, and Hypebot argues music should steal from OnlyFans: fans paying creators directly for exclusive, gated content, plus full catalogs. Patreon is the closest existing version but lacks the pieces that would make it work. The case rests on Spotify's lock-in: price hikes, an AI DJ, and Wrapped keeping listeners hooked despite the founder's controversies.</p>
+        <div class="story-foot">
+          <a class="story-cta" href="https://www.hypebot.com/we-need-an-onlyfans-for-music/">Read on Hypebot →</a>
+        </div>
+      </article>
+      <article class="story">
+        <div class="story-meta">
+          <span class="story-source">Ted Gioia</span>
+        </div>
+        <h3 class="story-title"><a href="https://tedgioia.substack.com/p/why-dont-artists-join-together-in">Why Don't Artists Join Together in Co-Op Platforms?</a></h3>
+        <p class="story-dek">From the Beatles' Apple Corps to United Artists to Tidal, every artist-run venture eventually sells back to the system. But the diagnosis here lands harder than the history: Spotify's real asset isn't software, it's subscribers who don't care which artist they're hearing. A co-op wins by withholding exclusives and tying royalties to ownership stakes.</p>
+        <div class="story-foot">
+          <a class="story-cta" href="https://tedgioia.substack.com/p/why-dont-artists-join-together-in">Read on Ted Gioia →</a>
+        </div>
+      </article>
+      <article class="story">
+        <div class="story-meta">
+          <span class="story-source">Money 4 Nothing</span>
+        </div>
+        <h3 class="story-title"><a href="https://money4nothing.substack.com/p/how-kpop-actually-works-with-so-yoon">How Kpop Actually Works (with So Yoon Lee)</a></h3>
+        <p class="story-dek">Money 4 Nothing talks with researcher So Yoon Lee, who's spent years inside the Korean music industry, about the labor that makes Kpop run: teenage contracts, on-call dance instructors, the choreographers and A&amp;R and social teams behind every idol. For a genre that's remade American assumptions about global pop, almost nothing in English explains how the machine actually operates, or who absorbs its costs.</p>
+        <div class="story-foot">
+          <a class="story-cta" href="https://money4nothing.substack.com/p/how-kpop-actually-works-with-so-yoon">Read on Money 4 Nothing →</a>
+        </div>
+      </article>
+      <article class="story">
+        <div class="story-meta">
+          <span class="story-source">Billboard</span>
+        </div>
+        <h3 class="story-title"><a href="https://www.billboard.com/pro/splice-daw-create-agentic-ai-powered-platform/">Splice Reimagines the DAW With ‘Create’ — Its Agentic AI-Powered Platform for Newcomers</a></h3>
+        <p class="story-dek">Billboard covers Splice's new DAW, built on a position that separates it from Suno and its ilk: generative AI produces songs you can't edit, so Create uses AI to teach production rather than replace it. The chatbot follows voice and text prompts, the sample library integrates directly, and the pitch to newcomers is collaboration over automation.</p>
+        <div class="story-foot">
+          <a class="story-cta" href="https://www.billboard.com/pro/splice-daw-create-agentic-ai-powered-platform/">Read on Billboard →</a>
+        </div>
+      </article>
+      <article class="story">
+        <div class="story-meta">
+          <span class="story-source">Hypebot</span>
+        </div>
+        <h3 class="story-title"><a href="https://www.hypebot.com/artists-should-not-have-to-rent-access-to-their-fans/">Artists Should Not Have to Rent Access to Their Fans</a></h3>
+        <p class="story-dek">Artists are losing control of their fan relationships to streaming, social media, and ticketing platforms, but a direct line to fans builds sustainable careers.</p>
+        <div class="story-foot">
+          <a class="story-cta" href="https://www.hypebot.com/artists-should-not-have-to-rent-access-to-their-fans/">Read on Hypebot →</a>
+        </div>
+      </article>
+      <article class="story">
+        <div class="story-meta">
+          <span class="story-source">Billboard</span>
+        </div>
+        <h3 class="story-title"><a href="https://www.billboard.com/pro/soundtrack-opportunity-music-industry-missing/">The $1.4 Billion ‘No-Brainer’ Opportunity the Music Industry Is Missing</a></h3>
+        <p class="story-dek">While everyone chases superfan tiers and AI licensing schemes that don't exist yet, Billboard reports that $1.4 billion in U.S. business royalties goes uncollected every year. The pitch comes from Soundtrack, the Spotify-backed commercial streamer, whose commissioned study found only 19% of businesses playing music are fully compliant and nearly 80% use personal consumer accounts in-store.</p>
+        <div class="story-foot">
+          <a class="story-cta" href="https://www.billboard.com/pro/soundtrack-opportunity-music-industry-missing/">Read on Billboard →</a>
+        </div>
+      </article>
+      <article class="story">
+        <div class="story-meta">
+          <span class="story-source">IQ Magazine</span>
+        </div>
+        <h3 class="story-title"><a href="https://www.iqmagazine.com/2026/11/quilmes-rock-the-domestic-scene-as-a-tool-in-the-currency-playbook/">Quilmes Rock: The domestic scene as a tool in the currency playbook</a></h3>
+        <p class="story-dek">As Argentine peso volatility turns imported headliners into a gamble, Quilmes Rock tells IQ Magazine its long-standing bet on domestic acts has flipped from cultural branding to balance-sheet advantage. While regional promoters bid up high-cost international names, a lineup built on Argentinian artists insulates the festival from currency swings.</p>
+        <div class="story-foot">
+          <a class="story-cta" href="https://www.iqmagazine.com/2026/11/quilmes-rock-the-domestic-scene-as-a-tool-in-the-currency-playbook/">Read on IQ Magazine →</a>
+        </div>
+      </article>
+      <article class="story">
+        <div class="story-meta">
+          <span class="story-source">Billboard</span>
+        </div>
+        <h3 class="story-title"><a href="https://www.billboard.com/pro/icmp-john-phelan-interview-big-ai-australian-copyright/">‘A Vast Landgrab’: ICMP Weighs in on Big AI’s Australian Copyright Battleground</a></h3>
+        <p class="story-dek">Australia's proposed copyright rewrite to permit AI training is &quot;subordination dressed up as sovereignty,&quot; ICMP's director general tells Billboard, arguing the opt-out mechanism on the prime minister's desk is a free pass for Silicon Valley. The sharpest card ICMP played: showing the government that all 10 of the PM's favorite songs and all 12 Australian orchestras had been illegally scraped.</p>
+        <div class="story-foot">
+          <a class="story-cta" href="https://www.billboard.com/pro/icmp-john-phelan-interview-big-ai-australian-copyright/">Read on Billboard →</a>
+        </div>
+      </article>
+      <button class="section-expand" type="button">see more ↓</button>
+    </section>
+
+    <section class="numbered-section recs-collapsed" id="s3">
+      <div class="section-header">
+        <span class="section-num">03</span>
+        <span class="section-title">Music Recommendations</span><span class="xp xp--ember"><button class="xp-btn" type="button" aria-expanded="false" aria-label="What is this section?">?</button><span class="xp-card" role="note">New and recent music worth hearing. A featured pick plus additional recommendations, each with brief context and a link to listen.</span></span>
+      </div>
+      <div class="rec-feature">
+        <div class="rec-feature-video">
+          <div class="rec-overlay-wrap" data-yt-src="https://www.youtube.com/embed/Np_JirOtMD0"><img class="rec-overlay-img" src="assets/Image Files for Music Recs/166.png" alt="" /><div class="rec-play-icon" aria-hidden="true">▶</div></div>
+        </div>
+        <div class="rec-meta">
+          <h3 class="rec-title">Dawuna — "Love's Arp"</h3>
+          <div class="rec-via"><a href="https://www.shatterthestandards.com/p/album-review-loves-arp-by-dawuna">via Shatter the Standards</a></div>
+          <p class="rec-blurb">The cellist-trained singer, who made Glass Lit Dream alone in a Richmond basement, builds churches out of his own layered chest voice and falsetto. On 'Love Is...,' a lower-register chant ('Using you, you hurt me') duels an extended close harmony up top; he fiddles the pronouns, strips it to the chant, then lets the falsetto soar as both voices interrupt each other. He argues with himself and loses.</p>
+        </div>
+      </div>
+      <button class="recx-toggle" type="button" aria-expanded="false"><span class="recx-toggle-label">see more recommendations</span><span class="recx-count">09</span></button>
+      <div class="recx-more">
+        <div class="recx-carousel">
+          <article class="recx-card recx-card--blue"><div class="recx-num">REC 01</div><h4 class="recx-artist">Maxime Denuc</h4><div class="recx-track">Club Imperiale</div><span class="recx-genre"><span class="recx-note">&#9834;</span> organ minimalism / acoustic dance music</span><p class="recx-blurb">Denuc, a French electronic musician based in Brussels with a PhD in musicology, built this record from compositions for a MIDI-controlled pipe organ at St. Antonius Church in Düsseldorf. The historic instrument was programmed to play minimalist and trance-like loops that reverberate across the cathedral interior.</p><div class="recx-card-foot"><div class="recx-source-row"><span class="recx-source">Flow State</span><a class="recx-source-link" href="https://www.flowstate.fm/p/maxime-denuc">view source &rarr;</a></div><div class="recx-foot-actions"><a class="recx-watch" href="https://www.youtube.com/watch?v=GwdYaYHHXPY"><span class="recx-yt">&#9654;</span> Watch on YouTube</a></div></div></article>
+          <article class="recx-card recx-card--red"><div class="recx-num">REC 02</div><h4 class="recx-artist">Vainqueur</h4><div class="recx-track">Reductions 1995-1997</div><span class="recx-genre"><span class="recx-note">&#9834;</span> Minimalist/dub techno</span><p class="recx-blurb">René Löwe grew up in East Berlin tuning into Western radio for Detroit techno, then fell into the minimalist scene around record store Hard Wax alongside Moritz von Oswald. Reductions collects six long tracks that loop synth lines modulating gradually over steady drums.</p><div class="recx-card-foot"><div class="recx-source-row"><span class="recx-source">Flow State</span><a class="recx-source-link" href="https://www.flowstate.fm/p/vainqueur">view source &rarr;</a></div><div class="recx-foot-actions"><a class="recx-watch" href="https://www.youtube.com/watch?v=bhIkNa7Di1U"><span class="recx-yt">&#9654;</span> Watch on YouTube</a></div></div></article>
+          <article class="recx-card recx-card--blue"><div class="recx-num">REC 03</div><h4 class="recx-artist">Marina Herlop</h4><div class="recx-track">Dja Dja</div><span class="recx-genre"><span class="recx-note">&#9834;</span> Avant-pop / contemporary classical</span><p class="recx-blurb">The Barcelona musician has invented a musical language singular enough to defy description: a fusion of post-Romantic tonalities (Satie, Debussy, Scriabin) shot through with piercing vocalizations descended from Meredith Monk, konakkol vocal percussion, and acoustic instruments in shards. A little bit Disney, a little bit Raymond Scott, a world of bracing dissonance and zig-zagging lines.</p><div class="recx-card-foot"><div class="recx-source-row"><span class="recx-source">Futurism Restated</span><a class="recx-source-link" href="https://futurismrestated.substack.com/p/fr-198-beyond-and-back">view source &rarr;</a></div><div class="recx-foot-actions"><a class="recx-watch" href="https://www.youtube.com/watch?v=Gapr8w7hZYg"><span class="recx-yt">&#9654;</span> Watch on YouTube</a></div></div></article>
+          <article class="recx-card recx-card--red"><div class="recx-num">REC 04</div><h4 class="recx-artist">Kali Malone</h4><div class="recx-track">Burning Song</div><span class="recx-genre"><span class="recx-note">&#9834;</span> drone / contemporary classical</span><p class="recx-blurb">Recorded at Leipzig's St. Thomas Church on the 'Bach organ,' a replica of the 1696 instrument Bach's uncle designed, this draws out the organ's unequal temperament and variable frequency graduations. With Sunn O)))'s Stephen O'Malley on guitar and Lucy Railton on cello, captured across 20 microphones close and far. Laura Snapes called it, in drone world, 'Kali Malone's pop record.'</p><div class="recx-card-foot"><div class="recx-source-row"><span class="recx-source">Flow State</span><a class="recx-source-link" href="https://www.flowstate.fm/p/kali-malone-167">view source &rarr;</a></div><div class="recx-foot-actions"><a class="recx-watch" href="https://www.youtube.com/watch?v=CUb_gmndgiY"><span class="recx-yt">&#9654;</span> Watch on YouTube</a></div></div></article>
+          <article class="recx-card recx-card--blue"><div class="recx-num">REC 05</div><h4 class="recx-artist">Moses Boyd</h4><div class="recx-track">Songs For Sinners</div><span class="recx-genre"><span class="recx-note">&#9834;</span> Spiritual Jazz / UK Jazz</span><p class="recx-blurb">A project Boyd has been dreaming about since he was 13, released on his own Exodus label. Fairly called a gospel album, it balances postmillennial UK jazz, soundsystem culture, deep spirituals and R&amp;B, and features a group of vocalists from the extended Boyd family he calls 'the kitchen choir.' The video for 'Say Yeah' incorporates footage of Boyd working with kids at the Woolwich Creative Club.</p><div class="recx-card-foot"><div class="recx-source-row"><span class="recx-source">The Gig</span><a class="recx-source-link" href="https://thegig.substack.com/p/a-chat-with-moses-boyd">view source &rarr;</a></div><div class="recx-foot-actions"><a class="recx-watch" href="https://www.youtube.com/watch?v=Y5jXV1V8q4Q&amp;list=PLcnoDsvTALto"><span class="recx-yt">&#9654;</span> Watch on YouTube</a></div></div></article>
+          <article class="recx-card recx-card--red"><div class="recx-num">REC 06</div><h4 class="recx-artist">Loidis</h4><div class="recx-track">From the Toolkit of Lovers</div><span class="recx-genre"><span class="recx-note">&#9834;</span> minimal house/dub techno</span><p class="recx-blurb">Brian Leeds, whose Huerco S. work specialized in sticky, charcoal-hued textures, moves into sleeker territory as Loidis: brushed stainless steel, graphite against paper. A direct extension of 2024's One Day but crisper and more hypnotic, with a lot of Luomo in its chordal flicker and percussion that's an expression of clicky bliss. The dozen tracks run eight to twelve minutes with no drops, no climaxes, no hooks, just crosshatched expanses of overlapping rhythms. Out on Anthony Naples' Incienso label.</p><div class="recx-card-foot"><div class="recx-source-row"><span class="recx-source">Futurism Restated</span><a class="recx-source-link" href="https://futurismrestated.substack.com/p/fr-196-loidis-leans-into-the-ripples">view source &rarr;</a></div><div class="recx-foot-actions"><a class="recx-watch" href="https://www.youtube.com/watch?v=8OL9QpqGdGQ&amp;list=OLAK5uy_l3lYfG0K1rUo0Z7XHMO6VBWWAxDUagxWg&amp;index=3"><span class="recx-yt">&#9654;</span> Watch on YouTube</a></div></div></article>
+          <article class="recx-card recx-card--blue"><div class="recx-num">REC 07</div><h4 class="recx-artist">Logic1000</h4><div class="recx-track">Confirmation</div><span class="recx-genre"><span class="recx-note">&#9834;</span> dance / UK garage-adjacent house</span><p class="recx-blurb">Flow State picks the title track from Samantha Poulter's new album as part of the mix's quickening pace, slotted alongside Loidis and Charanjit Singh as the energy picks up.</p><div class="recx-card-foot"><div class="recx-source-row"><span class="recx-source">Flow State</span><a class="recx-source-link" href="https://www.flowstate.fm/p/flow-state-episode-348">view source &rarr;</a></div><div class="recx-foot-actions"><a class="recx-watch" href="https://www.youtube.com/watch?v=Nt5VPuZnzTY&amp;list=PLQF-lu8Gbckk&amp;index=3"><span class="recx-yt">&#9654;</span> Watch on YouTube</a></div></div></article>
+          <article class="recx-card recx-card--red"><div class="recx-num">REC 08</div><h4 class="recx-artist">Andrew Tuttle &amp; Darren Cross</h4><div class="recx-track">AT/DC</div><span class="recx-genre"><span class="recx-note">&#9834;</span> ambient folk / cosmic country</span><p class="recx-blurb">Tuttle is a banjo and guitar-wielding ambient folk producer out of Brisbane who's kept company with Steve Gunn, SUSS and Luke Schneider; Cross brings guitar, synth and a hard drive of field recordings from Sydney. Trading files across distance with a few shared parameters, their mutual love of drones opens the portal: 'Athletic, Eup' starts with nature sounds and pastoral picking before 'pink Skyyy Sixth Prize' prods the boundaries of cosmic country, and 'Afternoon Sunrise (I Saw Galadriel at 711)' drifts into weightless, star-spotting ambience.</p><div class="recx-card-foot"><div class="recx-source-row"><span class="recx-source">The Slow Music Movement</span><a class="recx-source-link" href="https://theslowmusicmovement.substack.com/p/summer-fades-to-autumn">view source &rarr;</a></div><div class="recx-foot-actions"><a class="recx-watch" href="https://www.youtube.com/watch?v=PQr4AKF7f3s&amp;list=RDPQr4AKF7f3s&amp;start_radio=1"><span class="recx-yt">&#9654;</span> Watch on YouTube</a></div></div></article>
+          <article class="recx-card recx-card--blue"><div class="recx-num">REC 09</div><h4 class="recx-artist">Dawn Richard</h4><div class="recx-track">creole culture</div><span class="recx-genre"><span class="recx-note">&#9834;</span> avant-R&amp;B</span><p class="recx-blurb">Shatter the Standards frames Dawn Richard's latest as the next chapter in a career spent singing through characters, from the Danity Kane manga superhero she drew for Diddy to D∴WN, the triangle-spelled solo persona staking a claim to revolutionary R&amp;B. creole culture centers on a New Orleans monarch bearing her likeness, reckoning with the city she fled for Baltimore after Katrina.</p><div class="recx-card-foot"><div class="recx-source-row"><span class="recx-source">Shatter the Standards</span><a class="recx-source-link" href="https://www.shatterthestandards.com/p/album-review-creole-culture-by-dawn">view source &rarr;</a></div><div class="recx-foot-actions"><a class="recx-watch" href="https://www.youtube.com/watch?v=Wneb_e7H_XU&amp;list=RDWneb_e7H_XU&amp;start_radio=1"><span class="recx-yt">&#9654;</span> Watch on YouTube</a></div></div></article>
+        </div>
+        <div class="recx-carousel-foot"><button class="recx-arrow recx-prev" type="button" aria-label="Previous recommendations">&larr;</button><div class="recx-dots"></div><button class="recx-arrow recx-next" type="button" aria-label="Next recommendations">&rarr;</button><span class="recx-hint">drag to browse &rarr;</span></div>
+      </div>
+    </section>
+
+    <section class="numbered-section numbered-section--cool" id="s4">
+      <div class="section-header">
+        <span class="section-num">04</span>
+        <span class="section-title">Voice &amp; Culture</span><span class="xp"><button class="xp-btn" type="button" aria-expanded="false" aria-label="What is this section?">?</button><span class="xp-card" role="note">Personal essays from writers across cultural media, reflecting on how culture shapes identity, work, and daily life.</span></span>
+      </div>
+      <article class="story">
+        <div class="story-meta">
+          <span class="story-source">ava pauline emilione</span>
+        </div>
+        <h3 class="story-title"><a href="https://ordinaryava.substack.com/p/milk-and-money-how-writers-go-corporate">milk and money: how writers go corporate</a></h3>
+        <p class="story-dek">Ordinaryava's Substack uses Rupi Kaur's decade-long dominance over Nayyirah Waheed (whose salt. predates and arguably outclasses Milk and Honey) to map what it calls the Cool Writer: an author whose brand infrastructure has displaced literary merit as the primary unit of publishing value. The piece argues this isn't individual failure but structural capture, with Prada book drops and Bottega Veneta library sets as the destination.</p>
+        <div class="story-foot">
+          <a class="story-cta" href="https://ordinaryava.substack.com/p/milk-and-money-how-writers-go-corporate">Read on ava pauline emilione →</a>
+        </div>
+      </article>
+      <article class="story">
+        <div class="story-meta">
+          <span class="story-source">(Re)Structured News | Tow-Knight Center at CUNY</span>
+        </div>
+        <h3 class="story-title"><a href="https://restructurednews.substack.com/p/where-truth-lies">Where Truth Lies</a></h3>
+        <p class="story-dek">Who can you trust these days? That question anchors this Tow-Knight Center piece, which traces how a one-person election-info site became a primary LLM source not through authority but through AI-optimized structure. The core insight: misinformation no longer needs distribution infrastructure if it can convince a model to cite it. The proposed fix is encoding a fact-checker's vetting process into agents that produce auditable decision trails.</p>
+        <div class="story-foot">
+          <a class="story-cta" href="https://restructurednews.substack.com/p/where-truth-lies">Read on (Re)Structured News | Tow-Knight Center at CUNY →</a>
+        </div>
+      </article>
+      <article class="story">
+        <div class="story-meta">
+          <span class="story-source">404 Media</span>
+        </div>
+        <h3 class="story-title"><a href="https://www.404media.co/come-and-take-it/">Come and Take It</a></h3>
+        <p class="story-dek">404 Media reports that Anthropic and OpenAI have quietly shut down one of the genuinely useful things people were doing with LLMs: reverse-engineering IoT devices to unbrick them, strip surveillance ads from smart TVs, and revive abandoned hardware. The pattern is clarifying.</p>
+        <div class="story-foot">
+          <a class="story-cta" href="https://www.404media.co/come-and-take-it/">Read on 404 Media →</a>
+        </div>
+      </article>
+      <button class="section-expand" type="button">see more ↓</button>
+    </section>
+
+    <section class="numbered-section recs-collapsed" id="s5">
+      <div class="section-header">
+        <span class="section-num">05</span>
+        <span class="section-title">Sound on Sight Video Archive</span><span class="xp xp--ember"><button class="xp-btn" type="button" aria-expanded="false" aria-label="What is this section?">?</button><span class="xp-card" role="note">One music video from the archive in each issue, ranging from a few months to sixty years old, with a short note on why it holds up.</span></span>
+      </div>
+      <div class="rec-feature">
+        <div class="rec-feature-video">
+          <div class="rec-overlay-wrap" data-yt-src="https://www.youtube.com/embed/rXUb4gdgpbI"><img class="rec-overlay-img" src="https://i.ytimg.com/vi/rXUb4gdgpbI/hqdefault.jpg" alt="" /><div class="rec-play-icon" aria-hidden="true">▶</div></div>
+        </div>
+        <div class="rec-meta">
+          <h3 class="rec-title">Jim WIlson — "Center Core Never More"</h3>
+          <div class="rec-via">Early 90s · instrumental rock</div>
+          <p class="rec-blurb">Jim Wilson plays guitar the way you'd expect from someone who spent years alongside Harvey Mandel and Rcollins: dense, exploratory, allergic to the tidy hook. &quot;Center Core Never More&quot; is the kind of early-90s instrumental that got buried under grunge, worth pulling back up for the way the tone keeps mutating under your ear.</p>
+        </div>
+      </div>
+      <button class="recx-toggle" type="button" aria-expanded="false"><span class="recx-toggle-label">see more from the vault</span><span class="recx-count">09</span></button>
+      <div class="recx-more">
+        <div class="recx-carousel">
+          <article class="recx-card recx-card--blue"><div class="recx-num">SOS 01</div><h4 class="recx-artist">The Stripes</h4><div class="recx-track">Ecstasy (Plattenküche)</div><span class="recx-genre"><span class="recx-note">&#9834;</span> 1980</span><p class="recx-blurb">The singer is Gabriele Kerner, three years short of '99 Luftballons.' The Stripes were her first band, formed in Hagen in 1979 and finished by 1982. The show is Plattenküche, a WDR variety hour with fountains, a filing cabinet that toppled every week, and a working kitchen where the co-host cooked dinner on air.</p><div class="recx-card-foot"><div class="recx-foot-actions"><a class="recx-watch" href="https://www.youtube.com/watch?v=xTi3yGq4FUU"><span class="recx-yt">&#9654;</span> Watch on YouTube</a></div></div></article>
+          <article class="recx-card recx-card--red"><div class="recx-num">SOS 02</div><h4 class="recx-artist">Portishead</h4><div class="recx-track">The Rip</div><span class="recx-genre"><span class="recx-note">&#9834;</span> 2008</span><p class="recx-blurb">Nick Uff, a gardener by trade, drew it frame by frame on 16mm without a storyboard, letting the film go where it took itself. That scratchy hand-made animation sits over an arpeggio Adrian Utley couldn't get a sequencer to play, so he recorded the notes one at a time and edited them into the loop.</p><div class="recx-card-foot"><div class="recx-foot-actions"><a class="recx-watch" href="https://www.youtube.com/watch?v=kBOaLjtR4mw"><span class="recx-yt">&#9654;</span> Watch on YouTube</a></div></div></article>
+          <article class="recx-card recx-card--blue"><div class="recx-num">SOS 03</div><h4 class="recx-artist">Plastic Rap</h4><div class="recx-track">Frieda</div><span class="recx-genre"><span class="recx-note">&#9834;</span> 1980 · downtown video art</span><p class="recx-blurb">Before Tom Rubnitz became downtown New York's patron saint of camp, he helped make this: a performer named Frieda rapping backed by a chorus line of dolls, production values scraping the floor on purpose. 'Plastic Rap' is Lower Manhattan circa 1980 deciding that cheap and ridiculous could be an aesthetic, not a limitation.</p><div class="recx-card-foot"><div class="recx-foot-actions"><a class="recx-watch" href="https://www.youtube.com/watch?v=eZTLlGwJmqE"><span class="recx-yt">&#9654;</span> Watch on YouTube</a></div></div></article>
+          <article class="recx-card recx-card--red"><div class="recx-num">SOS 04</div><h4 class="recx-artist">Ludacris</h4><div class="recx-track">Get Back</div><span class="recx-genre"><span class="recx-note">&#9834;</span> 2004 · Southern hip-hop</span><p class="recx-blurb">Spike Jonze gives Ludacris a pair of prosthetic Popeye arms and aims them at a man who won't observe bathroom etiquette. Interestingly enough, the man is Fatlip, the Pharcyde rapper whom Jonze had filmed four years earlier narrating the worst day of his life. In 2004, he is still the one getting hit.</p><div class="recx-card-foot"><div class="recx-foot-actions"><a class="recx-watch" href="https://www.youtube.com/watch?v=5yt849wJyVk"><span class="recx-yt">&#9654;</span> Watch on YouTube</a></div></div></article>
+          <article class="recx-card recx-card--blue"><div class="recx-num">SOS 05</div><h4 class="recx-artist">Mother's Ruin</h4><div class="recx-track">Lost in Town</div><span class="recx-genre"><span class="recx-note">&#9834;</span> 1981 · Swiss punk</span><p class="recx-blurb">Zürich, 1981. Mother's Ruin had been going since 1978, early enough that Swiss punk barely existed, and director Paul Grau shot 'Lost in Town' for the 'Want More' LP while the scene was still inventing itself. Snarl from a country nobody files under snarl.</p><div class="recx-card-foot"><div class="recx-foot-actions"><a class="recx-watch" href="https://www.youtube.com/watch?v=qspZP3-xAPU"><span class="recx-yt">&#9654;</span> Watch on YouTube</a></div></div></article>
+          <article class="recx-card recx-card--red"><div class="recx-num">SOS 06</div><h4 class="recx-artist">Dorothy Fuzz</h4><div class="recx-track">1 2 3 Understand Me</div><span class="recx-genre"><span class="recx-note">&#9834;</span> 2025 · psych-pop</span><p class="recx-blurb">Out of Los Angeles, Dorothy Fuzz stack sweet vocal harmonies over trippy psych and title the album 'Mad Art For A Mad Age,' which about covers it. '1 2 3 Understand Me' keeps reaching for connection and dissolving into haze before it can close the gap. Sunshine on top, something woozier underneath.</p><div class="recx-card-foot"><div class="recx-foot-actions"><a class="recx-watch" href="https://www.youtube.com/watch?v=CKzmA2-ehJ8"><span class="recx-yt">&#9654;</span> Watch on YouTube</a></div></div></article>
+          <article class="recx-card recx-card--blue"><div class="recx-num">SOS 07</div><h4 class="recx-artist">UNKLE</h4><div class="recx-track">Rabbit In Your Headlights</div><span class="recx-genre"><span class="recx-note">&#9834;</span> 1998 · trip-hop</span><p class="recx-blurb">Jonathan Glazer sends a man stumbling through a tunnel, getting hit by cars over and over, muttering Thom Yorke's looped prayer. Each impact lands harder than the last until the final one doesn't. UNKLE and DJ Shadow built the track from dread and strings; Glazer turned it into a parable that earns its resurrection.</p><div class="recx-card-foot"><div class="recx-foot-actions"><a class="recx-watch" href="https://www.youtube.com/watch?v=kEqGdGAgAjw"><span class="recx-yt">&#9654;</span> Watch on YouTube</a></div></div></article>
+          <article class="recx-card recx-card--red"><div class="recx-num">SOS 08</div><h4 class="recx-artist">Fat Lip</h4><div class="recx-track">What's Up Fatlip</div><span class="recx-genre"><span class="recx-note">&#9834;</span> 2000 · alternative hip-hop</span><p class="recx-blurb">Spike Jonze films it like a pratfall in slow motion: Fat Lip narrating his own worst day, every small humiliation landing square on the beat. It's tragi-comedy played dead straight, an itemized series of humiliations played with a stand-up's timing. The Pharcyde's sharpest tongue turns self-loathing into the funniest, saddest three minutes the West Coast underground ever produced.</p><div class="recx-card-foot"><div class="recx-foot-actions"><a class="recx-watch" href="https://www.youtube.com/watch?v=WotkQ6vFuGw"><span class="recx-yt">&#9654;</span> Watch on YouTube</a></div></div></article>
+          <article class="recx-card recx-card--blue"><div class="recx-num">SOS 09</div><h4 class="recx-artist">Marina Voica</h4><div class="recx-track">Common People</div><span class="recx-genre"><span class="recx-note">&#9834;</span> 1996 · Romanian pop</span><p class="recx-blurb">A Romanian pop grande dame, who'd spent five decades exploring the outer boundaries of samba, soul, and disco-pop, takes Pulp’s  'Common People' and sings it in her own language. The pairing is the pleasure: a voice raised on the state airwaves wrapping itself around a Britpop anthem about class.</p><div class="recx-card-foot"><div class="recx-foot-actions"><a class="recx-watch" href="https://www.youtube.com/watch?v=7YqZWBAIcUY"><span class="recx-yt">&#9654;</span> Watch on YouTube</a></div></div></article>
+        </div>
+        <div class="recx-carousel-foot"><button class="recx-arrow recx-prev" type="button" aria-label="Previous videos">&larr;</button><div class="recx-dots"></div><button class="recx-arrow recx-next" type="button" aria-label="Next videos">&rarr;</button><span class="recx-hint">drag to browse &rarr;</span></div>
+      </div>
+    </section>
+
+    <section class="numbered-section numbered-section--rail" id="s6" aria-labelledby="s6-title" aria-describedby="s6-intro">
+      <div class="section-header">
+        <span class="section-num">06</span>
+        <span class="section-title" id="s6-title">Attack of the Bots</span>
+        <span class="ri-count">9 pieces</span>
+        <div class="ri"><p class="ri-text" id="s6-intro">Much of the attention around AI in music has focused on how it fundamentally alters the artistic process, but the more immediate threat may be how it enables pre-existing bad actors and its disruptive impact on scalping in particular. In October, bots swamped RAYE&#x27;s presale registration, crashed Sam Fender&#x27;s presale, and disrupted a Garth Brooks on-sale. Ticketmaster UK says it blocks 200 million bot attempts a day. The US is quickly establishing a regulatory frame, albeit imperfectly. Ticket sales are now a contest between software and fans, and the people trying to referee it include the company accused of profiting from it.</p></div>
+      </div>
+      <article class="story">
+        <div class="story-meta">
+          <span class="story-source">Billboard</span>
+        </div>
+        <h3 class="story-title"><a href="https://www.billboard.com/pro/uk-ticketing-live-concerts-ai-bots/">‘Supercharged’ AI Bots Are Disrupting the Ticketing Market. The Industry Is Desperate for a Solution</a></h3>
+        <p class="story-dek">The UK is facing &quot;a supercharged version coming in with AI&quot; of the scalping the US has dealt with for a decade, one artist manager tells Billboard U.K. On one tour date by an artist the manager represents, bots bought &quot;15% to 20%&quot; of the tickets, many of which landed on resale sites. Canceling them just hands the same bots another chance. Labour promised a face-value resale cap in its 2024 manifesto. Thomas Smith reports that the legislation is still in draft and left out of the parliamentary session that runs until May 2027. Ticketmaster capped resale on its own site at face value in 2018, but Sarah Slater, who runs Ticketmaster U.K., says &quot;touts can still make huge profits on other sites.&quot; The manager has little to offer clients: &quot;how do you explain the unexplainable and tell them that there's no solution?&quot;</p>
+        <div class="story-foot">
+          <a class="story-cta" href="https://www.billboard.com/pro/uk-ticketing-live-concerts-ai-bots/">Read on Billboard →</a>
+        </div>
+      </article>
+      <article class="story">
+        <div class="story-meta">
+          <span class="story-source">Music Business Worldwide</span>
+        </div>
+        <h3 class="story-title"><a href="https://www.musicbusinessworldwide.com/raye-sam-fender-garth-brooks-and-the-bots-five-things-to-know-about-the-ai-arms-race-in-live-ticketing/">Raye, Sam Fender, Garth Brooks… and the bots. Five things to know about the AI arms race in live ticketing</a></h3>
+        <p class="story-dek">More than 90,000 people were in the AXS queue for Garth Brooks' Kansas City matinee before the sale was shut down and the show canceled. A statement on his website said, &quot;Most of that number turned out to be bots.&quot; Mandy Dalugdug's explainer at Music Business Worldwide covers the FTC's case against Maryland broker Key Investment Group. The FTC alleges the broker created or obtained more than 13,000 Ticketmaster accounts and used &quot;SIM banks&quot; to receive Ticketmaster's verification codes. Key Investment Group says its purchases did not use bots. Ticketmaster lists CAPTCHA challenges among its defenses. In 2024, researchers at ETH Zurich used a modified image-recognition model to solve 100% of the image challenges in Google's reCAPTCHA v2.</p>
+        <div class="story-foot">
+          <a class="story-cta" href="https://www.musicbusinessworldwide.com/raye-sam-fender-garth-brooks-and-the-bots-five-things-to-know-about-the-ai-arms-race-in-live-ticketing/">Read on Music Business Worldwide →</a>
+        </div>
+      </article>
+      <article class="story">
+        <div class="story-meta">
+          <span class="story-source">Billboard</span>
+        </div>
+        <h3 class="story-title"><a href="https://www.billboard.com/pro/doj-sues-ticket-reseller-netted-120m-tours-beyonce/">DOJ Sues Broker That Allegedly Netted $120M Flipping Tickets to Beyoncé &amp; More Tours</a></h3>
+        <p class="story-dek">A Justice Department complaint says REPS &amp; Co., a San Diego ticket broker, kept an &quot;Error Bible,&quot; a log of Ticketmaster error codes and instructions for getting around the limits behind them. Billboard's Rachel Scharf, who obtained and first reported the lawsuit, reports that the DOJ sued REPS under the BOTS Act on Oct. 15 on an FTC referral. The complaint alleges $120 million in profit from more than 18.5 million tickets resold since 2022. Per the DOJ, REPS hired offshore workers in the Philippines to open thousands of Ticketmaster and AXS accounts in other people's names, and used analytics software and data scraping to target the shows with the highest resale prices. For a single Pitbull show in 2024, it allegedly bought 5,430 tickets, nearly one-third of the venue's capacity.</p>
+        <div class="story-foot">
+          <a class="story-cta" href="https://www.billboard.com/pro/doj-sues-ticket-reseller-netted-120m-tours-beyonce/">Read on Billboard →</a>
+        </div>
+      </article>
+      <article class="story">
+        <div class="story-meta">
+          <span class="story-source">Billboard</span>
+        </div>
+        <h3 class="story-title"><a href="https://www.billboard.com/pro/ticketmaster-face-ftc-ticket-resale-lawsuit-bots-act/">Ticketmaster Must Face FTC Ticket Resale Lawsuit as Judge Says BOTS Act Applies</a></h3>
+        <p class="story-dek">One of Ticketmaster's arguments for dismissing the FTC's BOTS Act suit was that the law is meant for individual resellers, not the platforms that host them. Judge Maame Ewusi-Mensah Frimpong rejected that in a Sept. 28 order, writing that the act &quot;does not preclude platforms from facing liability.&quot; The FTC claims Ticketmaster let brokers run hundreds or thousands of fake-name accounts past its purchase limits so they would resell on its own secondary market, generating billions in fees. The ruling doesn't decide whether that's true; it moves the case into discovery. Rachel Scharf, who also broke the REPS &amp; Co. lawsuit, notes the judge cited an internal email in which a senior executive said they &quot;turn a blind eye as a matter of policy.&quot;</p>
+        <div class="story-foot">
+          <a class="story-cta" href="https://www.billboard.com/pro/ticketmaster-face-ftc-ticket-resale-lawsuit-bots-act/">Read on Billboard →</a>
+        </div>
+      </article>
+      <article class="story">
+        <div class="story-meta">
+          <span class="story-source">Music Business Worldwide</span>
+        </div>
+        <h3 class="story-title"><a href="https://musicbusinessworldwide.com/main-event-ticketing-act-clears-house-committee-36-0-as-live-nation-fights-an-ftc-lawsuit-under-the-law-it-would-strengthen">MAIN Event Ticketing Act clears House committee 36-0 – as Live Nation fights an FTC lawsuit under the law it would strengthen</a></h3>
+        <p class="story-dek">Live Nation supports the MAIN Event Ticketing Act, a bill that toughens the same 2016 BOTS Act the FTC is using to sue it. The House Energy and Commerce Committee advanced the bill 36-0 on Sept. 16. The version the committee took up would make ticket issuers keep technical controls in place to enforce purchase limits and report known circumventions to the FTC within 30 days. The amended text the committee adopted had not yet been published at the time. Dan Wall, Live Nation's EVP for Corporate and Regulatory Affairs, warned senators that the reporting duty could be unworkable, since attempted circumvention &quot;happens constantly and at enormous scale.&quot; The Senate version, S. 196, was written by Marsha Blackburn and Ben Ray Luján, who both joined a brief supporting the FTC against Live Nation.</p>
+        <div class="story-foot">
+          <a class="story-cta" href="https://musicbusinessworldwide.com/main-event-ticketing-act-clears-house-committee-36-0-as-live-nation-fights-an-ftc-lawsuit-under-the-law-it-would-strengthen">Read on Music Business Worldwide →</a>
+        </div>
+      </article>
+      <article class="story">
+        <div class="story-meta">
+          <span class="story-source">Billboard</span>
+        </div>
+        <h3 class="story-title"><a href="https://www.billboard.com/pro/artificial-intelligence-concerts-marketing-production/">From Ticketing To Vocals, The ‘Mind-Blowing’ Ways Concerts Are Using AI</a></h3>
+        <p class="story-dek">On Nine Inch Nails' Peel It Back Tour, front of house engineer Jamie Pollock quietly used L-Acoustics' Source Intelligence, machine learning that picks Trent Reznor's voice out of the stage noise in real time. Most of the AI in Ariel King's Billboard survey is tools like that, or marketing: HIVE co-founder Patrick Hannigan says some clients have its assistants draft &quot;100% of their emails.&quot; Bad actors have taken up AI too, King notes, and the ticketing companies are answering in kind. Ticketmaster's Saumil Mehta calls the platform &quot;one of the most attacked sites on the internet.&quot; SeatGeek's TourIQ recommends a price for every seat before the on-sale, and SeatGeek's ArinMichelle Casey explains why: &quot;When tickets are priced wrong, the gap between what a seat is worth and what it sells for tends to get filled elsewhere, including by bad actors using bots.&quot;</p>
+        <div class="story-foot">
+          <a class="story-cta" href="https://www.billboard.com/pro/artificial-intelligence-concerts-marketing-production/">Read on Billboard →</a>
+        </div>
+      </article>
+      <article class="story">
+        <div class="story-meta">
+          <span class="story-source">IQ Magazine</span>
+        </div>
+        <h3 class="story-title"><a href="https://www.iqmagazine.com/2026/10/raye-presale-bot-onslaught-reignites-calls-for-enhanced-uk-ticketing-legislation/">Raye presale bot onslaught reignites calls for enhanced UK ticketing legislation</a></h3>
+        <p class="story-dek">The presale for RAYE's 5,000-capacity Royal Albert Hall show drew 5 million website requests, a figure IQ Magazine confirmed hours after the singer said scalpers using AI bots had overwhelmed the system. The show was a one-night symphonic engagement with the Heritage Orchestra and Flames Collective, announced two weeks ahead. The flood has renewed calls for tougher UK ticketing legislation, IQ reports.</p>
+        <div class="story-foot">
+          <a class="story-cta" href="https://www.iqmagazine.com/2026/10/raye-presale-bot-onslaught-reignites-calls-for-enhanced-uk-ticketing-legislation/">Read on IQ Magazine →</a>
+        </div>
+      </article>
+      <article class="story">
+        <div class="story-meta">
+          <span class="story-source">IQ Magazine</span>
+        </div>
+        <h3 class="story-title"><a href="https://www.iqmagazine.com/2026/10/front-gate-tickets-links-with-face-value-resale-platform-cashortrade/">Front Gate Tickets links with face-value resale platform CashorTrade</a></h3>
+        <p class="story-dek">Front Gate Tickets, a Ticketmaster subsidiary, will offer resale for Lollapalooza, Austin City Limits and Ultra Music Festival through CashorTrade, an independent US marketplace built on face-value, fan-to-fan resale, per IQ Magazine. For passes resold there, Front Gate will verify each ticket's authenticity and its purchase price, fees included.</p>
+        <div class="story-foot">
+          <a class="story-cta" href="https://www.iqmagazine.com/2026/10/front-gate-tickets-links-with-face-value-resale-platform-cashortrade/">Read on IQ Magazine →</a>
+        </div>
+      </article>
+      <article class="story">
+        <div class="story-meta">
+          <span class="story-source">IQ Magazine</span>
+        </div>
+        <h3 class="story-title"><a href="https://www.iqmagazine.com/2026/10/california-festival-claims-99-ticketing-fee-cut-with-self-made-platform/">California festival claims 99% ticketing fee cut with self-made platform</a></h3>
+        <p class="story-dek">Same Same But Different, a fan-owned festival in San Diego, built its own ticketing platform on Shopify and says that cut its ticketing fees by around 99%. Other tiers still cost more than this one, but the festival says the platform took $60 off one: general admission presale for the 2027 Community Tier is $295, down from $355 the year before.</p>
+        <div class="story-foot">
+          <a class="story-cta" href="https://www.iqmagazine.com/2026/10/california-festival-claims-99-ticketing-fee-cut-with-self-made-platform/">Read on IQ Magazine →</a>
+        </div>
+      </article>
+      <button class="section-expand" type="button">see more ↓</button>
+    </section>
+
+    <section class="numbered-section recs-collapsed" id="sx">
+      <div class="section-header">
+        <span class="section-num">07</span>
+        <span class="section-title">Storylines</span><span class="xp xp--ember"><button class="xp-btn" type="button" aria-expanded="false" aria-label="What is this section?">?</button><span class="xp-card" role="note">Standalone features that follow one story in full. Each gathers the coverage as it appeared, annotated and in sequence, with a written introduction.</span></span>
+      </div>
+      <div class="rec-feature">
+        <div class="rec-feature-video" style="padding:0;border:none;background:none;"><img class="recx-card-img" style="width:100%;margin:0;border:1.5px solid var(--ink);" src="assets/collections/ai-composition-detection/watchmen.png" alt="" /></div>
+        <div class="rec-meta">
+          <h3 class="rec-title">Watching the Watchmen: On AI Composition and Detection</h3>
+          <div class="rec-via">21 articles &middot; story collection</div>
+          <p class="rec-blurb">After AI slop overwhelmed their services, the platforms struck back, with Substack releasing an AI detection tool and LinkedIn adding a button that lets users report slop. Whether this was good stewardship or evidence of a witch hunt is an open question, and we dive into the debate with 21 articles that wrestle with how we value AI (and human) writing.</p>
+          <a class="sx-open" href="collections/ai-composition-detection.html">Open the collection &rarr;</a>
+        </div>
+      </div>
+      <button class="recx-toggle" type="button" aria-expanded="false"><span class="recx-toggle-label">see more storylines</span><span class="recx-count">04</span></button>
+      <div class="recx-more">
+        <div class="recx-carousel">
+          <article class="recx-card recx-card--blue"><img class="recx-card-img" src="assets/collections/fenix-flexins-rubberz/cover.png" alt="" /><h4 class="recx-artist">Me and the Devil: Fenix Flexin's AI Authorship Fight</h4><div class="sx-count">11 articles &middot; story collection</div><p class="recx-blurb">Maybe Fenix Flexin won't be remembered as the Elvis Presley of AI music, but his track &quot;Rubberz&quot;, which delivers street-rap verses over '80s synth-pop, reached the Hot 100, drew months of accusations, and ballooned into one of the biggest stories of 2026. We track the story's twists and turns, and consider where we're going (and where we've been).</p><div class="recx-card-foot"><a class="sx-open" href="collections/fenix-flexins-rubberz.html">Open the collection &rarr;</a></div></article>
+          <article class="recx-card recx-card--red"><img class="recx-card-img" src="assets/collections/the-summer-of-nostalgia/nostalgia.png" alt="" /><h4 class="recx-artist">2026, the Summer of Nostalgia</h4><div class="sx-count">16 articles &middot; story collection</div><p class="recx-blurb">Between a billion dollar Michael Jackson biopic, a blockbuster Madonna album, and the return of &quot;Wonderwall&quot; and &quot;Mr. Brightside&quot; to the charts, 2026 could be defined not so much by what we created, but by what we remembered. We survey the landscape, and consider what it means when culture turns into a hall of mirrors.</p><div class="recx-card-foot"><a class="sx-open" href="collections/the-summer-of-nostalgia.html">Open the collection &rarr;</a></div></article>
+          <article class="recx-card recx-card--blue"><img class="recx-card-img" src="assets/collections/the-onset-of-the-ai-remix-era/ai_remix_era_cover.png" alt="" /><h4 class="recx-artist">The Onset of the AI Remix Era</h4><div class="sx-count">11 articles &middot; story collection</div><p class="recx-blurb">For years, the labels sued to stop fans from generating AI covers of licensed content, and then Universal and Spotify signed the deal for a tool that does just that. Beneath the product announcement lies the story of how billion dollar catalog acquisitions have created incentives for the industry to recycle the catalog rather than invest in new music.</p><div class="recx-card-foot"><a class="sx-open" href="collections/the-onset-of-the-ai-remix-era.html">Open the collection &rarr;</a></div></article>
+          <article class="recx-card recx-card--red"><img class="recx-card-img" src="assets/collections/miles-davis-centennial/cover.png" alt="" /><h4 class="recx-artist">Don't Look Back: Miles Davis at 100</h4><div class="sx-count">10 articles &middot; story collection</div><p class="recx-blurb">Miles was the avatar of cool who kept detonating his own styles, a privileged Black artist who declined every story offered to him about privilege or suffering, and both an undeniable genius and a man who hurt others, particularly women. And a hundred years on, he remains a mystery and a contradiction, which is probably what he would've wanted.</p><div class="recx-card-foot"><a class="sx-open" href="collections/miles-davis-centennial.html">Open the collection &rarr;</a></div></article>
+        </div>
+        <div class="recx-dots"></div>
+      </div>
+    </section>
+
+    <section class="numbered-section numbered-section--cool numbered-section--rail" id="s7" aria-labelledby="s7-title" aria-describedby="s7-intro">
+      <div class="section-header">
+        <span class="section-num">08</span>
+        <span class="section-title" id="s7-title">Streaming&#x27;s Home Field</span>
+        <span class="ri-count">9 pieces</span>
+        <div class="ri"><p class="ri-text" id="s7-intro">According to early champions, streaming was supposed to flatten the globe, bringing faraway sounds into the speakers and headphones of global audiences. This actually happened, as evidenced by the explosion of Afrobeats and Latin music over the past decade. But there’s a flip side to this: increasingly, it’s diminishing the hometown audiences for acts in certain countries. Australian music is down to 8.5% of streams in Australia, with a campaign (Ausify) to win it back. Quebec&#x27;s physical sales are falling, but its streaming share holds. The articles below unpack this phenomenon.</p></div>
+      </div>
+      <article class="story">
+        <div class="story-meta">
+          <span class="story-source">Billboard</span>
+        </div>
+        <h3 class="story-title"><a href="https://www.billboard.com/pro/ausify-campaign-returns/">Ausify Campaign Returns as Australian Music’s Streaming  Share Hits New Low</a></h3>
+        <p class="story-dek">Australians say they love their own music. In a Music Australia survey of 1,018 people, 84% said a defining life moment brings an Australian song to mind, yet only 27% had streamed an Australian artist in the past 12 months. Ausify, the campaign Music Australia runs to close that gap, treats it as a discovery problem rather than a demand problem. Billboard's Jessica Lynch lays out how steep the slide has been: local music's streaming share is down 37.5% in five years, and APRA AMCOS CEO Dean Ormston has warned it could fall to about 5% within five years without intervention. In its second year, Ausify is calling for &quot;Public Displays of Ausify,&quot; starting with seven artists singing a karaoke &quot;Love Is in the Air.&quot; Offshore the picture flips, with APRA's international revenue topping $100 million for the first time in FY26.</p>
+        <div class="story-foot">
+          <a class="story-cta" href="https://www.billboard.com/pro/ausify-campaign-returns/">Read on Billboard →</a>
+        </div>
+      </article>
+      <article class="story">
+        <div class="story-meta">
+          <span class="story-source">Music Business Worldwide</span>
+        </div>
+        <h3 class="story-title"><a href="https://www.musicbusinessworldwide.com/australian-local-music-is-in-decline-and-uk-canada-arent-far-behind-new-report-warns">Australian local music is in decline, and UK, Canada aren’t far behind, new report warns</a></h3>
+        <p class="story-dek">Will Page and Morgan Harrington's report for The Australia Institute points to Denmark, a country of just 5.5 million Danish speakers where Danish artists singing in Danish held 16 of the top 20 albums in the year the report measured. Australia has no such shield. The authors blame recommendation algorithms that favor the listener's own language, which in English means music from the US. Daniel Tencer's write-up at Music Business Worldwide puts a number on the cost: Australian recorded music revenue grew nearly 28% between 2021 and 2024 while local acts' revenue fell from $50.9 million to $44.8 million. The UK and Canada show milder versions of the same problem. Spotify pushes back with its own survey, in which 81% of streaming users &quot;say it's easy to find Australian artists.&quot;</p>
+        <div class="story-foot">
+          <a class="story-cta" href="https://www.musicbusinessworldwide.com/australian-local-music-is-in-decline-and-uk-canada-arent-far-behind-new-report-warns">Read on Music Business Worldwide →</a>
+        </div>
+      </article>
+      <article class="story">
+        <div class="story-meta">
+          <span class="story-source">Digital Music News</span>
+        </div>
+        <h3 class="story-title"><a href="https://www.digitalmusicnews.com/2026/08/12/quebec-local-content-consumption-report/">Quebec Experiences Decrease in Local Content Consumption</a></h3>
+        <p class="story-dek">Only one Quebec act, Les Cowboys Fringants, makes the list of the 20 most-streamed artists in Quebec, ranking 12th. Charlotte Cardin, the next Quebecer, ranks 38th overall. Ashley King at Digital Music News files Quebec beside Australia as another market losing ground at home. The sharpest losses are in album sales, where Quebec artists' share fell from 24% to 18% in one year. Vinyl, which is growing, does little for Quebec artists (8% of sales).</p>
+        <div class="story-foot">
+          <a class="story-cta" href="https://www.digitalmusicnews.com/2026/08/12/quebec-local-content-consumption-report/">Read on Digital Music News →</a>
+        </div>
+      </article>
+      <article class="story">
+        <div class="story-meta">
+          <span class="story-source">IQ Magazine</span>
+        </div>
+        <h3 class="story-title"><a href="https://www.iqmagazine.com/2026/10/finnish-music-rivals-pop-and-rock-listening-at-home-finds-report/">Finnish music rivals pop and rock listening at home, finds report</a></h3>
+        <p class="story-dek">Finnish-language pop is as popular in Finland as rock and English-language pop, according to the Music Listening in Finland report covered by IQ Magazine: the three tie as the country's most liked genres, each with 53% of the population. IQ ties the result to local-language music's growing appeal across Europe. Finnish schlager and metal come next, each liked by 40%, with rap and hip-hop, indie rock and K-pop growing in demand.</p>
+        <div class="story-foot">
+          <a class="story-cta" href="https://www.iqmagazine.com/2026/10/finnish-music-rivals-pop-and-rock-listening-at-home-finds-report/">Read on IQ Magazine →</a>
+        </div>
+      </article>
+      <article class="story">
+        <div class="story-meta">
+          <span class="story-source">Luminate</span>
+        </div>
+        <h3 class="story-title"><a href="https://luminatedata.com/blog/u-k-music-thrives-abroad-and-at-home-despite-growing-global-competition/">U.K. Music Thrives Abroad and at Home Despite Growing Global Competition</a></h3>
+        <p class="story-dek">Luminate reads the UK more kindly than the report in Daniel Tencer's piece, which had British music in a streaming-era drought. UK artists drew 7.8% of global on-demand audio streams in the first half of 2026, slightly up on a year earlier, and the UK ranks as the second-largest export country in Luminate's Export Power Rankings. Luminate argues that support at home shapes how a country does abroad. At home, UK listening is up: 79% of UK respondents call themselves regular music listeners, up from 76% in 2025, and Gen Z puts in 15.2 hours a week.</p>
+        <div class="story-foot">
+          <a class="story-cta" href="https://luminatedata.com/blog/u-k-music-thrives-abroad-and-at-home-despite-growing-global-competition/">Read on Luminate →</a>
+        </div>
+      </article>
+      <article class="story">
+        <div class="story-meta">
+          <span class="story-source">Billboard</span>
+        </div>
+        <h3 class="story-title"><a href="https://www.billboard.com/pro/billboard-japan-luminate-tokyo-conference-j-pop-metadata/">Billboard Japan &amp; Luminate’s ‘NOW PLAYING JAPAN Vol. 6’ Focuses on Overseas Perspectives on the Japanese Market, How to Leverage Metadata</a></h3>
+        <p class="story-dek">Japanese artists' share of streaming in Japan has risen to 75.2%, up from 72.8% in the first half of 2024, a long way from the Australian figures in Jessica Lynch's piece. At the NOW PLAYING JAPAN Vol. 6 conference in Tokyo, Luminate CEO Rob Jonas called that a sign of fan loyalty and said the biggest opportunity for growth lies outside the country. Streaming leads discovery abroad, but more than half of J-pop fans in Mexico say they find music through anime. Jonas's advice was to let the home market fund the push overseas. &quot;Japan has the scale at home and the fans abroad,&quot; he said. Naohiro Kaji of the Ministry of Economy, Trade and Industry followed with the government's target for music's overseas sales, from 0.1 trillion yen to 0.7 trillion yen by 2033.</p>
+        <div class="story-foot">
+          <a class="story-cta" href="https://www.billboard.com/pro/billboard-japan-luminate-tokyo-conference-j-pop-metadata/">Read on Billboard →</a>
+        </div>
+      </article>
+      <article class="story">
+        <div class="story-meta">
+          <span class="story-source">Luminate</span>
+        </div>
+        <h3 class="story-title"><a href="https://luminatedata.com/blog/as-bollywood-expands-global-reach-other-genres-gain-in-india/">As Bollywood Expands Global Reach, Other Genres Gain in India</a></h3>
+        <p class="story-dek">Bollywood took 33.5% of all on-demand streams in India in the first half of 2026, about twice the share of pop, the runner-up. Bollywood is growing faster abroad, though: from H1 2025 to H1 2026, its streams outside India grew 8.2% against 5.1% at home. Luminate floats the idea that it may be on the road Latin and K-pop traveled, where wider streaming adoption carried a regional sound abroad. Inside India, younger listeners lead the turn to pop, EDM and Latin, Luminate's survey suggests, and artist-driven scenes have emerged independent of the Bollywood system.</p>
+        <div class="story-foot">
+          <a class="story-cta" href="https://luminatedata.com/blog/as-bollywood-expands-global-reach-other-genres-gain-in-india/">Read on Luminate →</a>
+        </div>
+      </article>
+      <article class="story">
+        <div class="story-meta">
+          <span class="story-source">Luminate</span>
+        </div>
+        <h3 class="story-title"><a href="https://luminatedata.com/blog/country-musics-global-boom-is-another-glocalization-wave/">Country Music’s Global Boom Is Another “Glocalization” Wave</a></h3>
+        <p class="story-dek">Ella Langley's record-breaking 2026 run atop the Billboard Hot 100 with &quot;Choosin' Texas&quot; makes country look like a U.S. story. Luminate counts 185 billion on-demand streams for the genre worldwide (folk and bluegrass included) through week 41 of 2026, up 54% from the same stretch of 2021. The trigger was the pandemic: with stores shut, U.S. country fans, historically averse to streaming, switched over. Luminate calls what followed glocalization. The more U.S. country artists were streamed at home, the more visible they became to listeners abroad, and in the U.K. country listening rose more than 40% year over year in both 2023 and 2024. The genre grows its own locals: Norwegian artist Tobias Sten, rooted in classic Nashville-style country, is the most-streamed country artist in Norway.</p>
+        <div class="story-foot">
+          <a class="story-cta" href="https://luminatedata.com/blog/country-musics-global-boom-is-another-glocalization-wave/">Read on Luminate →</a>
+        </div>
+      </article>
+      <article class="story">
+        <div class="story-meta">
+          <span class="story-source">Hypebot</span>
+        </div>
+        <h3 class="story-title"><a href="https://www.hypebot.com/culture-shock-what-10-500-labels-reveal-about-the-global-souths-genre-story/">Culture Shock: What 10,500 Labels Reveal About the Global South's Genre Story</a></h3>
+        <p class="story-dek">MIDiA Research mapped 10,500 record labels by country, revenue, genre and distributor, and found Global South genres, from amapiano and Arabic pop to sertanejo and cumbia, already holding around a fifth of revenue, streams and label count. In a preview on Hypebot, MIDiA explains that revenue lags because Global South markets pay less per user. The path it expects is reggaeton's: genres build enough stream scale at home to hit global charts, the recommendation algorithms push them wider, and diaspora listeners carry them into high-paying Western markets. Labels in sub-Saharan Africa and MENA export five times less of their music than US and European labels. MIDiA's answer for Western labels, which it expects to face more competition in their own core regions, is distribution. Believe already handles around half of all Turkish labels in the top 10,500.</p>
+        <div class="story-foot">
+          <a class="story-cta" href="https://www.hypebot.com/culture-shock-what-10-500-labels-reveal-about-the-global-souths-genre-story/">Read on Hypebot →</a>
+        </div>
+      </article>
+      <button class="section-expand" type="button">see more ↓</button>
+    </section>
+
+  </main>
+
+  <!-- ===== RIGHT RAIL ================================== -->
+  <aside class="rail rail-right">
+    <div class="rail-header" id="m-music">
+      <img class="rail-icon" src="assets/icons/music-b-cassette-red.png" alt="" aria-hidden="true" />
+      <div class="rail-title">music news<span class="xp xp--right"><button class="xp-btn" type="button" aria-expanded="false" aria-label="What is this section?">?</button><span class="xp-card" role="note">Short headlines covering artist activity, including new releases, tours, reunions, and obituaries.</span></span></div>
+    </div>
+    <div class="rail-item">
+      <a class="rail-headline" href="https://www.rollingstone.com/music/music-news/dua-lipa-tame-impala-sza-headline-coachella-2027-1235630556/">Dua Lipa, Tame Impala, SZA Headline Coachella 2027</a>
+      <div class="rail-source">Rolling Stone Feed</div>
+      <span class="tag">Festival coverage</span>
+    </div>
+    <div class="rail-item">
+      <a class="rail-headline" href="https://www.rollingstone.com/music/music-news/sade-not-attending-rock-roll-hall-fame-induction-ceremony-1235655607/">Sade Skips Rock &amp; Roll Hall of Fame Ceremony</a>
+      <div class="rail-source">Rolling Stone Feed</div>
+      <span class="tag">Artist news/profiles</span>
+    </div>
+    <div class="rail-item">
+      <a class="rail-headline" href="https://stereogum.com/2517043/king-gizzard-the-lizard-wizard-announce-new-album-entropy-hear-rogue-wave/music/">King Gizzard announce new album</a>
+      <div class="rail-source">Stereogum Feed</div>
+      <span class="tag">Artist news/profiles</span>
+    </div>
+    <div class="rail-item">
+      <a class="rail-headline" href="https://www.digitalmusicnews.com/2026/11/09/pink-sphere-headline-shows/">P!nk announces Sphere Las Vegas residency 2027</a>
+      <div class="rail-source">Digital Music News</div>
+      <span class="tag">Tour announcements</span>
+    </div>
+    <div class="rail-item rail-item--extra">
+      <a class="rail-headline" href="https://www.billboard.com/pro/diplo-andrew-bergman-bison-music/">Diplo Launches Bison Music With Bergman</a>
+      <div class="rail-source">Billboard Feed</div>
+      <span class="tag">Artist news/profiles</span>
+    </div>
+    <div class="rail-item rail-item--extra">
+      <a class="rail-headline" href="https://pitchfork.com/story/new-order-plot-2027-us-tour/">New Order Plots 2027 U.S. Tour</a>
+      <div class="rail-source">Pitchfork News Feed</div>
+      <span class="tag">Tour announcements</span>
+    </div>
+    <div class="rail-item rail-item--extra">
+      <a class="rail-headline" href="https://stereogum.com/2517580/faith-no-more-reunite-with-guitarist-trey-spruance-for-2027-tour/news/">Faith No More reunite for 2027 tour</a>
+      <div class="rail-source">Stereogum Feed</div>
+      <span class="tag">Tour announcements</span>
+    </div>
+    <div class="rail-item rail-item--extra">
+      <a class="rail-headline" href="https://www.rollingstone.com/music/music-news/conor-oberst-2027-tour-dates-1235655375/">Conor Oberst Announces First Solo Tour Since 2019</a>
+      <div class="rail-source">Rolling Stone Feed</div>
+      <span class="tag">Tour announcements</span>
+    </div>
+    <div class="rail-item rail-item--extra">
+      <a class="rail-headline" href="https://musically.com/2026/11/10/apple-music-names-olivia-dean-as-its-artist-of-the-year-for-2026/">Apple Music names Olivia Dean Artist of the Year</a>
+      <div class="rail-source">Music Ally</div>
+      <span class="tag">Artist news/profiles</span>
+    </div>
+    <div class="rail-item rail-item--extra">
+      <a class="rail-headline" href="https://stereogum.com/2517570/oklou-in-waves-movie-soundtrack-score-the-swirl-ahead-rob/music/">Oklou announces In Waves soundtrack</a>
+      <div class="rail-source">Stereogum Feed</div>
+      <span class="tag">Artist news/profiles</span>
+    </div>
+    <button class="rail-see-more" type="button">See more ↓</button>
+    <div class="rail-header rail-header--secondary" id="m-quote">
+      <img class="rail-icon" src="assets/icons/quote-e-megaphone.png" alt="" aria-hidden="true" />
+      <div class="rail-title">Wisdom<span class="xp xp--ember xp--right"><button class="xp-btn" type="button" aria-expanded="false" aria-label="What is this section?">?</button><span class="xp-card" role="note">One quotation in each issue, drawn from writers, musicians, and other thinkers, with name and year.</span></span></div>
+    </div>
+    <div class="rail-pullquote">
+      <blockquote>"Change is the process by which the future invades our lives."</blockquote>
+      <cite>Alvin Toffler · 1970</cite>
+    </div>
+    </aside>
+
+  <!-- Mobile-only: divider between center column and stacked rails -->
+  <div class="more-divider">
+    <div class="more-divider-title">More from Today</div>
+    <div class="more-divider-sub"><a href="#m-industry">Industry</a> · <a href="#m-music">Music</a> · <a href="#m-archives">Archives</a> · <a href="#m-quote">Quote</a></div>
+  </div>
+
+</div>
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<footer class="slice-footer">
+  <div class="footer-inner">
+    <div class="pub">
+      <span class="brand-mark">sound signal</span> · <span class="org">Third Bridge Creative</span>
+    </div>
+    <div class="foot-links"><a href="#top">back to top ↑</a><a href="about.html">about</a></div>
+    <div class="foot-right">Issue 264 · November 11, 2026</div>
+  </div>
+</footer>
+
+<script>
+  // Numbered-section see-more: toggle .expanded to reveal stories 3+.
+  document.addEventListener('click', (e) => {
+    const btn = e.target.closest('.section-expand');
+    if (!btn) return;
+    const section = btn.closest('.numbered-section');
+    const expanded = section.classList.toggle('expanded');
+    btn.textContent = expanded ? 'see less ↑' : 'see more ↓';
+  });
+
+  // Top-reads expander (mobile, <960px): reveal the also cards hidden past the
+  // first. Toggles .top-reads-expanded on .center; desktop keeps all visible.
+  document.addEventListener('click', (e) => {
+    const btn = e.target.closest('.top-reads-expand');
+    if (!btn) return;
+    const center = document.querySelector('.center');
+    if (!center) return;
+    const on = center.classList.toggle('top-reads-expanded');
+    btn.textContent = on ? 'fewer top reads ↑' : 'more top reads ↓';
+  });
+
+  // Music News rail see-more: toggle .expanded on the parent rail to reveal
+  // rail-item--extra entries (rendered but hidden by CSS).
+  document.addEventListener('click', (e) => {
+    const btn = e.target.closest('.rail-see-more');
+    if (!btn) return;
+    const rail = btn.closest('.rail');
+    if (!rail) return;
+    const expanded = rail.classList.toggle('expanded');
+    btn.textContent = expanded ? 'See less ↑' : 'See more ↓';
+  });
+
+  // Nav active-state tracking (scroll-spy). Order-agnostic: computes the
+  // active section from live bounding-rect positions, so it stays correct
+  // after the <960px flex reorder (where DOM order ≠ visual order — the old
+  // IntersectionObserver, which picked the first *DOM-order* intersecting
+  // section, lit the wrong/multiple chips there). The active section is the
+  // last one whose top has passed just below the sticky nav line — i.e. the
+  // section with the greatest top still above the line — with the visually
+  // topmost section as the at-top fallback. The static `active` class on the
+  // first nav-item is the initial state until this first runs.
+  (() => {
+    const sections = [...document.querySelectorAll('.numbered-section[id]')];
+    const navItems = [...document.querySelectorAll('.nav-item[href^="#s"]')];
+    if (!sections.length || !navItems.length) return;
+    const setActive = (id) => navItems.forEach(item =>
+      item.classList.toggle('active', item.getAttribute('href') === '#' + id));
+    const activeLine = () => {
+      // The line is where an anchored section LANDS: its scroll-margin-top (156px
+      // desktop / 56px mobile — each clears the sticky stack). Read it live from a
+      // section so desktop and mobile are both correct without branching on width.
+      // +1px slack so the just-clicked section (whose top === its scroll-margin-top)
+      // counts as above the line — fixes the desktop off-by-one where the spy line
+      // (nav.bottom + 8 = 142px) fell 14px short of the 156px landing, leaving the
+      // underline on the previous section.
+      const sm = parseFloat(getComputedStyle(sections[0]).scrollMarginTop) || 0;
+      return sm + 1;
+    };
+    let ticking = false;
+    const updateNav = () => {
+      ticking = false;
+      const line = activeLine();
+      let active = null, activeTop = -Infinity;   // last section above the line
+      let first = null, firstTop = Infinity;        // visually topmost (fallback)
+      for (const s of sections) {
+        const top = s.getBoundingClientRect().top;
+        if (top < firstTop) { firstTop = top; first = s; }
+        if (top <= line && top > activeTop) { activeTop = top; active = s; }
+      }
+      setActive((active || first).id);
+    };
+    const onScroll = () => { if (!ticking) { ticking = true; requestAnimationFrame(updateNav); } };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    // Instant on click: light the clicked link's chip straight away instead of
+    // waiting for the scroll spy to catch up (or fight it) after the anchor jump.
+    navItems.forEach(item => item.addEventListener('click', () =>
+      setActive((item.getAttribute('href') || '').slice(1))));
+    updateNav();
+  })();
+
+  // Renumber section badges + end markers in visual (mobile) order below
+  // 960px. CSS counters follow document order, not flex order, so this is JS.
+  // On desktop visual order == document order, so the numbers are unchanged;
+  // data-mnum is still written (the [data-mnum]::after override is media-gated).
+  const mqMobile = window.matchMedia('(max-width: 960px)');
+  function renumberSections() {
+    const secs = [...document.querySelectorAll('.numbered-section')];
+    const ordered = mqMobile.matches
+      ? [...secs].sort((a, b) => (+getComputedStyle(a).order) - (+getComputedStyle(b).order))
+      : secs;
+    ordered.forEach((s, i) => {
+      const num = String(i + 1).padStart(2, '0');
+      const n = s.querySelector('.section-num');
+      if (n) n.textContent = num;
+      s.dataset.mnum = num;   // end markers read this via attr() at <960px
+    });
+  }
+  renumberSections();
+  mqMobile.addEventListener('change', renumberSections);
+
+  // Music-rec click-to-play: create a fresh iframe with autoplay=1 already
+  // in its initial src (carries the click gesture into YouTube cleanly) and
+  // replace the overlay with it. The YT src is read from data-yt-src; no
+  // iframe is in the DOM until this fires (saves a YT request on page load).
+  document.addEventListener('click', (e) => {
+    const wrap = e.target.closest('.rec-overlay-wrap');
+    if (!wrap) return;
+    const ytSrc = wrap.dataset.ytSrc;
+    if (!ytSrc) return;
+    const sep = ytSrc.includes('?') ? '&' : '?';
+    const iframe = document.createElement('iframe');
+    // Set every attribute — crucially allow="autoplay" — BEFORE the iframe
+    // navigates. Then insert it into the DOM, and only assign src LAST, while
+    // still synchronously inside this click handler. Assigning src to a
+    // detached iframe (or before allow is set) drops the user-activation /
+    // autoplay-permission context, so YouTube blocks the autoplay and, because
+    // autoplay=1 suppresses its own play button, leaves a dead black player.
+    iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share');
+    iframe.setAttribute('allowfullscreen', '');
+    iframe.setAttribute('frameborder', '0');
+    iframe.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
+    iframe.style.cssText = 'width:100%;height:100%;border:0;';
+    wrap.replaceWith(iframe);
+    iframe.src = ytSrc + sep + 'autoplay=1&playsinline=1';
+  });
+
+  // Outbound links open in a new tab: scan every <a href> on the page; if
+  // the resolved URL points to a different origin than the current page,
+  // set target="_blank" + rel="noopener noreferrer". Same-domain links
+  // (About, brand home) are skipped automatically. Runs once on parse.
+  document.querySelectorAll('a[href]').forEach(a => {
+    const href = a.getAttribute('href');
+    if (!href) return;
+    try {
+      const url = new URL(href, window.location.href);
+      if (url.origin !== window.location.origin) {
+        a.target = '_blank';
+        a.rel = 'noopener noreferrer';
+      }
+    } catch (e) { /* invalid URL — leave as-is */ }
+  });
+</script>
+
+<script>
+  const BRIEFING_DATE = '2026-11-11';
+  const PREV_DATE = '2026-11-09';
+  const NEXT_DATE = null;
+</script>
+<script>
+  /* Recs carousels (Music Recs #s3, Sound on Sight #s5): dots, prev/next arrows,
+     clickable dots, show-fewer toggle. Binds every section carrying a
+     .recx-carousel so both carousels get identical mechanics. */
+  document.querySelectorAll('.numbered-section').forEach(function(sec){
+    var car = sec.querySelector('.recx-carousel'); if(!car) return;
+    var dotsWrap = sec.querySelector('.recx-dots');
+    var toggle = sec.querySelector('.recx-toggle');
+    function cards(){ return Array.prototype.slice.call(car.querySelectorAll('.recx-card')); }
+    function step(){ var c = car.querySelector('.recx-card'); return c ? c.offsetWidth + 16 : car.clientWidth; }
+    function buildDots(){
+      if(!dotsWrap) return; dotsWrap.innerHTML = '';
+      cards().forEach(function(c, i){
+        var d = document.createElement('button');
+        d.type = 'button'; d.className = 'recx-dot' + (i === 0 ? ' on' : '');
+        d.setAttribute('aria-label', 'Go to recommendation ' + (i + 1));
+        d.addEventListener('click', function(){ car.scrollTo({ left: c.offsetLeft - car.offsetLeft, behavior: 'smooth' }); });
+        dotsWrap.appendChild(d);
+      });
+    }
+    function activeDot(){
+      if(!dotsWrap) return; var l = car.scrollLeft, best = 0, bd = 1e9;
+      cards().forEach(function(c, i){ var d = Math.abs(c.offsetLeft - car.offsetLeft - l); if(d < bd){ bd = d; best = i; } });
+      Array.prototype.forEach.call(dotsWrap.children, function(x, i){ x.classList.toggle('on', i === best); });
+    }
+    car.addEventListener('scroll', function(){ window.requestAnimationFrame(activeDot); });
+    var prev = sec.querySelector('.recx-prev'), next = sec.querySelector('.recx-next');
+    if(prev) prev.addEventListener('click', function(){ car.scrollBy({ left: -step(), behavior: 'smooth' }); });
+    if(next) next.addEventListener('click', function(){ car.scrollBy({ left: step(), behavior: 'smooth' }); });
+    if(toggle) toggle.addEventListener('click', function(){
+      var collapsed = sec.classList.toggle('recs-collapsed');
+      var lbl = toggle.querySelector('.recx-toggle-label');
+      if(lbl) lbl.textContent = collapsed ? 'see more recommendations' : 'see fewer recommendations';
+      toggle.setAttribute('aria-expanded', String(!collapsed));
+    });
+    buildDots();
+  });
+</script>
+<script>
+  // Rail explainers: click/tap pins, outside click + Esc close, one open at a time.
+  document.addEventListener('click', function (e) {
+    var btn = e.target.closest('.xp-btn');
+    document.querySelectorAll('.xp[data-open]').forEach(function (x) {
+      if (!btn || x !== btn.parentElement) {
+        x.removeAttribute('data-open');
+        x.querySelector('.xp-btn').setAttribute('aria-expanded', 'false');
+      }
+    });
+    if (btn) {
+      var x = btn.parentElement;
+      var open = x.toggleAttribute('data-open');
+      btn.setAttribute('aria-expanded', String(open));
+    }
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') {
+      document.querySelectorAll('.xp[data-open]').forEach(function (x) {
+        x.removeAttribute('data-open');
+        x.querySelector('.xp-btn').setAttribute('aria-expanded', 'false');
+      });
+    }
+  });
+</script>
+</body>
+</html>
